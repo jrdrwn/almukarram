@@ -1,0 +1,14 @@
+{
+    "agents": [
+        "copilot"
+    ],
+    "packages": [
+        "inertiajs/inertia-laravel"
+    ],
+    "skills": [
+        "wayfinder-development",
+        "pest-testing",
+        "inertia-react-development",
+        "tailwindcss-development"
+    ]
+}
