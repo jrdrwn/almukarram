@@ -1,15 +1,15 @@
-import ArtikelSection from "@/components/home/artikelsection";
-import BeritaSection from "@/components/home/beritasection";
-import FeaturesSection from "@/components/home/featuressection";
-import Hero from "@/components/home/hero";
-import JadwalJumatSection from "@/components/home/jadwaljumatsection";
-import JadwalKajianSection from "@/components/home/jadwalkajiansection";
-import JadwalMultimediaSection from "@/components/home/jadwalmultimediasection";
-import KontakPengaduanSection from "@/components/home/kontakpengaduansection";
-import SekapurSirihSection from "@/components/home/sekapursirihsection";
-import VideoSection from "@/components/home/videosection";
-import Footer from "@/components/shared/footer";
-import Header from "@/components/shared/header";
+import ArtikelSection from '@/components/home/artikelsection';
+import BeritaSection from '@/components/home/beritasection';
+import FeaturesSection from '@/components/home/featuressection';
+import Hero from '@/components/home/hero';
+import JadwalJumatSection from '@/components/home/jadwaljumatsection';
+import JadwalKajianSection from '@/components/home/jadwalkajiansection';
+import JadwalMultimediaSection from '@/components/home/jadwalmultimediasection';
+import KontakPengaduanSection from '@/components/home/kontakpengaduansection';
+import SekapurSirihSection from '@/components/home/sekapursirihsection';
+import VideoSection from '@/components/home/videosection';
+import Footer from '@/components/shared/footer';
+import Header from '@/components/shared/header';
 
 export default function Page() {
     return (

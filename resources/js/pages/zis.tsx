@@ -15,17 +15,15 @@ export default function Zis() {
             <main className="flex-1">
                 <PageHeader
                     title="Waqaf, Infaq & Shadaqah"
-                    badgeText='
+                    badgeText="
                     WIS
-                    '
-                    badgeIcon={
-                        <FaMoneyBill className="h-4 w-4" />
-                    }
+                    "
+                    badgeIcon={<FaMoneyBill className="h-4 w-4" />}
                     subtitle="Mari tingkatkan kepedulian sosial kita dengan berkontribusi melalui Waqaf, Infaq, dan Shadaqah untuk mendukung berbagai program kebaikan di Masjid Agung Al-Mukarram"
                     breadcrumbs={[
                         { label: 'Beranda', href: '/' },
                         { label: 'Layanan', href: '#' },
-                        { label: 'Waqaf, Infaq & Shadaqah' }
+                        { label: 'Waqaf, Infaq & Shadaqah' },
                     ]}
                 />
 
@@ -33,7 +31,7 @@ export default function Zis() {
                 <Types />
                 <Accounts />
             </main>
-                        <div
+            <div
                 className="pointer-events-none absolute inset-0 -z-1 opacity-[0.4] dark:opacity-[0.02]"
                 style={{
                     backgroundImage:

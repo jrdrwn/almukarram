@@ -1,15 +1,56 @@
-import { Building, Expand, Instagram, Mail, MapPin, Phone, Radio, Users } from "lucide-react";
+import {
+    Building,
+    Expand,
+    Instagram,
+    Mail,
+    MapPin,
+    Phone,
+    Radio,
+    Users,
+} from 'lucide-react';
 
 export default function InfoAndQuotes() {
     const infoList = [
-        { ikon: <MapPin className="text-primary w-6 h-6" />, label: 'Alamat', nilai: 'Jl. Tambun Bungai, Komplek Islamic Center, Kuala Kapuas, Kalimantan Tengah' },
-        { ikon: <Building className="text-primary w-6 h-6" />, label: 'Status', nilai: 'Masjid Agung Kabupaten Kapuas' },
-        { ikon: <Users className="text-primary w-6 h-6" />, label: 'Kapasitas', nilai: '10.631 jamaah (6.361 dalam gedung + 4.000 di tempat terbuka)' },
-        { ikon: <Expand className="text-primary w-6 h-6" />, label: 'Luas Kawasan', nilai: '± 3 Hektar (Komplek Islamic Center)' },
-        { ikon: <Phone className="text-primary w-6 h-6" />, label: 'Telepon', nilai: '(0513) 24246' },
-        { ikon: <Mail className="text-primary w-6 h-6" />, label: 'Email', nilai: 'masjid.almukarram132@gmail.com' },
-        { ikon: <Instagram className="text-primary w-6 h-6" />, label: 'Instagram', nilai: '@masjidagung.almukarram_amanah' },
-        { ikon: <Radio className="text-primary w-6 h-6" />, label: 'Radio Dakwah', nilai: '90.5 FM' },
+        {
+            ikon: <MapPin className="h-6 w-6 text-primary" />,
+            label: 'Alamat',
+            nilai: 'Jl. Tambun Bungai, Komplek Islamic Center, Kuala Kapuas, Kalimantan Tengah',
+        },
+        {
+            ikon: <Building className="h-6 w-6 text-primary" />,
+            label: 'Status',
+            nilai: 'Masjid Agung Kabupaten Kapuas',
+        },
+        {
+            ikon: <Users className="h-6 w-6 text-primary" />,
+            label: 'Kapasitas',
+            nilai: '10.631 jamaah (6.361 dalam gedung + 4.000 di tempat terbuka)',
+        },
+        {
+            ikon: <Expand className="h-6 w-6 text-primary" />,
+            label: 'Luas Kawasan',
+            nilai: '± 3 Hektar (Komplek Islamic Center)',
+        },
+        {
+            ikon: <Phone className="h-6 w-6 text-primary" />,
+            label: 'Telepon',
+            nilai: '(0513) 24246',
+        },
+        {
+            ikon: <Mail className="h-6 w-6 text-primary" />,
+            label: 'Email',
+            nilai: 'masjid.almukarram132@gmail.com',
+        },
+        {
+            ikon: <Instagram className="h-6 w-6 text-primary" />,
+            label: 'Instagram',
+            nilai: '@masjidagung.almukarram_amanah',
+        },
+        {
+            ikon: <Radio className="h-6 w-6 text-primary" />,
+            label: 'Radio Dakwah',
+            nilai: '90.5 FM',
+        },
     ];
 
     return (
@@ -26,24 +67,31 @@ export default function InfoAndQuotes() {
                                 Informasi Singkat
                             </span>
                         </div>
-                        <h2 className="text-3xl font-black md:text-5xl text-foreground">
+                        <h2 className="text-3xl font-black text-foreground md:text-5xl">
                             Identitas & Lokasi
                         </h2>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+                <div className="mb-24 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                     {infoList.map((inf, i) => (
-                        <div key={i} className="group relative overflow-hidden rounded-[2.5rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-1 shadow-lg shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none h-full">
-                            <div className="relative flex h-full flex-col items-start gap-4 p-8 bg-card rounded-[2.3rem]">
+                        <div
+                            key={i}
+                            className="group relative h-full overflow-hidden rounded-[2.5rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-1 shadow-lg shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none"
+                        >
+                            <div className="relative flex h-full flex-col items-start gap-4 rounded-[2.3rem] bg-card p-8">
                                 {/* Card inner glow on hover */}
-                                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-[30px] transition-transform duration-500 group-hover:scale-150"></div>
-                                <div className="w-14 h-14 rounded-2xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center shrink-0 relative z-10">
+                                <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/10 blur-[30px] transition-transform duration-500 group-hover:scale-150"></div>
+                                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 dark:bg-primary/20">
                                     {inf.ikon}
                                 </div>
                                 <div className="relative z-10">
-                                    <div className="text-muted-foreground text-sm font-medium tracking-wide uppercase mb-2">{inf.label}</div>
-                                    <div className="font-semibold text-foreground text-base leading-relaxed">{inf.nilai}</div>
+                                    <div className="mb-2 text-sm font-medium tracking-wide text-muted-foreground uppercase">
+                                        {inf.label}
+                                    </div>
+                                    <div className="text-base leading-relaxed font-semibold text-foreground">
+                                        {inf.nilai}
+                                    </div>
                                 </div>
                             </div>
                         </div>

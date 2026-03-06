@@ -22,19 +22,28 @@ export default function LayananWaris() {
                         href: '/',
                         icon: <Home className="h-4 w-4" />,
                     },
-                    { label: 'Layanan', icon: <BookOpen className="h-4 w-4" /> },
+                    {
+                        label: 'Layanan',
+                        icon: <BookOpen className="h-4 w-4" />,
+                    },
                     { label: 'Layanan Waris' },
                 ]}
                 backgroundImage="/images/masjidnewww-scaled.png"
             />
 
-            <div className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="bg-white dark:bg-zinc-900 overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-zinc-900">
                     <div className="p-8 text-zinc-900 dark:text-zinc-100">
-                        <h2 className="text-2xl font-bold mb-4">Layanan Konsultasi & Penghitungan Waris</h2>
-                        <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-                            Masjid Agung Al-Mukarram menyediakan layanan bimbingan, konsultasi, dan penghitungan pembagian harta warisan secara syariat Islam (Faraid).
-                            Layanan ini bertujuan untuk membantu kaum muslimin mendistribusikan hak pewaris dan ahli waris secara adil sesuai ketentuan Allah SWT.
+                        <h2 className="mb-4 text-2xl font-bold">
+                            Layanan Konsultasi & Penghitungan Waris
+                        </h2>
+                        <p className="mb-6 leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            Masjid Agung Al-Mukarram menyediakan layanan
+                            bimbingan, konsultasi, dan penghitungan pembagian
+                            harta warisan secara syariat Islam (Faraid). Layanan
+                            ini bertujuan untuk membantu kaum muslimin
+                            mendistribusikan hak pewaris dan ahli waris secara
+                            adil sesuai ketentuan Allah SWT.
                         </p>
                     </div>
                 </div>

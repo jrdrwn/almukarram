@@ -26,7 +26,10 @@ export default function SpotBaca() {
                         href: '/',
                         icon: <Home className="h-4 w-4" />,
                     },
-                    { label: 'Pojok Baca', icon: <MapPin className="h-4 w-4" /> },
+                    {
+                        label: 'Pojok Baca',
+                        icon: <MapPin className="h-4 w-4" />,
+                    },
                     { label: 'Spot Baca' },
                 ]}
                 backgroundImage="/images/masjidnewww-scaled.png"

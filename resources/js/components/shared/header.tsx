@@ -27,9 +27,9 @@ import {
     Newspaper,
     Phone,
     SearchIcon,
-    Wrench
+    Wrench,
 } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader } from '../ui/drawer';
 import {
@@ -63,8 +63,16 @@ const navigationItems: NavItem[] = [
         href: '#',
         icon: <Info className="mr-1.5 h-4 w-4" />,
         sub: [
-            { label: 'Sejarah Singkat', href: '/sejarah-singkat', icon: <History className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Struktur Organisasi', href: '/struktur-organisasi', icon: <Network className="mr-2 h-4 w-4 text-emerald-600" /> },
+            {
+                label: 'Sejarah Singkat',
+                href: '/sejarah-singkat',
+                icon: <History className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
+            {
+                label: 'Struktur Organisasi',
+                href: '/struktur-organisasi',
+                icon: <Network className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
         ],
     },
     {
@@ -72,14 +80,36 @@ const navigationItems: NavItem[] = [
         href: '#',
         icon: <Activity className="mr-1.5 h-4 w-4" />,
         sub: [
-            { label: 'Program Masjid', href: '/program-masjid', icon: <Building2 className="mr-2 h-4 w-4 text-emerald-600" /> },
+            {
+                label: 'Program Masjid',
+                href: '/program-masjid',
+                icon: <Building2 className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
             {
                 label: 'Program Kerja Pengurus',
                 icon: <Briefcase className="mr-2 h-4 w-4 text-emerald-600" />,
                 sub: [
-                    { label: 'Idarah', href: '/program-idarah', icon: <LayoutDashboard className="mr-2 h-4 w-4 text-emerald-600" /> },
-                    { label: 'Imarah', href: '/program-imarah', icon: <HeartHandshake className="mr-2 h-4 w-4 text-emerald-600" /> },
-                    { label: 'Riayah', href: '/program-riayah', icon: <Wrench className="mr-2 h-4 w-4 text-emerald-600" /> },
+                    {
+                        label: 'Idarah',
+                        href: '/program-idarah',
+                        icon: (
+                            <LayoutDashboard className="mr-2 h-4 w-4 text-emerald-600" />
+                        ),
+                    },
+                    {
+                        label: 'Imarah',
+                        href: '/program-imarah',
+                        icon: (
+                            <HeartHandshake className="mr-2 h-4 w-4 text-emerald-600" />
+                        ),
+                    },
+                    {
+                        label: 'Riayah',
+                        href: '/program-riayah',
+                        icon: (
+                            <Wrench className="mr-2 h-4 w-4 text-emerald-600" />
+                        ),
+                    },
                 ],
             },
         ],
@@ -89,50 +119,132 @@ const navigationItems: NavItem[] = [
         href: '#',
         icon: <BookOpenText className="mr-1.5 h-4 w-4" />,
         sub: [
-            { label: 'Al-Qur\'an Kemenag', href: 'https://quran.kemenag.go.id/', icon: <Book className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Berita', href: '/berita', icon: <Newspaper className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Opini', href: '/opini', icon: <MessageSquare className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Buletin', href: '/buletin', icon: <FileText className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Spot Baca', href: '/spot-baca', icon: <MapPin className="mr-2 h-4 w-4 text-emerald-600" /> },
+            {
+                label: "Al-Qur'an Kemenag",
+                href: 'https://quran.kemenag.go.id/',
+                icon: <Book className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
+            {
+                label: 'Berita',
+                href: '/berita',
+                icon: <Newspaper className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
+            {
+                label: 'Opini',
+                href: '/opini',
+                icon: (
+                    <MessageSquare className="mr-2 h-4 w-4 text-emerald-600" />
+                ),
+            },
+            {
+                label: 'Buletin',
+                href: '/buletin',
+                icon: <FileText className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
+            {
+                label: 'Spot Baca',
+                href: '/spot-baca',
+                icon: <MapPin className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
         ],
     },
-    { label: 'Dokumen', href: '/dokumen', icon: <FileText className="mr-1.5 h-4 w-4" /> },
-    { label: 'Galeri', href: '/galeri', icon: <ImageIcon className="mr-1.5 h-4 w-4" /> },
+    {
+        label: 'Dokumen',
+        href: '/dokumen',
+        icon: <FileText className="mr-1.5 h-4 w-4" />,
+    },
+    {
+        label: 'Galeri',
+        href: '/galeri',
+        icon: <ImageIcon className="mr-1.5 h-4 w-4" />,
+    },
     {
         label: 'Layanan',
         href: '#',
         icon: <CalendarDays className="mr-1.5 h-4 w-4" />,
         sub: [
-            { label: 'Jadwal Sholat', href: '/jadwal-sholat', icon: <Clock className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Jadwal & Petugas Jumat', href: '/jadwal-jumat', icon: <CalendarDays className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Jadwal Pengajian', href: '/jadwal-pengajian', icon: <Book className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Hitung Zakat', href: '/hitung-zakat', icon: <Calculator className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Informasi Haji', href: 'https://haji.go.id/estimasi-keberangkatan', icon: <Compass className="mr-2 h-4 w-4 text-emerald-600" /> },
-            { label: 'Waqaf, Infaq, Shadaqah', href: '/zis', icon: <HandCoins className="mr-2 h-4 w-4 text-emerald-600" /> },
+            {
+                label: 'Jadwal Sholat',
+                href: '/jadwal-sholat',
+                icon: <Clock className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
+            {
+                label: 'Jadwal & Petugas Jumat',
+                href: '/jadwal-jumat',
+                icon: (
+                    <CalendarDays className="mr-2 h-4 w-4 text-emerald-600" />
+                ),
+            },
+            {
+                label: 'Jadwal Pengajian',
+                href: '/jadwal-pengajian',
+                icon: <Book className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
+            {
+                label: 'Hitung Zakat',
+                href: '/hitung-zakat',
+                icon: <Calculator className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
+            {
+                label: 'Informasi Haji',
+                href: 'https://haji.go.id/estimasi-keberangkatan',
+                icon: <Compass className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
+            {
+                label: 'Waqaf, Infaq, Shadaqah',
+                href: '/zis',
+                icon: <HandCoins className="mr-2 h-4 w-4 text-emerald-600" />,
+            },
         ],
     },
-    { label: 'Kontak', href: '/kontak', icon: <Phone className="mr-1.5 h-4 w-4" /> },
+    {
+        label: 'Kontak',
+        href: '/kontak',
+        icon: <Phone className="mr-1.5 h-4 w-4" />,
+    },
 ];
 
 export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <header className="px-4 mb-2 z-20 relative">
-            <div className="mx-auto max-w-380">
-                <div className="flex items-center justify-between mb-2 mt-2 overflow-hidden">
+        <header
+            className={`z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'sticky top-0 w-full pt-4 pb-2' : 'relative px-4 pt-0 pb-2'}`}
+        >
+            <div
+                className={`mx-auto transition-all duration-500 ease-in-out ${isScrolled ? 'max-w-7xl px-4' : 'max-w-380'}`}
+            >
+                <div
+                    className={`flex items-center justify-between overflow-hidden transition-all duration-500 ease-in-out ${isScrolled ? 'mt-0 mb-0 max-h-0 opacity-0' : 'mt-2 mb-2 max-h-20 opacity-100'}`}
+                >
                     <div className="flex w-full items-center">
-                        <div className="whitespace-nowrap rounded-r-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground z-10 hidden md:block">
+                        <div className="z-10 hidden rounded-r-full bg-primary px-3 py-1 text-xs font-semibold whitespace-nowrap text-primary-foreground md:block">
                             INFORMASI:
                         </div>
                         <div className="relative flex flex-1 overflow-hidden">
-                            <div className="animate-marquee whitespace-nowrap text-xs flex items-center h-full">
-                                <span className="mx-4 text-primary font-medium">
-                                    {new Date().toLocaleDateString('id-ID', { dateStyle: 'full' })} - {new Date().toLocaleTimeString('id-ID', { timeStyle: 'short' })}
+                            <div className="animate-marquee flex h-full items-center text-xs whitespace-nowrap">
+                                <span className="mx-4 font-medium text-primary">
+                                    {new Date().toLocaleDateString('id-ID', {
+                                        dateStyle: 'full',
+                                    })}{' '}
+                                    -{' '}
+                                    {new Date().toLocaleTimeString('id-ID', {
+                                        timeStyle: 'short',
+                                    })}
                                 </span>
                                 •
                                 <span className="mx-4">
-                                    Masjid Agung Al-Mukarram Amanah - Selamat Datang di Website Resmi
+                                    Masjid Agung Al-Mukarram Amanah - Selamat
+                                    Datang di Website Resmi
                                 </span>
                                 •
                                 <span className="mx-4 font-medium text-emerald-600">
@@ -141,19 +253,21 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    <div className=" gap-4 pl-4 z-10  text-xs font-medium text-muted-foreground whitespace-nowrap hidden sm:flex border-l ml-2">
+                    <div className="z-10 ml-2 hidden gap-4 border-l pl-4 text-xs font-medium whitespace-nowrap text-muted-foreground sm:flex">
                         <div className="flex items-center gap-1.5">
                             <MapPin className="size-3.5 text-emerald-600" />
                             <span>Kuala Kapuas, Kalteng</span>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row items-center justify-between gap-8 border  px-2 py-2 rounded-full bg-background z-10">
+                <div
+                    className={`z-10 flex flex-row items-center justify-between gap-8 rounded-full border px-2 py-2 transition-all duration-500 ease-in-out ${isScrolled ? 'border-emerald-500/20 bg-white/80 shadow-lg shadow-emerald-900/5 backdrop-blur-lg dark:bg-zinc-950/80' : 'bg-background'}`}
+                >
                     <Link href="/">
                         <img
                             src="/images/logomasjid.png"
                             alt="Logo"
-                            className="h-8 ml-2"
+                            className="ml-2 h-8"
                         />
                     </Link>
                     {/* Desktop Navigation */}
@@ -180,8 +294,11 @@ export default function Header() {
                             </NavigationMenuList>
                         </NavigationMenu>
                     </nav>
-                    <div className="hidden lg:flex items-center">
-                        <Button asChild className="rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all hover:scale-105 hover:shadow-lg">
+                    <div className="hidden items-center lg:flex">
+                        <Button
+                            asChild
+                            className="rounded-full bg-emerald-600 text-white shadow-md transition-all hover:scale-105 hover:bg-emerald-700 hover:shadow-lg"
+                        >
                             <Link href="/kontak">
                                 <Phone className="mr-2 h-4 w-4" />
                                 Hubungi Kami
@@ -231,9 +348,15 @@ export default function Header() {
                             navigationItems={navigationItems}
                             onClose={() => setMobileOpen(false)}
                         />
-                        <div className="px-4 py-4 mt-2 border-t">
-                            <Button asChild className="w-full rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all hover:scale-[1.02]">
-                                <Link href="/kontak" onClick={() => setMobileOpen(false)}>
+                        <div className="mt-2 border-t px-4 py-4">
+                            <Button
+                                asChild
+                                className="w-full rounded-full bg-emerald-600 text-white shadow-md transition-all hover:scale-[1.02] hover:bg-emerald-700"
+                            >
+                                <Link
+                                    href="/kontak"
+                                    onClick={() => setMobileOpen(false)}
+                                >
                                     <Phone className="mr-2 h-4 w-4" />
                                     Hubungi Kami
                                 </Link>
@@ -245,7 +368,6 @@ export default function Header() {
         </header>
     );
 }
-
 
 function NavigationMenuButton({
     label,
@@ -265,8 +387,8 @@ function NavigationMenuButton({
                 className={
                     navigationMenuTriggerStyle() +
                     (isActive
-                        ? ' relative text-primary border-primary border rounded-full'
-                        : ' text-muted-foreground rounded-full')
+                        ? ' relative rounded-full border border-primary text-primary'
+                        : ' rounded-full text-muted-foreground')
                 }
             >
                 <Link href={href || '#'} className="flex items-center gap-1">
@@ -316,7 +438,10 @@ function NavigationMenuDropdownButton({
             }
             return (
                 <DropdownMenuItem key={idx} asChild>
-                    <Link href={item.href || '#'} className="w-full flex items-center gap-2">
+                    <Link
+                        href={item.href || '#'}
+                        className="flex w-full items-center gap-2"
+                    >
                         {item.icon}
                         {item.label}
                     </Link>
@@ -332,8 +457,8 @@ function NavigationMenuDropdownButton({
                 className={
                     navigationMenuTriggerStyle() +
                     (isActive
-                        ? ' relative text-primary border-primary border rounded-full'
-                        : ' text-muted-foreground rounded-full')
+                        ? ' relative rounded-full border border-primary text-primary'
+                        : ' rounded-full text-muted-foreground')
                 }
             >
                 <Button

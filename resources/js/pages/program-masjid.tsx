@@ -23,13 +23,16 @@ export default function ProgramMasjid() {
                         href: '/',
                         icon: <Home className="h-4 w-4" />,
                     },
-                    { label: 'Program', icon: <Activity className="h-4 w-4" /> },
+                    {
+                        label: 'Program',
+                        icon: <Activity className="h-4 w-4" />,
+                    },
                     { label: 'Program Masjid' },
                 ]}
                 backgroundImage="/images/masjidnewww-scaled.png"
             />
 
-            <main className="flex-1 relative z-10 -mt-10 md:-mt-16">
+            <main className="relative z-10 -mt-10 flex-1 md:-mt-16">
                 <ProgramGrid />
             </main>
 

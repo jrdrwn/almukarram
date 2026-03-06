@@ -1,7 +1,6 @@
 import { Head } from '@inertiajs/react';
 import { Home, Settings } from 'lucide-react';
 
-
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 

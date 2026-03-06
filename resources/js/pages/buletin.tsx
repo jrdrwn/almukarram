@@ -19,9 +19,10 @@ const _buletin = {
     data: [
         {
             id: 1,
-            title: 'Buletin Jumat Edisi 14 - Keutamaan Bulan Sya\'ban',
+            title: "Buletin Jumat Edisi 14 - Keutamaan Bulan Sya'ban",
             slug: 'buletin-jumat-edisi-14-2024',
-            thumbnail: 'https://images.unsplash.com/photo-1584824388147-97d8b5e40e2b?q=80&w=2670&auto=format&fit=crop',
+            thumbnail:
+                'https://images.unsplash.com/photo-1584824388147-97d8b5e40e2b?q=80&w=2670&auto=format&fit=crop',
             pdf_url: '/dummy/buletin-edisi-14.pdf',
             published_at: '2024-02-23T00:00:00Z',
             views: 450,
@@ -32,7 +33,8 @@ const _buletin = {
             id: 2,
             title: 'Buletin Jumat Edisi 13 - Menyambut Bulan Rajab',
             slug: 'buletin-jumat-edisi-13-2024',
-            thumbnail: 'https://images.unsplash.com/photo-1623800330578-19ebfa5fa0ea?q=80&w=2670&auto=format&fit=crop',
+            thumbnail:
+                'https://images.unsplash.com/photo-1623800330578-19ebfa5fa0ea?q=80&w=2670&auto=format&fit=crop',
             pdf_url: '/dummy/buletin-edisi-13.pdf',
             published_at: '2024-02-16T00:00:00Z',
             views: 320,
@@ -43,13 +45,14 @@ const _buletin = {
             id: 3,
             title: 'Buletin Jumat Edisi 12 - Pentingnya Istiqomah',
             slug: 'buletin-jumat-edisi-12-2024',
-            thumbnail: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?q=80&w=2670&auto=format&fit=crop',
+            thumbnail:
+                'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?q=80&w=2670&auto=format&fit=crop',
             pdf_url: '/dummy/buletin-edisi-12.pdf',
             published_at: '2024-02-09T00:00:00Z',
             views: 280,
             downloads: 65,
             kategori: { nama: 'Tahun 2024', slug: 'tahun-2024' },
-        }
+        },
     ],
     meta: {
         current_page: 1,
@@ -64,11 +67,15 @@ const _buletin = {
             { url: '?page=2', label: '2', active: false },
             { url: '?page=3', label: '3', active: false },
             { url: '?page=2', label: 'Next &raquo;', active: false },
-        ]
-    }
+        ],
+    },
 };
 
-export default function BuletinPage({ searchParams }: { searchParams?: Record<string, string> }) {
+export default function BuletinPage({
+    searchParams,
+}: {
+    searchParams?: Record<string, string>;
+}) {
     const q = searchParams?.q || '';
     const kategori = searchParams?.kategori || '';
 
@@ -83,22 +90,32 @@ export default function BuletinPage({ searchParams }: { searchParams?: Record<st
                 badgeText="Pojok Baca"
                 badgeIcon={<BookOpen className="h-4 w-4" />}
                 breadcrumbs={[
-                    { label: 'Beranda', href: '/', icon: <Home className="h-4 w-4" /> },
-                    { label: 'Pojok Baca', icon: <BookOpen className="h-4 w-4" /> },
-                    { label: 'Buletin', icon: <FileText className="h-4 w-4" /> },
+                    {
+                        label: 'Beranda',
+                        href: '/',
+                        icon: <Home className="h-4 w-4" />,
+                    },
+                    {
+                        label: 'Pojok Baca',
+                        icon: <BookOpen className="h-4 w-4" />,
+                    },
+                    {
+                        label: 'Buletin',
+                        icon: <FileText className="h-4 w-4" />,
+                    },
                 ]}
                 backgroundImage="/images/masjidnewww-scaled.png"
             />
 
-            <main className="flex-1 py-16 lg:py-24 relative overflow-hidden">
+            <main className="relative flex-1 overflow-hidden py-16 lg:py-24">
                 {/* Visual Textures & Glows */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-size-[32px_32px] mask-[radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)] -z-10" />
-                <div className="absolute right-0 top-0 w-150 h-150 bg-emerald-500/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/4 -z-10 pointer-events-none" />
+                <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] mask-[radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)] bg-size-[32px_32px]" />
+                <div className="pointer-events-none absolute top-0 right-0 -z-10 h-150 w-150 translate-x-1/3 -translate-y-1/4 rounded-full bg-emerald-500/5 blur-[120px]" />
 
-                <div className="max-w-380 mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                <div className="mx-auto max-w-380 px-4 sm:px-6 lg:px-8">
+                    <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
                         {/* Main Content Area */}
-                        <div className="lg:col-span-8 flex flex-col gap-2">
+                        <div className="flex flex-col gap-2 lg:col-span-8">
                             <BuletinSearch
                                 kategoriSlug={kategori}
                                 searchQuery={q}

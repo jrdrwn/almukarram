@@ -32,42 +32,54 @@ export function Types() {
     ];
 
     return (
-        <section className="py-24 relative overflow-hidden bg-white">
-            <div className="mx-auto max-w-380 px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center max-w-2xl mx-auto mb-16 reveal fade-up">
-                    <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Jenis Penyaluran</h2>
+        <section className="relative overflow-hidden bg-white py-24">
+            <div className="relative z-10 mx-auto max-w-380 px-4 sm:px-6 lg:px-8">
+                <div className="reveal fade-up mx-auto mb-16 max-w-2xl text-center">
+                    <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        Jenis Penyaluran
+                    </h2>
                     <div className="mt-4 flex justify-center gap-1.5">
-                        <div className="h-1.5 w-10 bg-emerald-500 rounded-full"></div>
-                        <div className="h-1.5 w-10 bg-green-400 rounded-full"></div>
-                        <div className="h-1.5 w-10 bg-teal-400 rounded-full"></div>
+                        <div className="h-1.5 w-10 rounded-full bg-emerald-500"></div>
+                        <div className="h-1.5 w-10 rounded-full bg-green-400"></div>
+                        <div className="h-1.5 w-10 rounded-full bg-teal-400"></div>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 pb-8">
+                <div className="grid grid-cols-1 gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
                     {types.map((type, index) => (
                         <div
                             key={index}
-                            className={`reveal fade-up h-full p-8 md:p-10 bg-white rounded-4xl border border-slate-100 transition-all duration-500 group relative overflow-hidden ${type.border} ${
+                            className={`reveal fade-up group relative h-full overflow-hidden rounded-4xl border border-slate-100 bg-white p-8 transition-all duration-500 md:p-10 ${type.border} ${
                                 index === 1
-                                ? 'lg:-translate-y-4 hover:-translate-y-6 shadow-md hover:shadow-2xl'
-                                : 'lg:translate-y-4 hover:translate-y-2 shadow-sm hover:shadow-2xl'
+                                    ? 'shadow-md hover:-translate-y-6 hover:shadow-2xl lg:-translate-y-4'
+                                    : 'shadow-sm hover:translate-y-2 hover:shadow-2xl lg:translate-y-4'
                             }`}
                             style={{ transitionDelay: type.delay }}
                         >
-                            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-150 transition-transform duration-700 pointer-events-none">
-                                <type.icon className={`h-48 w-48 ${type.color}`} />
+                            <div className="pointer-events-none absolute top-0 right-0 p-8 opacity-5 transition-transform duration-700 group-hover:scale-150">
+                                <type.icon
+                                    className={`h-48 w-48 ${type.color}`}
+                                />
                             </div>
 
-                            <div className={`mb-8 inline-flex h-20 w-20 items-center justify-center rounded-2xl ${type.bg} group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ring-4 ring-white shadow-inner relative z-10`}>
-                                <type.icon className={`h-10 w-10 ${type.color} drop-shadow-md`} />
+                            <div
+                                className={`mb-8 inline-flex h-20 w-20 items-center justify-center rounded-2xl ${type.bg} relative z-10 shadow-inner ring-4 ring-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}
+                            >
+                                <type.icon
+                                    className={`h-10 w-10 ${type.color} drop-shadow-md`}
+                                />
                             </div>
 
-                            <h3 className="text-2xl font-bold text-slate-900 mb-4 relative z-10">{type.title}</h3>
-                            <p className="text-slate-600 leading-relaxed relative z-10">
+                            <h3 className="relative z-10 mb-4 text-2xl font-bold text-slate-900">
+                                {type.title}
+                            </h3>
+                            <p className="relative z-10 leading-relaxed text-slate-600">
                                 {type.desc}
                             </p>
 
-                            <div className={`mt-8 pt-6 border-t border-slate-100 relative z-10 flex items-center gap-2 text-sm font-semibold ${type.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 -translate-x-2 group-hover:translate-x-0`}>
+                            <div
+                                className={`relative z-10 mt-8 flex items-center gap-2 border-t border-slate-100 pt-6 text-sm font-semibold ${type.color} -translate-x-2 opacity-0 transition-opacity delay-100 duration-300 group-hover:translate-x-0 group-hover:opacity-100`}
+                            >
                                 Pelajari lebih lanjut &rarr;
                             </div>
                         </div>

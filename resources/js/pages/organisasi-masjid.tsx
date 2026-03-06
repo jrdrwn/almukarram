@@ -28,12 +28,16 @@ export default function OrganisasiMasjid() {
                 backgroundImage="/images/masjidnewww-scaled.png"
             />
 
-            <div className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="bg-white dark:bg-zinc-900 overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-zinc-900">
                     <div className="p-8 text-zinc-900 dark:text-zinc-100">
-                        <h2 className="text-2xl font-bold mb-4">Pengurus & Manajemen Masjid</h2>
-                        <p className="text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-                            Mengenal jajaran kepengurusan (Idarah, Imarah, dan Riayah) dalam mengelola dan memakmurkan kegiatan Masjid Agung Al-Mukarram.
+                        <h2 className="mb-4 text-2xl font-bold">
+                            Pengurus & Manajemen Masjid
+                        </h2>
+                        <p className="mb-6 leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            Mengenal jajaran kepengurusan (Idarah, Imarah, dan
+                            Riayah) dalam mengelola dan memakmurkan kegiatan
+                            Masjid Agung Al-Mukarram.
                         </p>
                     </div>
                 </div>

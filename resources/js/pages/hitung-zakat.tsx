@@ -16,7 +16,11 @@ export default function HitungZakatPage() {
                     badgeText="Layanan"
                     badgeIcon={<Calculator className="h-4 w-4" />}
                     breadcrumbs={[
-                        { label: 'Beranda', href: '/', icon: <Home className="h-4 w-4" /> },
+                        {
+                            label: 'Beranda',
+                            href: '/',
+                            icon: <Home className="h-4 w-4" />,
+                        },
                         { label: 'Layanan' },
                         { label: 'Hitung Zakat' },
                     ]}
@@ -27,9 +31,8 @@ export default function HitungZakatPage() {
 
                 {/* Jenis Zakat Info */}
                 <JenisZakatInfo />
-
             </main>
-                        <div
+            <div
                 className="pointer-events-none absolute inset-0 -z-1 opacity-[0.4] dark:opacity-[0.02]"
                 style={{
                     backgroundImage:
