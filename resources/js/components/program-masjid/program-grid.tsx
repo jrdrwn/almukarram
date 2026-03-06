@@ -100,7 +100,7 @@ export default function ProgramGrid() {
                                 className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-8 text-center shadow-xs transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10 dark:bg-zinc-900/50 dark:hover:bg-zinc-900/80 ${program.borderWarna}`}
                             >
                                 {/* Subtle background gradient inside card */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-white/5"></div>
+                                <div className="absolute inset-0 bg-linear-to-br from-white/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-white/5"></div>
 
                                 <div className="relative z-10 mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-inner">
                                     <div className={`absolute inset-0 rounded-2xl ${program.bgWarna} opacity-50`}></div>
@@ -109,7 +109,7 @@ export default function ProgramGrid() {
                                 <h3 className="relative z-10 mb-4 text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
                                     {program.title}
                                 </h3>
-                                <p className="relative z-10 text-muted-foreground leading-relaxed flex-grow text-sm">
+                                <p className="relative z-10 text-muted-foreground leading-relaxed grow text-sm">
                                     {program.description}
                                 </p>
                             </div>
