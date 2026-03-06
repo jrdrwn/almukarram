@@ -104,6 +104,8 @@ const navigationItems: NavItem[] = [
         icon: <CalendarDays className="mr-1.5 h-4 w-4" />,
         sub: [
             { label: 'Jadwal Sholat', href: '/jadwal-sholat', icon: <Clock className="mr-2 h-4 w-4 text-emerald-600" /> },
+            { label: 'Jadwal & Petugas Jumat', href: '/jadwal-jumat', icon: <CalendarDays className="mr-2 h-4 w-4 text-emerald-600" /> },
+            { label: 'Jadwal Pengajian', href: '/jadwal-pengajian', icon: <Book className="mr-2 h-4 w-4 text-emerald-600" /> },
             { label: 'Hitung Zakat', href: '/hitung-zakat', icon: <Calculator className="mr-2 h-4 w-4 text-emerald-600" /> },
             { label: 'Informasi Haji', href: 'https://haji.go.id/estimasi-keberangkatan', icon: <Compass className="mr-2 h-4 w-4 text-emerald-600" /> },
             { label: 'Waqaf, Infaq, Shadaqah', href: '/zis', icon: <HandCoins className="mr-2 h-4 w-4 text-emerald-600" /> },

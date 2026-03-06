@@ -1,0 +1,222 @@
+import { Head } from '@inertiajs/react';
+import { Home, CalendarDays, Users, Calendar, Clock, Mic, User } from 'lucide-react';
+
+import Footer from '@/components/shared/footer';
+import Header from '@/components/shared/header';
+import PageHeader from '@/components/shared/page-header';
+
+export default function JadwalJumat() {
+    const upcomingSchedules = [
+        {
+            date: '20 Maret 2026',
+            time: '11:45 WIB',
+            khatib: 'Ust. H. Ahmad Zainuddin, Lc',
+            imam: 'Ustadz M. Syukri, M.Pd',
+            muadzin: 'Ust. Akhmad Rifa\'i',
+            bilal: 'H. Rahmat Hidayat'
+        },
+        {
+            date: '27 Maret 2026',
+            time: '11:45 WIB',
+            khatib: 'KH. Muhammad Yusuf, S.Ag',
+            imam: 'H. Rahmat Hidayat',
+            muadzin: 'Ust. Akhmad Rifa\'i',
+            bilal: 'Abdul Rahman'
+        },
+        {
+            date: '3 April 2026',
+            time: '11:45 WIB',
+            khatib: 'Habib Ali Zainal Abidin',
+            imam: 'Ustadz M. Syukri, M.Pd',
+            muadzin: 'H. Rahmat Hidayat',
+            bilal: 'Ust. Akhmad Rifa\'i'
+        },
+    ];
+
+    return (
+        <>
+            <Header />
+            <Head title="Jadwal & Petugas Jumat | Masjid Agung Al-Mukarram" />
+
+            <PageHeader
+                title="Petugas Salat Jumat"
+                subtitle="Jadwal Muazin, Khatib, dan Imam Salat Jumat Masjid Agung Al-Mukarram."
+                badgeText="Jadwal"
+                badgeIcon={<CalendarDays className="h-4 w-4" />}
+                breadcrumbs={[
+                    {
+                        label: 'Beranda',
+                        href: '/',
+                        icon: <Home className="h-4 w-4" />,
+                    },
+                    { label: 'Jadwal', icon: <Users className="h-4 w-4" /> },
+                    { label: 'Petugas Jumat' },
+                ]}
+                backgroundImage="/images/masjidnewww-scaled.png"
+            />
+
+            <div className="py-16 max-w-380 mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+                {/* Section Jadwal Pekan Ini - Hero Card */}
+                <div className="relative overflow-hidden rounded-[3rem] bg-emerald-950 px-6 py-16 shadow-2xl sm:px-16 sm:py-20 lg:p-20">
+                    {/* Background Decorative patterns */}
+                    <div className="absolute -top-10 -left-10 h-64 w-64 rounded-full bg-emerald-800/30 blur-[60px]"></div>
+                    <div className="absolute -right-20 -bottom-20 h-80 w-80 rounded-full bg-emerald-600/20 blur-[80px]"></div>
+
+                    <div className="relative z-10 flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between">
+                        {/* Left Text Detail */}
+                        <div className="max-w-xl">
+                            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/20 px-4 py-1.5 text-xs font-bold tracking-widest text-emerald-300 uppercase shadow-sm">
+                                <span className="relative flex h-2 w-2">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                Jumat Pekan Ini
+                            </div>
+                            <h2 className="mb-6 text-4xl font-black tracking-tight text-white sm:text-5xl">
+                                Jadwal & Petugas <br />{' '}
+                                <span className="font-light text-emerald-200 italic">
+                                    Sholat Jumat
+                                </span>
+                            </h2>
+                            <p className="text-lg leading-relaxed text-emerald-100/80">
+                                Mari bersama memakmurkan Sholat Jumat berjamaah di Masjid Agung Al-Mukarram. Jangan lupa datang lebih awal untuk meraih fadhilah shaf pertama dan mendengarkan khutbah dengan saksama.
+                            </p>
+
+                            <div className="mt-8 flex flex-wrap gap-4">
+                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 backdrop-blur-md shadow-inner transition-transform hover:-translate-y-1">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
+                                        <Calendar className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-semibold tracking-widest text-emerald-200/60 uppercase">
+                                            Tanggal
+                                        </p>
+                                        <p className="text-base font-bold text-white mt-0.5">
+                                            13 Maret 2026
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 backdrop-blur-md shadow-inner transition-transform hover:-translate-y-1">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
+                                        <Clock className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-semibold tracking-widest text-emerald-200/60 uppercase">
+                                            Waktu
+                                        </p>
+                                        <p className="text-base font-bold text-white mt-0.5">
+                                            11:45 WIB
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Grid Petugas */}
+                        <div className="grid w-full max-w-lg grid-cols-1 gap-4 sm:grid-cols-2 lg:w-1/2 lg:max-w-none">
+                            {[
+                                {
+                                    role: 'Khatib',
+                                    name: 'Habib Hasanuddin Al-Habsyi',
+                                    icon: <Mic className="h-5 w-5 opacity-70" />
+                                },
+                                {
+                                    role: 'Imam',
+                                    name: 'Ustadz M. Syukri, M.Pd',
+                                    icon: <User className="h-5 w-5 opacity-70" />
+                                },
+                                {
+                                    role: 'Muadzin',
+                                    name: "Ust. Akhmad Rifa'i",
+                                    icon: <User className="h-5 w-5 opacity-70" />
+                                },
+                                {
+                                    role: 'Bilal',
+                                    name: 'H. Rahmat Hidayat',
+                                    icon: <User className="h-5 w-5 opacity-70" />
+                                },
+                            ].map((petugas, idx) => (
+                                <div
+                                    key={idx}
+                                    className="group relative flex flex-col justify-center rounded-3xl border border-emerald-800/50 bg-emerald-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-emerald-800/70 hover:shadow-lg hover:shadow-emerald-900/20 hover:-translate-y-1"
+                                >
+                                    <div className="flex justify-between items-start mb-2">
+                                        <p className="text-xs font-bold tracking-widest text-emerald-400 uppercase">
+                                            {petugas.role}
+                                        </p>
+                                        <div className="text-emerald-500 group-hover:text-emerald-300 transition-colors">
+                                            {petugas.icon}
+                                        </div>
+                                    </div>
+                                    <h4 className="text-lg leading-snug font-bold text-white transition-colors group-hover:text-emerald-50 mt-1">
+                                        {petugas.name}
+                                    </h4>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Section Jadwal Selanjutnya */}
+                <div>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                        <div>
+                            <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-3">
+                                <CalendarDays className="h-8 w-8 text-emerald-600" />
+                                Jadwal Jumat Selanjutnya
+                            </h3>
+                            <p className="text-zinc-500 dark:text-zinc-400 mt-2 ml-11">
+                                Rincian daftar khatib, imam, dan petugas untuk beberapa pekan ke depan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {upcomingSchedules.map((schedule, i) => (
+                            <div key={i} className="bg-white dark:bg-zinc-900 rounded-3xl border border-emerald-100 dark:border-zinc-800 p-8 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                                {/* Top Highlight Accent */}
+                                <div className="absolute top-0 left-0 w-full h-1.5 bg-emerald-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></div>
+
+                                <div className="flex items-center gap-4 mb-6 pb-6 border-b border-zinc-100 dark:border-zinc-800">
+                                    <div className="bg-emerald-50 dark:bg-emerald-900/30 p-4 rounded-2xl text-emerald-600 dark:text-emerald-400 shadow-inner">
+                                        <Calendar className="h-7 w-7" />
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-lg text-zinc-900 dark:text-zinc-100">{schedule.date}</p>
+                                        <p className="text-sm font-medium text-emerald-600 dark:text-emerald-500 flex items-center gap-1.5 mt-1">
+                                            <Clock className="h-4 w-4" /> {schedule.time}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-5 relative z-10">
+                                    <div className="bg-zinc-50 dark:bg-zinc-800/50 rounded-2xl p-4 border border-zinc-100 dark:border-zinc-800 group-hover:border-emerald-100 dark:group-hover:border-emerald-900/50 transition-colors">
+                                        <p className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
+                                            <Mic className="h-3.5 w-3.5" /> Khatib
+                                        </p>
+                                        <p className="font-bold text-zinc-800 dark:text-zinc-200 text-lg">{schedule.khatib}</p>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <p className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-1">Imam</p>
+                                            <p className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">{schedule.imam}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-1">Muadzin & Bilal</p>
+                                            <p className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">{schedule.muadzin}</p>
+                                            <p className="text-xs text-zinc-500 mt-0.5">{schedule.bilal}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <Footer />
+        </>
+    );
+}

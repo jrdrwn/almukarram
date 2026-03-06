@@ -33,6 +33,7 @@ export default function JadwalKajianSection() {
                     <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-4">
                         {[
                             {
+                                date: 'Senin, 10 Maret 2024',
                                 day: 'Senin',
                                 time: "Ba'da Maghrib",
                                 title: 'Kajian Fiqih Ibadah Praktis',
@@ -44,6 +45,7 @@ export default function JadwalKajianSection() {
                                 },
                             },
                             {
+                                date: 'Rabu, 12 Maret 2024',
                                 day: 'Rabu',
                                 time: "Ba'da Subuh",
                                 title: "Tafsir Al-Qur'an (Jalalain)",
@@ -55,6 +57,7 @@ export default function JadwalKajianSection() {
                                 },
                             },
                             {
+                                date: 'Kamis, 13 Maret 2024',
                                 day: 'Kamis',
                                 time: '16:00 - Selesai',
                                 title: 'Kajian Kemuslimahan & Sirah',
@@ -66,6 +69,7 @@ export default function JadwalKajianSection() {
                                 },
                             },
                             {
+                                date: 'Ahad, 16 Maret 2024',
                                 day: 'Ahad',
                                 time: "Ba'da Subuh",
                                 title: 'Kajian Tematik & Tanya Jawab',
@@ -105,27 +109,34 @@ export default function JadwalKajianSection() {
                                         <h3 className="mb-4 text-xl leading-snug font-bold text-foreground transition-colors group-hover:text-primary">
                                             {jadwal.title}
                                         </h3>
-                                        <div className="mt-auto mb-6 flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                className="opacity-50"
-                                            >
-                                                <circle
-                                                    cx="12"
-                                                    cy="12"
-                                                    r="10"
-                                                />
-                                                <polyline points="12 6 12 12 16 14" />
-                                            </svg>
-                                            Pukul: {jadwal.time}
+                                        <div className="mt-auto mb-6 flex flex-col gap-2">
+                                            <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-50">
+                                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                                                    <line x1="16" x2="16" y1="2" y2="6"/>
+                                                    <line x1="8" x2="8" y1="2" y2="6"/>
+                                                    <line x1="3" x2="21" y1="10" y2="10"/>
+                                                </svg>
+                                                {jadwal.date}
+                                            </div>
+                                            <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="opacity-50"
+                                                >
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <polyline points="12 6 12 12 16 14" />
+                                                </svg>
+                                                Pukul: {jadwal.time}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

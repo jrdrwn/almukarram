@@ -19,3 +19,8 @@ Route::inertia('/opini', 'opini')->name('opini');
 Route::inertia('/hitung-zakat', 'hitung-zakat')->name('hitung-zakat');
 Route::inertia('/kontak', 'kontak')->name('kontak');
 Route::inertia('/galeri', 'galeri')->name('galeri');
+Route::inertia('/layanan-waris', 'layanan-waris')->name('layanan-waris');
+Route::inertia('/jadwal-jumat', 'jadwal-jumat')->name('jadwal-jumat');
+Route::inertia('/jadwal-pengajian', 'jadwal-pengajian')->name('jadwal-pengajian');
+Route::inertia('/organisasi-masjid', 'organisasi-masjid')->name('organisasi-masjid');
+Route::inertia('/layanan-konsultasi', 'layanan-konsultasi')->name('layanan-konsultasi');

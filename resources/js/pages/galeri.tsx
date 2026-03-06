@@ -491,7 +491,7 @@ export default function Galeri() {
                                         {pagedVideos.map((video) => (
                                             <button
                                                 key={video.id}
-                                                className="group relative w-full aspect-video rounded-[1.5rem] overflow-hidden bg-muted border border-border hover:border-[#005B41]/50 transition-all shadow-md hover:shadow-xl hover:shadow-emerald-900/10 block cursor-pointer"
+                                                className="group relative w-full aspect-video rounded-3xl overflow-hidden bg-muted border border-border hover:border-[#005B41]/50 transition-all shadow-md hover:shadow-xl hover:shadow-emerald-900/10 block cursor-pointer"
                                                 onClick={() => setActiveVideo(video)}
                                             >
                                                 {/* YouTube Thumbnail */}
@@ -505,7 +505,7 @@ export default function Galeri() {
                                                     }}
                                                 />
                                                 {/* Gradient overlay */}
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
                                                 {/* Play Button */}
                                                 <div className="absolute inset-0 flex items-center justify-center">
                                                     <div className="w-14 h-14 rounded-full bg-[#005B41]/90 backdrop-blur-sm flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#009B65] transition-all">
