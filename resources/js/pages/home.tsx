@@ -7,6 +7,7 @@ import JadwalKajianSection from "@/components/home/jadwalkajiansection";
 import JadwalMultimediaSection from "@/components/home/jadwalmultimediasection";
 import KontakPengaduanSection from "@/components/home/kontakpengaduansection";
 import SekapurSirihSection from "@/components/home/sekapursirihsection";
+import VideoSection from "@/components/home/videosection";
 import Footer from "@/components/shared/footer";
 import Header from "@/components/shared/header";
 
@@ -17,6 +18,7 @@ export default function Page() {
             <Hero />
             <FeaturesSection />
             <SekapurSirihSection />
+            <VideoSection />
             <BeritaSection />
             <JadwalMultimediaSection />
             <ArtikelSection />
