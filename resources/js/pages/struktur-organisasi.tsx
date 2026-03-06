@@ -68,15 +68,13 @@ export default function StrukturOrganisasi() {
             </main>
 
             <Footer />
-
             <div
-                className="pointer-events-none absolute inset-0 -z-20 opacity-[0.3] dark:opacity-[0.02]"
+                className="pointer-events-none absolute inset-0 -z-1 opacity-[0.4] dark:opacity-[0.02]"
                 style={{
                     backgroundImage:
                         "url('https://www.transparenttextures.com/patterns/arabesque.png')",
                 }}
             ></div>
-
             <LightboxModal
                 isOpen={lightbox.isOpen}
                 src={lightbox.src}
