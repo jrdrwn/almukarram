@@ -17,6 +17,7 @@ import {
     HeartHandshake,
     History,
     Home,
+    Image as ImageIcon,
     Info,
     LayoutDashboard,
     MapPin,
@@ -96,6 +97,7 @@ const navigationItems: NavItem[] = [
         ],
     },
     { label: 'Dokumen', href: '/dokumen', icon: <FileText className="mr-1.5 h-4 w-4" /> },
+    { label: 'Galeri', href: '/galeri', icon: <ImageIcon className="mr-1.5 h-4 w-4" /> },
     {
         label: 'Layanan',
         href: '#',
@@ -107,6 +109,7 @@ const navigationItems: NavItem[] = [
             { label: 'Waqaf, Infaq, Shadaqah', href: '/zis', icon: <HandCoins className="mr-2 h-4 w-4 text-emerald-600" /> },
         ],
     },
+    { label: 'Kontak', href: '/kontak', icon: <Phone className="mr-1.5 h-4 w-4" /> },
 ];
 
 export default function Header() {
