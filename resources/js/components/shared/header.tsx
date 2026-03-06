@@ -113,7 +113,7 @@ export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
-        <header className="px-4 mb-2">
+        <header className="px-4 mb-2 z-20 relative">
             <div className="mx-auto max-w-380">
                 <div className="flex items-center justify-between mb-2 mt-2 overflow-hidden">
                     <div className="flex w-full items-center">
