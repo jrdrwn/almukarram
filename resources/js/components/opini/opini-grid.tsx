@@ -1,0 +1,152 @@
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from '@/components/ui/pagination';
+import { BookOpen, PenTool, User } from "lucide-react";
+
+interface OpiniItem {
+    category: string;
+    title: string;
+    author: string;
+    date: string;
+    readTime: string;
+    excerpt: string;
+}
+
+interface OpiniGridProps {
+    data: OpiniItem[];
+    currentPage?: number;
+    totalPages?: number;
+}
+
+export default function OpiniGrid({ data, currentPage = 1, totalPages = 1 }: OpiniGridProps) {
+    if (!data || data.length === 0) {
+        return (
+            <div className="flex flex-col items-center justify-center py-20 text-center px-4 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-dashed border-zinc-200 dark:border-zinc-800">
+                <div className="h-24 w-24 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center mb-6 ring-8 ring-zinc-50 dark:ring-zinc-900/50 shadow-sm relative group">
+                    <PenTool className="h-10 w-10 text-zinc-300 dark:text-zinc-600 group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-300" />
+                </div>
+                <h5 className="text-xl font-bold text-foreground mb-2">Belum Ada Artikel Opini</h5>
+                <p className="text-muted-foreground mb-6 max-w-md text-sm">
+                    Artikel opini dari pengurus dan jamaah masjid akan segera hadir di sini.
+                </p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex flex-col gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {data.map((article, idx) => (
+                    <a
+                        key={idx}
+                        href="#"
+                        className="group relative flex min-h-75 flex-col justify-between overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl lg:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
+                    >
+                        {/* Grid Texture Background */}
+                        <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] mask-[radial-gradient(ellipse_80%_80%_at_50%_20%,#000_20%,transparent_100%)] bg-size-[24px_24px] opacity-60 transition-opacity duration-500 group-hover:opacity-100 dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
+
+                        <div className="relative z-10">
+                            <span className="mb-5 inline-block rounded-full bg-emerald-50 border border-emerald-100/50 px-3 py-1 text-xs font-bold tracking-widest text-emerald-600 uppercase shadow-sm dark:bg-emerald-500/10 dark:border-emerald-500/20 dark:text-emerald-400">
+                                {article.category}
+                            </span>
+                            <h3 className="mb-4 line-clamp-3 text-xl leading-tight font-bold text-foreground transition-colors group-hover:text-emerald-600">
+                                {article.title}
+                            </h3>
+                            <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-muted-foreground group-hover:text-muted-foreground/80 transition-colors">
+                                {article.excerpt}
+                            </p>
+                        </div>
+
+                        <div className="relative z-10 mt-auto border-t border-border/60 pt-5">
+                            <div className="flex items-center gap-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm border border-zinc-100 text-zinc-500 dark:border-zinc-800 dark:bg-zinc-950">
+                                    <User className="h-5 w-5" />
+                                </div>
+                                <div>
+                                    <p className="text-sm font-bold text-foreground group-hover:text-emerald-600 transition-colors">
+                                        {article.author}
+                                    </p>
+                                    <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                                        <span>{article.date}</span>
+                                        <span className="h-1 w-1 rounded-full bg-border"></span>
+                                        <span className="flex items-center gap-1">
+                                            <BookOpen className="h-3 w-3" />{' '}
+                                            {article.readTime}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                ))}
+            </div>
+
+            {/* Pagination Component */}
+            {totalPages > 1 && (
+                <div className="mt-8 flex flex-col items-center gap-4 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm p-4 sm:p-6 rounded-4xl border border-zinc-100 dark:border-zinc-800/50">
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious
+                                    href="#"
+                                    className="rounded-xl border-zinc-200 dark:border-zinc-800 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
+                                    aria-disabled={currentPage === 1}
+                                />
+                            </PaginationItem>
+
+                            {[...Array(totalPages)].map((_, i) => {
+                                const page = i + 1;
+                                const isCurrent = page === currentPage;
+
+                                if (
+                                    page === 1 ||
+                                    page === totalPages ||
+                                    (page >= currentPage - 1 && page <= currentPage + 1)
+                                ) {
+                                    return (
+                                        <PaginationItem key={page}>
+                                            <PaginationLink
+                                                href="#"
+                                                isActive={isCurrent}
+                                                className={isCurrent
+                                                    ? "rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white hover:text-white border-transparent"
+                                                    : "rounded-xl border-zinc-200 dark:border-zinc-800 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
+                                                }
+                                            >
+                                                {page}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    );
+                                }
+
+                                if (page === currentPage - 2 || page === currentPage + 2) {
+                                    return (
+                                        <PaginationItem key={page}>
+                                            <PaginationEllipsis />
+                                        </PaginationItem>
+                                    );
+                                }
+
+                                return null;
+                            })}
+
+                            <PaginationItem>
+                                <PaginationNext
+                                    href="#"
+                                    className="rounded-xl border-zinc-200 dark:border-zinc-800 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
+                                    aria-disabled={currentPage === totalPages}
+                                />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                </div>
+            )}
+        </div>
+    );
+}

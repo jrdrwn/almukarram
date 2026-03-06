@@ -37,7 +37,7 @@ export default function Footer() {
                         <div className="flex items-center gap-3">
                             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 border border-emerald-100 dark:bg-emerald-500/10 dark:border-emerald-500/20">
                                 <img
-                                    src="/images/logo_almukarram.png"
+                                    src="/images/logomasjid.png"
                                     alt="Logo Masjid"
                                     className="h-8 w-auto dark:brightness-0 dark:invert"
                                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
