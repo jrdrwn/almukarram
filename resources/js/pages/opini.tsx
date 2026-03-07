@@ -34,6 +34,7 @@ export default function Page({
             ? opini
             : [
                   {
+                      slug: 'menjaga-hati-di-era-digital',
                       category: 'Tazkiyatun Nafs',
                       title: 'Menjaga Hati di Era Digital: Tantangan Generasi Milenial',
                       author: 'Ust. H. Ahmad Fulan',
@@ -43,6 +44,7 @@ export default function Page({
                           'Kemajuan teknologi ibarat pisau bermata dua. Di satu sisi memudahkan akses ilmu, di sisi lain menjadi pintu masuk segala syubhat dan syahwat jika tak dibentengi iman.',
                   },
                   {
+                      slug: 'hukum-jual-beli-dropship',
                       category: 'Fiqih Keseharian',
                       title: 'Hukum Jual Beli Online dengan Sistem Dropship dalam Pandangan Islam',
                       author: 'Dr. KH. Abdullah M.',
@@ -52,6 +54,7 @@ export default function Page({
                           'Sistem dropship marak digunakan oleh masyarakat. Namun, bagaimana fiqih muamalah kontemporer membedah status kepemilikan dan syarat sah transaksi ini?',
                   },
                   {
+                      slug: 'membangun-karakter-anak',
                       category: 'Keluarga Sakinah',
                       title: 'Membangun Karakter Anak Melalui Teladan Rasulullah SAW',
                       author: 'Hj. Ummu Kultsum, S.Ag',
@@ -61,6 +64,7 @@ export default function Page({
                           'Pendidikan terbaik bukanlah sekadar masuk ke sekolah elit melaikan keteladanan yang dimulai dari rumah. Rasulullah telah memberikan blueprint pendidikan keluarga yang sempurna.',
                   },
                   {
+                      slug: 'ibrah-perang-badar',
                       category: 'Sejarah Islam',
                       title: 'Ibrah dari Perang Badar: Kualitas Iman Mengalahkan Kuantitas Pasukan',
                       author: 'Ustadz Budi Santoso',

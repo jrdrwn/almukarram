@@ -38,6 +38,21 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    public function beritas(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Berita::class);
+    }
+
+    public function opinis(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Opini::class);
+    }
+
+    public function buletins(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Buletin::class);
+    }
+
     protected function casts(): array
     {
         return [

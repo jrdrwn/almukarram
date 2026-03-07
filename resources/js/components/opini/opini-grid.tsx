@@ -7,9 +7,11 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from '@/components/ui/pagination';
+import { Link } from '@inertiajs/react';
 import { BookOpen, PenTool, User } from 'lucide-react';
 
 interface OpiniItem {
+    slug?: string;
     category: string;
     title: string;
     author: string;
@@ -50,9 +52,9 @@ export default function OpiniGrid({
         <div className="flex flex-col gap-8">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {data.map((article, idx) => (
-                    <a
+                    <Link
                         key={idx}
-                        href="#"
+                        href={article.slug ? `/opini-detail/${article.slug}` : '#'}
                         className="group relative flex min-h-75 flex-col justify-between overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl lg:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
                     >
                         {/* Grid Texture Background */}
@@ -90,7 +92,7 @@ export default function OpiniGrid({
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </Link>
                 ))}
             </div>
 
