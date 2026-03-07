@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Pengumumans\Pages;
 
 use App\Filament\Resources\Pengumumans\PengumumanResource;
+use App\Filament\Resources\Pengumumans\Widgets\PengumumanStatsWidget;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
@@ -15,5 +16,10 @@ class ListPengumumans extends ListRecords
         return [
             CreateAction::make(),
         ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [PengumumanStatsWidget::class];
     }
 }

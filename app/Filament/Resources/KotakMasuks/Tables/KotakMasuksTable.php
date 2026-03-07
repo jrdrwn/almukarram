@@ -7,7 +7,9 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
@@ -58,6 +60,16 @@ class KotakMasuksTable
                         'belum_dibaca' => 'Belum Dibaca',
                         'sudah_dibaca' => 'Sudah Dibaca',
                     ]),
+                Filter::make('tanggal_diterima')
+                    ->label('Tanggal Diterima')
+                    ->form([
+                        DatePicker::make('dari')->label('Dari'),
+                        DatePicker::make('sampai')->label('Sampai'),
+                    ])
+                    ->query(fn ($query, array $data) => $query
+                        ->when($data['dari'] ?? null, fn ($q, $date) => $q->whereDate('created_at', '>=', $date))
+                        ->when($data['sampai'] ?? null, fn ($q, $date) => $q->whereDate('created_at', '<=', $date))
+                    ),
             ])
             ->recordActions([
                 ViewAction::make(),

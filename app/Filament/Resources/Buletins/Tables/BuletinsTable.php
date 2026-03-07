@@ -8,8 +8,10 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
@@ -81,6 +83,16 @@ class BuletinsTable
                         'published' => 'Dipublikasikan',
                         'archived'  => 'Diarsipkan',
                     ]),
+                Filter::make('tanggal_dibuat')
+                    ->label('Tanggal Dibuat')
+                    ->form([
+                        DatePicker::make('dari')->label('Dari'),
+                        DatePicker::make('sampai')->label('Sampai'),
+                    ])
+                    ->query(fn ($query, array $data) => $query
+                        ->when($data['dari'] ?? null, fn ($q, $date) => $q->whereDate('created_at', '>=', $date))
+                        ->when($data['sampai'] ?? null, fn ($q, $date) => $q->whereDate('created_at', '<=', $date))
+                    ),
             ])
             ->recordActions([
                 EditAction::make()
