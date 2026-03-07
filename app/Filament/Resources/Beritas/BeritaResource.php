@@ -29,6 +29,11 @@ class BeritaResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Konten';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return BeritaForm::configure($schema);
