@@ -73,6 +73,10 @@ export default function BeritaGrid({
                                 <img
                                     src={`/uploads/${b.gambar}`}
                                     alt={b.judul}
+                                    onError={(e) => {
+                                        e.currentTarget.src =
+                                            '/images/masjidnewww-scaled.png';
+                                    }}
                                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                             ) : (
@@ -131,117 +135,114 @@ export default function BeritaGrid({
             </div>
 
             {/* Pagination Component */}
-            {totalPages > 1 && (
-                <div className="mt-8 flex flex-col items-center gap-4 rounded-4xl border border-zinc-100 bg-white/50 p-4 backdrop-blur-sm sm:p-6 dark:border-zinc-800/50 dark:bg-zinc-900/50">
-                    <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious
-                                    href={
-                                        currentPage > 1
-                                            ? `/berita?page=${currentPage - 1}`
-                                            : '#'
-                                    }
-                                    onClick={(e) => {
-                                        if (currentPage <= 1)
-                                            e.preventDefault();
-                                        else {
-                                            e.preventDefault();
-                                            router.get(
-                                                `/berita?page=${currentPage - 1}`,
-                                                {},
-                                                {
-                                                    preserveState: true,
-                                                    preserveScroll: true,
-                                                },
-                                            );
-                                        }
-                                    }}
-                                    className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${currentPage <= 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
-                                />
-                            </PaginationItem>
-
-                            {[...Array(totalPages)].map((_, i) => {
-                                const page = i + 1;
-                                const isCurrent = page === currentPage;
-
-                                if (
-                                    page === 1 ||
-                                    page === totalPages ||
-                                    (page >= currentPage - 1 &&
-                                        page <= currentPage + 1)
-                                ) {
-                                    return (
-                                        <PaginationItem key={page}>
-                                            <PaginationLink
-                                                href={`/berita?page=${page}`}
-                                                isActive={isCurrent}
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    router.get(
-                                                        `/berita?page=${page}`,
-                                                        {},
-                                                        {
-                                                            preserveState: true,
-                                                            preserveScroll: true,
-                                                        },
-                                                    );
-                                                }}
-                                                className={
-                                                    isCurrent
-                                                        ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white'
-                                                        : 'cursor-pointer rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
-                                                }
-                                            >
-                                                {page}
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                    );
+            <div className="mt-8 flex flex-col items-center gap-4 rounded-4xl border border-zinc-100 bg-white/50 p-4 backdrop-blur-sm sm:p-6 dark:border-zinc-800/50 dark:bg-zinc-900/50">
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious
+                                href={
+                                    currentPage > 1
+                                        ? `/berita?page=${currentPage - 1}`
+                                        : '#'
                                 }
-
-                                if (
-                                    page === currentPage - 2 ||
-                                    page === currentPage + 2
-                                ) {
-                                    return (
-                                        <PaginationItem key={page}>
-                                            <PaginationEllipsis />
-                                        </PaginationItem>
-                                    );
-                                }
-
-                                return null;
-                            })}
-
-                            <PaginationItem>
-                                <PaginationNext
-                                    href={
-                                        currentPage < totalPages
-                                            ? `/berita?page=${currentPage + 1}`
-                                            : '#'
+                                onClick={(e) => {
+                                    if (currentPage <= 1) e.preventDefault();
+                                    else {
+                                        e.preventDefault();
+                                        router.get(
+                                            `/berita?page=${currentPage - 1}`,
+                                            {},
+                                            {
+                                                preserveState: true,
+                                                preserveScroll: true,
+                                            },
+                                        );
                                     }
-                                    onClick={(e) => {
-                                        if (currentPage >= totalPages)
-                                            e.preventDefault();
-                                        else {
-                                            e.preventDefault();
-                                            router.get(
-                                                `/berita?page=${currentPage + 1}`,
-                                                {},
-                                                {
-                                                    preserveState: true,
-                                                    preserveScroll: true,
-                                                },
-                                            );
-                                        }
-                                    }}
-                                    className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${currentPage >= totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
-                                />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
-                </div>
-            )}
+                                }}
+                                className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${currentPage <= 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
+                            />
+                        </PaginationItem>
+
+                        {[...Array(totalPages)].map((_, i) => {
+                            const page = i + 1;
+                            const isCurrent = page === currentPage;
+
+                            if (
+                                page === 1 ||
+                                page === totalPages ||
+                                (page >= currentPage - 1 &&
+                                    page <= currentPage + 1)
+                            ) {
+                                return (
+                                    <PaginationItem key={page}>
+                                        <PaginationLink
+                                            href={`/berita?page=${page}`}
+                                            isActive={isCurrent}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                router.get(
+                                                    `/berita?page=${page}`,
+                                                    {},
+                                                    {
+                                                        preserveState: true,
+                                                        preserveScroll: true,
+                                                    },
+                                                );
+                                            }}
+                                            className={
+                                                isCurrent
+                                                    ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white'
+                                                    : 'cursor-pointer rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
+                                            }
+                                        >
+                                            {page}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                );
+                            }
+
+                            if (
+                                page === currentPage - 2 ||
+                                page === currentPage + 2
+                            ) {
+                                return (
+                                    <PaginationItem key={page}>
+                                        <PaginationEllipsis />
+                                    </PaginationItem>
+                                );
+                            }
+
+                            return null;
+                        })}
+
+                        <PaginationItem>
+                            <PaginationNext
+                                href={
+                                    currentPage < totalPages
+                                        ? `/berita?page=${currentPage + 1}`
+                                        : '#'
+                                }
+                                onClick={(e) => {
+                                    if (currentPage >= totalPages)
+                                        e.preventDefault();
+                                    else {
+                                        e.preventDefault();
+                                        router.get(
+                                            `/berita?page=${currentPage + 1}`,
+                                            {},
+                                            {
+                                                preserveState: true,
+                                                preserveScroll: true,
+                                            },
+                                        );
+                                    }
+                                }}
+                                className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${currentPage >= totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+            </div>
         </div>
     );
 }

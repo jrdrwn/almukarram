@@ -143,6 +143,9 @@ function AccountCard({ account }: { account: any }) {
                     <img
                         src={`https://ui-avatars.com/api/?name=${account.atas}&background=10b981&color=fff&rounded=true&bold=true`}
                         alt="Avatar"
+                        onError={(e) => {
+                            e.currentTarget.src = '/images/logomasjid.png';
+                        }}
                         className="mr-4 h-12 w-12 rounded-full ring-4 ring-emerald-50"
                     />
                     <div className="absolute -right-1 -bottom-1 flex h-4 w-4 items-center justify-center rounded-full bg-white">

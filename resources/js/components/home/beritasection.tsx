@@ -56,7 +56,15 @@ export default function BeritaSection({ beritaUtama, beritaTerbaru }: { beritaUt
                     {/* Background Image / Placeholder */}
                     <div className="absolute inset-0 flex items-center justify-center bg-[#1a2f24] transition-transform duration-1000 group-hover:scale-105">
                         {beritaUtama.gambar ? (
-                            <img src={`/storage/${beritaUtama.gambar}`} alt={beritaUtama.judul} className="absolute inset-0 h-full w-full object-cover" />
+                            <img
+                                src={`/storage/${beritaUtama.gambar}`}
+                                alt={beritaUtama.judul}
+                                onError={(e) => {
+                                    e.currentTarget.src =
+                                        '/images/masjidnewww-scaled.png';
+                                }}
+                                className="absolute inset-0 h-full w-full object-cover"
+                            />
                         ) : (
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

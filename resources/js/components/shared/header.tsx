@@ -281,6 +281,9 @@ export default function Header() {
                         <img
                             src="/images/logomasjid.png"
                             alt="Logo"
+                            onError={(e) => {
+                                e.currentTarget.src = '/favicon.ico';
+                            }}
                             className="ml-2 h-8"
                         />
                     </Link>

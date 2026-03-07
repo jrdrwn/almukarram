@@ -97,70 +97,68 @@ export default function OpiniGrid({
             </div>
 
             {/* Pagination Component */}
-            {totalPages > 1 && (
-                <div className="mt-8 flex flex-col items-center gap-4 rounded-4xl border border-zinc-100 bg-white/50 p-4 backdrop-blur-sm sm:p-6 dark:border-zinc-800/50 dark:bg-zinc-900/50">
-                    <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious
-                                    href="#"
-                                    className="rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
-                                    aria-disabled={currentPage === 1}
-                                />
-                            </PaginationItem>
+            <div className="mt-8 flex flex-col items-center gap-4 rounded-4xl border border-zinc-100 bg-white/50 p-4 backdrop-blur-sm sm:p-6 dark:border-zinc-800/50 dark:bg-zinc-900/50">
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious
+                                href="#"
+                                className="rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
+                                aria-disabled={currentPage === 1}
+                            />
+                        </PaginationItem>
 
-                            {[...Array(totalPages)].map((_, i) => {
-                                const page = i + 1;
-                                const isCurrent = page === currentPage;
+                        {[...Array(totalPages)].map((_, i) => {
+                            const page = i + 1;
+                            const isCurrent = page === currentPage;
 
-                                if (
-                                    page === 1 ||
-                                    page === totalPages ||
-                                    (page >= currentPage - 1 &&
-                                        page <= currentPage + 1)
-                                ) {
-                                    return (
-                                        <PaginationItem key={page}>
-                                            <PaginationLink
-                                                href="#"
-                                                isActive={isCurrent}
-                                                className={
-                                                    isCurrent
-                                                        ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white'
-                                                        : 'rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
-                                                }
-                                            >
-                                                {page}
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                    );
-                                }
+                            if (
+                                page === 1 ||
+                                page === totalPages ||
+                                (page >= currentPage - 1 &&
+                                    page <= currentPage + 1)
+                            ) {
+                                return (
+                                    <PaginationItem key={page}>
+                                        <PaginationLink
+                                            href="#"
+                                            isActive={isCurrent}
+                                            className={
+                                                isCurrent
+                                                    ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white'
+                                                    : 'rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
+                                            }
+                                        >
+                                            {page}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                );
+                            }
 
-                                if (
-                                    page === currentPage - 2 ||
-                                    page === currentPage + 2
-                                ) {
-                                    return (
-                                        <PaginationItem key={page}>
-                                            <PaginationEllipsis />
-                                        </PaginationItem>
-                                    );
-                                }
+                            if (
+                                page === currentPage - 2 ||
+                                page === currentPage + 2
+                            ) {
+                                return (
+                                    <PaginationItem key={page}>
+                                        <PaginationEllipsis />
+                                    </PaginationItem>
+                                );
+                            }
 
-                                return null;
-                            })}
+                            return null;
+                        })}
 
-                            <PaginationItem>
-                                <PaginationNext
-                                    href="#"
-                                    className="rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
-                                    aria-disabled={currentPage === totalPages}
-                                />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
-                </div>
-            )}
+                        <PaginationItem>
+                            <PaginationNext
+                                href="#"
+                                className="rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
+                                aria-disabled={currentPage === totalPages}
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+            </div>
         </div>
     );
 }

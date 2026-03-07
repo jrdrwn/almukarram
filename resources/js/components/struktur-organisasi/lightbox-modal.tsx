@@ -52,6 +52,9 @@ export default function LightboxModal({
                     <img
                         src={src}
                         alt={nama}
+                        onError={(e) => {
+                            e.currentTarget.src = '/images/logomasjid.png';
+                        }}
                         className="block max-h-[80vh] max-w-full rounded-xl bg-black/50 object-contain"
                     />
                 </div>

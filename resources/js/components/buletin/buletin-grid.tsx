@@ -163,7 +163,7 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
             </div>
 
             {/* Pagination Controls */}
-            {buletins.meta && buletins.meta.last_page > 1 && (
+            {buletins.meta && (
                 <div className="mt-8 flex flex-col items-center gap-4 rounded-4xl border border-zinc-100 bg-white/50 p-4 backdrop-blur-sm sm:p-6 dark:border-zinc-800/50 dark:bg-zinc-900/50">
                     <Pagination>
                         <PaginationContent>

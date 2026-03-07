@@ -81,6 +81,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
     const [videoSearch, setVideoSearch] = useState('');
     const [videoCategory, setVideoCategory] = useState('Semua Kategori');
     const [videoPage, setVideoPage] = useState(1);
+    const albumsPerPage = 6;
     const videosPerPage = 6;
 
     const videoCategories = [
@@ -120,8 +121,17 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
         return matchSearch && matchMonth;
     });
 
+    const totalAlbumPages = Math.max(
+        1,
+        Math.ceil(filteredAlbums.length / albumsPerPage),
+    );
+    const pagedAlbums = filteredAlbums.slice(
+        (currentPage - 1) * albumsPerPage,
+        currentPage * albumsPerPage,
+    );
+
     // Grouping by Month
-    const groupedAlbums = filteredAlbums.reduce(
+    const groupedAlbums = pagedAlbums.reduce(
         (acc, album) => {
             if (!acc[album.month]) {
                 acc[album.month] = [];
@@ -131,6 +141,14 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
         },
         {} as Record<string, AlbumItem[]>,
     );
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTitle, selectedMonth]);
+
+    useEffect(() => {
+        setCurrentPage((prev) => Math.min(prev, totalAlbumPages));
+    }, [totalAlbumPages]);
 
     // Auto Play Logic
     useEffect(() => {
@@ -468,64 +486,101 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                 </div>
 
                                 {/* Pagination */}
-                                {Object.keys(groupedAlbums).length > 0 && (
-                                    <div className="mt-16 border-t border-border pt-8">
-                                        <Pagination>
-                                            <PaginationContent>
-                                                <PaginationItem>
-                                                    <PaginationPrevious
-                                                        href="#"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            setCurrentPage(
-                                                                (prev) =>
-                                                                    Math.max(
-                                                                        1,
-                                                                        prev -
-                                                                            1,
-                                                                    ),
-                                                            );
-                                                        }}
-                                                        className={
-                                                            currentPage === 1
-                                                                ? 'pointer-events-none opacity-50'
-                                                                : ''
-                                                        }
-                                                    />
-                                                </PaginationItem>
-                                                <PaginationItem>
-                                                    <PaginationLink
-                                                        href="#"
-                                                        isActive
-                                                    >
-                                                        1
-                                                    </PaginationLink>
-                                                </PaginationItem>
-                                                <PaginationItem>
-                                                    <PaginationLink
-                                                        href="#"
-                                                        onClick={(e) =>
-                                                            e.preventDefault()
-                                                        }
-                                                    >
-                                                        2
-                                                    </PaginationLink>
-                                                </PaginationItem>
-                                                <PaginationItem>
-                                                    <PaginationEllipsis />
-                                                </PaginationItem>
-                                                <PaginationItem>
-                                                    <PaginationNext
-                                                        href="#"
-                                                        onClick={(e) =>
-                                                            e.preventDefault()
-                                                        }
-                                                    />
-                                                </PaginationItem>
-                                            </PaginationContent>
-                                        </Pagination>
-                                    </div>
-                                )}
+                                <div className="mt-16 border-t border-border pt-8">
+                                    <Pagination>
+                                        <PaginationContent>
+                                            <PaginationItem>
+                                                <PaginationPrevious
+                                                    href="#"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setCurrentPage((prev) =>
+                                                            Math.max(
+                                                                1,
+                                                                prev - 1,
+                                                            ),
+                                                        );
+                                                    }}
+                                                    className={
+                                                        currentPage === 1
+                                                            ? 'pointer-events-none opacity-50'
+                                                            : ''
+                                                    }
+                                                />
+                                            </PaginationItem>
+
+                                            {Array.from(
+                                                { length: totalAlbumPages },
+                                                (_, i) => i + 1,
+                                            ).map((page) => {
+                                                const isCurrent =
+                                                    page === currentPage;
+                                                const shouldShow =
+                                                    page === 1 ||
+                                                    page === totalAlbumPages ||
+                                                    (page >= currentPage - 1 &&
+                                                        page <=
+                                                            currentPage + 1);
+
+                                                if (!shouldShow) {
+                                                    if (
+                                                        page ===
+                                                            currentPage - 2 ||
+                                                        page === currentPage + 2
+                                                    ) {
+                                                        return (
+                                                            <PaginationItem
+                                                                key={`ellipsis-${page}`}
+                                                            >
+                                                                <PaginationEllipsis />
+                                                            </PaginationItem>
+                                                        );
+                                                    }
+
+                                                    return null;
+                                                }
+
+                                                return (
+                                                    <PaginationItem key={page}>
+                                                        <PaginationLink
+                                                            href="#"
+                                                            isActive={isCurrent}
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                setCurrentPage(
+                                                                    page,
+                                                                );
+                                                            }}
+                                                        >
+                                                            {page}
+                                                        </PaginationLink>
+                                                    </PaginationItem>
+                                                );
+                                            })}
+
+                                            <PaginationItem>
+                                                <PaginationNext
+                                                    href="#"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setCurrentPage((prev) =>
+                                                            Math.min(
+                                                                totalAlbumPages,
+                                                                prev + 1,
+                                                            ),
+                                                        );
+                                                    }}
+                                                    className={
+                                                        currentPage ===
+                                                        totalAlbumPages
+                                                            ? 'pointer-events-none opacity-50'
+                                                            : ''
+                                                    }
+                                                />
+                                            </PaginationItem>
+                                        </PaginationContent>
+                                    </Pagination>
+                                </div>
                             </TabsContent>
 
                             {/* ===== VIDEO TAB ===== */}

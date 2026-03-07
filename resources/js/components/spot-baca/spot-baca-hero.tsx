@@ -16,6 +16,10 @@ export default function SpotBacaHero() {
                             <img
                                 src="/images/Scan-QR-Code.png"
                                 alt="Scan QR Akses Spot Baca"
+                                onError={(e) => {
+                                    e.currentTarget.src =
+                                        '/images/masjidnewww-scaled.png';
+                                }}
                                 className="h-auto w-full rounded-4xl object-cover"
                             />
                         </div>

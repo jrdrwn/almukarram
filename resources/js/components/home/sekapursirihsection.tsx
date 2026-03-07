@@ -36,6 +36,9 @@ export default function SekapurSirihSection() {
                         <img
                             src="/images/pose_change_4.png"
                             alt="H.M. Wiyatno, S.P."
+                            onError={(e) => {
+                                e.currentTarget.src = '/images/logomasjid.png';
+                            }}
                             className="relative z-10 h-auto max-h-180 w-auto object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.15)] transition-transform duration-500 group-hover:scale-[1.02]"
                         />
 

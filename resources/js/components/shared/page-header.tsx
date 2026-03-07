@@ -30,6 +30,9 @@ export default function PageHeader({
                 <img
                     src={backgroundImage}
                     alt="Background Masjid"
+                    onError={(e) => {
+                        e.currentTarget.src = '/images/masjidnewww-scaled.png';
+                    }}
                     className="h-full w-full object-cover object-center"
                 />
             </div>

@@ -136,6 +136,10 @@ export default function BeritaSidebar({
                                         <img
                                             src={`/uploads/${p.gambar}`}
                                             alt={p.judul}
+                                            onError={(e) => {
+                                                e.currentTarget.src =
+                                                    '/images/masjidnewww-scaled.png';
+                                            }}
                                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
                                     ) : (

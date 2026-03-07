@@ -132,16 +132,28 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                     className="h-10 w-10 rounded-full border-2 border-primary/40 object-cover opacity-90"
                                     src="https://i.pravatar.cc/100?img=11"
                                     alt="Ustadz 1"
+                                    onError={(e) => {
+                                        e.currentTarget.src =
+                                            '/images/logomasjid.png';
+                                    }}
                                 />
                                 <img
                                     className="h-10 w-10 rounded-full border-2 border-primary/40 object-cover opacity-90"
                                     src="https://i.pravatar.cc/100?img=12"
                                     alt="Ustadz 2"
+                                    onError={(e) => {
+                                        e.currentTarget.src =
+                                            '/images/logomasjid.png';
+                                    }}
                                 />
                                 <img
                                     className="h-10 w-10 rounded-full border-2 border-primary/40 object-cover opacity-90"
                                     src="https://i.pravatar.cc/100?img=32"
                                     alt="Ustadz 3"
+                                    onError={(e) => {
+                                        e.currentTarget.src =
+                                            '/images/logomasjid.png';
+                                    }}
                                 />
                             </div>
                             <div>

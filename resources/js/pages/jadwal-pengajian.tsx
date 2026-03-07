@@ -347,60 +347,58 @@ export default function JadwalPengajian({
                 )}
 
                 {/* Pagination */}
-                {totalPages > 1 && (
-                    <div className="mt-12 mb-8">
-                        <Pagination>
-                            <PaginationContent>
-                                <PaginationItem>
-                                    <PaginationPrevious
+                <div className="mt-12 mb-8">
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        if (currentPage > 1)
+                                            setCurrentPage((p) => p - 1);
+                                    }}
+                                    className={
+                                        currentPage === 1
+                                            ? 'pointer-events-none opacity-50'
+                                            : 'cursor-pointer'
+                                    }
+                                />
+                            </PaginationItem>
+
+                            {[...Array(totalPages)].map((_, i) => (
+                                <PaginationItem key={i}>
+                                    <PaginationLink
                                         href="#"
+                                        isActive={currentPage === i + 1}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            if (currentPage > 1)
-                                                setCurrentPage((p) => p - 1);
+                                            setCurrentPage(i + 1);
                                         }}
-                                        className={
-                                            currentPage === 1
-                                                ? 'pointer-events-none opacity-50'
-                                                : 'cursor-pointer'
-                                        }
-                                    />
+                                    >
+                                        {i + 1}
+                                    </PaginationLink>
                                 </PaginationItem>
+                            ))}
 
-                                {[...Array(totalPages)].map((_, i) => (
-                                    <PaginationItem key={i}>
-                                        <PaginationLink
-                                            href="#"
-                                            isActive={currentPage === i + 1}
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setCurrentPage(i + 1);
-                                            }}
-                                        >
-                                            {i + 1}
-                                        </PaginationLink>
-                                    </PaginationItem>
-                                ))}
-
-                                <PaginationItem>
-                                    <PaginationNext
-                                        href="#"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            if (currentPage < totalPages)
-                                                setCurrentPage((p) => p + 1);
-                                        }}
-                                        className={
-                                            currentPage === totalPages
-                                                ? 'pointer-events-none opacity-50'
-                                                : 'cursor-pointer'
-                                        }
-                                    />
-                                </PaginationItem>
-                            </PaginationContent>
-                        </Pagination>
-                    </div>
-                )}
+                            <PaginationItem>
+                                <PaginationNext
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        if (currentPage < totalPages)
+                                            setCurrentPage((p) => p + 1);
+                                    }}
+                                    className={
+                                        currentPage === totalPages
+                                            ? 'pointer-events-none opacity-50'
+                                            : 'cursor-pointer'
+                                    }
+                                />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                </div>
 
                 {/* Info Note */}
                 <div className="mt-16 flex justify-center">
