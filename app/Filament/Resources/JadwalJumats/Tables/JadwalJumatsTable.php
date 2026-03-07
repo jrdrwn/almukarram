@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\JadwalJumats\Tables;
 
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -54,8 +55,10 @@ class JadwalJumatsTable
                     ->sortable(),
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

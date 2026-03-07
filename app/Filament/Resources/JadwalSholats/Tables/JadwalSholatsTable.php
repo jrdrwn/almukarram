@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\JadwalSholats\Tables;
 
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -56,8 +57,10 @@ class JadwalSholatsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

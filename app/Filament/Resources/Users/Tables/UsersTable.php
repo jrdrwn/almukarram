@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Users\Tables;
 
 use App\Enums\Role;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -47,8 +48,10 @@ class UsersTable
                     ->options(Role::options()),
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

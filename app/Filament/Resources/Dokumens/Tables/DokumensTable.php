@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Dokumens\Tables;
 
 use App\Enums\Role;
 use App\Models\Kategori;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -98,10 +99,12 @@ class DokumensTable
                     ),
             ])
             ->recordActions([
-                EditAction::make()
-                    ->visible(fn ($record): bool => Role::canEditRecord($record)),
-                DeleteAction::make()
-                    ->visible(fn ($record): bool => Role::canDeleteRecord($record)),
+                ActionGroup::make([
+                    EditAction::make()
+                        ->visible(fn ($record): bool => Role::canEditRecord($record)),
+                    DeleteAction::make()
+                        ->visible(fn ($record): bool => Role::canDeleteRecord($record)),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

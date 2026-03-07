@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\JadwalPengajians\Tables;
 
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -88,8 +89,10 @@ class JadwalPengajiansTable
                     ),
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

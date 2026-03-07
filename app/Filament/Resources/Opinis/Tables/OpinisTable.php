@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Opinis\Tables;
 
 use App\Enums\Role;
 use App\Models\Kategori;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -96,10 +97,12 @@ class OpinisTable
                     ),
             ])
             ->recordActions([
-                EditAction::make()
-                    ->visible(fn ($record): bool => Role::canEditRecord($record)),
-                DeleteAction::make()
-                    ->visible(fn ($record): bool => Role::canDeleteRecord($record)),
+                ActionGroup::make([
+                    EditAction::make()
+                        ->visible(fn ($record): bool => Role::canEditRecord($record)),
+                    DeleteAction::make()
+                        ->visible(fn ($record): bool => Role::canDeleteRecord($record)),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
