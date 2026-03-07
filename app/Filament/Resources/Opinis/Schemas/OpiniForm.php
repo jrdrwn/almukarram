@@ -42,7 +42,8 @@ class OpiniForm
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->hint(fn ($state) => strlen($state ?? '') . '/255'),
+                            ->hint(fn ($state) => strlen($state ?? '') . '/255')
+                            ->helperText('Diisi otomatis dari judul. Digunakan sebagai bagian URL halaman, harus unik.'),
                         Textarea::make('ringkasan')
                             ->label('Ringkasan')
                             ->rows(3)
@@ -50,6 +51,7 @@ class OpiniForm
                             ->live(onBlur: true)
                             ->hint(fn ($state) => strlen($state ?? '') . '/500')
                             ->extraInputAttributes(['style' => 'resize: none;'])
+                            ->helperText('Ringkasan singkat yang tampil di halaman daftar opini.')
                             ->columnSpanFull(),
                         RichEditor::make('isi')
                             ->label('Isi Opini')
@@ -57,7 +59,8 @@ class OpiniForm
                             ->maxLength(65535)
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('public')
-                            ->fileAttachmentsDirectory('opini/attachments'),
+                            ->fileAttachmentsDirectory('opini/attachments')
+                            ->helperText('Isi lengkap opini. Mendukung format teks kaya: bold, italic, daftar, gambar, dan tautan.'),
                     ]),
 
                 Section::make('Pengaturan')
@@ -76,12 +79,14 @@ class OpiniForm
                             ->label('Waktu Baca')
                             ->placeholder('contoh: 5 menit')
                             ->maxLength(50)
+                            ->helperText('Estimasi waktu membaca artikel ini, contoh: 5 menit.')
                             ->columnSpanFull(),
                         Select::make('kategori_id')
                             ->label('Kategori')
                             ->required()
                             ->options(fn () => Kategori::query()->where('type', 'opini')->pluck('nama', 'id'))
                             ->searchable()
+                            ->helperText('Pilih kategori yang sesuai untuk opini ini.')
                             ->columnSpanFull(),
                         Select::make('user_id')
                             ->label('Penulis')
@@ -89,12 +94,14 @@ class OpiniForm
                             ->options(fn () => User::query()->pluck('name', 'id'))
                             ->searchable()
                             ->default(fn () => Auth::id())
+                            ->helperText('Penulis yang bertanggung jawab atas opini ini.')
                             ->columnSpanFull(),
                         DateTimePicker::make('published_at')
                             ->label('Tanggal Publikasi')
                             ->required()
                             ->default(now())
                             ->native(false)
+                            ->helperText('Tanggal dan waktu opini ini dipublikasikan.')
                             ->columnSpanFull(),
                         Select::make('status')
                             ->label('Status')
@@ -106,6 +113,7 @@ class OpiniForm
                             ])
                             ->default('draft')
                             ->native(false)
+                            ->helperText('Draft: belum publik · Dipublikasikan: tampil di web · Diarsipkan: disembunyikan.')
                             ->columnSpanFull(),
                     ]),
             ]);

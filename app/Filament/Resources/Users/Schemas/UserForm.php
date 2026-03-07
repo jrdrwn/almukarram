@@ -34,18 +34,21 @@ class UserForm
                         TextInput::make('name')
                             ->label('Nama Lengkap')
                             ->required()
-                            ->maxLength(100),
+                            ->maxLength(100)
+                            ->helperText('Nama lengkap pengguna yang ditampilkan di profil.'),
                         TextInput::make('email')
                             ->label('Email')
                             ->email()
                             ->required()
                             ->maxLength(255)
-                            ->unique(ignoreRecord: true),
+                            ->unique(ignoreRecord: true)
+                            ->helperText('Alamat email untuk login dan notifikasi. Harus unik.'),
                         Select::make('role')
                             ->label('Role')
                             ->options($roleOptions)
                             ->required()
-                            ->native(false),
+                            ->native(false)
+                            ->helperText('Admin: kelola konten · Penulis: buat konten · Reviewer: tinjau & setujui konten.'),
                         TextInput::make('password')
                             ->label('Password')
                             ->password()
@@ -54,11 +57,13 @@ class UserForm
                             ->dehydrated(fn ($state): bool => filled($state))
                             ->dehydrateStateUsing(fn ($state): string => bcrypt($state))
                             ->required(fn (string $operation): bool => $operation === 'create')
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->helperText('Wajib diisi saat membuat akun baru. Kosongkan jika tidak ingin mengubah password.'),
                         Textarea::make('bio')
                             ->label('Bio')
                             ->rows(4)
                             ->maxLength(500)
+                            ->helperText('Biografi singkat pengguna, ditampilkan di halaman profil publik.')
                             ->columnSpanFull(),
                     ]),
 
@@ -71,26 +76,32 @@ class UserForm
                             ->imageEditor()
                             ->disk('public')
                             ->directory('profiles')
-                            ->maxSize(2048),
+                            ->maxSize(2048)
+                            ->helperText('Maks. 2MB. Format: JPG, PNG, WEBP.'),
                         TextInput::make('social_media.instagram')
                             ->label('Instagram')
                             ->prefix('@')
-                            ->maxLength(100),
+                            ->maxLength(100)
+                            ->helperText('Username Instagram tanpa tanda @.'),
                         TextInput::make('social_media.facebook')
                             ->label('Facebook')
                             ->prefix('facebook.com/')
-                            ->maxLength(100),
+                            ->maxLength(100)
+                            ->helperText('Username atau path halaman Facebook.'),
                         TextInput::make('social_media.twitter')
                             ->label('X / Twitter')
                             ->prefix('@')
-                            ->maxLength(100),
+                            ->maxLength(100)
+                            ->helperText('Username X/Twitter tanpa tanda @.'),
                         TextInput::make('social_media.youtube')
                             ->label('YouTube')
-                            ->maxLength(200),
+                            ->maxLength(200)
+                            ->helperText('URL channel YouTube, contoh: https://youtube.com/@nama.'),
                         TextInput::make('social_media.tiktok')
                             ->label('TikTok')
                             ->prefix('@')
-                            ->maxLength(100),
+                            ->maxLength(100)
+                            ->helperText('Username TikTok tanpa tanda @.'),
                     ]),
             ]);
     }

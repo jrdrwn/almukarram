@@ -28,26 +28,31 @@ class JadwalPengajianForm
                         'Sabtu'  => 'Sabtu',
                         'Ahad'   => 'Ahad',
                     ])
-                    ->required(),
+                    ->required()
+                    ->helperText('Hari rutin pelaksanaan pengajian dalam seminggu.'),
                 DatePicker::make('tanggal')
                     ->label('Tanggal')
                     ->required()
                     ->native(false)
-                    ->displayFormat('d M Y'),
+                    ->displayFormat('d M Y')
+                    ->helperText('Tanggal pelaksanaan pengajian.'),
                 TimePicker::make('waktu')
                     ->label('Waktu')
                     ->required()
                     ->native(false)
-                    ->seconds(false),
+                    ->seconds(false)
+                    ->helperText('Waktu mulai pengajian.'),
                 TextInput::make('judul')
                     ->label('Judul Pengajian')
                     ->required()
                     ->maxLength(200)
+                    ->helperText('Tema atau topik pembahasan dalam pengajian ini.')
                     ->columnSpanFull(),
                 TextInput::make('pemateri')
                     ->label('Pemateri')
                     ->required()
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->helperText('Nama ustadz atau pemateri yang mengisi pengajian.'),
                 Select::make('tipe')
                     ->label('Tipe')
                     ->options([
@@ -57,7 +62,8 @@ class JadwalPengajianForm
                         'Anak-Anak' => 'Anak-Anak',
                     ])
                     ->default('Umum')
-                    ->required(),
+                    ->required()
+                    ->helperText('Sasaran atau kelompok peserta pengajian.'),
                 Select::make('status')
                     ->label('Status')
                     ->options([
@@ -67,12 +73,14 @@ class JadwalPengajianForm
                         'Dibatalkan'  => 'Dibatalkan',
                     ])
                     ->default('Akan Datang')
-                    ->required(),
+                    ->required()
+                    ->helperText('Status pelaksanaan pengajian saat ini.'),
                 Select::make('user_id')
                     ->label('Diinput Oleh')
                     ->options(fn () => User::query()->pluck('name', 'id'))
                     ->searchable()
-                    ->default(fn () => Auth::id()),
+                    ->default(fn () => Auth::id())
+                    ->helperText('Pengguna yang menginput data jadwal ini.'),
             ]);
     }
 }

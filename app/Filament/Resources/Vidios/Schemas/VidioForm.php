@@ -28,6 +28,7 @@ class VidioForm
                             ->required()
                             ->maxLength(255)
                             ->hint(fn ($state) => strlen($state ?? '') . '/255')
+                            ->helperText('Judul video yang ditampilkan ke publik.')
                             ->columnSpanFull(),
                         TextInput::make('youtube_id')
                             ->label('YouTube ID')
@@ -60,6 +61,7 @@ class VidioForm
                             ->required()
                             ->options(fn () => Kategori::query()->where('type', 'vidio')->pluck('nama', 'id'))
                             ->searchable()
+                            ->helperText('Pilih kategori yang sesuai untuk video ini.')
                             ->columnSpanFull(),
                         Select::make('user_id')
                             ->label('Pemilik')
@@ -67,12 +69,14 @@ class VidioForm
                             ->options(fn () => User::query()->pluck('name', 'id'))
                             ->searchable()
                             ->default(fn () => Auth::id())
+                            ->helperText('Pengguna yang memiliki dan bertanggung jawab atas video ini.')
                             ->columnSpanFull(),
                         DatePicker::make('published_at')
                             ->label('Tanggal Publikasi')
                             ->required()
                             ->default(now())
                             ->native(false)
+                            ->helperText('Tanggal video ini diterbitkan.')
                             ->columnSpanFull(),
                         Select::make('status')
                             ->label('Status')
@@ -84,6 +88,7 @@ class VidioForm
                             ])
                             ->default('draft')
                             ->native(false)
+                            ->helperText('Draft: belum publik · Dipublikasikan: tampil di web · Diarsipkan: disembunyikan.')
                             ->columnSpanFull(),
                     ]),
             ]);

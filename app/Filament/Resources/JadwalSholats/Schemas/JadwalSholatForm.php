@@ -25,14 +25,17 @@ class JadwalSholatForm
                             ->required()
                             ->native(false)
                             ->displayFormat('d M Y')
-                            ->unique(ignoreRecord: true),
+                            ->unique(ignoreRecord: true)
+                            ->helperText('Setiap tanggal hanya dapat diisi satu kali.'),
                         Select::make('user_id')
                             ->label('Diinput Oleh')
                             ->options(fn () => User::query()->pluck('name', 'id'))
                             ->searchable()
-                            ->default(fn () => Auth::id()),
+                            ->default(fn () => Auth::id())
+                            ->helperText('Pengguna yang menginput data jadwal ini.'),
                     ]),
                 Section::make('Waktu Sholat')
+                    ->description('Isi waktu dalam format HH:MM, contoh: 04:30.')
                     ->columnSpan(2)
                     ->columns(2)
                     ->schema([

@@ -43,7 +43,8 @@ class BeritaForm
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->hint(fn ($state) => strlen($state ?? '') . '/255'),
+                            ->hint(fn ($state) => strlen($state ?? '') . '/255')
+                            ->helperText('Diisi otomatis dari judul. Digunakan sebagai bagian URL halaman, harus unik.'),
                         Textarea::make('ringkasan')
                             ->label('Ringkasan')
                             ->rows(3)
@@ -52,6 +53,7 @@ class BeritaForm
                             ->live(onBlur: true)
                             ->hint(fn ($state) => strlen($state ?? '') . '/500')
                             ->extraInputAttributes(['style' => 'resize: none;'])
+                            ->helperText('Ringkasan singkat yang tampil di halaman daftar berita dan meta deskripsi.')
                             ->columnSpanFull(),
                         RichEditor::make('isi')
                             ->label('Isi Berita')
@@ -59,7 +61,8 @@ class BeritaForm
                             ->maxLength(65535)
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('public')
-                            ->fileAttachmentsDirectory('berita/attachments'),
+                            ->fileAttachmentsDirectory('berita/attachments')
+                            ->helperText('Isi lengkap berita. Mendukung format teks kaya: bold, italic, daftar, gambar, dan tautan.'),
                     ]),
 
                 Section::make('Pengaturan')
@@ -79,6 +82,7 @@ class BeritaForm
                             ->required()
                             ->options(fn() => Kategori::query()->where('type', 'berita')->pluck('nama', 'id'))
                             ->searchable()
+                            ->helperText('Pilih kategori yang sesuai untuk berita ini.')
                             ->columnSpanFull(),
                         Select::make('user_id')
                             ->required()
@@ -86,12 +90,14 @@ class BeritaForm
                             ->options(fn() => User::query()->pluck('name', 'id'))
                             ->searchable()
                             ->default(fn() => Auth::id())
+                            ->helperText('Penulis yang bertanggung jawab atas berita ini.')
                             ->columnSpanFull(),
                         DateTimePicker::make('published_at')
                             ->label('Tanggal Publikasi')
                             ->required()
                             ->default(now())
                             ->native(false)
+                            ->helperText('Tanggal dan waktu berita ini dipublikasikan.')
                             ->columnSpanFull(),
                         Select::make('status')
                             ->label('Status')
@@ -103,6 +109,7 @@ class BeritaForm
                             ])
                             ->default('draft')
                             ->native(false)
+                            ->helperText('Draft: belum publik · Dipublikasikan: tampil di web · Diarsipkan: disembunyikan.')
                             ->columnSpanFull(),
                     ]),
             ]);

@@ -24,12 +24,14 @@ class KategoriForm
                             return;
                         }
                         $set('slug', Str::slug($state));
-                    }),
+                    })
+                    ->helperText('Nama kategori yang ditampilkan di website.'),
                 TextInput::make('slug')
                     ->label('Slug')
                     ->required()
                     ->unique(ignoreRecord: true)
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->helperText('Diisi otomatis dari nama. Digunakan sebagai bagian URL, harus unik.'),
                 Select::make('type')
                     ->label('Tipe')
                     ->required()
@@ -41,7 +43,8 @@ class KategoriForm
                         'opini'   => 'Opini',
                         'dokumen' => 'Dokumen',
                     ])
-                    ->native(false),
+                    ->native(false)
+                    ->helperText('Menentukan jenis konten yang menggunakan kategori ini.'),
             ]);
     }
 }

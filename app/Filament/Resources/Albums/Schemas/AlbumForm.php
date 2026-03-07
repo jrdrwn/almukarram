@@ -42,12 +42,14 @@ class AlbumForm
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->hint(fn ($state) => strlen($state ?? '') . '/255'),
+                            ->hint(fn ($state) => strlen($state ?? '') . '/255')
+                            ->helperText('Diisi otomatis dari judul. Digunakan sebagai bagian URL halaman, harus unik.'),
                         Textarea::make('deskripsi')
                             ->label('Deskripsi')
                             ->rows(3)
                             ->maxLength(1000)
                             ->extraInputAttributes(['style' => 'resize: none;'])
+                            ->helperText('Keterangan singkat tentang foto-foto dalam album ini.')
                             ->columnSpanFull(),
                         FileUpload::make('thumbnail')
                             ->label('Thumbnail')
@@ -68,6 +70,7 @@ class AlbumForm
                             ->required()
                             ->options(fn () => Kategori::query()->where('type', 'album')->pluck('nama', 'id'))
                             ->searchable()
+                            ->helperText('Pilih kategori yang sesuai untuk album ini.')
                             ->columnSpanFull(),
                         Select::make('user_id')
                             ->label('Pemilik')
@@ -75,12 +78,14 @@ class AlbumForm
                             ->options(fn () => User::query()->pluck('name', 'id'))
                             ->searchable()
                             ->default(fn () => Auth::id())
+                            ->helperText('Pengguna yang memiliki dan bertanggung jawab atas album ini.')
                             ->columnSpanFull(),
                         DatePicker::make('published_at')
                             ->label('Tanggal Publikasi')
                             ->required()
                             ->default(now())
                             ->native(false)
+                            ->helperText('Tanggal album ini diterbitkan.')
                             ->columnSpanFull(),
                         Select::make('status')
                             ->label('Status')
@@ -92,6 +97,7 @@ class AlbumForm
                             ])
                             ->default('draft')
                             ->native(false)
+                            ->helperText('Draft: belum publik · Dipublikasikan: tampil di web · Diarsipkan: disembunyikan.')
                             ->columnSpanFull(),
                     ]),
 
@@ -114,7 +120,8 @@ class AlbumForm
                                     ->label('Urutan')
                                     ->numeric()
                                     ->default(0)
-                                    ->minValue(0),
+                                    ->minValue(0)
+                                    ->helperText('Angka urutan tampil foto. Semakin kecil semakin awal.'),
                             ])
                             ->columns(2)
                             ->orderColumn('urutan')

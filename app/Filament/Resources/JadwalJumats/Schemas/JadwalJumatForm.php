@@ -21,33 +21,40 @@ class JadwalJumatForm
                     ->label('Tanggal')
                     ->required()
                     ->native(false)
-                    ->displayFormat('d M Y'),
+                    ->displayFormat('d M Y')
+                    ->helperText('Tanggal pelaksanaan sholat Jumat.'),
                 TimePicker::make('waktu')
                     ->label('Waktu')
                     ->required()
                     ->native(false)
-                    ->seconds(false),
+                    ->seconds(false)
+                    ->helperText('Waktu mulai khutbah Jumat.'),
                 TextInput::make('khatib')
                     ->label('Khatib')
                     ->required()
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->helperText('Nama khatib yang menyampaikan khutbah.'),
                 TextInput::make('imam')
                     ->label('Imam')
                     ->required()
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->helperText('Nama imam yang memimpin sholat.'),
                 TextInput::make('muadzin')
                     ->label('Muadzin')
                     ->required()
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->helperText('Nama muadzin yang mengumandangkan adzan.'),
                 TextInput::make('bilal')
                     ->label('Bilal')
                     ->required()
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->helperText('Nama bilal yang memandu sholat.'),
                 Select::make('user_id')
                     ->label('Diinput Oleh')
                     ->options(fn () => User::query()->pluck('name', 'id'))
                     ->searchable()
-                    ->default(fn () => Auth::id()),
+                    ->default(fn () => Auth::id())
+                    ->helperText('Pengguna yang menginput data jadwal ini.'),
             ]);
     }
 }

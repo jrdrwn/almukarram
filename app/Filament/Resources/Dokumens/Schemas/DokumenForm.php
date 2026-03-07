@@ -26,6 +26,7 @@ class DokumenForm
                             ->required()
                             ->maxLength(255)
                             ->hint(fn ($state) => strlen($state ?? '') . '/255')
+                            ->helperText('Judul dokumen yang ditampilkan ke publik.')
                             ->columnSpanFull(),
                         Select::make('jenis')
                             ->label('Jenis File')
@@ -37,12 +38,14 @@ class DokumenForm
                                 'PowerPoint' => 'PowerPoint (.pptx)',
                                 'Lainnya'    => 'Lainnya',
                             ])
-                            ->native(false),
+                            ->native(false)
+                            ->helperText('Pilih format file yang sesuai dengan dokumen yang diunggah.'),
                         TextInput::make('tahun')
                             ->label('Tahun')
                             ->required()
                             ->maxLength(4)
-                            ->default(now()->year),
+                            ->default(now()->year)
+                            ->helperText('Tahun penerbitan dokumen, contoh: 2024.'),
                         FileUpload::make('file_url')
                             ->label('File Dokumen')
                             ->required()
@@ -70,6 +73,7 @@ class DokumenForm
                             ->required()
                             ->options(fn () => Kategori::query()->where('type', 'dokumen')->pluck('nama', 'id'))
                             ->searchable()
+                            ->helperText('Pilih kategori yang sesuai untuk dokumen ini.')
                             ->columnSpanFull(),
                         Select::make('user_id')
                             ->label('Pemilik')
@@ -77,6 +81,7 @@ class DokumenForm
                             ->options(fn () => User::query()->pluck('name', 'id'))
                             ->searchable()
                             ->default(fn () => Auth::id())
+                            ->helperText('Pengguna yang mengunggah dan bertanggung jawab atas dokumen ini.')
                             ->columnSpanFull(),
                         Select::make('status')
                             ->label('Status')
@@ -88,6 +93,7 @@ class DokumenForm
                             ])
                             ->default('draft')
                             ->native(false)
+                            ->helperText('Draft: belum publik · Dipublikasikan: tampil di web · Diarsipkan: disembunyikan.')
                             ->columnSpanFull(),
                     ]),
             ]);

@@ -40,7 +40,8 @@ class BuletinForm
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->hint(fn ($state) => strlen($state ?? '') . '/255'),
+                            ->hint(fn ($state) => strlen($state ?? '') . '/255')
+                            ->helperText('Diisi otomatis dari judul. Digunakan sebagai bagian URL halaman, harus unik.'),
                         FileUpload::make('thumbnail')
                             ->label('Thumbnail')
                             ->image()
@@ -69,6 +70,7 @@ class BuletinForm
                             ->required()
                             ->options(fn () => Kategori::query()->where('type', 'buletin')->pluck('nama', 'id'))
                             ->searchable()
+                            ->helperText('Pilih kategori yang sesuai untuk buletin ini.')
                             ->columnSpanFull(),
                         Select::make('user_id')
                             ->label('Pemilik')
@@ -76,12 +78,14 @@ class BuletinForm
                             ->options(fn () => User::query()->pluck('name', 'id'))
                             ->searchable()
                             ->default(fn () => Auth::id())
+                            ->helperText('Pengguna yang memiliki dan bertanggung jawab atas buletin ini.')
                             ->columnSpanFull(),
                         DatePicker::make('published_at')
                             ->label('Tanggal Publikasi')
                             ->required()
                             ->default(now())
                             ->native(false)
+                            ->helperText('Tanggal buletin ini diterbitkan.')
                             ->columnSpanFull(),
                         Select::make('status')
                             ->label('Status')
@@ -93,6 +97,7 @@ class BuletinForm
                             ])
                             ->default('draft')
                             ->native(false)
+                            ->helperText('Draft: belum publik · Dipublikasikan: tampil di web · Diarsipkan: disembunyikan.')
                             ->columnSpanFull(),
                     ]),
             ]);

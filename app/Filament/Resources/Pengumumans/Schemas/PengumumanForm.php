@@ -26,7 +26,8 @@ class PengumumanForm
                             ->label('Judul')
                             ->required()
                             ->maxLength(255)
-                            ->hint(fn ($state) => strlen($state ?? '') . '/255'),
+                            ->hint(fn ($state) => strlen($state ?? '') . '/255')
+                            ->helperText('Judul pengumuman yang ditampilkan ke publik.'),
                         FileUpload::make('gambar')
                             ->label('Gambar')
                             ->image()
@@ -41,7 +42,8 @@ class PengumumanForm
                             ->required()
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('public')
-                            ->fileAttachmentsDirectory('pengumuman/attachments'),
+                            ->fileAttachmentsDirectory('pengumuman/attachments')
+                            ->helperText('Isi lengkap pengumuman. Mendukung format teks kaya: bold, italic, daftar, gambar, dan tautan.'),
                     ]),
 
                 Section::make('Pengaturan')
@@ -53,15 +55,18 @@ class PengumumanForm
                             ->options(fn () => User::query()->pluck('name', 'id'))
                             ->searchable()
                             ->default(fn () => Auth::id())
+                            ->helperText('Pengguna yang membuat pengumuman ini.')
                             ->columnSpanFull(),
                         DatePicker::make('tanggal_mulai')
                             ->label('Tanggal Mulai')
                             ->native(false)
                             ->default(now())
+                            ->helperText('Tanggal pengumuman mulai berlaku dan ditampilkan.')
                             ->columnSpanFull(),
                         DatePicker::make('tanggal_selesai')
                             ->label('Tanggal Selesai')
                             ->native(false)
+                            ->helperText('Tanggal pengumuman berakhir. Kosongkan jika tidak ada batas waktu.')
                             ->columnSpanFull(),
                     ]),
             ]);
