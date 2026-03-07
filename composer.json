@@ -73,6 +73,14 @@
             "@lint:check",
             "@php artisan test"
         ],
+        "deploy": [
+            "composer install --optimize-autoloader --no-dev",
+            "@php artisan filament:upgrade",
+            "@php artisan filament:optimize",
+            "@php artisan optimize",
+            "@php artisan migrate --force",
+            "npm run build"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
