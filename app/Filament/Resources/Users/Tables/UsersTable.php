@@ -34,7 +34,7 @@ class UsersTable
                     ->searchable()
                     ->copyable(),
                 TextColumn::make('role')
-                    ->label('Role')
+                    ->label('Peran')
                     ->badge()
                     ->formatStateUsing(fn (Role $state): string => $state->label())
                     ->color(fn (Role $state): string => $state->color()),

@@ -44,13 +44,13 @@ class UserForm
                             ->unique(ignoreRecord: true)
                             ->helperText('Alamat email untuk login dan notifikasi. Harus unik.'),
                         Select::make('role')
-                            ->label('Role')
+                            ->label('Peran')
                             ->options($roleOptions)
                             ->required()
                             ->native(false)
                             ->helperText('Admin: kelola konten · Penulis: buat konten · Reviewer: tinjau & setujui konten.'),
                         TextInput::make('password')
-                            ->label('Password')
+                            ->label('Kata Sandi')
                             ->password()
                             ->revealable()
                             ->rule(Password::default())
@@ -58,7 +58,7 @@ class UserForm
                             ->dehydrateStateUsing(fn ($state): string => bcrypt($state))
                             ->required(fn (string $operation): bool => $operation === 'create')
                             ->maxLength(255)
-                            ->helperText('Wajib diisi saat membuat akun baru. Kosongkan jika tidak ingin mengubah password.'),
+                            ->helperText('Wajib diisi saat membuat akun baru. Kosongkan jika tidak ingin mengubah kata sandi.'),
                         Textarea::make('bio')
                             ->label('Bio')
                             ->rows(4)

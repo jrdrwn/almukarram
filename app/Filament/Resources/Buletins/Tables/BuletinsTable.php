@@ -40,7 +40,7 @@ class BuletinsTable
                     ->label('Pemilik')
                     ->sortable(),
                 TextColumn::make('views')
-                    ->label('Views')
+                    ->label('Tayang')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('downloads')

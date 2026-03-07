@@ -31,7 +31,7 @@ class VidioForm
                             ->helperText('Judul video yang ditampilkan ke publik.')
                             ->columnSpanFull(),
                         TextInput::make('youtube_id')
-                            ->label('YouTube ID')
+                            ->label('ID YouTube')
                             ->required()
                             ->maxLength(20)
                             ->placeholder('contoh: dQw4w9WgXcQ')
@@ -40,11 +40,11 @@ class VidioForm
                             ->live(onBlur: true)
                             ->columnSpanFull(),
                         Placeholder::make('youtube_preview')
-                            ->label('Preview')
+                            ->label('Pratinjau')
                             ->content(function ($get): HtmlString {
                                 $id = trim($get('youtube_id') ?? '');
                                 if (! $id) {
-                                    return new HtmlString('<p class="text-sm text-gray-400 italic">Masukkan YouTube ID untuk melihat preview.</p>');
+                                    return new HtmlString('<p class="text-sm text-gray-400 italic">Masukkan ID YouTube untuk melihat pratinjau.</p>');
                                 }
                                 return new HtmlString(
                                     '<iframe style="width:100%;aspect-ratio:16/9;border-radius:0.5rem;display:block;" src="https://www.youtube.com/embed/' . e($id) . '" frameborder="0" allowfullscreen loading="lazy"></iframe>'

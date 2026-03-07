@@ -41,7 +41,7 @@ class BeritasTable
                     ->label('Penulis')
                     ->sortable(),
                 TextColumn::make('views')
-                    ->label('Views')
+                    ->label('Tayang')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('published_at')

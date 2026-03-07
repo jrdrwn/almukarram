@@ -27,7 +27,7 @@ class VidiosTable
                     ->sortable()
                     ->limit(50),
                 TextColumn::make('youtube_id')
-                    ->label('YouTube ID')
+                    ->label('ID YouTube')
                     ->url(fn ($record) => 'https://youtu.be/' . $record->youtube_id, shouldOpenInNewTab: true)
                     ->color('info'),
                 TextColumn::make('kategori.nama')
@@ -38,7 +38,7 @@ class VidiosTable
                     ->label('Pemilik')
                     ->sortable(),
                 TextColumn::make('views')
-                    ->label('Views')
+                    ->label('Tayang')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('published_at')
