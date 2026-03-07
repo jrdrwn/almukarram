@@ -36,15 +36,15 @@ export default function BeritaSection({ beritaUtama, beritaTerbaru }: { beritaUt
                             </span>
                         </h2>
                     </div>
-                    <a
-                        href="#"
+                    <Link
+                        href="/berita"
                         className="group flex h-16 shrink-0 items-center justify-center gap-4 rounded-full bg-primary pr-4 pl-8 font-bold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:scale-105"
                     >
                         Lihat Semua
                         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform group-hover:translate-x-1">
                             <ArrowRight className="h-5 w-5" />
                         </div>
-                    </a>
+                    </Link>
                 </div>
 
                 {/* MASSIVE IMMERSIVE TOP BANNER */}

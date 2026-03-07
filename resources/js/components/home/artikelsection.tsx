@@ -25,13 +25,13 @@ export default function ArtikelSection({ opiniTerbaru }: { opiniTerbaru: OpiniIt
                     </h2>
                 </div>
 
-                <a
-                    href="#"
+                <Link
+                    href="/opini"
                     className="group flex h-14 shrink-0 items-center justify-center gap-3 rounded-full border border-border bg-card px-6 font-bold text-foreground shadow-sm transition-all hover:bg-foreground hover:text-background hover:shadow-md"
                 >
                     Semua Artikel
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

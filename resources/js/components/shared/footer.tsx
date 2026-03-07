@@ -106,11 +106,11 @@ export default function Footer() {
                                 { name: 'Beranda Utama', href: '/' },
                                 {
                                     name: 'Sejarah Singkat Masjid',
-                                    href: '/sejarah',
+                                    href: '/sejarah-singkat',
                                 },
                                 {
                                     name: 'Struktur Pengurus',
-                                    href: '/struktur',
+                                    href: '/struktur-organisasi',
                                 },
                                 { name: 'Berita & Artikel', href: '/berita' },
                                 { name: 'Galeri Kegiatan', href: '/galeri' },
@@ -137,16 +137,16 @@ export default function Footer() {
                         </h3>
                         <ul className="flex flex-col gap-3.5">
                             {[
-                                { name: 'Jadwal Sholat', href: '/jadwal' },
-                                { name: 'Kajian & Dakwah', href: '/kajian' },
-                                { name: 'Layanan ZISWAF', href: '/ziswaf' },
+                                { name: 'Jadwal Sholat', href: '/jadwal-sholat' },
+                                { name: 'Kajian & Dakwah', href: '/jadwal-pengajian' },
+                                { name: 'Layanan ZISWAF', href: '/zis' },
                                 {
                                     name: 'Konsultasi Agama',
-                                    href: '/konsultasi',
+                                    href: '/layanan-konsultasi',
                                 },
                                 {
                                     name: 'Pengaduan Jamaah',
-                                    href: '/pengaduan',
+                                    href: '/kontak',
                                 },
                             ].map((item, idx) => (
                                 <li key={idx}>

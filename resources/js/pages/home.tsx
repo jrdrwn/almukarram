@@ -29,7 +29,7 @@ export default function Page({
             <SekapurSirihSection />
             <VideoSection videos={videos} />
             <BeritaSection beritaUtama={beritaUtama} beritaTerbaru={beritaTerbaru} />
-            <JadwalMultimediaSection />
+            <JadwalMultimediaSection videos={videos} />
             <ArtikelSection opiniTerbaru={opiniTerbaru} />
             <JadwalJumatSection jadwalJumat={jadwalJumat} />
             <JadwalKajianSection jadwalPengajian={jadwalPengajian} />

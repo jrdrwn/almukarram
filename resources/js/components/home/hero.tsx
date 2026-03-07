@@ -114,7 +114,7 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
 
                             <div className="mb-8 flex flex-wrap items-center justify-center gap-4 md:mb-16">
                                 <Link
-                                    href="#"
+                                    href="/program-masjid"
                                     className="group flex items-center gap-3 rounded-full bg-primary px-8 py-4 font-medium text-primary-foreground shadow-[0_0_20px_var(--color-primary)] transition-all duration-300 hover:scale-105 hover:bg-primary/90 hover:opacity-90"
                                 >
                                     Program & Layanan

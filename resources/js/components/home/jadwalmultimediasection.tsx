@@ -1,14 +1,16 @@
 import { useJadwalSholat } from '@/hooks/use-jadwal-sholat';
+import type { VideoItem } from '@/types/home';
 import { Link } from '@inertiajs/react';
 import { ArrowRight, ImageIcon, Play } from 'lucide-react';
 
 import { useState } from 'react';
 
-export default function JadwalMultimediaSection() {
+export default function JadwalMultimediaSection({ videos = [] }: { videos?: VideoItem[] }) {
     const { jadwal: jadwalSholat } = useJadwalSholat();
     const [activeMediaTab, setActiveMediaTab] = useState<'video' | 'photo'>(
         'video',
     );
+    const featuredVideo = videos[0] ?? null;
     const photoPreviews = [
         '/images/masjidnewww-scaled.png',
         '/images/pose_change_4.png',
@@ -158,7 +160,7 @@ export default function JadwalMultimediaSection() {
                                         </button>
                                     </div>
 
-                                    <h3 className="mb-4 text-3xl leading-tight font-extrabold text-white drop-shadow-md">
+                                    <h3 className="mb-4 text-2xl leading-tight font-extrabold text-white drop-shadow-md sm:text-3xl">
                                         {activeMediaTab === 'video' ? (
                                             <>
                                                 Kumpulan Jejak <br /> Rekaman
@@ -171,7 +173,7 @@ export default function JadwalMultimediaSection() {
                                             </>
                                         )}
                                     </h3>
-                                    <p className="min-h-12 text-white/60">
+                                    <p className="min-h-12 text-sm text-white/60 sm:text-base">
                                         {activeMediaTab === 'video'
                                             ? 'Saksikan kembali rekaman video kajian, ceramah, dan edukasi islami interaktif dari para asatidz.'
                                             : 'Abadikan momen kebersamaan, kegiatan sosial, dan kemegahan arsitektur dalam bingkai lensa.'}
@@ -181,30 +183,65 @@ export default function JadwalMultimediaSection() {
                                 {/* Fake Video Player / Photo Grid Box */}
                                 <div className="relative z-10 my-6 flex min-h-40 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-4xl border border-white/5 bg-white/5 py-8 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:shadow-2xl hover:shadow-primary/20">
                                     {activeMediaTab === 'video' ? (
-                                        <>
-                                            {/* Play icon */}
-                                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white shadow-[0_0_30px_rgba(var(--color-primary),0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-primary">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24"
-                                                    fill="currentColor"
-                                                    className="ml-1 h-8 w-8"
-                                                >
-                                                    <path d="M8 5.14v14l11-7-11-7z" />
-                                                </svg>
+                                        featuredVideo ? (
+                                            <div className="relative w-full px-4">
+                                                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/60">
+                                                    <img
+                                                        src={`https://img.youtube.com/vi/${featuredVideo.youtube_id}/hqdefault.jpg`}
+                                                        alt={featuredVideo.judul}
+                                                        onError={(e) => {
+                                                            e.currentTarget.src =
+                                                                '/images/masjidnewww-scaled.png';
+                                                        }}
+                                                        className="h-44 w-full object-cover sm:h-48"
+                                                    />
+                                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+
+                                                    <div className="absolute inset-0 flex items-center justify-center">
+                                                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/90 text-white shadow-[0_0_30px_rgba(var(--color-primary),0.35)]">
+                                                            <Play className="ml-0.5 h-6 w-6" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="absolute right-3 bottom-3 left-3 text-left">
+                                                        <p className="line-clamp-1 text-sm font-bold text-white">
+                                                            {featuredVideo.judul}
+                                                        </p>
+                                                        <p className="text-xs text-white/70">
+                                                            {featuredVideo.kategori?.nama ??
+                                                                'Video Kajian'}
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <span className="mt-4 text-sm font-semibold tracking-wider text-white/70 transition-colors group-hover:text-white">
-                                                Putar Video Terbaru
-                                            </span>
-                                        </>
+                                        ) : (
+                                            <>
+                                                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white shadow-[0_0_30px_rgba(var(--color-primary),0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-primary">
+                                                    <Play className="ml-0.5 h-7 w-7" />
+                                                </div>
+                                                <span className="mt-4 text-sm font-semibold tracking-wider text-white/70 transition-colors group-hover:text-white">
+                                                    Belum ada video terbaru
+                                                </span>
+                                            </>
+                                        )
                                     ) : (
                                         <>
-                                            {/* Deterministic preview grid (non-random) */}
-                                            <div className="grid w-full max-w-70 grid-cols-2 gap-2 px-4">
-                                                {photoPreviews.map((src, idx) => (
+                                            <div className="grid w-full max-w-90 grid-cols-2 gap-2 px-4">
+                                                <div className="col-span-2 aspect-video overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 p-2">
+                                                    <img
+                                                        src={photoPreviews[0]}
+                                                        alt="Preview foto utama"
+                                                        onError={(e) => {
+                                                            e.currentTarget.src =
+                                                                '/images/masjidnewww-scaled.png';
+                                                        }}
+                                                        className="h-full w-full rounded-lg object-contain"
+                                                    />
+                                                </div>
+                                                {photoPreviews.slice(1, 3).map((src, idx) => (
                                                     <div
                                                         key={idx}
-                                                        className="aspect-video overflow-hidden rounded-xl border border-white/10 bg-zinc-800/70"
+                                                        className="aspect-video overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 p-2"
                                                     >
                                                         <img
                                                             src={src}
@@ -213,7 +250,7 @@ export default function JadwalMultimediaSection() {
                                                                 e.currentTarget.src =
                                                                     '/images/masjidnewww-scaled.png';
                                                             }}
-                                                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                            className="h-full w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-105"
                                                         />
                                                     </div>
                                                 ))}
@@ -232,22 +269,13 @@ export default function JadwalMultimediaSection() {
                                                 ? '/galeri#video'
                                                 : '/galeri#foto'
                                         }
-                                        className="group/btn relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-6 py-4 font-bold text-zinc-950 transition-transform hover:scale-[1.02] sm:px-8 sm:py-5"
+                                        className="group/btn relative inline-flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-white/95 px-5 text-base font-bold text-zinc-950 shadow-lg transition-all hover:bg-white hover:shadow-xl sm:h-14 sm:rounded-full sm:px-8 sm:text-lg"
                                     >
-                                        <span className="relative z-10 flex items-center gap-2 text-base sm:text-lg">
+                                        <span className="relative z-10 flex items-center gap-2">
                                             {activeMediaTab === 'video'
                                                 ? 'Kunjungi Galeri Video'
                                                 : 'Kunjungi Galeri Foto'}
-                                        </span>
-                                        <div
-                                            className={`absolute inset-0 z-0 bg-linear-to-r opacity-0 transition-opacity duration-300 group-hover/btn:opacity-100 ${activeMediaTab === 'video' ? 'from-primary to-emerald-500' : 'from-blue-600 to-indigo-500'}`}
-                                        ></div>
-                                        {/* Swap text color on hover */}
-                                        <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-base text-white opacity-0 transition-opacity duration-300 group-hover/btn:opacity-100 sm:text-lg">
-                                            {activeMediaTab === 'video'
-                                                ? 'Kunjungi Galeri Video'
-                                                : 'Kunjungi Galeri Foto'}
-                                            <ArrowRight className="h-5 w-5 transition-transform group-hover/btn:translate-x-1" />
+                                            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1 sm:h-5 sm:w-5" />
                                         </span>
                                     </Link>
                                 </div>
