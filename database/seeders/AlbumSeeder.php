@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Album;
 use App\Models\AlbumFoto;
+use App\Models\Kategori;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -11,9 +12,12 @@ class AlbumSeeder extends Seeder
 {
     public function run(): void
     {
+        $kategoris = Kategori::where('type', 'album')->pluck('id', 'slug');
+
         $albums = [
             [
                 'judul'        => "Kolaborasi ZAWA, Baitulmaal Muamalat, dan BI Gelar ToT Al-Qur'an Isyarat di Istiqlal",
+                'kategori_id'  => $kategoris['kegiatan-album'] ?? null,
                 'deskripsi'    => "Dalam upaya perkuat aksesibilitas Al-Qur'an bagi sahabat difabel (Teman Tuli), mewujudkan inklusivitas literasi Al-Qur'an bagi penyandang disabilitas.",
                 'published_at' => '2026-02-28',
                 'fotos'        => [
@@ -24,6 +28,7 @@ class AlbumSeeder extends Seeder
             ],
             [
                 'judul'        => 'Buka Puasa Bersama dan Tarawih #5 Ramadhan',
+                'kategori_id'  => $kategoris['ramadhan-album'] ?? null,
                 'deskripsi'    => 'Antusiasme ribuan jamaah masjid dalam mengikuti serangkaian kegiatan buka puasa bersama dan ibadah salat tarawih.',
                 'published_at' => '2026-02-25',
                 'fotos'        => [
@@ -35,6 +40,7 @@ class AlbumSeeder extends Seeder
             ],
             [
                 'judul'        => 'Silaturahmi Ulama Se-Kalimantan Tengah',
+                'kategori_id'  => $kategoris['kegiatan-album'] ?? null,
                 'deskripsi'    => 'Pertemuan rutin tahunan para ulama untuk membahas kemajuan ukhuwah islamiyah dan program dakwah terpadu.',
                 'published_at' => '2026-01-10',
                 'fotos'        => [
@@ -44,6 +50,7 @@ class AlbumSeeder extends Seeder
             ],
             [
                 'judul'        => 'Kerja Bakti Akbar Persiapan Idul Adha',
+                'kategori_id'  => $kategoris['kegiatan-album'] ?? null,
                 'deskripsi'    => 'Gotong royong membersihkan seluruh area masjid bersama warga masyarakat sekitar lingkungan.',
                 'published_at' => '2026-01-05',
                 'fotos'        => [
@@ -61,6 +68,7 @@ class AlbumSeeder extends Seeder
                 'slug'      => Str::slug($data['judul']),
                 'thumbnail' => $fotos[0] ?? null,
                 'user_id'   => 1,
+                'status'    => 'published',
             ]));
 
             foreach ($fotos as $urutan => $foto) {

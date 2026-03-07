@@ -13,6 +13,7 @@ class AlbumFoto extends Model
         'album_id',
         'foto',
         'urutan',
+        'status',
     ];
 
     public function album(): BelongsTo

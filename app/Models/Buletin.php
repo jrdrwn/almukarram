@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Kategori;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -16,8 +17,9 @@ class Buletin extends Model
         'file_pdf',
         'views',
         'downloads',
-        'kategori',
+        'kategori_id',
         'user_id',
+        'status',
         'published_at',
     ];
 
@@ -33,5 +35,10 @@ class Buletin extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function kategori(): BelongsTo
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 }

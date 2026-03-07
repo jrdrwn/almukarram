@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('judul');
-            $table->string('kategori');
+            $table->unsignedBigInteger('kategori_id')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->string('foto')->nullable();
             $table->text('ringkasan')->nullable();
             $table->longText('isi');
             $table->string('waktu_baca')->nullable();
+            $table->string('status')->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

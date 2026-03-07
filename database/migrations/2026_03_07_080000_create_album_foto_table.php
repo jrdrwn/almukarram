@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('album_id')->constrained('album')->cascadeOnDelete();
             $table->string('foto');
             $table->unsignedInteger('urutan')->default(0);
+            $table->string('status')->default('published');
             $table->timestamps();
         });
     }

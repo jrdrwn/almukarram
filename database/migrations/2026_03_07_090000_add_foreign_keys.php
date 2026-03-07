@@ -15,7 +15,37 @@ return new class extends Migration
     {
         Schema::table('berita', function (Blueprint $table) {
             $table->foreign('kategori_id')
-                ->references('id')->on('kategori_berita')
+                ->references('id')->on('kategori')
+                ->nullOnDelete();
+        });
+
+        Schema::table('vidio', function (Blueprint $table) {
+            $table->foreign('kategori_id')
+                ->references('id')->on('kategori')
+                ->nullOnDelete();
+        });
+
+        Schema::table('album', function (Blueprint $table) {
+            $table->foreign('kategori_id')
+                ->references('id')->on('kategori')
+                ->nullOnDelete();
+        });
+
+        Schema::table('buletin', function (Blueprint $table) {
+            $table->foreign('kategori_id')
+                ->references('id')->on('kategori')
+                ->nullOnDelete();
+        });
+
+        Schema::table('opini', function (Blueprint $table) {
+            $table->foreign('kategori_id')
+                ->references('id')->on('kategori')
+                ->nullOnDelete();
+        });
+
+        Schema::table('dokumen', function (Blueprint $table) {
+            $table->foreign('kategori_id')
+                ->references('id')->on('kategori')
                 ->nullOnDelete();
         });
     }
@@ -26,6 +56,21 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('berita', function (Blueprint $table) {
+            $table->dropForeign(['kategori_id']);
+        });
+        Schema::table('vidio', function (Blueprint $table) {
+            $table->dropForeign(['kategori_id']);
+        });
+        Schema::table('album', function (Blueprint $table) {
+            $table->dropForeign(['kategori_id']);
+        });
+        Schema::table('buletin', function (Blueprint $table) {
+            $table->dropForeign(['kategori_id']);
+        });
+        Schema::table('opini', function (Blueprint $table) {
+            $table->dropForeign(['kategori_id']);
+        });
+        Schema::table('dokumen', function (Blueprint $table) {
             $table->dropForeign(['kategori_id']);
         });
     }

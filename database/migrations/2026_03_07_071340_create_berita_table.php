@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->unsignedBigInteger('kategori_id')->nullable();
             $table->unsignedInteger('views')->default(0);
+            $table->string('status')->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

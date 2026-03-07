@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Beritas\Tables;
 
-use App\Models\KategoriBerita;
+use App\Models\Kategori;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -45,6 +45,21 @@ class BeritasTable
                     ->dateTime('d M Y, H:i')
                     ->sortable()
                     ->placeholder('Belum dipublikasikan'),
+                TextColumn::make('status')
+                    ->label('Status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'published' => 'success',
+                        'draft'     => 'warning',
+                        'archived'  => 'danger',
+                        default     => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'published' => 'Dipublikasikan',
+                        'draft'     => 'Draft',
+                        'archived'  => 'Diarsipkan',
+                        default     => $state,
+                    }),
                 TextColumn::make('created_at')
                     ->label('Dibuat')
                     ->dateTime('d M Y')
@@ -54,7 +69,14 @@ class BeritasTable
             ->filters([
                 SelectFilter::make('kategori_id')
                     ->label('Kategori')
-                    ->options(fn () => KategoriBerita::query()->pluck('nama', 'id')),
+                    ->options(fn () => Kategori::query()->where('type', 'berita')->pluck('nama', 'id')),
+                SelectFilter::make('status')
+                    ->label('Status')
+                    ->options([
+                        'draft'     => 'Draft',
+                        'published' => 'Dipublikasikan',
+                        'archived'  => 'Diarsipkan',
+                    ]),
                 TernaryFilter::make('published_at')
                     ->label('Status Publikasi')
                     ->nullable()

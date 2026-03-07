@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('jenis');
-            $table->string('kategori');
+            $table->unsignedBigInteger('kategori_id')->nullable();
             $table->string('tahun', 4);
             $table->string('file_url');
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('status')->default('draft');
             $table->timestamps();
         });
     }

@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('vidio', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('kategori');
+            $table->unsignedBigInteger('kategori_id')->nullable();
             $table->string('youtube_id');
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->unsignedInteger('views')->default(0);
+            $table->string('status')->default('draft');
             $table->date('published_at')->nullable();
             $table->timestamps();
         });

@@ -62,6 +62,7 @@ class BeritaSeeder extends Seeder
             Berita::create(array_merge($item, [
                 'slug'    => Str::slug($item['judul']),
                 'user_id' => 2,
+                'status'  => 'published',
             ]));
         }
     }

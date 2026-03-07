@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('deskripsi')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->unsignedBigInteger('kategori_id')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('status')->default('draft');
             $table->date('published_at')->nullable();
             $table->timestamps();
         });

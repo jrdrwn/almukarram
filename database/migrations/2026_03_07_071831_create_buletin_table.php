@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('file_pdf');
             $table->unsignedInteger('views')->default(0);
             $table->unsignedInteger('downloads')->default(0);
-            $table->string('kategori')->nullable();
+            $table->unsignedBigInteger('kategori_id')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('status')->default('draft');
             $table->date('published_at')->nullable();
             $table->timestamps();
         });

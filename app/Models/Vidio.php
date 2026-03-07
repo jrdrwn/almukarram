@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Kategori;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -11,10 +12,11 @@ class Vidio extends Model
 
     protected $fillable = [
         'judul',
-        'kategori',
+        'kategori_id',
         'youtube_id',
         'user_id',
         'views',
+        'status',
         'published_at',
     ];
 
@@ -29,5 +31,10 @@ class Vidio extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function kategori(): BelongsTo
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 }

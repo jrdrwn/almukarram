@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Beritas\Schemas;
 
-use App\Models\KategoriBerita;
+use App\Models\Kategori;
 use App\Models\User;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
@@ -57,8 +57,6 @@ class BeritaForm
                             ->label('Isi Berita')
                             ->required()
                             ->maxLength(65535)
-                            ->live(onBlur: true)
-                            ->hint(fn ($state) => strlen($state ?? '') . '/65535')
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('public')
                             ->fileAttachmentsDirectory('berita/attachments'),
@@ -79,7 +77,7 @@ class BeritaForm
                         Select::make('kategori_id')
                             ->label('Kategori')
                             ->required()
-                            ->options(fn() => KategoriBerita::query()->pluck('nama', 'id'))
+                            ->options(fn() => Kategori::query()->where('type', 'berita')->pluck('nama', 'id'))
                             ->searchable()
                             ->columnSpanFull(),
                         Select::make('user_id')
@@ -93,6 +91,17 @@ class BeritaForm
                             ->label('Tanggal Publikasi')
                             ->required()
                             ->default(now())
+                            ->native(false)
+                            ->columnSpanFull(),
+                        Select::make('status')
+                            ->label('Status')
+                            ->required()
+                            ->options([
+                                'draft'     => 'Draft',
+                                'published' => 'Dipublikasikan',
+                                'archived'  => 'Diarsipkan',
+                            ])
+                            ->default('draft')
                             ->native(false)
                             ->columnSpanFull(),
                     ]),

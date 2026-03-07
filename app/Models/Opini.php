@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Kategori;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,12 +13,13 @@ class Opini extends Model
     protected $fillable = [
         'slug',
         'judul',
-        'kategori',
+        'kategori_id',
         'user_id',
         'foto',
         'ringkasan',
         'isi',
         'waktu_baca',
+        'status',
         'published_at',
     ];
 
@@ -31,5 +33,10 @@ class Opini extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function kategori(): BelongsTo
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 }
