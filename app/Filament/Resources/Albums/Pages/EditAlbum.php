@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Albums\Pages;
 
+use App\Enums\Role;
 use App\Filament\Resources\Albums\AlbumResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
@@ -13,7 +14,7 @@ class EditAlbum extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()->visible(fn (): bool => Role::canDeleteRecord($this->getRecord())),
         ];
     }
 }

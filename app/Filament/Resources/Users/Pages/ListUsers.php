@@ -4,11 +4,28 @@ namespace App\Filament\Resources\Users\Pages;
 
 use App\Filament\Resources\Users\UserResource;
 use Filament\Actions\CreateAction;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 
 class ListUsers extends ListRecords
 {
     protected static string $resource = UserResource::class;
+
+    public function mount(): void
+    {
+        if (! UserResource::canAccess()) {
+            Notification::make()
+                ->title('Akses Ditolak')
+                ->body('Anda tidak memiliki izin untuk mengelola pengguna.')
+                ->danger()
+                ->send();
+
+            $this->redirect(filament()->getUrl());
+            return;
+        }
+
+        parent::mount();
+    }
 
     protected function getHeaderActions(): array
     {

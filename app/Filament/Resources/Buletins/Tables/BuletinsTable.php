@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Buletins\Tables;
 
+use App\Enums\Role;
 use App\Models\Kategori;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -82,12 +83,15 @@ class BuletinsTable
                     ]),
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->visible(fn ($record): bool => Role::canEditRecord($record)),
+                DeleteAction::make()
+                    ->visible(fn ($record): bool => Role::canDeleteRecord($record)),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->visible(fn (): bool => Role::isAdminOrRoot()),
                 ]),
             ])
             ->defaultSort('created_at', 'desc');

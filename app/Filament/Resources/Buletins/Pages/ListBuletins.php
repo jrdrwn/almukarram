@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Buletins\Pages;
 
+use App\Enums\Role;
 use App\Filament\Resources\Buletins\BuletinResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
@@ -13,7 +14,7 @@ class ListBuletins extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()->visible(fn (): bool => Role::canCreateContent()),
         ];
     }
 }

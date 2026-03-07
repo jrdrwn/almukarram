@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Beritas\Pages;
 
+use App\Enums\Role;
 use App\Filament\Resources\Beritas\BeritaResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
@@ -13,7 +14,7 @@ class EditBerita extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()->visible(fn (): bool => Role::canDeleteRecord($this->getRecord())),
         ];
     }
 }
