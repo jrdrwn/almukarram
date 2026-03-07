@@ -9,76 +9,19 @@ import BuletinGrid from '@/components/buletin/buletin-grid';
 import BuletinSearch from '@/components/buletin/buletin-search';
 import BuletinSidebar from '@/components/buletin/buletin-sidebar';
 
-const _kategoris = [
-    { id: 1, nama: 'Tahun 2024', slug: 'tahun-2024', total: 45 },
-    { id: 2, nama: 'Tahun 2023', slug: 'tahun-2023', total: 52 },
-    { id: 3, nama: 'Tahun 2022', slug: 'tahun-2022', total: 48 },
-];
-
-const _buletin = {
-    data: [
-        {
-            id: 1,
-            title: "Buletin Jumat Edisi 14 - Keutamaan Bulan Sya'ban",
-            slug: 'buletin-jumat-edisi-14-2024',
-            thumbnail:
-                'https://images.unsplash.com/photo-1584824388147-97d8b5e40e2b?q=80&w=2670&auto=format&fit=crop',
-            pdf_url: '/dummy/buletin-edisi-14.pdf',
-            published_at: '2024-02-23T00:00:00Z',
-            views: 450,
-            downloads: 120,
-            kategori: { nama: 'Tahun 2024', slug: 'tahun-2024' },
-        },
-        {
-            id: 2,
-            title: 'Buletin Jumat Edisi 13 - Menyambut Bulan Rajab',
-            slug: 'buletin-jumat-edisi-13-2024',
-            thumbnail:
-                'https://images.unsplash.com/photo-1623800330578-19ebfa5fa0ea?q=80&w=2670&auto=format&fit=crop',
-            pdf_url: '/dummy/buletin-edisi-13.pdf',
-            published_at: '2024-02-16T00:00:00Z',
-            views: 320,
-            downloads: 85,
-            kategori: { nama: 'Tahun 2024', slug: 'tahun-2024' },
-        },
-        {
-            id: 3,
-            title: 'Buletin Jumat Edisi 12 - Pentingnya Istiqomah',
-            slug: 'buletin-jumat-edisi-12-2024',
-            thumbnail:
-                'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?q=80&w=2670&auto=format&fit=crop',
-            pdf_url: '/dummy/buletin-edisi-12.pdf',
-            published_at: '2024-02-09T00:00:00Z',
-            views: 280,
-            downloads: 65,
-            kategori: { nama: 'Tahun 2024', slug: 'tahun-2024' },
-        },
-    ],
-    meta: {
-        current_page: 1,
-        last_page: 3,
-        per_page: 9,
-        total: 25,
-        from: 1,
-        to: 3,
-        links: [
-            { url: null, label: '&laquo; Previous', active: false },
-            { url: '?page=1', label: '1', active: true },
-            { url: '?page=2', label: '2', active: false },
-            { url: '?page=3', label: '3', active: false },
-            { url: '?page=2', label: 'Next &raquo;', active: false },
-        ],
-    },
-};
+interface BuletinPageProps {
+    buletin?: any;
+    kategoris?: any[];
+    searchQuery?: string;
+    kategoriSlug?: string;
+}
 
 export default function BuletinPage({
-    searchParams,
-}: {
-    searchParams?: Record<string, string>;
-}) {
-    const q = searchParams?.q || '';
-    const kategori = searchParams?.kategori || '';
-
+    buletin = { data: [], meta: { current_page: 1, last_page: 1, per_page: 9, total: 0, from: null, to: null, links: [] } },
+    kategoris = [],
+    searchQuery = '',
+    kategoriSlug = '',
+}: BuletinPageProps) {
     return (
         <>
             <Header />
@@ -117,12 +60,12 @@ export default function BuletinPage({
                         {/* Main Content Area */}
                         <div className="flex flex-col gap-2 lg:col-span-8">
                             <BuletinSearch
-                                kategoriSlug={kategori}
-                                searchQuery={q}
-                                kategoris={_kategoris}
-                                totalRows={_buletin.meta.total}
+                                kategoriSlug={kategoriSlug}
+                                searchQuery={searchQuery}
+                                kategoris={kategoris}
+                                totalRows={buletin.meta.total}
                             />
-                            <BuletinGrid buletins={_buletin} />
+                            <BuletinGrid buletins={buletin} />
                         </div>
 
                         {/* Sidebar Area */}

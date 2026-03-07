@@ -47,158 +47,37 @@ import {
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-// Mock data Videos
-const mockVideos = [
-    {
-        id: 1,
-        title: 'Ceramah Subuh: Tanda-Tanda Kiamat Besar — Ustaz H. Hamidhan, S.Ag., MA',
-        category: 'Ceramah',
-        date: '28 FEB 2026',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-    {
-        id: 2,
-        title: 'Kajian Rutin Malam Selasa Bersama Majelis Taklim Al-Mukarram',
-        category: 'Kajian',
-        date: '25 FEB 2026',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-    {
-        id: 3,
-        title: "Khutbah Jumat: Membangun Generasi Qur'ani di Era Digital",
-        category: 'Khutbah',
-        date: '21 FEB 2026',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-    {
-        id: 4,
-        title: 'Siaran Langsung Sholat Tarawih Ramadhan 1447 H',
-        category: 'Live Streaming',
-        date: '15 FEB 2026',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-    {
-        id: 5,
-        title: 'Tausiyah Pagi: Keutamaan Sholat Berjamaah di Masjid',
-        category: 'Tausiyah',
-        date: '10 JAN 2026',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-    {
-        id: 6,
-        title: 'Buka Puasa Bersama & Tarawih ke-5 Ramadhan 1447 H',
-        category: 'Dokumentasi',
-        date: '05 JAN 2026',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-    {
-        id: 7,
-        title: 'Pengajian Ahad Pagi: Tafsir Surah Al-Baqarah Ayat 183-187',
-        category: 'Kajian',
-        date: '01 JAN 2026',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-    {
-        id: 8,
-        title: 'Khutbah Idul Fitri 1447 H — Ustaz H. Gusti Mahfudz, S.Kom., MA',
-        category: 'Khutbah',
-        date: '28 DES 2025',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-    {
-        id: 9,
-        title: "Dokumentasi Malam Nuzulul Qur'an 1447 H di Masjid Agung Al-Mukarram",
-        category: 'Dokumentasi',
-        date: '20 DES 2025',
-        youtubeId: 'dQw4w9WgXcQ',
-    },
-];
+interface AlbumItem {
+    id: number;
+    title: string;
+    date: string;
+    month: string;
+    description: string;
+    images: string[];
+}
 
-// Mock data Albums
-const mockAlbums = [
-    {
-        id: 1,
-        title: 'Kolaborasi ZAWA, Baitulmaal Muamalat, dan BI Gelar Tot Alquran Isyarat di Istiqlal',
-        date: '28 FEB 2026',
-        month: 'Februari 2026',
-        description:
-            "Dalam upaya perkuat Aksesibilitas Al-Qur'an bagi Sahabat Difabel (Teman Tuli), mewujudkan inklusivitas literasi Al-Qur'an bagi penyandang...",
-        images: [
-            'https://images.unsplash.com/photo-1564683214965-3619addd900d?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1584553421349-355eaca8ea25?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1577983086915-08e1aab87eb4?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1603831818222-67da67db75de?q=80&w=400&auto=format&fit=crop',
-        ],
-    },
-    {
-        id: 2,
-        title: 'Buka Puasa Bersama dan Tarawih #5 Ramadhan',
-        date: '25 FEB 2026',
-        month: 'Februari 2026',
-        description:
-            'Antusiasme ribuan jamaah masjid dalam mengikuti serangkaian kegiatan buka pausa bersama dan ibadah salat tarawih...',
-        images: [
-            'https://images.unsplash.com/photo-1603831818222-67da67db75de?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1593115057322-e94b77572f20?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1519782531393-271d47155a6d?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1601058265076-2f1f0a0d4cbb?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1564683214965-3619addd900d?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1584553421349-355eaca8ea25?q=80&w=400&auto=format&fit=crop',
-        ],
-    },
-    {
-        id: 3,
-        title: 'Silaturahmi Ulama Se-Kalimantan Tengah',
-        date: '10 JAN 2026',
-        month: 'Januari 2026',
-        description:
-            'Pertemuan rutin tahunan para ulama untuk membahas kemajuan ukhuwah islamiyah dan program dakwah terpadu.',
-        images: [
-            'https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1584553421349-355eaca8ea25?q=80&w=400&auto=format&fit=crop',
-        ],
-    },
-    {
-        id: 4,
-        title: 'Kerja Bakti Akbar Persiapan Idul Adha',
-        date: '05 JAN 2026',
-        month: 'Januari 2026',
-        description:
-            'Gotong royong membersihkan seluruh area masjid bersama warga masyarakat sekitar lingkungan.',
-        images: [
-            'https://images.unsplash.com/photo-1593115057322-e94b77572f20?q=80&w=800&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1577983086915-08e1aab87eb4?q=80&w=400&auto=format&fit=crop',
-            'https://images.unsplash.com/photo-1603831818222-67da67db75de?q=80&w=400&auto=format&fit=crop',
-        ],
-    },
-    {
-        id: 5,
-        title: 'Kajian Subuh Spesial Tahun Baru',
-        date: '01 JAN 2026',
-        month: 'Januari 2026',
-        description:
-            'Mengawali tahun dengan muhasabah diri dan memperkuat keimanan serta ketaqwaan kepada Allah SWT.',
-        images: [
-            'https://images.unsplash.com/photo-1564683214965-3619addd900d?q=80&w=800&auto=format&fit=crop',
-        ],
-    },
-];
+interface VideoItem {
+    id: number;
+    title: string;
+    category: string;
+    date: string;
+    youtubeId: string;
+}
 
-export default function Galeri() {
+interface GaleriProps {
+    albums?: AlbumItem[];
+    videos?: VideoItem[];
+}
+
+export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
     const [activeTab, setActiveTab] = useState('foto');
     const [searchTitle, setSearchTitle] = useState('');
     const [selectedMonth, setSelectedMonth] = useState('Semua Bulan');
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedAlbum, setSelectedAlbum] = useState<
-        (typeof mockAlbums)[0] | null
-    >(null);
+    const [selectedAlbum, setSelectedAlbum] = useState<AlbumItem | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [activeVideo, setActiveVideo] = useState<
-        (typeof mockVideos)[0] | null
-    >(null);
+    const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
     const [videoSearch, setVideoSearch] = useState('');
     const [videoCategory, setVideoCategory] = useState('Semua Kategori');
     const [videoPage, setVideoPage] = useState(1);
@@ -206,15 +85,10 @@ export default function Galeri() {
 
     const videoCategories = [
         'Semua Kategori',
-        'Ceramah',
-        'Kajian',
-        'Khutbah',
-        'Live Streaming',
-        'Tausiyah',
-        'Dokumentasi',
+        ...Array.from(new Set(videos.map((v) => v.category))),
     ];
 
-    const filteredVideos = mockVideos.filter((v) => {
+    const filteredVideos = videos.filter((v) => {
         const matchSearch = v.title
             .toLowerCase()
             .includes(videoSearch.toLowerCase());
@@ -233,13 +107,11 @@ export default function Galeri() {
 
     const months = [
         'Semua Bulan',
-        'Februari 2026',
-        'Januari 2026',
-        'Desember 2025',
+        ...Array.from(new Set(albums.map((a) => a.month))),
     ];
 
     // Filter Logic
-    const filteredAlbums = mockAlbums.filter((album) => {
+    const filteredAlbums = albums.filter((album) => {
         const matchSearch = album.title
             .toLowerCase()
             .includes(searchTitle.toLowerCase());
@@ -257,7 +129,7 @@ export default function Galeri() {
             acc[album.month].push(album);
             return acc;
         },
-        {} as Record<string, typeof mockAlbums>,
+        {} as Record<string, AlbumItem[]>,
     );
 
     // Auto Play Logic

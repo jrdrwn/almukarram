@@ -1,7 +1,8 @@
+import type { AgendaTerdekat } from '@/types/home';
 import { Link } from '@inertiajs/react';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function Hero() {
+export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdekat | null }) {
     return (
         <div className="relative min-h-screen font-sans text-foreground">
             {/* Islamic Subtle Background Pattern */}
@@ -249,10 +250,10 @@ export default function Hero() {
                                     Agenda Terdekat
                                 </div>
                                 <div className="text-sm font-semibold text-white">
-                                    Tabligh Akbar Bulanan
+                                    {agendaTerdekat ? agendaTerdekat.judul : 'Belum ada agenda'}
                                 </div>
                                 <div className="text-xs text-white/70">
-                                    Ahad, 14 Maret 2026 - 08:00 WIB
+                                    {agendaTerdekat ? new Date(agendaTerdekat.tanggal_mulai).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : '-'}
                                 </div>
                             </div>
                         </div>

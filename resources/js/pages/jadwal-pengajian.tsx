@@ -1,14 +1,14 @@
 import { Head } from '@inertiajs/react';
 import {
     BookOpen,
-    CalendarDays,
-    Home,
-    Users,
     Calendar,
-    Search,
+    CalendarDays,
     CheckCircle2,
     Clock,
     Filter,
+    Home,
+    Search,
+    Users,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -17,13 +17,6 @@ import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
 import { Input } from '@/components/ui/input';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
-import {
     Pagination,
     PaginationContent,
     PaginationItem,
@@ -31,121 +24,79 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from '@/components/ui/pagination';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
-export default function JadwalPengajian() {
+export default function JadwalPengajian({
+    jadwalPengajian = [],
+}: {
+    jadwalPengajian?: {
+        day: string;
+        date: string;
+        time: string;
+        title: string;
+        speaker: string;
+        type: string;
+        status: string;
+    }[];
+}) {
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState('Semua Status');
     const [typeFilter, setTypeFilter] = useState('Semua Tipe');
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    const jadwalKajian = [
-        {
-            day: 'Senin',
-            date: '15 Maret 2026',
-            time: "Ba'da Maghrib",
-            title: 'Kajian Fiqih Ibadah Praktis',
-            speaker: 'Ust. M. Abdullah, M.Ag',
-            type: 'Umum',
-            status: 'Akan Datang',
-            colors: {
-                badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300',
-                glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10',
-            },
+    const dayColors: Record<string, { badge: string; glow: string }> = {
+        Senin: {
+            badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300',
+            glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10',
         },
-        {
-            day: 'Rabu',
-            date: '17 Maret 2026',
-            time: "Ba'da Subuh",
-            title: "Tafsir Al-Qur'an (Jalalain)",
-            speaker: 'KH. Hasan Basri',
-            type: 'Umum',
-            status: 'Akan Datang',
-            colors: {
-                badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300',
-                glow: 'bg-blue-500/5 group-hover:bg-blue-500/10',
-            },
+        Selasa: {
+            badge: 'bg-sky-100 text-sky-700 dark:bg-sky-500/20 dark:text-sky-300',
+            glow: 'bg-sky-500/5 group-hover:bg-sky-500/10',
         },
-        {
-            day: 'Kamis',
-            date: '18 Maret 2026',
-            time: '16:00 - Selesai',
-            title: 'Kajian Kemuslimahan & Sirah',
-            speaker: 'Ustadzah Hj. Fatimah',
-            type: 'Khusus Muslimah',
-            status: 'Akan Datang',
-            colors: {
-                badge: 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300',
-                glow: 'bg-rose-500/5 group-hover:bg-rose-500/10',
-            },
+        Rabu: {
+            badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300',
+            glow: 'bg-blue-500/5 group-hover:bg-blue-500/10',
         },
-        {
-            day: 'Jumat',
-            date: '12 Maret 2026',
-            time: "Ba'da Maghrib",
-            title: 'Kajian Kitab Riyadhus Shalihin',
-            speaker: 'Ust. H. Ahmad Zainuddin, Lc',
-            type: 'Umum',
-            status: 'Selesai',
-            colors: {
-                badge: 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300',
-                glow: 'bg-purple-500/5 group-hover:bg-purple-500/10',
-            },
+        Kamis: {
+            badge: 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300',
+            glow: 'bg-rose-500/5 group-hover:bg-rose-500/10',
         },
-        {
-            day: 'Sabtu',
-            date: '13 Maret 2026',
-            time: '08:00 - 10:00',
-            title: "Tahsin dan Tahfidz Qur'an",
-            speaker: 'Tim Asatidz Al-Mukarram',
-            type: 'Umum (Pendaftaran)',
-            status: 'Selesai',
-            colors: {
-                badge: 'bg-teal-100 text-teal-700 dark:bg-teal-500/20 dark:text-teal-300',
-                glow: 'bg-teal-500/5 group-hover:bg-teal-500/10',
-            },
+        Jumat: {
+            badge: 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300',
+            glow: 'bg-purple-500/5 group-hover:bg-purple-500/10',
         },
-        {
-            day: 'Ahad',
-            date: '14 Maret 2026',
-            time: "Ba'da Subuh",
-            title: 'Kajian Tematik & Tanya Jawab',
-            speaker: 'Berbagai Pemateri (Terjadwal)',
-            type: 'Umum',
-            status: 'Selesai',
-            colors: {
-                badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300',
-                glow: 'bg-amber-500/5 group-hover:bg-amber-500/10',
-            },
+        Sabtu: {
+            badge: 'bg-teal-100 text-teal-700 dark:bg-teal-500/20 dark:text-teal-300',
+            glow: 'bg-teal-500/5 group-hover:bg-teal-500/10',
         },
-        // Data tambahan untuk memastikan pagination muncul
-        {
-            day: 'Senin',
-            date: '8 Maret 2026',
-            time: "Ba'da Maghrib",
-            title: 'Kajian Fiqih Ibadah Praktis',
-            speaker: 'Ust. M. Abdullah, M.Ag',
-            type: 'Umum',
-            status: 'Selesai',
-            colors: {
-                badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300',
-                glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10',
-            },
+        Ahad: {
+            badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300',
+            glow: 'bg-amber-500/5 group-hover:bg-amber-500/10',
         },
-        {
-            day: 'Rabu',
-            date: '10 Maret 2026',
-            time: "Ba'da Subuh",
-            title: "Tafsir Al-Qur'an (Jalalain)",
-            speaker: 'KH. Hasan Basri',
-            type: 'Umum',
-            status: 'Selesai',
-            colors: {
-                badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300',
-                glow: 'bg-blue-500/5 group-hover:bg-blue-500/10',
-            },
+        Minggu: {
+            badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300',
+            glow: 'bg-amber-500/5 group-hover:bg-amber-500/10',
         },
-    ];
+    };
+
+    const defaultColors = {
+        badge: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-500/20 dark:text-zinc-300',
+        glow: 'bg-zinc-500/5 group-hover:bg-zinc-500/10',
+    };
+
+    const jadwalKajian = jadwalPengajian.map((j) => ({
+        ...j,
+        colors: dayColors[j.day] || defaultColors,
+    }));
+
+    const uniqueTypes = [...new Set(jadwalPengajian.map((j) => j.type))];
 
     const filteredJadwal = jadwalKajian.filter((jadwal) => {
         const matchesSearch =
@@ -276,24 +227,15 @@ export default function JadwalPengajian() {
                                     >
                                         Semua Tipe
                                     </SelectItem>
-                                    <SelectItem
-                                        value="Umum"
-                                        className="cursor-pointer rounded-lg"
-                                    >
-                                        Umum
-                                    </SelectItem>
-                                    <SelectItem
-                                        value="Khusus Muslimah"
-                                        className="cursor-pointer rounded-lg"
-                                    >
-                                        Khusus Muslimah
-                                    </SelectItem>
-                                    <SelectItem
-                                        value="Umum (Pendaftaran)"
-                                        className="cursor-pointer rounded-lg"
-                                    >
-                                        Umum (Pendaftaran)
-                                    </SelectItem>
+                                    {uniqueTypes.map((t) => (
+                                        <SelectItem
+                                            key={t}
+                                            value={t}
+                                            className="cursor-pointer rounded-lg"
+                                        >
+                                            {t}
+                                        </SelectItem>
+                                    ))}
                                 </SelectContent>
                             </Select>
                         </div>

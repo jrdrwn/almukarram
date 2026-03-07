@@ -19,7 +19,6 @@ interface BeritaPageProps {
     totalRows?: number;
     kategoris?: any[];
     popularFiles?: any[];
-    jadwal?: any;
 }
 
 export default function BeritaPage({
@@ -31,109 +30,7 @@ export default function BeritaPage({
     totalRows = 0,
     kategoris = [],
     popularFiles = [],
-    jadwal = {},
 }: BeritaPageProps) {
-    // MOCK DATA for preview purposes if backend doesn't pass data yet
-    const _berita =
-        berita.length > 0
-            ? berita
-            : [
-                  {
-                      id: 1,
-                      slug: 'kegiatan-ramadhan-1447-h',
-                      judul: 'Rangkaian Kegiatan Menyambut Bulan Suci Ramadhan 1447 H di Masjid Agung',
-                      ringkasan:
-                          "Dalam rangka menyambut bulan suci Ramadhan, pengurus masjid telah menyiapkan berbagai program unggulan mulai dari kajian ba'da subuh, iftar jama'i, hingga tarawih bersanad.",
-                      kategori: 'Kegiatan',
-                      views: 125,
-                      created_at: '2026-03-01',
-                  },
-                  {
-                      id: 2,
-                      slug: 'pemeliharaan-kubah-masjid',
-                      judul: 'Progres Pemeliharaan Kubah Utama dan Pengecatan Ulang Menara',
-                      ringkasan:
-                          'Alhamdulillah, progres pemeliharaan fasilitas masjid khususnya pengecatan lapis pelindung kubah utama dan menara telah mencapai 80%.',
-                      kategori: 'Informasi',
-                      views: 89,
-                      created_at: '2026-02-28',
-                  },
-                  {
-                      id: 3,
-                      slug: 'penerimaan-zakat-fitrah',
-                      judul: 'Penerimaan Zakat Fitrah dan Fidyah Tahun Ini Resmi Dibuka',
-                      ringkasan:
-                          'Panitia ZIS (Zakat, Infaq, Shadaqah) Masjid Agung Al-Mukarram Amanah mulai menerima penyaluran Zakat Fitrah dan Fidyah masyarakat.',
-                      kategori: 'Pengumuman',
-                      views: 310,
-                      created_at: '2026-02-25',
-                  },
-              ];
-
-    const _kategoris =
-        kategoris.length > 0
-            ? kategoris
-            : [
-                  {
-                      id: 1,
-                      nama: 'Kegiatan Masjid',
-                      slug: 'kegiatan-masjid',
-                      total: 12,
-                  },
-                  {
-                      id: 2,
-                      nama: 'Informasi Pembangunan',
-                      slug: 'informasi',
-                      total: 8,
-                  },
-                  { id: 3, nama: 'Kajian Rutin', slug: 'kajian', total: 24 },
-                  {
-                      id: 4,
-                      nama: 'Pengumuman Pengurus',
-                      slug: 'pengumuman',
-                      total: 5,
-                  },
-              ];
-
-    const _popularFiles =
-        popularFiles.length > 0
-            ? popularFiles
-            : [
-                  {
-                      id: 1,
-                      slug: 'penerimaan-zakat-fitrah',
-                      judul: 'Penerimaan Zakat Fitrah dan Fidyah Tahun Ini Resmi Dibuka',
-                      created_at: '2026-02-25',
-                  },
-                  {
-                      id: 2,
-                      slug: 'profil-imam-besar',
-                      judul: 'Profil Imam Besar Masjid Agung Al-Mukarram Amanah',
-                      created_at: '2025-11-10',
-                  },
-                  {
-                      id: 3,
-                      slug: 'jadwal-kajian-mingguan',
-                      judul: "Jadwal Lengkap Kajian Mingguan Ba'da Maghrib",
-                      created_at: '2026-01-05',
-                  },
-              ];
-
-    const _jadwal =
-        Object.keys(jadwal).length > 0
-            ? jadwal
-            : {
-                  subuh: '04:15',
-                  terbit: '05:32',
-                  dhuha: '05:58',
-                  dzuhur: '11:40',
-                  ashar: '14:48',
-                  maghrib: '17:45',
-                  isya: '18:55',
-              };
-
-    const _totalPages = totalPages > 1 ? totalPages : 3;
-
     return (
         <>
             <Header />
@@ -172,23 +69,22 @@ export default function BeritaPage({
                             <BeritaSearch
                                 searchQuery={searchQuery}
                                 kategoriSlug={kategoriSlug}
-                                totalRows={totalRows || _berita.length}
-                                kategoris={_kategoris}
+                                totalRows={totalRows}
+                                kategoris={kategoris}
                             />
 
                             <BeritaGrid
-                                data={_berita}
+                                data={berita}
                                 currentPage={currentPage}
-                                totalPages={_totalPages}
+                                totalPages={totalPages}
                             />
                         </div>
 
                         {/* Sidebar Area */}
                         <div className="lg:col-span-4">
                             <BeritaSidebar
-                                jadwal={_jadwal}
-                                kategoris={_kategoris}
-                                popularFiles={_popularFiles}
+                                kategoris={kategoris}
+                                popularFiles={popularFiles}
                             />
                         </div>
                     </div>

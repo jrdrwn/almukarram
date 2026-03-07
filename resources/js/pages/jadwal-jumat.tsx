@@ -1,45 +1,43 @@
 import { Head } from '@inertiajs/react';
 import {
-    Home,
-    CalendarDays,
-    Users,
     Calendar,
+    CalendarDays,
     Clock,
+    Home,
     Mic,
     User,
+    Users,
 } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
 
-export default function JadwalJumat() {
-    const upcomingSchedules = [
-        {
-            date: '20 Maret 2026',
-            time: '11:45 WIB',
-            khatib: 'Ust. H. Ahmad Zainuddin, Lc',
-            imam: 'Ustadz M. Syukri, M.Pd',
-            muadzin: "Ust. Akhmad Rifa'i",
-            bilal: 'H. Rahmat Hidayat',
-        },
-        {
-            date: '27 Maret 2026',
-            time: '11:45 WIB',
-            khatib: 'KH. Muhammad Yusuf, S.Ag',
-            imam: 'H. Rahmat Hidayat',
-            muadzin: "Ust. Akhmad Rifa'i",
-            bilal: 'Abdul Rahman',
-        },
-        {
-            date: '3 April 2026',
-            time: '11:45 WIB',
-            khatib: 'Habib Ali Zainal Abidin',
-            imam: 'Ustadz M. Syukri, M.Pd',
-            muadzin: 'H. Rahmat Hidayat',
-            bilal: "Ust. Akhmad Rifa'i",
-        },
-    ];
+interface JadwalItem {
+    tanggal: string;
+    waktu: string;
+    khatib: string;
+    imam: string;
+    muadzin: string;
+    bilal: string;
+}
+
+interface JadwalJumatProps {
+    jadwalMingguIni?: JadwalItem;
+    jadwalSelanjutnya?: JadwalItem[];
+}
+
+export default function JadwalJumat({
+    jadwalMingguIni,
+    jadwalSelanjutnya = [],
+}: JadwalJumatProps) {
+    const formatTanggal = (tanggal: string) => {
+        return new Date(tanggal).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        });
+    };
 
     return (
         <>
@@ -65,6 +63,7 @@ export default function JadwalJumat() {
 
             <div className="mx-auto max-w-380 space-y-16 px-4 py-16 sm:px-6 lg:px-8">
                 {/* Section Jadwal Pekan Ini - Hero Card */}
+                {jadwalMingguIni ? (
                 <div className="relative overflow-hidden rounded-[3rem] bg-emerald-950 px-6 py-16 shadow-2xl sm:px-16 sm:py-20 lg:p-20">
                     {/* Background Decorative patterns */}
                     <div className="absolute -top-10 -left-10 h-64 w-64 rounded-full bg-emerald-800/30 blur-[60px]"></div>
@@ -103,7 +102,7 @@ export default function JadwalJumat() {
                                             Tanggal
                                         </p>
                                         <p className="mt-0.5 text-base font-bold text-white">
-                                            13 Maret 2026
+                                            {formatTanggal(jadwalMingguIni.tanggal)}
                                         </p>
                                     </div>
                                 </div>
@@ -116,7 +115,7 @@ export default function JadwalJumat() {
                                             Waktu
                                         </p>
                                         <p className="mt-0.5 text-base font-bold text-white">
-                                            11:45 WIB
+                                            {jadwalMingguIni.waktu}
                                         </p>
                                     </div>
                                 </div>
@@ -128,28 +127,28 @@ export default function JadwalJumat() {
                             {[
                                 {
                                     role: 'Khatib',
-                                    name: 'Habib Hasanuddin Al-Habsyi',
+                                    name: jadwalMingguIni.khatib,
                                     icon: (
                                         <Mic className="h-5 w-5 opacity-70" />
                                     ),
                                 },
                                 {
                                     role: 'Imam',
-                                    name: 'Ustadz M. Syukri, M.Pd',
+                                    name: jadwalMingguIni.imam,
                                     icon: (
                                         <User className="h-5 w-5 opacity-70" />
                                     ),
                                 },
                                 {
                                     role: 'Muadzin',
-                                    name: "Ust. Akhmad Rifa'i",
+                                    name: jadwalMingguIni.muadzin,
                                     icon: (
                                         <User className="h-5 w-5 opacity-70" />
                                     ),
                                 },
                                 {
                                     role: 'Bilal',
-                                    name: 'H. Rahmat Hidayat',
+                                    name: jadwalMingguIni.bilal,
                                     icon: (
                                         <User className="h-5 w-5 opacity-70" />
                                     ),
@@ -175,8 +174,15 @@ export default function JadwalJumat() {
                         </div>
                     </div>
                 </div>
+                ) : (
+                    <div className="rounded-3xl border border-dashed border-emerald-300 bg-emerald-50/50 p-12 text-center dark:border-emerald-800 dark:bg-emerald-950/30">
+                        <CalendarDays className="mx-auto mb-4 h-12 w-12 text-emerald-400" />
+                        <p className="text-lg font-semibold text-zinc-600 dark:text-zinc-400">Belum ada jadwal Jumat pekan ini.</p>
+                    </div>
+                )}
 
                 {/* Section Jadwal Selanjutnya */}
+                {jadwalSelanjutnya.length > 0 && (
                 <div>
                     <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
                         <div>
@@ -192,7 +198,7 @@ export default function JadwalJumat() {
                     </div>
 
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {upcomingSchedules.map((schedule, i) => (
+                        {jadwalSelanjutnya.map((schedule, i) => (
                             <div
                                 key={i}
                                 className="group relative overflow-hidden rounded-3xl border border-emerald-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
@@ -206,11 +212,11 @@ export default function JadwalJumat() {
                                     </div>
                                     <div>
                                         <p className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
-                                            {schedule.date}
+                                            {formatTanggal(schedule.tanggal)}
                                         </p>
                                         <p className="mt-1 flex items-center gap-1.5 text-sm font-medium text-emerald-600 dark:text-emerald-500">
                                             <Clock className="h-4 w-4" />{' '}
-                                            {schedule.time}
+                                            {schedule.waktu}
                                         </p>
                                     </div>
                                 </div>
@@ -252,6 +258,7 @@ export default function JadwalJumat() {
                         ))}
                     </div>
                 </div>
+                )}
             </div>
 
             <Footer />

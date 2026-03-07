@@ -1,6 +1,12 @@
+import type { BeritaItem, BeritaUtama } from '@/types/home';
+import { Link } from '@inertiajs/react';
 import { ArrowRight, Calendar, Eye, User } from 'lucide-react';
 
-export default function BeritaSection() {
+function formatDate(dateStr: string) {
+    return new Date(dateStr).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+export default function BeritaSection({ beritaUtama, beritaTerbaru }: { beritaUtama: BeritaUtama | null; beritaTerbaru: BeritaItem[] }) {
     return (
         <section className="relative z-10 w-full py-24 sm:py-32">
             {/* Background Full Width Accent */}
@@ -42,12 +48,16 @@ export default function BeritaSection() {
                 </div>
 
                 {/* MASSIVE IMMERSIVE TOP BANNER */}
-                <a
-                    href="#"
+                {beritaUtama && (
+                <Link
+                    href={`/berita-detail/${beritaUtama.slug}`}
                     className="group relative block min-h-137.5 w-full overflow-hidden rounded-[2.5rem] bg-zinc-950 shadow-2xl sm:min-h-162.5 sm:rounded-[3.5rem] lg:min-h-187.5"
                 >
                     {/* Background Image / Placeholder */}
                     <div className="absolute inset-0 flex items-center justify-center bg-[#1a2f24] transition-transform duration-1000 group-hover:scale-105">
+                        {beritaUtama.gambar ? (
+                            <img src={`/storage/${beritaUtama.gambar}`} alt={beritaUtama.judul} className="absolute inset-0 h-full w-full object-cover" />
+                        ) : (
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-32 w-32 text-primary/20"
@@ -56,7 +66,7 @@ export default function BeritaSection() {
                         >
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                         </svg>
-                        {/* <img src="/images/news-1.jpg" alt="Cover" className="absolute inset-0 h-full w-full object-cover" /> */}
+                        )}
                     </div>
 
                     {/* Multiple Gradient Overlays for depth */}
@@ -68,71 +78,50 @@ export default function BeritaSection() {
                         <span className="rounded-full bg-primary px-5 py-2 text-xs font-bold tracking-wider text-white uppercase shadow-lg">
                             Sorotan
                         </span>
+                        {beritaUtama.kategori && (
                         <span className="rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-bold text-white backdrop-blur-md">
-                            Kegiatan
+                            {beritaUtama.kategori.nama}
                         </span>
+                        )}
                     </div>
 
-                    {/* Bottom Content Area (Ditambahkan p-bottom ekstra agar tidak tertutup card yang mengambang) */}
+                    {/* Bottom Content Area */}
                     <div className="absolute bottom-0 left-0 w-full max-w-4xl p-8 pb-32 sm:p-12 sm:pb-40 lg:p-16 lg:pb-48">
                         <h3 className="group-hover:text-primary-200 mb-4 text-3xl leading-[1.15] font-bold tracking-tight text-white transition-colors duration-300 sm:mb-6 sm:text-5xl lg:text-5xl">
-                            Buka Bersama Puasa Sunah Nisfu Sya'ban Ratusan
-                            Jamaah Al-Mukarram
+                            {beritaUtama.judul}
                         </h3>
                         <p className="mb-6 line-clamp-2 max-w-2xl text-base text-white/70 sm:text-lg lg:mb-8">
-                            Bangun kebersamaan dan rajut ukhuwah Islamiyah,
-                            Masjid Agung Al-Mukarram Amanah menggelar kegiatan
-                            buka bersama yang dihadiri ratusan jamaah dari
-                            berbagai pelosok daerah.
+                            {beritaUtama.ringkasan}
                         </p>
 
                         <div className="flex flex-wrap items-center gap-6 text-sm font-medium text-white/50">
                             <span className="flex items-center gap-2">
                                 <Calendar className="h-5 w-5 text-white/80" />{' '}
-                                02 Mar 2026
+                                {formatDate(beritaUtama.published_at)}
                             </span>
                             <span className="h-1.5 w-1.5 rounded-full bg-white/30"></span>
                             <span className="flex items-center gap-2">
-                                <Eye className="h-5 w-5 text-white/80" /> 1.2k
-                                Views
+                                <Eye className="h-5 w-5 text-white/80" /> {beritaUtama.views.toLocaleString('id-ID')} Views
                             </span>
+                            {beritaUtama.user && (
+                            <>
                             <span className="h-1.5 w-1.5 rounded-full bg-white/30"></span>
                             <span className="flex items-center gap-2">
-                                <User className="h-5 w-5 text-white/80" /> Humas
-                                BPMA
+                                <User className="h-5 w-5 text-white/80" /> {beritaUtama.user.name}
                             </span>
+                            </>
+                            )}
                         </div>
                     </div>
-                </a>
+                </Link>
+                )}
 
                 {/* FLOATING OFFSET GRID (PULLED UP OVER THE BANNER) */}
                 <div className="relative z-20 mx-auto -mt-16 grid max-w-6xl grid-cols-1 gap-6 px-4 sm:-mt-24 md:grid-cols-2 lg:-mt-32 lg:grid-cols-3">
-                    {[
-                        {
-                            tag: 'Edukasi',
-                            color: 'text-amber-600 dark:text-amber-400',
-                            bg: 'bg-amber-50 dark:bg-amber-500/10',
-                            title: 'Masjid Agung Al-Mukarram Amanah Menuju Masjid Ramah Anak',
-                            date: '02 Mar 2026',
-                        },
-                        {
-                            tag: 'Agenda',
-                            color: 'text-emerald-600 dark:text-emerald-400',
-                            bg: 'bg-emerald-50 dark:bg-emerald-500/10',
-                            title: 'Subuh Bersinar: Kopi dan Teh Gratis untuk Jamaah Subuh',
-                            date: '28 Feb 2026',
-                        },
-                        {
-                            tag: 'Kajian',
-                            color: 'text-blue-600 dark:text-blue-400',
-                            bg: 'bg-blue-50 dark:bg-blue-500/10',
-                            title: 'Kajian Rutin Malam Sabtu: Mempererat Ukhuwah Islamiyah',
-                            date: '25 Feb 2026',
-                        },
-                    ].map((item, idx) => (
-                        <a
-                            key={idx}
-                            href="#"
+                    {beritaTerbaru.map((item) => (
+                        <Link
+                            key={item.id}
+                            href={`/berita-detail/${item.slug}`}
                             className="group relative flex min-h-55 flex-col justify-between overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl lg:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
                         >
                             {/* Grid Texture Background */}
@@ -141,24 +130,24 @@ export default function BeritaSection() {
                             <div className="relative z-10">
                                 <div className="mb-5 flex items-center justify-between">
                                     <span
-                                        className={`inline-block rounded-full px-3 py-1 text-xs font-extrabold tracking-widest uppercase shadow-sm ${item.color} ${item.bg}`}
+                                        className="inline-block rounded-full px-3 py-1 text-xs font-extrabold tracking-widest uppercase shadow-sm text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-500/10"
                                     >
-                                        {item.tag}
+                                        {item.kategori?.nama ?? 'Berita'}
                                     </span>
                                     <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border/50 bg-white/50 text-muted-foreground backdrop-blur-sm transition-transform group-hover:-rotate-45 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground dark:bg-zinc-950/50">
                                         <ArrowRight className="h-3 w-3" />
                                     </div>
                                 </div>
                                 <h4 className="mb-4 line-clamp-3 text-lg leading-snug font-bold tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-xl">
-                                    {item.title}
+                                    {item.judul}
                                 </h4>
                             </div>
 
                             <div className="relative z-10 mt-auto flex items-center border-t border-border/60 pt-4 text-sm font-semibold text-muted-foreground">
                                 <Calendar className="mr-2 h-4 w-4" />{' '}
-                                {item.date}
+                                {formatDate(item.published_at)}
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>

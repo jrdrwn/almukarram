@@ -13,135 +13,31 @@ import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 
 interface BeritaDetailPageProps {
-    berita?: BeritaDetail;
-    related?: RelatedBerita[];
-    latest?: {
+    berita: BeritaDetail;
+    related: RelatedBerita[];
+    latest: {
         id: number;
         judul: string;
         slug: string;
         gambar?: string;
         created_at: string;
     }[];
-    jadwal?: Record<string, string>;
 }
-
-// ─── MOCK DATA ────────────────────────────────────────────────────────────────
-const MOCK_BERITA: BeritaDetail = {
-    id: 1,
-    slug: 'kegiatan-ramadhan-1447-h',
-    judul: 'Rangkaian Kegiatan Menyambut Bulan Suci Ramadhan 1447 H di Masjid Agung Al-Mukarram Amanah',
-    penulis: 'Admin Masjid',
-    gambar: undefined,
-    created_at: '2026-03-01',
-    views: 125,
-    isi: `<p>Dalam rangka menyambut bulan suci Ramadhan 1447 H, Pengurus Masjid Agung Al-Mukarram Amanah telah menyiapkan serangkaian program unggulan yang dirancang untuk memaksimalkan ibadah seluruh jamaah sepanjang bulan yang penuh berkah ini.</p>
-<h3>Program Kajian Ramadhan</h3>
-<p>Kajian ba'da Subuh akan diisi oleh para ustadz berpengalaman dengan materi yang menyentuh hati dan menguatkan iman. Selain itu, kajian kitab kuning juga dijadwalkan ba'da Ashar setiap hari.</p>
-<h3>Iftar Jama'i</h3>
-<p>Pengurus menyediakan iftar jama'i (buka puasa bersama) setiap hari selama Ramadhan. Masyarakat umum dipersilakan hadir dan turut menikmati hidangan yang disediakan secara sukarela oleh para donatur.</p>
-<h3>Tarawih Bersanad</h3>
-<p>Sholat Tarawih 23 rakaat akan dipimpin oleh imam-imam hafizh bersertifikat sanad Al-Qur'an, lengkap dengan tadarus Al-Qur'an selesai tiap 3 malam.</p>
-<h3>I'tikaf 10 Malam Terakhir</h3>
-<p>Bagi yang ingin menghidupkan 10 malam terakhir Ramadhan, masjid mebuka pendaftaran i'tikaf mulai tanggal 20 Ramadhan. Fasilitas yang disediakan meliputi tempat istirahat, sahur bersama, dan bimbingan spiritual.</p>
-<p>Seluruh kegiatan ini terbuka untuk umum. Informasi lebih lanjut dapat menghubungi sekretariat masjid atau mengikuti pengumuman resmi di papan informasi.</p>`,
-    kategori: 'Kegiatan',
-    kat_slug: 'kegiatan',
-};
-
-const MOCK_RELATED: RelatedBerita[] = [
-    {
-        id: 2,
-        judul: 'Progres Pemeliharaan Kubah Utama dan Pengecatan Ulang Menara',
-        slug: 'pemeliharaan-kubah-masjid',
-        created_at: '2026-02-28',
-    },
-    {
-        id: 3,
-        judul: 'Penerimaan Zakat Fitrah dan Fidyah Tahun Ini Resmi Dibuka',
-        slug: 'penerimaan-zakat-fitrah',
-        created_at: '2026-02-25',
-    },
-    {
-        id: 4,
-        judul: "Jadwal Lengkap Kajian Mingguan Ba'da Maghrib",
-        slug: 'jadwal-kajian-mingguan',
-        created_at: '2026-01-05',
-    },
-];
-
-const MOCK_LATEST = [
-    {
-        id: 1,
-        judul: 'Rangkaian Kegiatan Menyambut Bulan Suci Ramadhan 1447 H',
-        slug: 'kegiatan-ramadhan-1447-h',
-        created_at: '2026-03-01',
-    },
-    {
-        id: 2,
-        judul: 'Progres Pemeliharaan Kubah Utama dan Pengecatan Ulang Menara',
-        slug: 'pemeliharaan-kubah-masjid',
-        created_at: '2026-02-28',
-    },
-    {
-        id: 3,
-        judul: 'Penerimaan Zakat Fitrah dan Fidyah Tahun Ini Resmi Dibuka',
-        slug: 'penerimaan-zakat-fitrah',
-        created_at: '2026-02-25',
-    },
-    {
-        id: 4,
-        judul: 'Profil Imam Besar Masjid Agung Al-Mukarram Amanah',
-        slug: 'profil-imam-besar',
-        created_at: '2025-11-10',
-    },
-    {
-        id: 5,
-        judul: "Jadwal Lengkap Kajian Mingguan Ba'da Maghrib",
-        slug: 'jadwal-kajian-mingguan',
-        created_at: '2026-01-05',
-    },
-    {
-        id: 6,
-        judul: 'Laporan Keuangan Masjid Triwulan I 2026',
-        slug: 'laporan-keuangan-2026-q1',
-        created_at: '2026-02-10',
-    },
-];
-
-const MOCK_JADWAL: Record<string, string> = {
-    subuh: '04:15',
-    terbit: '05:32',
-    dhuha: '05:58',
-    dzuhur: '11:40',
-    ashar: '14:48',
-    maghrib: '17:45',
-    isya: '18:55',
-};
-// ─────────────────────────────────────────────────────────────────────────────
 
 export default function BeritaDetailPage({
     berita,
     related,
     latest,
-    jadwal,
 }: BeritaDetailPageProps) {
     const [fontSize, setFontSize] = useState(1);
 
-    const _berita = berita ?? MOCK_BERITA;
-    const _related =
-        related && related.length > 0 ? related : MOCK_RELATED;
-    const _latest =
-        latest && latest.length > 0 ? latest : MOCK_LATEST;
-    const _jadwal =
-        jadwal && Object.keys(jadwal).length > 0 ? jadwal : MOCK_JADWAL;
-
     return (
         <>
-            <Head title={`${_berita.judul} | Masjid Agung Al-Mukarram`} />
+            <Head title={`${berita.judul} | Masjid Agung Al-Mukarram`} />
             <Header />
 
             {/* Page Hero with background-image, overlay, breadcrumb, meta */}
-            <ArticleHero berita={_berita} />
+            <ArticleHero berita={berita} />
 
             {/* Main Body */}
             <main className="relative flex-1 overflow-hidden py-12 lg:py-16">
@@ -155,26 +51,25 @@ export default function BeritaDetailPage({
                         <div className="flex flex-col gap-6 lg:col-span-8">
                             {/* Article Body */}
                             <ArticleContent
-                                berita={_berita}
+                                berita={berita}
                                 fontSize={fontSize}
                             />
 
                             {/* Share */}
                             <ArticleShare
-                                judul={_berita.judul}
-                                slug={_berita.slug}
+                                judul={berita.judul}
+                                slug={berita.slug}
                             />
 
                             {/* Related News */}
-                            <ArticleRelated items={_related} />
+                            <ArticleRelated items={related} />
                         </div>
 
                         {/* Sidebar Column */}
                         <div className="lg:col-span-4">
                             <ArticleSidebar
-                                jadwal={_jadwal}
-                                latest={_latest}
-                                currentSlug={_berita.slug}
+                                latest={latest}
+                                currentSlug={berita.slug}
                             />
                         </div>
                     </div>

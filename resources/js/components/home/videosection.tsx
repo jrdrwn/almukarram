@@ -11,59 +11,13 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
+import type { VideoItem } from '@/types/home';
 import { PlayCircle, Youtube } from 'lucide-react';
 import { useState } from 'react';
 import ReactPlayer from 'react-player';
 
-const mockVideos = [
-    {
-        id: 1,
-        title: 'Ceramah Subuh: Tanda-Tanda Kiamat Besar — Ustaz H. Hamidhan, S.Ag., MA',
-        category: 'Ceramah',
-        youtubeId: 'dQw4w9WgXcQ',
-        thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg`,
-    },
-    {
-        id: 2,
-        title: 'Kajian Rutin Malam Selasa Bersama Majelis Taklim Al-Mukarram',
-        category: 'Kajian',
-        youtubeId: 'dQw4w9WgXcQ',
-        thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg`,
-    },
-    {
-        id: 3,
-        title: "Khutbah Jumat: Membangun Generasi Qur'ani di Era Digital",
-        category: 'Khutbah',
-        youtubeId: 'dQw4w9WgXcQ',
-        thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg`,
-    },
-    {
-        id: 4,
-        title: 'Siaran Langsung Sholat Tarawih Ramadhan 1447 H',
-        category: 'Live Streaming',
-        youtubeId: 'dQw4w9WgXcQ',
-        thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg`,
-    },
-    {
-        id: 5,
-        title: 'Tausiyah Pagi: Keutamaan Sholat Berjamaah di Masjid',
-        category: 'Tausiyah',
-        youtubeId: 'dQw4w9WgXcQ',
-        thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg`,
-    },
-    {
-        id: 6,
-        title: 'Buka Puasa Bersama & Tarawih ke-5 Ramadhan 1447 H',
-        category: 'Dokumentasi',
-        youtubeId: 'dQw4w9WgXcQ',
-        thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg`,
-    },
-];
-
-export default function VideoSection() {
-    const [activeVideo, setActiveVideo] = useState<
-        (typeof mockVideos)[0] | null
-    >(null);
+export default function VideoSection({ videos }: { videos: VideoItem[] }) {
+    const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
 
     return (
         <section className="relative z-10 w-full overflow-hidden py-24 sm:py-32">
@@ -120,7 +74,7 @@ export default function VideoSection() {
                         <CarouselNext className="static top-auto -translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600" />
                     </div>
                     <CarouselContent className="-ml-4">
-                        {mockVideos.map((video) => (
+                        {videos.map((video) => (
                             <CarouselItem
                                 key={video.id}
                                 className="basis-full pl-4 sm:basis-1/2 lg:basis-1/3"
@@ -131,8 +85,8 @@ export default function VideoSection() {
                                 >
                                     {/* Thumbnail */}
                                     <img
-                                        src={video.thumbnail}
-                                        alt={video.title}
+                                        src={`https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg`}
+                                        alt={video.judul}
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         onError={(e) => {
                                             e.currentTarget.src =
@@ -153,14 +107,14 @@ export default function VideoSection() {
                                     {/* Category Badge */}
                                     <div className="absolute top-3 left-3">
                                         <span className="rounded-full bg-emerald-600/90 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">
-                                            {video.category}
+                                            {video.kategori?.nama ?? 'Video'}
                                         </span>
                                     </div>
 
                                     {/* Title */}
                                     <div className="absolute inset-x-0 bottom-0 p-4">
                                         <p className="line-clamp-2 text-left text-sm leading-snug font-semibold text-white transition-colors group-hover:text-emerald-300">
-                                            {video.title}
+                                            {video.judul}
                                         </p>
                                     </div>
                                 </button>
@@ -177,12 +131,12 @@ export default function VideoSection() {
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>{activeVideo?.title}</DialogTitle>
+                        <DialogTitle>{activeVideo?.judul}</DialogTitle>
                     </DialogHeader>
                     <div className="aspect-video w-full">
                         {activeVideo && (
                             <ReactPlayer
-                                src={`https://www.youtube.com/watch?v=${activeVideo.youtubeId}`}
+                                src={`https://www.youtube.com/watch?v=${activeVideo.youtube_id}`}
                                 width="100%"
                                 height="100%"
                                 playing={true}

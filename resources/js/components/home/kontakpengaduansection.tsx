@@ -1,6 +1,23 @@
-import { Clock, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
+import { useForm, usePage } from '@inertiajs/react';
+import { CheckCircle, Clock, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 
 export default function KontakPengaduanSection() {
+    const { flash } = usePage<{ flash: { success?: string } }>().props;
+    const { data, setData, post, processing, errors, reset } = useForm({
+        nama: '',
+        telepon: '',
+        email: '',
+        subjek: '',
+        pesan: '',
+    });
+
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        post('/kotak-masuk', {
+            onSuccess: () => reset(),
+        });
+    }
+
     return (
         <section className="relative w-full overflow-hidden bg-primary/5 py-24 sm:py-32 dark:bg-zinc-950/50">
             <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -124,9 +141,15 @@ export default function KontakPengaduanSection() {
                         <h3 className="mb-6 text-2xl font-bold text-foreground">
                             Kirim Pesan / Pengaduan
                         </h3>
+                        {flash?.success && (
+                            <div className="mb-6 flex items-center gap-3 rounded-xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
+                                <CheckCircle className="h-5 w-5 shrink-0" />
+                                {flash.success}
+                            </div>
+                        )}
                         <form
                             className="flex flex-1 flex-col justify-between space-y-5"
-                            onSubmit={(e) => e.preventDefault()}
+                            onSubmit={handleSubmit}
                         >
                             <div className="space-y-5">
                                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -138,7 +161,10 @@ export default function KontakPengaduanSection() {
                                             type="text"
                                             className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
                                             placeholder="Masukkan nama"
+                                            value={data.nama}
+                                            onChange={(e) => setData('nama', e.target.value)}
                                         />
+                                        {errors.nama && <p className="text-xs text-red-500">{errors.nama}</p>}
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-sm font-semibold text-foreground">
@@ -148,7 +174,10 @@ export default function KontakPengaduanSection() {
                                             type="tel"
                                             className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
                                             placeholder="08xx-xxxx-xxxx"
+                                            value={data.telepon}
+                                            onChange={(e) => setData('telepon', e.target.value)}
                                         />
+                                        {errors.telepon && <p className="text-xs text-red-500">{errors.telepon}</p>}
                                     </div>
                                 </div>
 
@@ -164,30 +193,38 @@ export default function KontakPengaduanSection() {
                                             type="email"
                                             className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
                                             placeholder="email@contoh.com"
+                                            value={data.email}
+                                            onChange={(e) => setData('email', e.target.value)}
                                         />
+                                        {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
                                     </div>
 
                                     <div className="space-y-2">
                                         <label className="text-sm font-semibold text-foreground">
                                             Kategori Layanan
                                         </label>
-                                        <select className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none">
+                                        <select
+                                            className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+                                            value={data.subjek}
+                                            onChange={(e) => setData('subjek', e.target.value)}
+                                        >
                                             <option value="">
                                                 Pilih Kategori...
                                             </option>
-                                            <option value="pengaduan_fasilitas">
+                                            <option value="Pengaduan Fasilitas">
                                                 Pengaduan Fasilitas
                                             </option>
-                                            <option value="konsultasi_agama">
+                                            <option value="Konsultasi Agama/Ibadah">
                                                 Konsultasi Agama/Ibadah
                                             </option>
-                                            <option value="informasi_program">
+                                            <option value="Informasi Program">
                                                 Informasi Program
                                             </option>
-                                            <option value="saran_masukan">
+                                            <option value="Saran & Masukan Umum">
                                                 Saran & Masukan Umum
                                             </option>
                                         </select>
+                                        {errors.subjek && <p className="text-xs text-red-500">{errors.subjek}</p>}
                                     </div>
                                 </div>
 
@@ -199,16 +236,20 @@ export default function KontakPengaduanSection() {
                                         rows={4}
                                         className="w-full resize-none rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
                                         placeholder="Tuliskan detail pesan atau aduan Anda di sini..."
+                                        value={data.pesan}
+                                        onChange={(e) => setData('pesan', e.target.value)}
                                     ></textarea>
+                                    {errors.pesan && <p className="text-xs text-red-500">{errors.pesan}</p>}
                                 </div>
                             </div>
 
                             <div className="mt-auto pt-4 lg:pt-0">
                                 <button
-                                    type="button"
-                                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3.5 text-sm font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg"
+                                    type="submit"
+                                    disabled={processing}
+                                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3.5 text-sm font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg disabled:opacity-50"
                                 >
-                                    <span>Kirim Laporan</span>
+                                    <span>{processing ? 'Mengirim...' : 'Kirim Laporan'}</span>
                                     <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                                 </button>
 

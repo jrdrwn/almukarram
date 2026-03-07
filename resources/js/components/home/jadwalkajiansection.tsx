@@ -1,6 +1,19 @@
+import type { JadwalPengajianItem } from '@/types/home';
 import { BookOpen } from 'lucide-react';
 
-export default function JadwalKajianSection() {
+const dayColors: Record<string, { badge: string; glow: string }> = {
+    Senin: { badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300', glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10' },
+    Selasa: { badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300', glow: 'bg-blue-500/5 group-hover:bg-blue-500/10' },
+    Rabu: { badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300', glow: 'bg-blue-500/5 group-hover:bg-blue-500/10' },
+    Kamis: { badge: 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300', glow: 'bg-rose-500/5 group-hover:bg-rose-500/10' },
+    Jumat: { badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300', glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10' },
+    Sabtu: { badge: 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300', glow: 'bg-purple-500/5 group-hover:bg-purple-500/10' },
+    Ahad: { badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300', glow: 'bg-amber-500/5 group-hover:bg-amber-500/10' },
+};
+
+const defaultColors = { badge: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-500/20 dark:text-zinc-300', glow: 'bg-zinc-500/5 group-hover:bg-zinc-500/10' };
+
+export default function JadwalKajianSection({ jadwalPengajian }: { jadwalPengajian: JadwalPengajianItem[] }) {
     return (
         <section className="relative z-10 w-full bg-zinc-50 py-24 sm:py-32 dark:bg-zinc-900/20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -31,58 +44,11 @@ export default function JadwalKajianSection() {
 
                 {/* Timeline / Grid Schedule */}
                 <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-4">
-                    {[
-                        {
-                            date: 'Senin, 10 Maret 2024',
-                            day: 'Senin',
-                            time: "Ba'da Maghrib",
-                            title: 'Kajian Fiqih Ibadah Praktis',
-                            speaker: 'Ust. M. Abdullah, M.Ag',
-                            type: 'Umum',
-                            colors: {
-                                badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300',
-                                glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10',
-                            },
-                        },
-                        {
-                            date: 'Rabu, 12 Maret 2024',
-                            day: 'Rabu',
-                            time: "Ba'da Subuh",
-                            title: "Tafsir Al-Qur'an (Jalalain)",
-                            speaker: 'KH. Hasan Basri',
-                            type: 'Umum',
-                            colors: {
-                                badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300',
-                                glow: 'bg-blue-500/5 group-hover:bg-blue-500/10',
-                            },
-                        },
-                        {
-                            date: 'Kamis, 13 Maret 2024',
-                            day: 'Kamis',
-                            time: '16:00 - Selesai',
-                            title: 'Kajian Kemuslimahan & Sirah',
-                            speaker: 'Ustadzah Hj. Fatimah',
-                            type: 'Khusus Muslimah',
-                            colors: {
-                                badge: 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300',
-                                glow: 'bg-rose-500/5 group-hover:bg-rose-500/10',
-                            },
-                        },
-                        {
-                            date: 'Ahad, 16 Maret 2024',
-                            day: 'Ahad',
-                            time: "Ba'da Subuh",
-                            title: 'Kajian Tematik & Tanya Jawab',
-                            speaker: 'Berbagai Pemateri (Terjadwal)',
-                            type: 'Umum',
-                            colors: {
-                                badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300',
-                                glow: 'bg-amber-500/5 group-hover:bg-amber-500/10',
-                            },
-                        },
-                    ].map((jadwal, idx) => (
+                    {jadwalPengajian.map((jadwal) => {
+                        const colors = dayColors[jadwal.hari] ?? defaultColors;
+                        return (
                         <div
-                            key={idx}
+                            key={jadwal.id}
                             className="group relative flex h-full flex-col overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl sm:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
                         >
                             {/* Grid Texture Background */}
@@ -90,24 +56,24 @@ export default function JadwalKajianSection() {
 
                             {/* Decorative Abstract Shape in background */}
                             <div
-                                className={`absolute -top-16 -right-16 z-0 h-40 w-40 rounded-full transition-all duration-700 group-hover:scale-150 ${jadwal.colors.glow}`}
+                                className={`absolute -top-16 -right-16 z-0 h-40 w-40 rounded-full transition-all duration-700 group-hover:scale-150 ${colors.glow}`}
                             ></div>
 
                             <div className="relative z-10 flex flex-1 flex-col">
                                 <div className="mb-6 flex min-h-12 flex-wrap items-start gap-2">
                                     <div
-                                        className={`rounded-xl px-3 py-1 text-sm font-black tracking-widest shadow-sm ${jadwal.colors.badge}`}
+                                        className={`rounded-xl px-3 py-1 text-sm font-black tracking-widest shadow-sm ${colors.badge}`}
                                     >
-                                        {jadwal.day}
+                                        {jadwal.hari}
                                     </div>
                                     <span className="rounded-full border border-border bg-white/50 px-2.5 py-1.5 text-[10px] font-bold tracking-wider text-muted-foreground uppercase shadow-sm backdrop-blur-sm dark:bg-zinc-950/50">
-                                        {jadwal.type}
+                                        {jadwal.tipe}
                                     </span>
                                 </div>
 
                                 <div className="flex flex-1 flex-col justify-start">
                                     <h3 className="mb-4 text-xl leading-snug font-bold text-foreground transition-colors group-hover:text-primary">
-                                        {jadwal.title}
+                                        {jadwal.judul}
                                     </h3>
                                     <div className="mt-auto mb-6 flex flex-col gap-2">
                                         <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
@@ -150,7 +116,7 @@ export default function JadwalKajianSection() {
                                                     y2="10"
                                                 />
                                             </svg>
-                                            {jadwal.date}
+                                            {jadwal.tanggal ? new Date(jadwal.tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : jadwal.hari}
                                         </div>
                                         <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
                                             <svg
@@ -172,7 +138,7 @@ export default function JadwalKajianSection() {
                                                 />
                                                 <polyline points="12 6 12 12 16 14" />
                                             </svg>
-                                            Pukul: {jadwal.time}
+                                            Pukul: {jadwal.waktu}
                                         </div>
                                     </div>
                                 </div>
@@ -183,11 +149,12 @@ export default function JadwalKajianSection() {
                                     Pemateri
                                 </p>
                                 <p className="text-base leading-tight font-bold text-foreground">
-                                    {jadwal.speaker}
+                                    {jadwal.pemateri}
                                 </p>
                             </div>
                         </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 <div className="mt-12 text-center">

@@ -5,7 +5,7 @@ import DokumenSearch from '@/components/dokumen/dokumen-search';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
-import { FileBarChart, FileText, FolderOpen, Home } from 'lucide-react';
+import { FolderOpen, Home } from 'lucide-react';
 
 interface DokumenPageProps {
     dokumen?: any[];
@@ -26,67 +26,6 @@ export default function Dokumen({
     totalRows = 0,
     kategoris = [],
 }: DokumenPageProps) {
-    const _dokumen =
-        dokumen.length > 0
-            ? dokumen
-            : [
-                  {
-                      id: 1,
-                      title: 'SK Penetapan Pengurus BPMA Al-Mukarram Amanah 2025/2028',
-                      type: 'PDF',
-                      year: '2025',
-                      category: 'sk-sop',
-                      url: '#',
-                      icon: FileText,
-                      color: 'text-red-600',
-                      bg: 'bg-red-50 dark:bg-red-500/10',
-                  },
-                  {
-                      id: 2,
-                      title: 'Standar Operasional Prosedur (SOP) Penggunaan Aula Masjid',
-                      type: 'PDF',
-                      year: '2024',
-                      category: 'sk-sop',
-                      url: '#',
-                      icon: FileBarChart,
-                      color: 'text-blue-600',
-                      bg: 'bg-blue-50 dark:bg-blue-500/10',
-                  },
-                  {
-                      id: 3,
-                      title: 'Laporan Pertanggungjawaban Keuangan Q4 2025',
-                      type: 'XLSX',
-                      year: '2025',
-                      category: 'laporan',
-                      url: '#',
-                      icon: FileText,
-                      color: 'text-emerald-600',
-                      bg: 'bg-emerald-50 dark:bg-emerald-500/10',
-                  },
-              ];
-
-    const _kategoris =
-        kategoris.length > 0
-            ? kategoris
-            : [
-                  { id: 1, nama: 'SK / SOP', slug: 'sk-sop', total: 12 },
-                  {
-                      id: 2,
-                      nama: 'Laporan Keuangan',
-                      slug: 'laporan',
-                      total: 8,
-                  },
-                  { id: 3, nama: 'Materi Kajian', slug: 'materi', total: 24 },
-                  {
-                      id: 4,
-                      nama: 'Dokumen Lain',
-                      slug: 'dokumen-lain',
-                      total: 5,
-                  },
-              ];
-
-    const _totalPages = totalPages > 1 ? totalPages : 2;
-
     return (
         <>
             <Header />
@@ -120,14 +59,14 @@ export default function Dokumen({
                         <DokumenSearch
                             searchQuery={searchQuery}
                             kategoriSlug={kategoriSlug}
-                            totalRows={totalRows || _dokumen.length}
-                            kategoris={_kategoris}
+                            totalRows={totalRows}
+                            kategoris={kategoris}
                         />
 
                         <DokumenGrid
-                            data={_dokumen}
+                            data={dokumen}
                             currentPage={currentPage}
-                            totalPages={_totalPages}
+                            totalPages={totalPages}
                         />
                     </div>
                 </div>

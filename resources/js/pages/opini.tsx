@@ -28,85 +28,6 @@ export default function Page({
     totalRows = 0,
     kategoris = [],
 }: OpiniPageProps) {
-    // MOCK DATA for preview purposes
-    const _opini =
-        opini.length > 0
-            ? opini
-            : [
-                  {
-                      slug: 'menjaga-hati-di-era-digital',
-                      category: 'Tazkiyatun Nafs',
-                      title: 'Menjaga Hati di Era Digital: Tantangan Generasi Milenial',
-                      author: 'Ust. H. Ahmad Fulan',
-                      date: '05 Mar 2026',
-                      readTime: '4 Min Read',
-                      excerpt:
-                          'Kemajuan teknologi ibarat pisau bermata dua. Di satu sisi memudahkan akses ilmu, di sisi lain menjadi pintu masuk segala syubhat dan syahwat jika tak dibentengi iman.',
-                  },
-                  {
-                      slug: 'hukum-jual-beli-dropship',
-                      category: 'Fiqih Keseharian',
-                      title: 'Hukum Jual Beli Online dengan Sistem Dropship dalam Pandangan Islam',
-                      author: 'Dr. KH. Abdullah M.',
-                      date: '01 Mar 2026',
-                      readTime: '6 Min Read',
-                      excerpt:
-                          'Sistem dropship marak digunakan oleh masyarakat. Namun, bagaimana fiqih muamalah kontemporer membedah status kepemilikan dan syarat sah transaksi ini?',
-                  },
-                  {
-                      slug: 'membangun-karakter-anak',
-                      category: 'Keluarga Sakinah',
-                      title: 'Membangun Karakter Anak Melalui Teladan Rasulullah SAW',
-                      author: 'Hj. Ummu Kultsum, S.Ag',
-                      date: '26 Feb 2026',
-                      readTime: '5 Min Read',
-                      excerpt:
-                          'Pendidikan terbaik bukanlah sekadar masuk ke sekolah elit melaikan keteladanan yang dimulai dari rumah. Rasulullah telah memberikan blueprint pendidikan keluarga yang sempurna.',
-                  },
-                  {
-                      slug: 'ibrah-perang-badar',
-                      category: 'Sejarah Islam',
-                      title: 'Ibrah dari Perang Badar: Kualitas Iman Mengalahkan Kuantitas Pasukan',
-                      author: 'Ustadz Budi Santoso',
-                      date: '20 Feb 2026',
-                      readTime: '7 Min Read',
-                      excerpt:
-                          'Perang Badar bukan sekadar catatan sejarah, melainkan bukti nyata bahwa pertolongan Allah selalu hadir bagi hamba-Nya yang bersabar dan bertawakal dalam menghadapi rintangan.',
-                  },
-              ];
-
-    const _kategoris =
-        kategoris.length > 0
-            ? kategoris
-            : [
-                  {
-                      id: 1,
-                      nama: 'Tazkiyatun Nafs',
-                      slug: 'tazkiyatun-nafs',
-                      total: 10,
-                  },
-                  {
-                      id: 2,
-                      nama: 'Fiqih Keseharian',
-                      slug: 'fiqih-keseharian',
-                      total: 15,
-                  },
-                  {
-                      id: 3,
-                      nama: 'Keluarga Sakinah',
-                      slug: 'keluarga-sakinah',
-                      total: 8,
-                  },
-                  {
-                      id: 4,
-                      nama: 'Sejarah Islam',
-                      slug: 'sejarah-islam',
-                      total: 12,
-                  },
-              ];
-
-    const _totalPages = totalPages > 1 ? totalPages : 3;
-
     return (
         <>
             <Header />
@@ -144,14 +65,14 @@ export default function Page({
                             <OpiniSearch
                                 searchQuery={searchQuery}
                                 kategoriSlug={kategoriSlug}
-                                totalRows={totalRows || _opini.length}
-                                kategoris={_kategoris}
+                                totalRows={totalRows}
+                                kategoris={kategoris}
                             />
 
                             <OpiniGrid
-                                data={_opini}
+                                data={opini}
                                 currentPage={currentPage}
-                                totalPages={_totalPages}
+                                totalPages={totalPages}
                             />
                         </div>
 

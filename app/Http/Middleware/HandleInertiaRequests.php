@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -41,6 +43,27 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'flash' => [
+                'success' => $request->session()->get('success'),
+            ],
+            'pengumuman' => fn () => Pengumuman::query()
+                ->where(function ($q) {
+                    $today = Carbon::today();
+                    $q->where(function ($q2) use ($today) {
+                        $q2->whereNull('tanggal_mulai')
+                            ->whereNull('tanggal_selesai');
+                    })->orWhere(function ($q2) use ($today) {
+                        $q2->where('tanggal_mulai', '<=', $today)
+                            ->where('tanggal_selesai', '>=', $today);
+                    })->orWhere(function ($q2) use ($today) {
+                        $q2->where('tanggal_mulai', '<=', $today)
+                            ->whereNull('tanggal_selesai');
+                    });
+                })
+                ->orderByDesc('created_at')
+                ->take(5)
+                ->get(['id', 'judul'])
+                ->map(fn ($p) => $p->judul),
         ];
     }
 }

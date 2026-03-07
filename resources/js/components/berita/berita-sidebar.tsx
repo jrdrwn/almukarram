@@ -1,3 +1,4 @@
+import { useJadwalSholat } from '@/hooks/use-jadwal-sholat';
 import { Link } from '@inertiajs/react';
 import {
     Calendar,
@@ -23,21 +24,17 @@ interface PopularItem {
     created_at: string;
 }
 
-interface JadwalSholat {
-    [key: string]: string; // e.g. "subuh": "04:30"
-}
-
 interface BeritaSidebarProps {
-    jadwal: JadwalSholat;
     kategoris: KategoriItem[];
     popularFiles: PopularItem[];
 }
 
 export default function BeritaSidebar({
-    jadwal,
     kategoris,
     popularFiles,
 }: BeritaSidebarProps) {
+    const { jadwal } = useJadwalSholat();
+
     const waktuSholat = [
         { key: 'subuh', label: 'Subuh' },
         { key: 'terbit', label: 'Terbit' },
@@ -74,7 +71,7 @@ export default function BeritaSidebar({
                                     {w.label}
                                 </span>
                                 <span className="font-bold tracking-wider text-white">
-                                    {jadwal[w.key] || '-:-'}
+                                    {jadwal?.[w.key as keyof typeof jadwal] || '--:--'}
                                 </span>
                             </div>
                         ))}

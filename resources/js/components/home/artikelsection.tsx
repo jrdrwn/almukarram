@@ -1,6 +1,12 @@
-import { ArrowRight, User, BookOpen } from 'lucide-react';
+import type { OpiniItem } from '@/types/home';
+import { Link } from '@inertiajs/react';
+import { ArrowRight, BookOpen, User } from 'lucide-react';
 
-export default function ArtikelSection() {
+function formatDate(dateStr: string) {
+    return new Date(dateStr).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+export default function ArtikelSection({ opiniTerbaru }: { opiniTerbaru: OpiniItem[] }) {
     return (
         <section className="relative z-10 mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
             <div className="mb-16 flex flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
@@ -29,38 +35,10 @@ export default function ArtikelSection() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {[
-                    {
-                        category: 'Tazkiyatun Nafs',
-                        title: 'Menjaga Hati di Era Digital: Tantangan Generasi Milenial',
-                        author: 'Ust. H. Ahmad Fulan',
-                        date: '05 Mar 2026',
-                        readTime: '4 Min Read',
-                        excerpt:
-                            'Kemajuan teknologi ibarat pisau bermata dua. Di satu sisi memudahkan akses ilmu, di sisi lain menjadi pintu masuk segala syubhat dan syahwat jika tak dibentengi iman.',
-                    },
-                    {
-                        category: 'Fiqih Keseharian',
-                        title: 'Hukum Jual Beli Online dengan Sistem Dropship dalam Pandangan Islam',
-                        author: 'Dr. KH. Abdullah M.',
-                        date: '01 Mar 2026',
-                        readTime: '6 Min Read',
-                        excerpt:
-                            'Sistem dropship marak digunakan oleh masyarakat. Namun, bagaimana fiqih muamalah kontemporer membedah status kepemilikan dan syarat sah transaksi ini?',
-                    },
-                    {
-                        category: 'Keluarga Sakinah',
-                        title: 'Membangun Karakter Anak Melalui Teladan Rasulullah SAW',
-                        author: 'Hj. Ummu Kultsum, S.Ag',
-                        date: '26 Feb 2026',
-                        readTime: '5 Min Read',
-                        excerpt:
-                            'Pendidikan terbaik bukanlah sekadar masuk ke sekolah elit melaikan keteladanan yang dimulai dari rumah. Rasulullah telah memberikan blueprint pendidikan keluarga yang sempurna.',
-                    },
-                ].map((article, idx) => (
-                    <a
-                        key={idx}
-                        href="#"
+                {opiniTerbaru.map((article) => (
+                    <Link
+                        key={article.id}
+                        href={`/opini-detail/${article.slug}`}
                         className="group relative flex min-h-75 flex-col justify-between overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl lg:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
                     >
                         {/* Grid Texture Background */}
@@ -68,13 +46,13 @@ export default function ArtikelSection() {
 
                         <div className="relative z-10">
                             <span className="mb-5 inline-block rounded-full border border-emerald-100/50 bg-emerald-50 px-3 py-1 text-xs font-bold tracking-widest text-emerald-600 uppercase shadow-sm dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
-                                {article.category}
+                                {article.kategori?.nama ?? 'Opini'}
                             </span>
                             <h3 className="mb-4 line-clamp-3 text-xl leading-tight font-bold text-foreground transition-colors group-hover:text-primary">
-                                {article.title}
+                                {article.judul}
                             </h3>
                             <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-muted-foreground/80">
-                                {article.excerpt}
+                                {article.ringkasan}
                             </p>
                         </div>
 
@@ -85,20 +63,24 @@ export default function ArtikelSection() {
                                 </div>
                                 <div>
                                     <p className="text-sm font-bold text-foreground transition-colors group-hover:text-primary">
-                                        {article.author}
+                                        {article.user?.name ?? 'Anonim'}
                                     </p>
                                     <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                                        <span>{article.date}</span>
+                                        <span>{formatDate(article.published_at)}</span>
+                                        {article.waktu_baca && (
+                                        <>
                                         <span className="h-1 w-1 rounded-full bg-border"></span>
                                         <span className="flex items-center gap-1">
                                             <BookOpen className="h-3 w-3" />{' '}
-                                            {article.readTime}
+                                            {article.waktu_baca}
                                         </span>
+                                        </>
+                                        )}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </Link>
                 ))}
             </div>
         </section>

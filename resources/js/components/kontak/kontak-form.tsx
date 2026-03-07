@@ -9,14 +9,14 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { useForm, usePage } from '@inertiajs/react';
 import { AlertCircle, CheckCircle2, Send } from 'lucide-react';
-import { useState } from 'react';
+import { FormEventHandler } from 'react';
 
 export function KontakForm() {
-    const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
-    const [errorMessage, setErrorMessage] = useState('');
+    const { flash } = usePage<{ flash: { success?: string } }>().props;
 
-    const [formData, setFormData] = useState({
+    const { data, setData, post, processing, errors, reset } = useForm({
         nama: '',
         email: '',
         telepon: '',
@@ -24,33 +24,12 @@ export function KontakForm() {
         pesan: '',
     });
 
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    };
-
-    const handleSelectChange = (value: string) => {
-        setFormData((prev) => ({ ...prev, subjek: value }));
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
-
-        // Simulating the PHP validation logic
-        if (formData.nama && formData.email && formData.pesan) {
-            setStatus('success');
-            setFormData({
-                nama: '',
-                email: '',
-                telepon: '',
-                subjek: '',
-                pesan: '',
-            });
-        } else {
-            setStatus('error');
-            setErrorMessage('Mohon lengkapi semua field yang wajib diisi.');
-        }
+        post('/kotak-masuk', {
+            preserveScroll: true,
+            onSuccess: () => reset(),
+        });
     };
 
     return (
@@ -61,22 +40,23 @@ export function KontakForm() {
                 </h3>
 
                 {/* Notifications */}
-                {status === 'success' && (
+                {flash?.success && (
                     <div className="mb-6 flex items-start space-x-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
                         <CheckCircle2 className="mt-0.5 h-5 w-5 text-emerald-600" />
                         <p className="text-sm font-medium text-emerald-800 dark:text-emerald-400">
-                            Terima kasih! Pesan Anda telah berhasil dikirim.
-                            Kami akan segera menghubungi Anda.
+                            {flash.success}
                         </p>
                     </div>
                 )}
 
-                {status === 'error' && (
+                {Object.keys(errors).length > 0 && (
                     <div className="mb-6 flex items-start space-x-3 rounded-xl border border-red-200 bg-red-50 p-4">
                         <AlertCircle className="mt-0.5 h-5 w-5 text-red-600" />
-                        <p className="text-sm font-medium text-red-800 dark:text-red-400">
-                            {errorMessage}
-                        </p>
+                        <div className="text-sm font-medium text-red-800 dark:text-red-400">
+                            {Object.values(errors).map((error, i) => (
+                                <p key={i}>{error}</p>
+                            ))}
+                        </div>
                     </div>
                 )}
 
@@ -96,10 +76,10 @@ export function KontakForm() {
                                 type="text"
                                 name="nama"
                                 required
-                                value={formData.nama}
-                                onChange={handleChange}
+                                value={data.nama}
+                                onChange={(e) => setData('nama', e.target.value)}
                                 placeholder="Nama Anda"
-                                className="h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500"
+                                className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.nama ? 'border-red-500' : ''}`}
                             />
                         </div>
 
@@ -116,10 +96,10 @@ export function KontakForm() {
                                 type="email"
                                 name="email"
                                 required
-                                value={formData.email}
-                                onChange={handleChange}
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
                                 placeholder="email@contoh.com"
-                                className="h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500"
+                                className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.email ? 'border-red-500' : ''}`}
                             />
                         </div>
 
@@ -135,10 +115,10 @@ export function KontakForm() {
                                 id="telepon"
                                 type="tel"
                                 name="telepon"
-                                value={formData.telepon}
-                                onChange={handleChange}
+                                value={data.telepon}
+                                onChange={(e) => setData('telepon', e.target.value)}
                                 placeholder="08xx-xxxx-xxxx"
-                                className="h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500"
+                                className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.telepon ? 'border-red-500' : ''}`}
                             />
                         </div>
 
@@ -151,8 +131,8 @@ export function KontakForm() {
                                 Subjek
                             </Label>
                             <Select
-                                value={formData.subjek}
-                                onValueChange={handleSelectChange}
+                                value={data.subjek}
+                                onValueChange={(value) => setData('subjek', value)}
                             >
                                 <SelectTrigger className="h-12! w-full rounded-xl border-input/60 bg-background px-4 focus:ring-emerald-500">
                                     <SelectValue placeholder="-- Pilih Subjek --" />
@@ -190,10 +170,10 @@ export function KontakForm() {
                             id="pesan"
                             name="pesan"
                             required
-                            value={formData.pesan}
-                            onChange={handleChange}
+                            value={data.pesan}
+                            onChange={(e) => setData('pesan', e.target.value)}
                             placeholder="Tulis pesan Anda di sini..."
-                            className="min-h-35 resize-none rounded-xl border-input/60 p-4 focus-visible:ring-emerald-500"
+                            className={`min-h-35 resize-none rounded-xl border-input/60 p-4 focus-visible:ring-emerald-500 ${errors.pesan ? 'border-red-500' : ''}`}
                         />
                     </div>
 
@@ -202,7 +182,8 @@ export function KontakForm() {
                         <Button
                             type="submit"
                             size="lg"
-                            className="group h-14 w-full rounded-xl bg-[#009B65] text-base font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-[#008959] hover:shadow-lg"
+                            disabled={processing}
+                            className="group h-14 w-full rounded-xl bg-[#009B65] text-base font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-[#008959] hover:shadow-lg disabled:opacity-50"
                         >
                             <span>Kirim Pesan</span>
                             <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

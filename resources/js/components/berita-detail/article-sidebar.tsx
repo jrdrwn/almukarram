@@ -1,3 +1,4 @@
+import { useJadwalSholat } from '@/hooks/use-jadwal-sholat';
 import { Link } from '@inertiajs/react';
 import {
     Calendar,
@@ -14,12 +15,7 @@ interface LatestBerita {
     created_at: string;
 }
 
-interface JadwalSholat {
-    [key: string]: string;
-}
-
 interface ArticleSidebarProps {
-    jadwal: JadwalSholat;
     latest: LatestBerita[];
     currentSlug: string;
 }
@@ -47,10 +43,10 @@ function formatTanggal(dateStr: string): string {
 }
 
 export default function ArticleSidebar({
-    jadwal,
     latest,
     currentSlug,
 }: ArticleSidebarProps) {
+    const { jadwal } = useJadwalSholat();
     return (
         <aside className="sticky top-24 space-y-8">
             {/* Jadwal Sholat Widget */}
@@ -77,7 +73,7 @@ export default function ArticleSidebar({
                                     {w.label}
                                 </span>
                                 <span className="font-bold tracking-wider text-white">
-                                    {jadwal[w.key] || '-:-'}
+                                    {jadwal?.[w.key as keyof typeof jadwal] || '--:--'}
                                 </span>
                             </div>
                         ))}

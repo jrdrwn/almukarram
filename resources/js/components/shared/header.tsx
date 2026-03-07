@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import {
     Activity,
     Book,
@@ -29,7 +29,7 @@ import {
     SearchIcon,
     Wrench,
 } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader } from '../ui/drawer';
 import {
@@ -207,6 +207,7 @@ const navigationItems: NavItem[] = [
 export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const { pengumuman } = usePage<{ pengumuman?: string[] }>().props;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -241,15 +242,28 @@ export default function Header() {
                                         timeStyle: 'short',
                                     })}
                                 </span>
-                                •
-                                <span className="mx-4">
-                                    Masjid Agung Al-Mukarram Amanah - Selamat
-                                    Datang di Website Resmi
-                                </span>
-                                •
-                                <span className="mx-4 font-medium text-emerald-600">
-                                    Mari tunaikan Shalat tepat pada waktunya.
-                                </span>
+                                {pengumuman && pengumuman.length > 0 ? (
+                                    pengumuman.map((item, idx) => (
+                                        <React.Fragment key={idx}>
+                                            •
+                                            <span className="mx-4">
+                                                {item}
+                                            </span>
+                                        </React.Fragment>
+                                    ))
+                                ) : (
+                                    <>
+                                        •
+                                        <span className="mx-4">
+                                            Masjid Agung Al-Mukarram Amanah - Selamat
+                                            Datang di Website Resmi
+                                        </span>
+                                        •
+                                        <span className="mx-4 font-medium text-emerald-600">
+                                            Mari tunaikan Shalat tepat pada waktunya.
+                                        </span>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>

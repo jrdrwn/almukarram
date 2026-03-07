@@ -1,6 +1,9 @@
-import { CalendarDays, Calendar } from 'lucide-react';
+import type { JadwalJumatData } from '@/types/home';
+import { Calendar, CalendarDays } from 'lucide-react';
 
-export default function JadwalJumatSection() {
+export default function JadwalJumatSection({ jadwalJumat }: { jadwalJumat: JadwalJumatData | null }) {
+    if (!jadwalJumat) return null;
+
     return (
         <section className="relative z-10 w-full py-16 sm:py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -39,7 +42,7 @@ export default function JadwalJumatSection() {
                                             Tanggal
                                         </p>
                                         <p className="text-sm font-bold text-white">
-                                            13 Maret 2026
+                                            {new Date(jadwalJumat.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
                                         </p>
                                     </div>
                                 </div>
@@ -66,7 +69,7 @@ export default function JadwalJumatSection() {
                                             Waktu
                                         </p>
                                         <p className="text-sm font-bold text-white">
-                                            11:45 WIB
+                                            {jadwalJumat.waktu} WIB
                                         </p>
                                     </div>
                                 </div>
@@ -78,19 +81,19 @@ export default function JadwalJumatSection() {
                             {[
                                 {
                                     role: 'Khatib',
-                                    name: 'Habib Hasanuddin Al-Habsyi',
+                                    name: jadwalJumat.khatib,
                                 },
                                 {
                                     role: 'Imam',
-                                    name: 'Ustadz M. Syukri, M.Pd',
+                                    name: jadwalJumat.imam,
                                 },
                                 {
                                     role: 'Muadzin',
-                                    name: "Ust. Akhmad Rifa'i",
+                                    name: jadwalJumat.muadzin,
                                 },
                                 {
                                     role: 'Bilal',
-                                    name: 'H. Rahmat Hidayat',
+                                    name: jadwalJumat.bilal,
                                 },
                             ].map((petugas, idx) => (
                                 <div

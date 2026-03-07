@@ -10,20 +10,29 @@ import SekapurSirihSection from '@/components/home/sekapursirihsection';
 import VideoSection from '@/components/home/videosection';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
+import type { HomePageProps } from '@/types/home';
 
-export default function Page() {
+export default function Page({
+    agendaTerdekat,
+    beritaUtama,
+    beritaTerbaru,
+    videos,
+    opiniTerbaru,
+    jadwalJumat,
+    jadwalPengajian,
+}: HomePageProps) {
     return (
         <>
             <Header />
-            <Hero />
+            <Hero agendaTerdekat={agendaTerdekat} />
             <FeaturesSection />
             <SekapurSirihSection />
-            <VideoSection />
-            <BeritaSection />
+            <VideoSection videos={videos} />
+            <BeritaSection beritaUtama={beritaUtama} beritaTerbaru={beritaTerbaru} />
             <JadwalMultimediaSection />
-            <ArtikelSection />
-            <JadwalJumatSection />
-            <JadwalKajianSection />
+            <ArtikelSection opiniTerbaru={opiniTerbaru} />
+            <JadwalJumatSection jadwalJumat={jadwalJumat} />
+            <JadwalKajianSection jadwalPengajian={jadwalPengajian} />
             <KontakPengaduanSection />
 
             <Footer />

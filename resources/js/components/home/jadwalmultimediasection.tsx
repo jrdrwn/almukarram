@@ -1,11 +1,58 @@
-import { Play, ImageIcon, ArrowRight } from 'lucide-react';
+import { useJadwalSholat } from '@/hooks/use-jadwal-sholat';
+import { ArrowRight, ImageIcon, Play } from 'lucide-react';
 
 import { useState } from 'react';
 
 export default function JadwalMultimediaSection() {
+    const { jadwal: jadwalSholat } = useJadwalSholat();
     const [activeMediaTab, setActiveMediaTab] = useState<'video' | 'photo'>(
         'video',
     );
+
+    const prayerTimes = jadwalSholat
+        ? [
+              { name: 'Subuh', time: jadwalSholat.subuh },
+              { name: 'Terbit', time: jadwalSholat.terbit, fade: true },
+              { name: 'Dzuhur', time: jadwalSholat.dzuhur },
+              { name: 'Ashar', time: jadwalSholat.ashar },
+              { name: 'Maghrib', time: jadwalSholat.maghrib },
+              { name: 'Isya', time: jadwalSholat.isya },
+          ]
+        : [
+              { name: 'Subuh', time: '--:--' },
+              { name: 'Terbit', time: '--:--', fade: true },
+              { name: 'Dzuhur', time: '--:--' },
+              { name: 'Ashar', time: '--:--' },
+              { name: 'Maghrib', time: '--:--' },
+              { name: 'Isya', time: '--:--' },
+          ];
+
+    // Determine active prayer based on current time
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const toMinutes = (t: string) => {
+        const [h, m] = t.split(':').map(Number);
+        return (h ?? 0) * 60 + (m ?? 0);
+    };
+
+    let activeName = '';
+    if (jadwalSholat) {
+        const ordered = ['Isya', 'Maghrib', 'Ashar', 'Dzuhur', 'Terbit', 'Subuh'] as const;
+        const timeMap: Record<string, string> = {
+            Subuh: jadwalSholat.subuh,
+            Terbit: jadwalSholat.terbit,
+            Dzuhur: jadwalSholat.dzuhur,
+            Ashar: jadwalSholat.ashar,
+            Maghrib: jadwalSholat.maghrib,
+            Isya: jadwalSholat.isya,
+        };
+        for (const name of ordered) {
+            if (currentMinutes >= toMinutes(timeMap[name]!)) {
+                activeName = name;
+                break;
+            }
+        }
+    }
     return (
         <section className="relative z-10 w-full overflow-hidden bg-zinc-950 px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
             {/* Immersive Dark Background Effects */}
@@ -37,47 +84,34 @@ export default function JadwalMultimediaSection() {
 
                         {/* Minimalist Glass Prayer Times Grid */}
                         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
-                            {[
-                                { name: 'Subuh', time: '04:21' },
-                                {
-                                    name: 'Terbit',
-                                    time: '05:39',
-                                    fade: true,
-                                },
-                                { name: 'Dzuhur', time: '11:45' },
-                                { name: 'Ashar', time: '14:52' },
-                                {
-                                    name: 'Maghrib',
-                                    time: '17:49',
-                                    active: true,
-                                },
-                                { name: 'Isya', time: '18:58' },
-                            ].map((prayer, idx) => (
+                            {prayerTimes.map((prayer, idx) => {
+                                const isActive = prayer.name === activeName;
+                                return (
                                 <div
                                     key={idx}
                                     className={`group relative overflow-hidden rounded-4xl p-6 transition-all duration-300 hover:-translate-y-2 ${
-                                        prayer.active
+                                        isActive
                                             ? 'bg-primary text-primary-foreground shadow-[0_0_40px_rgba(var(--color-primary),0.4)]'
                                             : 'border border-white/10 bg-white/5 text-white backdrop-blur-md hover:border-white/20 hover:bg-white/10'
                                     } ${prayer.fade ? 'opacity-60' : ''}`}
                                 >
                                     <h4
-                                        className={`mb-2 text-sm font-bold tracking-widest uppercase ${prayer.active ? 'text-primary-foreground/80' : 'text-white/50 group-hover:text-white/80'}`}
+                                        className={`mb-2 text-sm font-bold tracking-widest uppercase ${isActive ? 'text-primary-foreground/80' : 'text-white/50 group-hover:text-white/80'}`}
                                     >
                                         {prayer.name}
                                     </h4>
                                     <span className="text-3xl font-black tracking-tighter tabular-nums sm:text-4xl">
                                         {prayer.time}
                                     </span>
-                                    {/* Accent dots/lines inside active */}
-                                    {prayer.active && (
+                                    {isActive && (
                                         <div className="absolute top-4 -right-2 flex h-3 w-3 animate-ping rounded-full bg-white/50"></div>
                                     )}
-                                    {prayer.active && (
+                                    {isActive && (
                                         <div className="absolute top-4 -right-2 flex h-3 w-3 rounded-full bg-white"></div>
                                     )}
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
 
