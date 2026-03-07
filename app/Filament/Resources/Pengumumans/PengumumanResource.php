@@ -8,6 +8,7 @@ use App\Filament\Resources\Pengumumans\Pages\ListPengumumans;
 use App\Filament\Resources\Pengumumans\Schemas\PengumumanForm;
 use App\Filament\Resources\Pengumumans\Tables\PengumumansTable;
 use App\Models\Pengumuman;
+use App\Traits\HasAdminResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class PengumumanResource extends Resource
 {
+    use HasAdminResourceAccess;
+
     protected static ?string $model = Pengumuman::class;
 
     protected static ?string $recordTitleAttribute = 'judul';

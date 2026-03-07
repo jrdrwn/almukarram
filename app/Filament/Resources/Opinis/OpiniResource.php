@@ -8,6 +8,7 @@ use App\Filament\Resources\Opinis\Pages\ListOpinis;
 use App\Filament\Resources\Opinis\Schemas\OpiniForm;
 use App\Filament\Resources\Opinis\Tables\OpinisTable;
 use App\Models\Opini;
+use App\Traits\HasContentResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class OpiniResource extends Resource
 {
+    use HasContentResourceAccess;
+
     protected static ?string $model = Opini::class;
 
     protected static ?string $recordTitleAttribute = 'judul';

@@ -8,6 +8,7 @@ use App\Filament\Resources\Kategoris\Pages\ListKategoris;
 use App\Filament\Resources\Kategoris\Schemas\KategoriForm;
 use App\Filament\Resources\Kategoris\Tables\KategorisTable;
 use App\Models\Kategori;
+use App\Traits\HasAdminResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class KategoriResource extends Resource
 {
+    use HasAdminResourceAccess;
+
     protected static ?string $model = Kategori::class;
 
     protected static ?string $recordTitleAttribute = 'nama';

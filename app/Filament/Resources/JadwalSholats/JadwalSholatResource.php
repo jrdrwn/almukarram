@@ -8,6 +8,7 @@ use App\Filament\Resources\JadwalSholats\Pages\ListJadwalSholats;
 use App\Filament\Resources\JadwalSholats\Schemas\JadwalSholatForm;
 use App\Filament\Resources\JadwalSholats\Tables\JadwalSholatsTable;
 use App\Models\JadwalSholat;
+use App\Traits\HasAdminResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class JadwalSholatResource extends Resource
 {
+    use HasAdminResourceAccess;
+
     protected static ?string $model = JadwalSholat::class;
 
     protected static ?string $recordTitleAttribute = 'tanggal';

@@ -8,6 +8,7 @@ use App\Filament\Resources\Buletins\Pages\ListBuletins;
 use App\Filament\Resources\Buletins\Schemas\BuletinForm;
 use App\Filament\Resources\Buletins\Tables\BuletinsTable;
 use App\Models\Buletin;
+use App\Traits\HasContentResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class BuletinResource extends Resource
 {
+    use HasContentResourceAccess;
+
     protected static ?string $model = Buletin::class;
 
     protected static ?string $recordTitleAttribute = 'judul';

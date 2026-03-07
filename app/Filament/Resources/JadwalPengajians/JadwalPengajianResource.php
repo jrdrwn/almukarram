@@ -8,6 +8,7 @@ use App\Filament\Resources\JadwalPengajians\Pages\ListJadwalPengajians;
 use App\Filament\Resources\JadwalPengajians\Schemas\JadwalPengajianForm;
 use App\Filament\Resources\JadwalPengajians\Tables\JadwalPengajiansTable;
 use App\Models\JadwalPengajian;
+use App\Traits\HasAdminResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class JadwalPengajianResource extends Resource
 {
+    use HasAdminResourceAccess;
+
     protected static ?string $model = JadwalPengajian::class;
 
     protected static ?string $recordTitleAttribute = 'judul';

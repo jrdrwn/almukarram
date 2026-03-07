@@ -8,6 +8,7 @@ use App\Filament\Resources\Vidios\Pages\ListVidios;
 use App\Filament\Resources\Vidios\Schemas\VidioForm;
 use App\Filament\Resources\Vidios\Tables\VidiosTable;
 use App\Models\Vidio;
+use App\Traits\HasContentResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class VidioResource extends Resource
 {
+    use HasContentResourceAccess;
+
     protected static ?string $model = Vidio::class;
 
     protected static ?string $recordTitleAttribute = 'judul';

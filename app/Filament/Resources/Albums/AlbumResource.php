@@ -8,6 +8,7 @@ use App\Filament\Resources\Albums\Pages\ListAlbums;
 use App\Filament\Resources\Albums\Schemas\AlbumForm;
 use App\Filament\Resources\Albums\Tables\AlbumsTable;
 use App\Models\Album;
+use App\Traits\HasContentResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class AlbumResource extends Resource
 {
+    use HasContentResourceAccess;
+
     protected static ?string $model = Album::class;
 
     protected static ?string $recordTitleAttribute = 'judul';

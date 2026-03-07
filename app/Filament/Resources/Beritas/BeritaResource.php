@@ -8,6 +8,7 @@ use App\Filament\Resources\Beritas\Pages\ListBeritas;
 use App\Filament\Resources\Beritas\Schemas\BeritaForm;
 use App\Filament\Resources\Beritas\Tables\BeritasTable;
 use App\Models\Berita;
+use App\Traits\HasContentResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class BeritaResource extends Resource
 {
+    use HasContentResourceAccess;
+
     protected static ?string $model = Berita::class;
 
     protected static ?string $recordTitleAttribute = 'judul';

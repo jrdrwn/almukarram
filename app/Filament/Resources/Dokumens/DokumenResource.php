@@ -8,6 +8,7 @@ use App\Filament\Resources\Dokumens\Pages\ListDokumens;
 use App\Filament\Resources\Dokumens\Schemas\DokumenForm;
 use App\Filament\Resources\Dokumens\Tables\DokumensTable;
 use App\Models\Dokumen;
+use App\Traits\HasContentResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class DokumenResource extends Resource
 {
+    use HasContentResourceAccess;
+
     protected static ?string $model = Dokumen::class;
 
     protected static ?string $recordTitleAttribute = 'judul';

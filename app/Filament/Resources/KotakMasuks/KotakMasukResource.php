@@ -7,6 +7,7 @@ use App\Filament\Resources\KotakMasuks\Pages\ViewKotakMasuk;
 use App\Filament\Resources\KotakMasuks\Schemas\KotakMasukInfolist;
 use App\Filament\Resources\KotakMasuks\Tables\KotakMasuksTable;
 use App\Models\KotakMasuk;
+use App\Enums\Role;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -27,6 +28,13 @@ class KotakMasukResource extends Resource
     protected static ?string $pluralLabel = 'Kotak Masuk';
 
     protected static string|UnitEnum|null $navigationGroup = 'Manajemen';
+
+    public static function canAccess(): bool
+    {
+        $user = \Illuminate\Support\Facades\Auth::user();
+
+        return $user?->hasRole(Role::Root, Role::Admin, Role::Reviewer) ?? false;
+    }
 
     public static function getNavigationBadge(): ?string
     {

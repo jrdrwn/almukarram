@@ -8,6 +8,7 @@ use App\Filament\Resources\JadwalJumats\Pages\ListJadwalJumats;
 use App\Filament\Resources\JadwalJumats\Schemas\JadwalJumatForm;
 use App\Filament\Resources\JadwalJumats\Tables\JadwalJumatsTable;
 use App\Models\JadwalJumat;
+use App\Traits\HasAdminResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,6 +18,8 @@ use UnitEnum;
 
 class JadwalJumatResource extends Resource
 {
+    use HasAdminResourceAccess;
+
     protected static ?string $model = JadwalJumat::class;
 
     protected static ?string $recordTitleAttribute = 'khatib';

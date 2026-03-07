@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Filament\Resources\Users;
+
+use App\Enums\Role;
+use App\Filament\Resources\Users\Pages\CreateUser;
+use App\Filament\Resources\Users\Pages\EditUser;
+use App\Filament\Resources\Users\Pages\ListUsers;
+use App\Filament\Resources\Users\Schemas\UserForm;
+use App\Filament\Resources\Users\Tables\UsersTable;
+use App\Models\User;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use UnitEnum;
+
+class UserResource extends Resource
+{
+    protected static ?string $model = User::class;
+
+    protected static ?string $recordTitleAttribute = 'name';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
+
+    protected static ?string $navigationLabel = 'Pengguna';
+
+    protected static ?string $pluralLabel = 'Pengguna';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Manajemen';
+
+    protected static ?int $navigationSort = 10;
+
+    public static function canAccess(): bool
+    {
+        /** @var User|null $user */
+        $user = Auth::user();
+
+        return $user?->hasRole(Role::Root, Role::Admin) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return static::canAccess();
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        /** @var User|null $auth */
+        $auth = Auth::user();
+
+        if (! $auth) {
+            return false;
+        }
+
+        // Root can edit anyone
+        if ($auth->isRoot()) {
+            return true;
+        }
+
+        // Admin can edit penulis and reviewer only, not root or other admins
+        if ($auth->isAdmin()) {
+            /** @var User $record */
+            return $record instanceof User && $record->hasRole(Role::Penulis, Role::Reviewer);
+        }
+
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        /** @var User|null $auth */
+        $auth = Auth::user();
+
+        if (! $auth?->isRoot()) {
+            return false;
+        }
+
+        // Cannot delete yourself
+        return $record->id !== $auth->id;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return Auth::user()?->isRoot() ?? false;
+    }
+
+    public static function form(Schema $schema): Schema
+    {
+        return UserForm::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return UsersTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index'  => ListUsers::route('/'),
+            'create' => CreateUser::route('/create'),
+            'edit'   => EditUser::route('/{record}/edit'),
+        ];
+    }
+}
