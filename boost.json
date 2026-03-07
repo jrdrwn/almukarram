@@ -2,11 +2,9 @@
     "agents": [
         "copilot"
     ],
-    "packages": [
-        "inertiajs/inertia-laravel"
-    ],
     "skills": [
         "wayfinder-development",
+        "livewire-development",
         "pest-testing",
         "inertia-react-development",
         "tailwindcss-development"
