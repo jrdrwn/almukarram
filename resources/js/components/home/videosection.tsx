@@ -25,11 +25,11 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
             <div className="absolute inset-0 z-0 bg-zinc-950"></div>
 
             {/* Subtle radial glow */}
-            <div className="pointer-events-none absolute top-0 left-1/2 z-0 h-[30rem] w-[60rem] -translate-x-1/2 rounded-full bg-emerald-700 opacity-20 blur-[120px]"></div>
+            <div className="pointer-events-none absolute top-0 left-1/2 z-0 h-120 w-240 -translate-x-1/2 rounded-full bg-emerald-700 opacity-20 blur-[120px]"></div>
 
             {/* GIANT WATERMARK */}
             <div className="pointer-events-none absolute top-16 left-0 z-0 flex w-full justify-center overflow-hidden opacity-[0.05]">
-                <span className="text-[12rem] leading-none font-black tracking-tighter text-white select-none sm:text-[16rem] lg:text-[20rem]">
+                <span className="text-[5.5rem] leading-none font-black tracking-tighter text-white select-none sm:text-[11rem] lg:text-[18rem]">
                     VIDEO
                 </span>
             </div>
@@ -60,9 +60,9 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
                         href="https://www.youtube.com/@almukarram"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex h-16 shrink-0 items-center justify-center gap-3 rounded-full bg-red-600 pr-6 pl-6 font-bold text-white shadow-lg shadow-red-900/30 transition-all hover:scale-105 hover:bg-red-500"
+                        className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-5 text-sm font-bold text-white shadow-lg shadow-emerald-900/30 transition-all hover:scale-[1.02] hover:bg-emerald-500 sm:h-14 sm:w-auto sm:px-6 sm:text-base"
                     >
-                        <Youtube className="h-6 w-6" />
+                        <Youtube className="h-5 w-5 sm:h-6 sm:w-6" />
                         Lihat Channel YouTube
                     </a>
                 </div>
@@ -70,8 +70,8 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
                 {/* Carousel */}
                 <Carousel opts={{ loop: true, align: 'start' }}>
                     <div className="mb-6 flex flex-row items-center justify-end gap-3">
-                        <CarouselPrevious className="static top-auto -translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600" />
-                        <CarouselNext className="static top-auto -translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600" />
+                        <CarouselPrevious className="static top-auto translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600" />
+                        <CarouselNext className="static top-auto translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600" />
                     </div>
                     <CarouselContent className="-ml-4">
                         {videos.map((video) => (
@@ -95,7 +95,7 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
                                         }}
                                     />
                                     {/* Dark gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent"></div>
 
                                     {/* Play Button */}
                                     <div className="absolute inset-0 flex items-center justify-center">

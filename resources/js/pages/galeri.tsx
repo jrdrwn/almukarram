@@ -13,7 +13,7 @@ import {
     X,
     Youtube,
 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 
 import Footer from '@/components/shared/footer';
@@ -69,8 +69,17 @@ interface GaleriProps {
     videos?: VideoItem[];
 }
 
+const resolveTabFromHash = (hash: string): 'foto' | 'video' => {
+    if (hash === '#video') return 'video';
+    if (hash === '#foto' || hash === '#photo') return 'foto';
+    return 'foto';
+};
+
 export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
-    const [activeTab, setActiveTab] = useState('foto');
+    const [activeTab, setActiveTab] = useState<'foto' | 'video'>(() => {
+        if (typeof window === 'undefined') return 'foto';
+        return resolveTabFromHash(window.location.hash);
+    });
     const [searchTitle, setSearchTitle] = useState('');
     const [selectedMonth, setSelectedMonth] = useState('Semua Bulan');
     const [currentPage, setCurrentPage] = useState(1);
@@ -81,6 +90,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
     const [videoSearch, setVideoSearch] = useState('');
     const [videoCategory, setVideoCategory] = useState('Semua Kategori');
     const [videoPage, setVideoPage] = useState(1);
+    const tabsAnchorRef = useRef<HTMLDivElement | null>(null);
     const albumsPerPage = 6;
     const videosPerPage = 6;
 
@@ -150,6 +160,29 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
         setCurrentPage((prev) => Math.min(prev, totalAlbumPages));
     }, [totalAlbumPages]);
 
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const applyHashTab = (shouldScroll = false) => {
+            const nextTab = resolveTabFromHash(window.location.hash);
+            setActiveTab(nextTab);
+
+            if (shouldScroll) {
+                tabsAnchorRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                });
+            }
+        };
+
+        applyHashTab();
+
+        const handleHashChange = () => applyHashTab(true);
+        window.addEventListener('hashchange', handleHashChange);
+
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+
     // Auto Play Logic
     useEffect(() => {
         let interval: any;
@@ -202,7 +235,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
 
                 <div className="relative z-10 mx-auto -mt-24 max-w-7xl px-4 sm:px-6 lg:px-8">
                     {/* Tabs Toggle */}
-                    <div className="mb-10 flex justify-center">
+                    <div ref={tabsAnchorRef} className="mb-10 flex justify-center">
                         <Tabs
                             value={activeTab}
                             onValueChange={(v) => {
@@ -212,6 +245,18 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                 setSelectedMonth('Semua Bulan');
                                 setVideoCategory('Semua Kategori');
                                 setVideoPage(1);
+
+                                if (typeof window !== 'undefined') {
+                                    const nextHash =
+                                        v === 'video' ? '#video' : '#foto';
+                                    if (window.location.hash !== nextHash) {
+                                        window.history.replaceState(
+                                            null,
+                                            '',
+                                            `${window.location.pathname}${window.location.search}${nextHash}`,
+                                        );
+                                    }
+                                }
                             }}
                             className="w-full"
                         >
@@ -220,7 +265,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                     <TabsList className="flex h-auto gap-0 bg-transparent p-0">
                                         <TabsTrigger
                                             value="foto"
-                                            className="flex items-center gap-2.5 rounded-none border-0 px-10 py-4 text-base font-bold text-muted-foreground transition-all duration-200 data-[state=active]:bg-[#005B41] data-[state=active]:text-white data-[state=active]:shadow-none"
+                                            className="flex items-center gap-2 rounded-none border-0 px-6 py-3 text-sm font-bold text-muted-foreground transition-all duration-200 data-[state=active]:bg-[#005B41] data-[state=active]:text-white data-[state=active]:shadow-none sm:gap-2.5 sm:px-10 sm:py-4 sm:text-base"
                                         >
                                             <ImageIcon className="h-5 w-5" />{' '}
                                             Foto
@@ -228,7 +273,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                         <div className="my-3 w-px bg-border" />
                                         <TabsTrigger
                                             value="video"
-                                            className="flex items-center gap-2.5 rounded-none border-0 px-10 py-4 text-base font-bold text-muted-foreground transition-all duration-200 data-[state=active]:bg-[#005B41] data-[state=active]:text-white data-[state=active]:shadow-none"
+                                            className="flex items-center gap-2 rounded-none border-0 px-6 py-3 text-sm font-bold text-muted-foreground transition-all duration-200 data-[state=active]:bg-[#005B41] data-[state=active]:text-white data-[state=active]:shadow-none sm:gap-2.5 sm:px-10 sm:py-4 sm:text-base"
                                         >
                                             <Video className="h-5 w-5" /> Video
                                         </TabsTrigger>

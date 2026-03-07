@@ -64,7 +64,7 @@ export default function JadwalJumat({
             <div className="mx-auto max-w-380 space-y-16 px-4 py-16 sm:px-6 lg:px-8">
                 {/* Section Jadwal Pekan Ini - Hero Card */}
                 {jadwalMingguIni ? (
-                <div className="relative overflow-hidden rounded-[3rem] bg-emerald-950 px-6 py-16 shadow-2xl sm:px-16 sm:py-20 lg:p-20">
+                <div className="relative overflow-hidden rounded-[2.25rem] bg-emerald-950 px-5 py-10 shadow-2xl sm:rounded-[3rem] sm:px-16 sm:py-20 lg:p-20">
                     {/* Background Decorative patterns */}
                     <div className="absolute -top-10 -left-10 h-64 w-64 rounded-full bg-emerald-800/30 blur-[60px]"></div>
                     <div className="absolute -right-20 -bottom-20 h-80 w-80 rounded-full bg-emerald-600/20 blur-[80px]"></div>
@@ -93,7 +93,7 @@ export default function JadwalJumat({
                             </p>
 
                             <div className="mt-8 flex flex-wrap gap-4">
-                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 shadow-inner backdrop-blur-md transition-transform hover:-translate-y-1">
+                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 shadow-inner backdrop-blur-md transition-transform hover:-translate-y-1 sm:px-6 sm:py-5">
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
                                         <Calendar className="h-6 w-6" />
                                     </div>
@@ -106,7 +106,7 @@ export default function JadwalJumat({
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 shadow-inner backdrop-blur-md transition-transform hover:-translate-y-1">
+                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 shadow-inner backdrop-blur-md transition-transform hover:-translate-y-1 sm:px-6 sm:py-5">
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
                                         <Clock className="h-6 w-6" />
                                     </div>
@@ -190,7 +190,7 @@ export default function JadwalJumat({
                                 <CalendarDays className="h-8 w-8 text-emerald-600" />
                                 Jadwal Jumat Selanjutnya
                             </h3>
-                            <p className="mt-2 ml-11 text-zinc-500 dark:text-zinc-400">
+                            <p className="mt-2 text-zinc-500 md:ml-11 dark:text-zinc-400">
                                 Rincian daftar khatib, imam, dan petugas untuk
                                 beberapa pekan ke depan.
                             </p>
@@ -201,7 +201,7 @@ export default function JadwalJumat({
                         {jadwalSelanjutnya.map((schedule, i) => (
                             <div
                                 key={i}
-                                className="group relative overflow-hidden rounded-3xl border border-emerald-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
+                                className="group relative overflow-hidden rounded-3xl border border-emerald-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-xl sm:p-8 dark:border-zinc-800 dark:bg-zinc-900"
                             >
                                 {/* Top Highlight Accent */}
                                 <div className="absolute top-0 left-0 h-1.5 w-full origin-left scale-x-0 transform bg-emerald-500 transition-transform duration-500 ease-out group-hover:scale-x-100"></div>

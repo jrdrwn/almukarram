@@ -26,7 +26,6 @@ import {
     Network,
     Newspaper,
     Phone,
-    SearchIcon,
     Wrench,
 } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
@@ -66,12 +65,12 @@ const navigationItems: NavItem[] = [
             {
                 label: 'Sejarah Singkat',
                 href: '/sejarah-singkat',
-                icon: <History className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <History className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Struktur Organisasi',
                 href: '/struktur-organisasi',
-                icon: <Network className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Network className="mr-2 h-4 w-4 text-primary" />,
             },
         ],
     },
@@ -83,31 +82,31 @@ const navigationItems: NavItem[] = [
             {
                 label: 'Program Masjid',
                 href: '/program-masjid',
-                icon: <Building2 className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Building2 className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Program Kerja Pengurus',
-                icon: <Briefcase className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Briefcase className="mr-2 h-4 w-4 text-primary" />,
                 sub: [
                     {
                         label: 'Idarah',
                         href: '/program-idarah',
                         icon: (
-                            <LayoutDashboard className="mr-2 h-4 w-4 text-emerald-600" />
+                            <LayoutDashboard className="mr-2 h-4 w-4 text-primary" />
                         ),
                     },
                     {
                         label: 'Imarah',
                         href: '/program-imarah',
                         icon: (
-                            <HeartHandshake className="mr-2 h-4 w-4 text-emerald-600" />
+                            <HeartHandshake className="mr-2 h-4 w-4 text-primary" />
                         ),
                     },
                     {
                         label: 'Riayah',
                         href: '/program-riayah',
                         icon: (
-                            <Wrench className="mr-2 h-4 w-4 text-emerald-600" />
+                            <Wrench className="mr-2 h-4 w-4 text-primary" />
                         ),
                     },
                 ],
@@ -122,29 +121,29 @@ const navigationItems: NavItem[] = [
             {
                 label: "Al-Qur'an Kemenag",
                 href: 'https://quran.kemenag.go.id/',
-                icon: <Book className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Book className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Berita',
                 href: '/berita',
-                icon: <Newspaper className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Newspaper className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Opini',
                 href: '/opini',
                 icon: (
-                    <MessageSquare className="mr-2 h-4 w-4 text-emerald-600" />
+                    <MessageSquare className="mr-2 h-4 w-4 text-primary" />
                 ),
             },
             {
                 label: 'Buletin',
                 href: '/buletin',
-                icon: <FileText className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <FileText className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Spot Baca',
                 href: '/spot-baca',
-                icon: <MapPin className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <MapPin className="mr-2 h-4 w-4 text-primary" />,
             },
         ],
     },
@@ -166,34 +165,34 @@ const navigationItems: NavItem[] = [
             {
                 label: 'Jadwal Sholat',
                 href: '/jadwal-sholat',
-                icon: <Clock className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Clock className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Jadwal & Petugas Jumat',
                 href: '/jadwal-jumat',
                 icon: (
-                    <CalendarDays className="mr-2 h-4 w-4 text-emerald-600" />
+                    <CalendarDays className="mr-2 h-4 w-4 text-primary" />
                 ),
             },
             {
                 label: 'Jadwal Pengajian',
                 href: '/jadwal-pengajian',
-                icon: <Book className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Book className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Hitung Zakat',
                 href: '/hitung-zakat',
-                icon: <Calculator className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Calculator className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Informasi Haji',
                 href: 'https://haji.go.id/estimasi-keberangkatan',
-                icon: <Compass className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <Compass className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Waqaf, Infaq, Shadaqah',
                 href: '/zis',
-                icon: <HandCoins className="mr-2 h-4 w-4 text-emerald-600" />,
+                icon: <HandCoins className="mr-2 h-4 w-4 text-primary" />,
             },
         ],
     },
@@ -246,21 +245,20 @@ export default function Header() {
                                     pengumuman.map((item, idx) => (
                                         <React.Fragment key={idx}>
                                             •
-                                            <span className="mx-4">
-                                                {item}
-                                            </span>
+                                            <span className="mx-4">{item}</span>
                                         </React.Fragment>
                                     ))
                                 ) : (
                                     <>
                                         •
                                         <span className="mx-4">
-                                            Masjid Agung Al-Mukarram Amanah - Selamat
-                                            Datang di Website Resmi
+                                            Masjid Agung Al-Mukarram Amanah -
+                                            Selamat Datang di Website Resmi
                                         </span>
                                         •
                                         <span className="mx-4 font-medium text-emerald-600">
-                                            Mari tunaikan Shalat tepat pada waktunya.
+                                            Mari tunaikan Shalat tepat pada
+                                            waktunya.
                                         </span>
                                     </>
                                 )}
@@ -323,16 +321,12 @@ export default function Header() {
                         </Button>
                     </div>
                     <div className="flex items-center justify-end gap-2 lg:hidden">
-                        <Link href="/search" className="block lg:hidden">
-                            <Button variant={'ghost'}>
-                                <SearchIcon />
-                            </Button>
-                        </Link>
                         {/* <ModeToggle /> */}
 
                         {/* Mobile Hamburger */}
                         <Button
                             size={'icon'}
+                            className="rounded-full"
                             onClick={() => setMobileOpen(true)}
                             aria-label="Open menu"
                             variant={'outline'}
@@ -351,14 +345,13 @@ export default function Header() {
                 <DrawerContent className="w-4/5 max-w-xs p-0">
                     <DrawerHeader className="flex flex-row items-center justify-between border-b px-4 py-3">
                         {/* <img src="/logo.png" alt="Logo" className="h-8" /> */}
+                        <h2 className="text-lg font-bold">Menu</h2>
                         <DrawerClose asChild>
-                            <Button
-                                variant={'destructive'}
-                                aria-label="Close menu"
-                            >
+                            <Button variant={'outline'} aria-label="Close menu" className='rounded-full'>
                                 <CloseIcon />
                             </Button>
                         </DrawerClose>
+                        {/* ada ide? disamping tombol close ini apa? */}
                     </DrawerHeader>
                     <nav className="flex-1 overflow-y-auto py-2">
                         <MobileMenu

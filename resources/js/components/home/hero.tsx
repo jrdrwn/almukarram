@@ -89,7 +89,7 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                 Kapuas
                             </p>
 
-                            <h1 className="mb-8 text-5xl leading-[1.1] font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+                            <h1 className="mb-6 text-4xl leading-[1.1] font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
                                 MASJID AGUNG
                                 <br />
                                 <span className="text-primary drop-shadow-sm">
@@ -97,7 +97,7 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                 </span>
                             </h1>
 
-                            <div className="relative mb-12 max-w-3xl text-lg leading-relaxed font-light text-white/90 italic md:text-xl">
+                            <div className="relative mb-10 max-w-3xl text-base leading-relaxed font-light text-white/90 italic sm:text-lg md:text-xl">
                                 <span className="absolute -top-4 -left-6 text-4xl text-primary/40">
                                     "
                                 </span>
@@ -112,7 +112,7 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                 </span>
                             </div>
 
-                            <div className="mb-20 flex flex-wrap items-center justify-center gap-4 md:mb-16">
+                            <div className="mb-8 flex flex-wrap items-center justify-center gap-4 md:mb-16">
                                 <Link
                                     href="#"
                                     className="group flex items-center gap-3 rounded-full bg-primary px-8 py-4 font-medium text-primary-foreground shadow-[0_0_20px_var(--color-primary)] transition-all duration-300 hover:scale-105 hover:bg-primary/90 hover:opacity-90"
@@ -122,6 +122,54 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                         <ArrowUpRight className="h-4 w-4" />
                                     </div>
                                 </Link>
+                            </div>
+
+                            {/* Mobile Widgets */}
+                            <div className="z-20 flex w-full max-w-md flex-col gap-2 px-1 md:hidden">
+                                <div className="flex items-start gap-2 rounded-2xl border border-white/10 bg-white/10 px-3 py-2 text-left shadow-xl backdrop-blur-md">
+                                    <div className="relative mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-primary/80 to-primary/20 shadow-inner">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="white"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                                            <line x1="16" x2="16" y1="2" y2="6" />
+                                            <line x1="8" x2="8" y1="2" y2="6" />
+                                            <line x1="3" x2="21" y1="10" y2="10" />
+                                        </svg>
+                                    </div>
+                                    <div className="min-w-0">
+                                        <div className="text-[10px] font-medium tracking-wider text-primary/80 uppercase">
+                                            Agenda Terdekat
+                                        </div>
+                                        <div className="line-clamp-1 text-xs font-semibold text-white">
+                                            {agendaTerdekat
+                                                ? agendaTerdekat.judul
+                                                : 'Belum ada agenda'}
+                                        </div>
+                                        <div className="line-clamp-1 text-[11px] text-white/70">
+                                            {agendaTerdekat
+                                                ? new Date(
+                                                      agendaTerdekat.tanggal_mulai,
+                                                  ).toLocaleDateString(
+                                                      'id-ID',
+                                                      {
+                                                          weekday: 'long',
+                                                          day: 'numeric',
+                                                          month: 'long',
+                                                      },
+                                                  )
+                                                : '-'}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

@@ -113,7 +113,10 @@ export default function JadwalPengajian({
         return matchesSearch && matchesStatus && matchesType;
     });
 
-    const totalPages = Math.ceil(filteredJadwal.length / itemsPerPage);
+    const totalPages = Math.max(
+        1,
+        Math.ceil(filteredJadwal.length / itemsPerPage),
+    );
     const paginatedJadwal = filteredJadwal.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage,
@@ -349,7 +352,7 @@ export default function JadwalPengajian({
                 {/* Pagination */}
                 <div className="mt-12 mb-8">
                     <Pagination>
-                        <PaginationContent>
+                        <PaginationContent className="flex-wrap justify-center gap-1">
                             <PaginationItem>
                                 <PaginationPrevious
                                     href="#"
@@ -366,20 +369,51 @@ export default function JadwalPengajian({
                                 />
                             </PaginationItem>
 
-                            {[...Array(totalPages)].map((_, i) => (
-                                <PaginationItem key={i}>
-                                    <PaginationLink
-                                        href="#"
-                                        isActive={currentPage === i + 1}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            setCurrentPage(i + 1);
-                                        }}
-                                    >
-                                        {i + 1}
-                                    </PaginationLink>
-                                </PaginationItem>
-                            ))}
+                            {Array.from(
+                                { length: totalPages },
+                                (_, i) => i + 1,
+                            ).map((page) => {
+                                const isCurrent = page === currentPage;
+                                const shouldShow =
+                                    page === 1 ||
+                                    page === totalPages ||
+                                    (page >= currentPage - 1 &&
+                                        page <= currentPage + 1);
+
+                                if (!shouldShow) {
+                                    if (
+                                        page === currentPage - 2 ||
+                                        page === currentPage + 2
+                                    ) {
+                                        return (
+                                            <PaginationItem
+                                                key={`ellipsis-${page}`}
+                                            >
+                                                <span className="px-2 text-zinc-400">
+                                                    ...
+                                                </span>
+                                            </PaginationItem>
+                                        );
+                                    }
+
+                                    return null;
+                                }
+
+                                return (
+                                    <PaginationItem key={page}>
+                                        <PaginationLink
+                                            href="#"
+                                            isActive={isCurrent}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setCurrentPage(page);
+                                            }}
+                                        >
+                                            {page}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                );
+                            })}
 
                             <PaginationItem>
                                 <PaginationNext
@@ -402,7 +436,7 @@ export default function JadwalPengajian({
 
                 {/* Info Note */}
                 <div className="mt-16 flex justify-center">
-                    <div className="inline-flex items-center gap-3 rounded-full border border-amber-200 bg-amber-50 px-6 py-3 text-sm text-amber-800 dark:border-amber-800/30 dark:bg-amber-900/20 dark:text-amber-500">
+                    <div className="inline-flex w-full max-w-3xl flex-wrap items-center justify-center gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-3 text-center text-sm text-amber-800 sm:rounded-full sm:px-6 dark:border-amber-800/30 dark:bg-amber-900/20 dark:text-amber-500">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"

@@ -1,4 +1,5 @@
 import { useJadwalSholat } from '@/hooks/use-jadwal-sholat';
+import { Link } from '@inertiajs/react';
 import { ArrowRight, ImageIcon, Play } from 'lucide-react';
 
 import { useState } from 'react';
@@ -8,6 +9,12 @@ export default function JadwalMultimediaSection() {
     const [activeMediaTab, setActiveMediaTab] = useState<'video' | 'photo'>(
         'video',
     );
+    const photoPreviews = [
+        '/images/masjidnewww-scaled.png',
+        '/images/pose_change_4.png',
+        '/images/logomasjid.png',
+        '/images/Scan-QR-Code.png',
+    ];
 
     const prayerTimes = jadwalSholat
         ? [
@@ -121,7 +128,7 @@ export default function JadwalMultimediaSection() {
                             {/* Border Glow Effect */}
                             <div className="absolute inset-0 bg-linear-to-br from-primary via-blue-500 to-transparent opacity-30"></div>
 
-                            <div className="group relative flex h-full min-h-125 flex-col justify-between overflow-hidden rounded-[2.85rem] bg-zinc-950 p-8 sm:p-12">
+                            <div className="group relative flex h-full min-h-120 flex-col justify-between overflow-hidden rounded-[2.85rem] bg-zinc-950 p-6 sm:min-h-125 sm:p-12">
                                 {/* Abstract background pattern for card */}
                                 <div className="absolute inset-0 z-0">
                                     <div className="absolute top-[-10%] -right-[10%] h-75 w-75 rounded-full bg-primary/20 blur-[80px] transition-transform duration-1000 group-hover:scale-110"></div>
@@ -192,13 +199,24 @@ export default function JadwalMultimediaSection() {
                                         </>
                                     ) : (
                                         <>
-                                            {/* Photo grid icon or stack visualization */}
-                                            <div className="relative flex h-16 w-16 items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                                                <div className="absolute h-14 w-14 rotate-12 rounded-xl border-2 border-white/20 bg-blue-500/20 backdrop-blur-md"></div>
-                                                <div className="absolute h-14 w-14 -rotate-6 rounded-xl border-2 border-white/20 bg-primary/20 backdrop-blur-md"></div>
-                                                <div className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-blue-600 text-white shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-colors group-hover:bg-white group-hover:text-blue-600">
-                                                    <ImageIcon className="h-7 w-7" />
-                                                </div>
+                                            {/* Deterministic preview grid (non-random) */}
+                                            <div className="grid w-full max-w-70 grid-cols-2 gap-2 px-4">
+                                                {photoPreviews.map((src, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className="aspect-video overflow-hidden rounded-xl border border-white/10 bg-zinc-800/70"
+                                                    >
+                                                        <img
+                                                            src={src}
+                                                            alt={`Preview foto ${idx + 1}`}
+                                                            onError={(e) => {
+                                                                e.currentTarget.src =
+                                                                    '/images/masjidnewww-scaled.png';
+                                                            }}
+                                                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                        />
+                                                    </div>
+                                                ))}
                                             </div>
                                             <span className="mt-4 text-sm font-semibold tracking-wider text-white/70 transition-colors group-hover:text-white">
                                                 Lihat Semua Foto
@@ -208,8 +226,15 @@ export default function JadwalMultimediaSection() {
                                 </div>
 
                                 <div className="relative z-10">
-                                    <button className="group/btn relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-8 py-5 font-bold text-zinc-950 transition-transform hover:scale-[1.02]">
-                                        <span className="relative z-10 flex items-center gap-2 text-lg">
+                                    <Link
+                                        href={
+                                            activeMediaTab === 'video'
+                                                ? '/galeri#video'
+                                                : '/galeri#foto'
+                                        }
+                                        className="group/btn relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-6 py-4 font-bold text-zinc-950 transition-transform hover:scale-[1.02] sm:px-8 sm:py-5"
+                                    >
+                                        <span className="relative z-10 flex items-center gap-2 text-base sm:text-lg">
                                             {activeMediaTab === 'video'
                                                 ? 'Kunjungi Galeri Video'
                                                 : 'Kunjungi Galeri Foto'}
@@ -218,13 +243,13 @@ export default function JadwalMultimediaSection() {
                                             className={`absolute inset-0 z-0 bg-linear-to-r opacity-0 transition-opacity duration-300 group-hover/btn:opacity-100 ${activeMediaTab === 'video' ? 'from-primary to-emerald-500' : 'from-blue-600 to-indigo-500'}`}
                                         ></div>
                                         {/* Swap text color on hover */}
-                                        <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-lg text-white opacity-0 transition-opacity duration-300 group-hover/btn:opacity-100">
+                                        <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-base text-white opacity-0 transition-opacity duration-300 group-hover/btn:opacity-100 sm:text-lg">
                                             {activeMediaTab === 'video'
                                                 ? 'Kunjungi Galeri Video'
                                                 : 'Kunjungi Galeri Foto'}
                                             <ArrowRight className="h-5 w-5 transition-transform group-hover/btn:translate-x-1" />
                                         </span>
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
