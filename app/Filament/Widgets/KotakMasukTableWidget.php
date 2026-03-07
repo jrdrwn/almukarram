@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class KotakMasukTableWidget extends TableWidget
 {
-    protected static ?int $sort = 6;
+    protected static ?int $sort = 7;
 
     protected int|string|array $columnSpan = 'full';
 

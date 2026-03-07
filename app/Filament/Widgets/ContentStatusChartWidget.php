@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ContentStatusChartWidget extends ChartWidget
 {
-    protected static ?int $sort = 2;
+    protected static ?int $sort = 3;
 
     protected string $color = 'primary';
 
@@ -23,7 +23,7 @@ class ContentStatusChartWidget extends ChartWidget
 
     protected ?string $description = 'Perbandingan konten dipublikasikan vs draft';
 
-    protected int|string|array $columnSpan = 1;
+    protected int|string|array $columnSpan = 2;
 
     public static function canView(): bool
     {

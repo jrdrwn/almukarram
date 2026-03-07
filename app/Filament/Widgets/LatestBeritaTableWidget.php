@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LatestBeritaTableWidget extends TableWidget
 {
-    protected static ?int $sort = 4;
+    protected static ?int $sort = 6;
 
     protected int|string|array $columnSpan = 'full';
 
@@ -54,7 +54,7 @@ class LatestBeritaTableWidget extends TableWidget
                     ->label('Penulis')
                     ->placeholder('-'),
                 TextColumn::make('views')
-                    ->label('Views')
+                    ->label('Tayang')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('status')

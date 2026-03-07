@@ -6,9 +6,13 @@ use Filament\Pages\Dashboard as BaseDashboard;
 
 class Dashboard extends BaseDashboard
 {
-    /** Suppress the default Filament page heading — the WelcomeBannerWidget handles this. */
     public function getHeading(): string
     {
         return '';
+    }
+
+    public function getColumns(): int|array
+    {
+        return 3;
     }
 }
