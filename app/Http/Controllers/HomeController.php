@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use App\Models\JadwalJumat;
 use App\Models\JadwalPengajian;
+use App\Models\JadwalSholat;
 use App\Models\Opini;
 use App\Models\Pengumuman;
 use App\Models\Vidio;
@@ -19,10 +20,7 @@ class HomeController extends Controller
         $today = Carbon::today();
 
         return Inertia::render('home', [
-            'agendaTerdekat' => fn () => Pengumuman::query()
-                ->where('tanggal_mulai', '>=', $today)
-                ->orderBy('tanggal_mulai')
-                ->first(['judul', 'tanggal_mulai']),
+            'agendaTerdekat' => fn () => $this->resolveRandomAgenda($today),
 
             'beritaUtama' => fn () => Berita::query()
                 ->where('status', 'published')
@@ -63,5 +61,74 @@ class HomeController extends Controller
                 ->take(4)
                 ->get(['id', 'hari', 'tanggal', 'waktu', 'judul', 'pemateri', 'tipe']),
         ]);
+    }
+
+    /**
+     * Build one random agenda source shown in the hero section on page entry.
+     */
+    protected function resolveRandomAgenda(Carbon $today): ?array
+    {
+        $candidates = [];
+
+        $pengumuman = Pengumuman::query()
+            ->whereDate('tanggal_mulai', '>=', $today)
+            ->orderBy('tanggal_mulai')
+            ->first(['judul', 'tanggal_mulai']);
+
+        if ($pengumuman) {
+            $candidates[] = [
+                'judul' => $pengumuman->judul,
+                'tanggal_mulai' => optional($pengumuman->tanggal_mulai)?->toDateString(),
+                'sumber' => 'pengumuman',
+            ];
+        }
+
+        $jadwalJumat = JadwalJumat::query()
+            ->whereDate('tanggal', '>=', $today)
+            ->orderBy('tanggal')
+            ->first(['tanggal', 'khatib']);
+
+        if ($jadwalJumat) {
+            $candidates[] = [
+                'judul' => $jadwalJumat->khatib
+                    ? 'Jadwal Jumat - Khatib: ' . $jadwalJumat->khatib
+                    : 'Jadwal Salat Jumat',
+                'tanggal_mulai' => optional($jadwalJumat->tanggal)?->toDateString(),
+                'sumber' => 'jumat',
+            ];
+        }
+
+        $jadwalSholat = JadwalSholat::query()
+            ->whereDate('tanggal', '>=', $today)
+            ->orderBy('tanggal')
+            ->first(['tanggal']);
+
+        if ($jadwalSholat) {
+            $candidates[] = [
+                'judul' => 'Jadwal Salat Harian',
+                'tanggal_mulai' => optional($jadwalSholat->tanggal)?->toDateString(),
+                'sumber' => 'sholat',
+            ];
+        }
+
+        $jadwalPengajian = JadwalPengajian::query()
+            ->whereIn('status', ['Akan Datang', 'Berlangsung'])
+            ->whereDate('tanggal', '>=', $today)
+            ->orderBy('tanggal')
+            ->first(['judul', 'tanggal']);
+
+        if ($jadwalPengajian) {
+            $candidates[] = [
+                'judul' => $jadwalPengajian->judul,
+                'tanggal_mulai' => optional($jadwalPengajian->tanggal)?->toDateString(),
+                'sumber' => 'pengajian',
+            ];
+        }
+
+        if (empty($candidates)) {
+            return null;
+        }
+
+        return $candidates[array_rand($candidates)];
     }
 }

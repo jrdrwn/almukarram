@@ -146,7 +146,7 @@ export default function DokumenSearch({
     return (
         <div className="relative z-10 mb-8 flex flex-col gap-4">
             <form onSubmit={handleSearch} className="group relative">
-                <div className="absolute -inset-1 rounded-2xl bg-linear-to-r from-emerald-500/20 to-teal-500/20 opacity-25 blur transition duration-500 group-hover:opacity-50"></div>
+                <div className="absolute -inset-1 rounded-2xl bg-linear-to-r from-emerald-500/20 to-teal-500/20 opacity-25 blur transition duration-500 group-hover:opacity-50 group-active:opacity-50"></div>
                 <div className="relative flex items-center rounded-2xl bg-white p-1.5 shadow-sm ring-1 ring-emerald-500/20 transition-all focus-within:ring-2 focus-within:ring-emerald-500 dark:bg-zinc-900">
                     <div className="pr-2 pl-4 text-emerald-600 dark:text-emerald-400">
                         <Search className="h-5 w-5" />
@@ -164,7 +164,7 @@ export default function DokumenSearch({
                         type="button"
                         variant="ghost"
                         size="icon"
-                        className="mr-1 text-zinc-500 hover:text-emerald-600 md:hidden"
+                        className="mr-1 text-zinc-500 hover:text-emerald-600 active:text-emerald-600 md:hidden"
                         onClick={() => setIsFilterOpen(!isFilterOpen)}
                     >
                         <Filter className="h-5 w-5" />
@@ -172,7 +172,7 @@ export default function DokumenSearch({
 
                     <Button
                         type="submit"
-                        className="rounded-xl bg-emerald-600 px-4 py-6 font-semibold text-white shadow-md transition-transform hover:scale-[1.02] hover:bg-emerald-700 md:px-6"
+                        className="rounded-xl bg-emerald-600 px-4 py-6 font-semibold text-white shadow-md transition-transform hover:scale-[1.02] hover:bg-emerald-700 active:scale-[1.02] active:bg-emerald-700 md:px-6"
                     >
                         Cari
                     </Button>
@@ -235,7 +235,7 @@ export default function DokumenSearch({
                                 id="date"
                                 variant={'outline'}
                                 className={cn(
-                                    'h-11! w-full justify-start rounded-xl border-zinc-200 bg-white text-left font-normal shadow-sm hover:bg-zinc-50 focus:ring-emerald-500 dark:border-zinc-800 dark:bg-zinc-900',
+                                    'h-11! w-full justify-start rounded-xl border-zinc-200 bg-white text-left font-normal shadow-sm hover:bg-zinc-50 focus:ring-emerald-500 active:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900',
                                     !date && 'text-muted-foreground',
                                 )}
                             >
@@ -280,14 +280,14 @@ export default function DokumenSearch({
                                     variant="ghost"
                                     size="sm"
                                     onClick={clearDateFilter}
-                                    className="h-9 rounded-lg hover:bg-red-50 hover:text-red-600"
+                                    className="h-9 rounded-lg hover:bg-red-50 hover:text-red-600 active:bg-red-50 active:text-red-600"
                                 >
                                     Hapus
                                 </Button>
                                 <Button
                                     size="sm"
                                     onClick={applyDateFilter}
-                                    className="h-9 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700"
+                                    className="h-9 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-700"
                                 >
                                     Terapkan
                                 </Button>
@@ -405,7 +405,7 @@ export default function DokumenSearch({
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="ml-auto h-9 rounded-xl px-4 text-red-500 hover:bg-red-50 hover:text-red-600 md:ml-0 dark:hover:bg-red-950/30"
+                        className="ml-auto h-9 rounded-xl px-4 text-red-500 hover:bg-red-50 hover:text-red-600 active:bg-red-50 active:bg-red-950/30 active:text-red-600 md:ml-0 dark:hover:bg-red-950/30"
                         onClick={() => router.get('/dokumen')}
                     >
                         <X className="mr-1.5 h-4 w-4" />

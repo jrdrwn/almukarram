@@ -49,7 +49,7 @@ export default function SpotBacaCta() {
                         <Button
                             asChild
                             size="lg"
-                            className="h-14 rounded-full bg-emerald-600 px-8 text-base font-bold text-white shadow-lg shadow-emerald-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30"
+                            className="h-14 rounded-full bg-emerald-600 px-8 text-base font-bold text-white shadow-lg shadow-emerald-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30 active:-translate-y-1 active:bg-emerald-700 active:shadow-xl active:shadow-emerald-600/30"
                         >
                             <Link
                                 href="/kontak"

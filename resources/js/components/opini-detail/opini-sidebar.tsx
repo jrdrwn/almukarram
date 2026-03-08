@@ -44,7 +44,7 @@ export default function OpiniDetailSidebar({
                             <Link
                                 key={idx}
                                 href={`/opini-detail/${item.slug}`}
-                                className={`group rounded-2xl p-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800 ${
+                                className={`group rounded-2xl p-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800 ${
                                     item.slug === currentSlug
                                         ? 'bg-violet-50/80 ring-1 ring-violet-200 dark:bg-violet-900/20 dark:ring-violet-500/20'
                                         : ''
@@ -54,7 +54,7 @@ export default function OpiniDetailSidebar({
                                     {item.category}
                                 </span>
                                 <h4
-                                    className={`mb-2 line-clamp-2 text-[13px] leading-snug font-bold transition-colors group-hover:text-violet-600 ${
+                                    className={`mb-2 line-clamp-2 text-[13px] leading-snug font-bold transition-colors group-hover:text-violet-600 group-active:text-violet-600 ${
                                         item.slug === currentSlug
                                             ? 'text-violet-700 dark:text-violet-400'
                                             : 'text-foreground'
@@ -64,7 +64,9 @@ export default function OpiniDetailSidebar({
                                 </h4>
                                 <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
                                     <User className="h-3 w-3" />
-                                    <span className="font-medium">{item.author}</span>
+                                    <span className="font-medium">
+                                        {item.author}
+                                    </span>
                                     <span className="opacity-40">·</span>
                                     <span>{item.date}</span>
                                 </div>
@@ -91,10 +93,10 @@ export default function OpiniDetailSidebar({
                             <li key={idx}>
                                 <Link
                                     href={link.href}
-                                    className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800"
+                                    className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800"
                                 >
-                                    <link.icon className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600" />
-                                    <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
+                                    <link.icon className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600 group-active:scale-110 group-active:text-emerald-600" />
+                                    <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground group-active:text-foreground">
                                         {link.label}
                                     </span>
                                 </Link>
@@ -105,10 +107,10 @@ export default function OpiniDetailSidebar({
                                 href="https://quran.kemenag.go.id/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800"
+                                className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800"
                             >
-                                <BookOpen className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600" />
-                                <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
+                                <BookOpen className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600 group-active:scale-110 group-active:text-emerald-600" />
+                                <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground group-active:text-foreground">
                                     Al-Qur'an Kemenag
                                 </span>
                             </a>
@@ -135,9 +137,9 @@ export default function OpiniDetailSidebar({
                     </p>
                     <Link
                         href="/kontak"
-                        className="group inline-flex w-max items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-violet-700 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-violet-50 hover:shadow-xl"
+                        className="group inline-flex w-max items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-violet-700 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-violet-50 hover:shadow-xl active:-translate-y-0.5 active:bg-violet-50 active:shadow-xl"
                     >
-                        <Send className="mr-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        <Send className="mr-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-active:translate-x-1 group-active:-translate-y-1" />
                         Hubungi Kami
                     </Link>
                 </div>

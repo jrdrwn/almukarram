@@ -43,7 +43,7 @@ export default function LightboxModal({
             >
                 <button
                     onClick={onClose}
-                    className="absolute -top-4 -right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-lg transition-transform hover:scale-110"
+                    className="absolute -top-4 -right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-lg transition-transform hover:scale-110 active:scale-110"
                     aria-label="Close"
                 >
                     <X className="h-5 w-5" />

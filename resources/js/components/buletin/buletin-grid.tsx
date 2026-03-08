@@ -60,7 +60,7 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
                 </p>
                 <Link
                     href="/buletin"
-                    className="mt-8 inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-emerald-600 shadow-sm ring-1 ring-zinc-300 transition-all duration-200 ring-inset hover:scale-105 hover:bg-zinc-50 dark:bg-zinc-800 dark:text-emerald-400 dark:ring-zinc-700 dark:hover:bg-zinc-700/50"
+                    className="mt-8 inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-emerald-600 shadow-sm ring-1 ring-zinc-300 transition-all duration-200 ring-inset hover:scale-105 hover:bg-zinc-50 active:scale-105 active:bg-zinc-50 active:bg-zinc-700/50 dark:bg-zinc-800 dark:text-emerald-400 dark:ring-zinc-700 dark:hover:bg-zinc-700/50"
                 >
                     Kembali ke Daftar Buletin
                 </Link>
@@ -74,7 +74,7 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
                 {buletins.data.map((item) => (
                     <Card
                         key={item.id}
-                        className="group flex h-full flex-col gap-0 overflow-hidden rounded-3xl border-zinc-200/50 bg-white/70 py-0 pt-0 pb-0 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-xl dark:border-zinc-800/50 dark:bg-zinc-900/70"
+                        className="group flex h-full flex-col gap-0 overflow-hidden rounded-3xl border-zinc-200/50 bg-white/70 py-0 pt-0 pb-0 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-xl active:-translate-y-1 active:shadow-xl dark:border-zinc-800/50 dark:bg-zinc-900/70"
                     >
                         <div className="relative aspect-3/4 w-full overflow-hidden bg-emerald-50/50 dark:bg-zinc-800/80">
                             {/* Fallback Display */}
@@ -88,7 +88,7 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
                             <img
                                 src={item.thumbnail}
                                 alt={item.title}
-                                className="absolute inset-0 h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-110"
+                                className="absolute inset-0 h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-110"
                                 loading="lazy"
                                 onError={(e) => {
                                     e.currentTarget.style.display = 'none';
@@ -117,7 +117,7 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
 
                             {/* Title Positioned Over Image */}
                             <div className="absolute right-4 bottom-4 left-4 z-20">
-                                <h3 className="mb-2 line-clamp-3 text-lg leading-tight font-bold text-white transition-colors group-hover:text-emerald-300">
+                                <h3 className="mb-2 line-clamp-3 text-lg leading-tight font-bold text-white transition-colors group-hover:text-emerald-300 group-active:text-emerald-300">
                                     {item.title}
                                 </h3>
                                 <div className="flex items-center text-xs text-zinc-300">
@@ -136,22 +136,22 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
                                 <Button
                                     asChild
                                     variant="outline"
-                                    className="h-11 flex-1 rounded-xl transition-colors group-hover:border-emerald-500/50 group-hover:bg-emerald-50/50 dark:group-hover:bg-emerald-500/10"
+                                    className="h-11 flex-1 rounded-xl transition-colors group-hover:border-emerald-500/50 group-hover:bg-emerald-50/50 group-active:border-emerald-500/50 group-active:bg-emerald-50/50 group-active:bg-emerald-500/10 dark:group-hover:bg-emerald-500/10"
                                 >
                                     <a
-                                        href={item.pdf_url}
+                                        href={`/buletin/${item.slug}/view`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        <Eye className="mr-2 h-4 w-4 text-emerald-600 transition-transform group-hover:scale-110 dark:text-emerald-400" />
+                                        <Eye className="mr-2 h-4 w-4 text-emerald-600 transition-transform group-hover:scale-110 group-active:scale-110 dark:text-emerald-400" />
                                         Baca PDF
                                     </a>
                                 </Button>
                                 <Button
                                     asChild
-                                    className="h-11 flex-1 rounded-xl bg-emerald-600 text-white shadow-md transition-all hover:bg-emerald-700 hover:shadow-lg"
+                                    className="h-11 flex-1 rounded-xl bg-emerald-600 text-white shadow-md transition-all hover:bg-emerald-700 hover:shadow-lg active:bg-emerald-700 active:shadow-lg"
                                 >
-                                    <a href={item.pdf_url} download>
+                                    <a href={`/buletin/${item.slug}/download`} download>
                                         <Download className="animate-bounce-slow mr-2 h-4 w-4" />
                                         Unduh
                                     </a>
@@ -174,7 +174,7 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
                                             ? `?page=${buletins.meta.current_page - 1}`
                                             : '#'
                                     }
-                                    className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${buletins.meta.current_page <= 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
+                                    className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${buletins.meta.current_page <= 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
                                 />
                             </PaginationItem>
 
@@ -199,8 +199,8 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
                                                 isActive={link.active}
                                                 className={
                                                     link.active
-                                                        ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white'
-                                                        : 'cursor-pointer rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
+                                                        ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white active:bg-emerald-700 active:text-white'
+                                                        : 'cursor-pointer rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
                                                 }
                                             >
                                                 {link.label}
@@ -217,7 +217,7 @@ export default function BuletinGrid({ buletins }: { buletins: BuletinData }) {
                                             ? `?page=${buletins.meta.current_page + 1}`
                                             : '#'
                                     }
-                                    className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${buletins.meta.current_page >= buletins.meta.last_page ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
+                                    className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${buletins.meta.current_page >= buletins.meta.last_page ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
                                 />
                             </PaginationItem>
                         </PaginationContent>

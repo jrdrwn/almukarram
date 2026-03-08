@@ -43,7 +43,7 @@ export default function BidangBidang({
                 return (
                     <div key={idx} className="group relative">
                         {/* Background glow for the section */}
-                        <div className="absolute inset-0 -z-10 rounded-3xl bg-primary/5 blur-xl transition duration-500 group-hover:bg-primary/10" />
+                        <div className="absolute inset-0 -z-10 rounded-3xl bg-primary/5 blur-xl transition duration-500 group-hover:bg-primary/10 group-active:bg-primary/10" />
 
                         <div className="overflow-hidden rounded-3xl border bg-card shadow-sm">
                             {/* Header bidang */}
@@ -66,7 +66,7 @@ export default function BidangBidang({
                             <div className="space-y-6 p-5 md:p-6">
                                 {/* Ketua & Sekretaris */}
                                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                                    <div className="flex items-center gap-4 rounded-2xl border border-primary/20 bg-muted/30 p-4 transition-colors hover:border-primary/50 dark:bg-muted/10">
+                                    <div className="flex items-center gap-4 rounded-2xl border border-primary/20 bg-muted/30 p-4 transition-colors hover:border-primary/50 active:border-primary/50 dark:bg-muted/10">
                                         <div className="shrink-0 drop-shadow-sm">
                                             <Avatar
                                                 nama={b.ketua}
@@ -85,7 +85,7 @@ export default function BidangBidang({
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-4 rounded-2xl border bg-muted/30 p-4 transition-colors hover:border-border/80 dark:bg-muted/10">
+                                    <div className="flex items-center gap-4 rounded-2xl border bg-muted/30 p-4 transition-colors hover:border-border/80 active:border-border/80 dark:bg-muted/10">
                                         <div className="shrink-0 drop-shadow-sm">
                                             <Avatar
                                                 nama={b.sekret}
@@ -125,9 +125,9 @@ export default function BidangBidang({
                                         {b.anggota.map((ang, j) => (
                                             <div
                                                 key={j}
-                                                className="group/member flex items-center gap-3 rounded-xl border bg-background p-2.5 transition-all hover:border-primary/30 hover:shadow-md"
+                                                className="group/member flex items-center gap-3 rounded-xl border bg-background p-2.5 transition-all hover:border-primary/30 hover:shadow-md active:border-primary/30 active:shadow-md"
                                             >
-                                                <div className="shrink-0 transition-transform group-hover/member:scale-110">
+                                                <div className="shrink-0 transition-transform group-hover/member:scale-110 group-active/member:scale-110">
                                                     <Avatar
                                                         nama={ang}
                                                         size={42}
@@ -142,7 +142,7 @@ export default function BidangBidang({
                                                         }
                                                     />
                                                 </div>
-                                                <span className="text-sm leading-tight font-medium transition-colors group-hover/member:text-primary">
+                                                <span className="text-sm leading-tight font-medium transition-colors group-hover/member:text-primary group-active/member:text-primary">
                                                     {ang}
                                                 </span>
                                             </div>

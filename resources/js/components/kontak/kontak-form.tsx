@@ -77,7 +77,9 @@ export function KontakForm() {
                                 name="nama"
                                 required
                                 value={data.nama}
-                                onChange={(e) => setData('nama', e.target.value)}
+                                onChange={(e) =>
+                                    setData('nama', e.target.value)
+                                }
                                 placeholder="Nama Anda"
                                 className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.nama ? 'border-red-500' : ''}`}
                             />
@@ -89,15 +91,19 @@ export function KontakForm() {
                                 htmlFor="email"
                                 className="text-sm font-bold"
                             >
-                                Email <span className="text-red-500">*</span>
+                                Alamat Email{' '}
+                                <span className="font-normal text-muted-foreground">
+                                    (Opsional)
+                                </span>
                             </Label>
                             <Input
                                 id="email"
                                 type="email"
                                 name="email"
-                                required
                                 value={data.email}
-                                onChange={(e) => setData('email', e.target.value)}
+                                onChange={(e) =>
+                                    setData('email', e.target.value)
+                                }
                                 placeholder="email@contoh.com"
                                 className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.email ? 'border-red-500' : ''}`}
                             />
@@ -109,14 +115,18 @@ export function KontakForm() {
                                 htmlFor="telepon"
                                 className="text-sm font-bold"
                             >
-                                No. Telepon
+                                No. WhatsApp{' '}
+                                <span className="text-red-500">*</span>
                             </Label>
                             <Input
                                 id="telepon"
                                 type="tel"
                                 name="telepon"
+                                required
                                 value={data.telepon}
-                                onChange={(e) => setData('telepon', e.target.value)}
+                                onChange={(e) =>
+                                    setData('telepon', e.target.value)
+                                }
                                 placeholder="08xx-xxxx-xxxx"
                                 className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.telepon ? 'border-red-500' : ''}`}
                             />
@@ -132,7 +142,9 @@ export function KontakForm() {
                             </Label>
                             <Select
                                 value={data.subjek}
-                                onValueChange={(value) => setData('subjek', value)}
+                                onValueChange={(value) =>
+                                    setData('subjek', value)
+                                }
                             >
                                 <SelectTrigger className="h-12! w-full rounded-xl border-input/60 bg-background px-4 focus:ring-emerald-500">
                                     <SelectValue placeholder="-- Pilih Subjek --" />
@@ -183,10 +195,10 @@ export function KontakForm() {
                             type="submit"
                             size="lg"
                             disabled={processing}
-                            className="group h-14 w-full rounded-xl bg-[#009B65] text-base font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-[#008959] hover:shadow-lg disabled:opacity-50"
+                            className="group h-14 w-full rounded-xl bg-[#009B65] text-base font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-[#008959] hover:shadow-lg active:-translate-y-0.5 active:bg-[#008959] active:shadow-lg disabled:opacity-50"
                         >
                             <span>Kirim Pesan</span>
-                            <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                            <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-active:translate-x-1 group-active:-translate-y-1" />
                         </Button>
                     </div>
                 </form>

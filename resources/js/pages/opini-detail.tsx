@@ -81,7 +81,7 @@ export default function OpiniDetailPage({
                         onClick={() =>
                             setFontSize((p) => Math.min(2, +(p + 0.1).toFixed(1)))
                         }
-                        className="rounded-xl bg-violet-50 px-3 py-1.5 text-sm font-extrabold text-violet-700 transition hover:bg-violet-100 dark:bg-violet-900/20 dark:text-violet-400 dark:hover:bg-violet-900/40"
+                        className="rounded-xl bg-violet-50 px-3 py-1.5 text-sm font-extrabold text-violet-700 transition hover:bg-violet-100 active:bg-violet-100 dark:bg-violet-900/20 dark:text-violet-400 dark:hover:bg-violet-900/40 active:bg-violet-900/40"
                         aria-label="Perbesar font"
                     >
                         A+
@@ -90,7 +90,7 @@ export default function OpiniDetailPage({
                         onClick={() =>
                             setFontSize((p) => Math.max(0.8, +(p - 0.1).toFixed(1)))
                         }
-                        className="rounded-xl bg-zinc-100 px-3 py-1.5 text-sm font-bold text-zinc-600 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+                        className="rounded-xl bg-zinc-100 px-3 py-1.5 text-sm font-bold text-zinc-600 transition hover:bg-zinc-200 active:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 active:bg-zinc-700"
                         aria-label="Perkecil font"
                     >
                         A-

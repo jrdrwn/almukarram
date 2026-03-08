@@ -50,10 +50,10 @@ export default function Kontak() {
                                 </h3>
                                 <div className="group min-h-75 flex-1 overflow-hidden rounded-[2.5rem] border border-border bg-card p-2 shadow-xl ring-1 ring-border/50">
                                     <div className="relative isolate h-full w-full overflow-hidden rounded-4xl">
-                                        <div className="pointer-events-none absolute inset-0 z-10 bg-primary/20 opacity-0 transition-opacity duration-500 group-hover:opacity-10" />
+                                        <div className="pointer-events-none absolute inset-0 z-10 bg-primary/20 opacity-0 transition-opacity duration-500 group-hover:opacity-10 group-active:opacity-10" />
                                         <iframe
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3978.9!2d114.3866271!3d-3.0059342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de46f027f225e35:0x3634ee7d00a14f59!2sMasjid+Agung+Al+Mukarram+Amanah!5e0!3m2!1sid!2sid!4v1740000000000!5m2!1sid!2sid"
-                                            className="relative z-0 h-full w-full border-0 grayscale-20 transition-all duration-500 group-hover:grayscale-0"
+                                            className="relative z-0 h-full w-full border-0 grayscale-20 transition-all duration-500 group-hover:grayscale-0 group-active:grayscale-0"
                                             allowFullScreen={false}
                                             loading="lazy"
                                             style={{ border: 0 }}

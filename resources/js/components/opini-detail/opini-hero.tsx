@@ -30,7 +30,9 @@ export default function OpiniHero({ opini }: OpiniHeroProps) {
                         alt={opini.title}
                         className="h-full w-full scale-105 object-cover object-center blur-sm"
                         onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).style.display = 'none';
+                            (
+                                e.currentTarget as HTMLImageElement
+                            ).style.display = 'none';
                         }}
                     />
                 </div>
@@ -51,7 +53,7 @@ export default function OpiniHero({ opini }: OpiniHeroProps) {
                 </div>
 
                 {/* Title */}
-                <h1 className="mb-6 max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white drop-shadow-lg md:text-5xl">
+                <h1 className="mb-6 max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-white drop-shadow-lg md:text-5xl">
                     {opini.title}
                 </h1>
 
@@ -80,11 +82,11 @@ export default function OpiniHero({ opini }: OpiniHeroProps) {
 
                 {/* Breadcrumb */}
                 <nav aria-label="breadcrumb">
-                    <ol className="inline-flex flex-wrap items-center gap-y-2 space-x-2 rounded-full border border-white/10 bg-black/20 px-5 py-2.5 text-sm text-white/80 shadow-lg backdrop-blur-md dark:bg-black/40">
+                    <ol className="inline-flex flex-wrap items-center space-x-2 gap-y-2 rounded-full border border-white/10 bg-black/20 px-5 py-2.5 text-sm text-white/80 shadow-lg backdrop-blur-md dark:bg-black/40">
                         <li className="flex items-center">
                             <Link
                                 href="/"
-                                className="flex items-center gap-1.5 transition-colors hover:text-white"
+                                className="flex items-center gap-1.5 transition-colors hover:text-white active:text-white"
                             >
                                 <Home className="h-3.5 w-3.5" />
                                 Beranda
@@ -94,7 +96,7 @@ export default function OpiniHero({ opini }: OpiniHeroProps) {
                             <span className="mx-1 opacity-50">/</span>
                             <Link
                                 href="/opini"
-                                className="flex items-center gap-1.5 transition-colors hover:text-white"
+                                className="flex items-center gap-1.5 transition-colors hover:text-white active:text-white"
                             >
                                 <PenTool className="h-3.5 w-3.5" />
                                 Opini

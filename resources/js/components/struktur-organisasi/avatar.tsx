@@ -27,7 +27,7 @@ export default function Avatar({
 
     return (
         <div
-            className={`flex items-center justify-center overflow-hidden rounded-full ${!src ? bgColor : ''} ${onClick && src ? 'cursor-pointer transition-transform hover:scale-105' : ''}`}
+            className={`flex items-center justify-center overflow-hidden rounded-full ${!src ? bgColor : ''} ${onClick && src ? 'cursor-pointer transition-transform hover:scale-105 active:scale-105' : ''}`}
             style={{ width: size, height: size }}
             onClick={handleClick}
         >

@@ -21,14 +21,16 @@ export default function ArticleContent({
             <div className="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
                 {berita.gambar ? (
                     <img
-                        src={`/uploads/${berita.gambar}`}
+                        src={`/storage/${berita.gambar}`}
                         alt={berita.judul}
-                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105 active:scale-105"
                         onError={(e) => {
                             const target = e.currentTarget as HTMLImageElement;
                             target.style.display = 'none';
                             if (target.nextElementSibling) {
-                                (target.nextElementSibling as HTMLElement).style.display = 'flex';
+                                (
+                                    target.nextElementSibling as HTMLElement
+                                ).style.display = 'flex';
                             }
                         }}
                     />
@@ -39,7 +41,9 @@ export default function ArticleContent({
                     style={{ display: berita.gambar ? 'none' : 'flex' }}
                 >
                     <ImageIcon className="h-16 w-16 text-zinc-400" />
-                    <span className="text-sm text-zinc-400">Tidak ada gambar</span>
+                    <span className="text-sm text-zinc-400">
+                        Tidak ada gambar
+                    </span>
                 </div>
             </div>
 
@@ -60,15 +64,7 @@ export default function ArticleContent({
 
                 {/* HTML Content */}
                 <div
-                    className="prose prose-sm max-w-none text-justify leading-relaxed text-foreground
-                        prose-headings:font-bold prose-headings:text-foreground
-                        prose-a:text-emerald-600 prose-a:underline hover:prose-a:text-emerald-700
-                        prose-blockquote:border-l-emerald-500 prose-blockquote:bg-emerald-50/50 prose-blockquote:text-muted-foreground
-                        prose-img:rounded-3xl prose-img:shadow-md
-                        prose-strong:text-foreground
-                        prose-ul:list-disc prose-ol:list-decimal
-                        lg:prose-base
-                        dark:prose-invert dark:prose-blockquote:bg-emerald-900/20"
+                    className="prose prose-sm prose-headings:font-bold prose-headings:text-foreground prose-a:text-emerald-600 prose-a:underline hover:prose-a active:prose-a:text-emerald-700 prose-blockquote:border-l-emerald-500 prose-blockquote:bg-emerald-50/50 prose-blockquote:text-muted-foreground prose-img:rounded-3xl prose-img:shadow-md prose-strong:text-foreground prose-ul:list-disc prose-ol:list-decimal lg:prose-base dark:prose-invert dark:prose-blockquote:bg-emerald-900/20 max-w-none text-justify leading-relaxed text-foreground"
                     style={{ fontSize: `${fontSize}em` }}
                 >
                     {parse(berita.isi)}

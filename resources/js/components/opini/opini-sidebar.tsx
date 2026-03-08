@@ -29,10 +29,10 @@ export default function OpiniSidebar() {
                             <li key={idx}>
                                 <Link
                                     href={link.href}
-                                    className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800"
+                                    className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800"
                                 >
-                                    <link.icon className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600" />
-                                    <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
+                                    <link.icon className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600 group-active:scale-110 group-active:text-emerald-600" />
+                                    <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground group-active:text-foreground">
                                         {link.label}
                                     </span>
                                 </Link>
@@ -43,10 +43,10 @@ export default function OpiniSidebar() {
                                 href="https://quran.kemenag.go.id/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800"
+                                className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800"
                             >
-                                <BookOpen className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600" />
-                                <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
+                                <BookOpen className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600 group-active:scale-110 group-active:text-emerald-600" />
+                                <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground group-active:text-foreground">
                                     Al-Qur'an Kemenag
                                 </span>
                             </a>
@@ -57,7 +57,7 @@ export default function OpiniSidebar() {
 
             {/* Kirim Opini CTA Widget */}
             <div className="relative overflow-hidden rounded-4xl bg-linear-to-br from-emerald-600 to-teal-700 shadow-md ring-1 ring-emerald-600/20">
-                <div className="pointer-events-none absolute -right-4 -bottom-4 p-4 opacity-[0.1] transition-transform duration-500 hover:scale-110">
+                <div className="pointer-events-none absolute -right-4 -bottom-4 p-4 opacity-[0.1] transition-transform duration-500 hover:scale-110 active:scale-110">
                     <PenLine className="h-40 w-40 text-white" />
                 </div>
 
@@ -76,9 +76,9 @@ export default function OpiniSidebar() {
 
                     <Link
                         href="/kontak"
-                        className="group inline-flex w-max items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-emerald-700 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-emerald-50 hover:shadow-xl"
+                        className="group inline-flex w-max items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-emerald-700 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-emerald-50 hover:shadow-xl active:-translate-y-0.5 active:bg-emerald-50 active:shadow-xl"
                     >
-                        <Send className="mr-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        <Send className="mr-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-active:translate-x-1 group-active:-translate-y-1" />
                         Hubungi Kami
                     </Link>
                 </div>

@@ -55,6 +55,44 @@ type NavItem = {
     sub?: NavItem[];
 };
 
+function isExternalHref(href?: string) {
+    return !!href && /^(https?:)?\/\//.test(href);
+}
+
+function NavLink({
+    href,
+    className,
+    onClick,
+    children,
+}: {
+    href?: string;
+    className?: string;
+    onClick?: () => void;
+    children: React.ReactNode;
+}) {
+    const resolvedHref = href || '#';
+
+    if (isExternalHref(resolvedHref)) {
+        return (
+            <a
+                href={resolvedHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={className}
+                onClick={() => onClick?.()}
+            >
+                {children}
+            </a>
+        );
+    }
+
+    return (
+        <Link href={resolvedHref} className={className} onClick={() => onClick?.()}>
+            {children}
+        </Link>
+    );
+}
+
 const navigationItems: NavItem[] = [
     { label: 'Beranda', href: '/', icon: <Home className="mr-1.5 h-4 w-4" /> },
     {
@@ -105,9 +143,7 @@ const navigationItems: NavItem[] = [
                     {
                         label: 'Riayah',
                         href: '/program-riayah',
-                        icon: (
-                            <Wrench className="mr-2 h-4 w-4 text-primary" />
-                        ),
+                        icon: <Wrench className="mr-2 h-4 w-4 text-primary" />,
                     },
                 ],
             },
@@ -131,9 +167,7 @@ const navigationItems: NavItem[] = [
             {
                 label: 'Opini',
                 href: '/opini',
-                icon: (
-                    <MessageSquare className="mr-2 h-4 w-4 text-primary" />
-                ),
+                icon: <MessageSquare className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Buletin',
@@ -170,9 +204,7 @@ const navigationItems: NavItem[] = [
             {
                 label: 'Jadwal & Petugas Jumat',
                 href: '/jadwal-jumat',
-                icon: (
-                    <CalendarDays className="mr-2 h-4 w-4 text-primary" />
-                ),
+                icon: <CalendarDays className="mr-2 h-4 w-4 text-primary" />,
             },
             {
                 label: 'Jadwal Pengajian',
@@ -273,7 +305,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div
-                    className={`z-10 flex flex-row items-center justify-between gap-8 rounded-full border px-2 py-2 transition-all duration-500 ease-in-out ${isScrolled ? 'border-primary bg-background shadow  backdrop-blur-lg dark:bg-zinc-950/80' : 'bg-background'}`}
+                    className={`z-10 flex flex-row items-center justify-between gap-8 rounded-full border px-2 py-2 transition-all duration-500 ease-in-out ${isScrolled ? 'border-primary bg-background shadow backdrop-blur-lg dark:bg-zinc-950/80' : 'bg-background'}`}
                 >
                     <Link href="/">
                         <img
@@ -312,7 +344,7 @@ export default function Header() {
                     <div className="hidden items-center lg:flex">
                         <Button
                             asChild
-                            className="rounded-full bg-emerald-600 text-white shadow-md transition-all hover:scale-105 hover:bg-emerald-700 hover:shadow-lg"
+                            className="rounded-full bg-emerald-600 text-white shadow-md transition-all hover:scale-105 hover:bg-emerald-700 hover:shadow-lg active:scale-105 active:bg-emerald-700 active:shadow-lg"
                         >
                             <Link href="/kontak">
                                 <Phone className="mr-2 h-4 w-4" />
@@ -347,7 +379,11 @@ export default function Header() {
                         {/* <img src="/logo.png" alt="Logo" className="h-8" /> */}
                         <h2 className="text-lg font-bold">Menu</h2>
                         <DrawerClose asChild>
-                            <Button variant={'outline'} aria-label="Close menu" className='rounded-full'>
+                            <Button
+                                variant={'outline'}
+                                aria-label="Close menu"
+                                className="rounded-full"
+                            >
                                 <CloseIcon />
                             </Button>
                         </DrawerClose>
@@ -361,7 +397,7 @@ export default function Header() {
                         <div className="mt-2 border-t px-4 py-4">
                             <Button
                                 asChild
-                                className="w-full rounded-full bg-emerald-600 text-white shadow-md transition-all hover:scale-[1.02] hover:bg-emerald-700"
+                                className="w-full rounded-full bg-emerald-600 text-white shadow-md transition-all hover:scale-[1.02] hover:bg-emerald-700 active:scale-[1.02] active:bg-emerald-700"
                             >
                                 <Link
                                     href="/kontak"
@@ -401,9 +437,9 @@ function NavigationMenuButton({
                         : ' rounded-full text-muted-foreground')
                 }
             >
-                <Link href={href || '#'} className="flex items-center gap-1">
+                <NavLink href={href} className="flex items-center gap-1">
                     {label}
-                </Link>
+                </NavLink>
             </NavigationMenuLink>
         </NavigationMenuItem>
     );
@@ -448,13 +484,13 @@ function NavigationMenuDropdownButton({
             }
             return (
                 <DropdownMenuItem key={idx} asChild>
-                    <Link
-                        href={item.href || '#'}
+                    <NavLink
+                        href={item.href}
                         className="flex w-full items-center gap-2"
                     >
                         {item.icon}
                         {item.label}
-                    </Link>
+                    </NavLink>
                 </DropdownMenuItem>
             );
         });
@@ -474,7 +510,7 @@ function NavigationMenuDropdownButton({
                 <Button
                     variant="ghost"
                     className={
-                        'flex items-center justify-center gap-1 hover:bg-transparent ' +
+                        'flex items-center justify-center gap-1 hover:bg-transparent active:bg-transparent ' +
                         (isActive ? 'text-primary' : 'text-muted-foreground')
                     }
                 >
@@ -564,14 +600,14 @@ function MobileMenu({
                                 </button>
                             </>
                         ) : (
-                            <Link
-                                href={item.href || '#'}
+                            <NavLink
+                                href={item.href}
                                 className="flex flex-1 items-center gap-2"
                                 onClick={onClose}
                             >
                                 {item.icon}
                                 {item.label}
-                            </Link>
+                            </NavLink>
                         )}
                     </div>
                     {item.sub && isOpen && (

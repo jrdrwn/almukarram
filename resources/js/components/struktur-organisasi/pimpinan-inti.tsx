@@ -38,7 +38,7 @@ export default function PimpinanInti({
                 {pimpinanTop.map((p, i) => (
                     <div
                         key={i}
-                        className="w-full max-w-sm transform rounded-2xl border-2 border-emerald-100 bg-white p-6 text-center shadow-lg transition duration-300 hover:-translate-y-1 dark:border-emerald-900/50 dark:bg-card"
+                        className="w-full max-w-sm transform rounded-2xl border-2 border-emerald-100 bg-white p-6 text-center shadow-lg transition duration-300 hover:-translate-y-1 active:-translate-y-1 dark:border-emerald-900/50 dark:bg-card"
                     >
                         <div className="mx-auto mb-4 flex items-center justify-center">
                             <Avatar
@@ -63,7 +63,7 @@ export default function PimpinanInti({
                 {ketua.map((p, i) => (
                     <div
                         key={i}
-                        className="transform rounded-2xl border border-border/50 bg-white p-5 text-center shadow transition duration-300 hover:-translate-y-1 hover:shadow-md dark:bg-card"
+                        className="transform rounded-2xl border border-border/50 bg-white p-5 text-center shadow transition duration-300 hover:-translate-y-1 hover:shadow-md active:-translate-y-1 active:shadow-md dark:bg-card"
                     >
                         <div className="mx-auto mb-4 flex items-center justify-center">
                             <Avatar
@@ -89,7 +89,7 @@ export default function PimpinanInti({
                     return (
                         <div
                             key={i}
-                            className="w-45 transform rounded-2xl border border-border/50 bg-white p-5 text-center shadow transition duration-300 hover:-translate-y-1 hover:shadow-md dark:bg-card"
+                            className="w-45 transform rounded-2xl border border-border/50 bg-white p-5 text-center shadow transition duration-300 hover:-translate-y-1 hover:shadow-md active:-translate-y-1 active:shadow-md dark:bg-card"
                         >
                             <div className="mx-auto mb-4 flex items-center justify-center">
                                 <Avatar

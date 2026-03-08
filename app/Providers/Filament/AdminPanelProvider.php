@@ -64,7 +64,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 AuthDesignerPlugin::make()
                     ->login(fn(AuthPageConfig $config) => $config
-                        // ->media(asset('images/bg2.jpg'))
+                        ->media(asset('/vidio.mp4'))
                         ->mediaPosition(MediaPosition::Cover)
                         ->blur(4))
             );

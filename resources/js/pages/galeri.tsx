@@ -153,14 +153,6 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
     );
 
     useEffect(() => {
-        setCurrentPage(1);
-    }, [searchTitle, selectedMonth]);
-
-    useEffect(() => {
-        setCurrentPage((prev) => Math.min(prev, totalAlbumPages));
-    }, [totalAlbumPages]);
-
-    useEffect(() => {
         if (typeof window === 'undefined') return;
 
         const applyHashTab = (shouldScroll = false) => {
@@ -235,11 +227,14 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
 
                 <div className="relative z-10 mx-auto -mt-24 max-w-7xl px-4 sm:px-6 lg:px-8">
                     {/* Tabs Toggle */}
-                    <div ref={tabsAnchorRef} className="mb-10 flex justify-center">
+                    <div
+                        ref={tabsAnchorRef}
+                        className="mb-10 flex justify-center"
+                    >
                         <Tabs
                             value={activeTab}
                             onValueChange={(v) => {
-                                setActiveTab(v);
+                                setActiveTab(v as 'foto' | 'video');
                                 setSearchTitle('');
                                 setVideoSearch('');
                                 setSelectedMonth('Semua Bulan');
@@ -301,11 +296,12 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                     placeholder="Ketik kata kunci..."
                                                     className="h-14 w-full rounded-2xl border-input/60 bg-background pl-12 text-base focus-visible:ring-emerald-500"
                                                     value={searchTitle}
-                                                    onChange={(e) =>
+                                                    onChange={(e) => {
                                                         setSearchTitle(
                                                             e.target.value,
-                                                        )
-                                                    }
+                                                        );
+                                                        setCurrentPage(1);
+                                                    }}
                                                 />
                                             </div>
                                         </div>
@@ -318,7 +314,10 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                             </Label>
                                             <Select
                                                 value={selectedMonth}
-                                                onValueChange={setSelectedMonth}
+                                                onValueChange={(val) => {
+                                                    setSelectedMonth(val);
+                                                    setCurrentPage(1);
+                                                }}
                                             >
                                                 <SelectTrigger
                                                     id="month"
@@ -341,7 +340,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                         <div className="w-full md:w-auto">
                                             <Button
                                                 size="lg"
-                                                className="h-14 w-full rounded-2xl bg-[#005B41] px-10 font-extrabold tracking-wide text-white uppercase shadow-md transition-all hover:bg-[#004d36] hover:shadow-lg md:w-auto"
+                                                className="hover:bg-[ h-14 w-full rounded-2xl bg-[#005B41] px-10 font-extrabold tracking-wide text-white uppercase shadow-md transition-all hover:shadow-lg active:bg-[#004d36] active:shadow-lg md:w-auto"
                                             >
                                                 Cari Album
                                             </Button>
@@ -368,7 +367,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                         {albums.map((album) => (
                                                             <div
                                                                 key={album.id}
-                                                                className="group flex flex-col rounded-4xl border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:shadow-xl"
+                                                                className="group flex flex-col rounded-4xl border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:shadow-xl active:shadow-xl"
                                                             >
                                                                 {/* Images Collage */}
                                                                 <div
@@ -397,7 +396,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                                             alt={
                                                                                 album.title
                                                                             }
-                                                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-active:scale-105"
                                                                             onError={(
                                                                                 e,
                                                                             ) => {
@@ -421,7 +420,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                                                             .images[1]
                                                                                     }
                                                                                     alt=""
-                                                                                    className="h-full w-full object-cover transition-transform delay-75 duration-700 group-hover:scale-110"
+                                                                                    className="h-full w-full object-cover transition-transform delay-75 duration-700 group-hover:scale-110 group-active:scale-110"
                                                                                     onError={(
                                                                                         e,
                                                                                     ) => {
@@ -443,7 +442,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                                                                 .images[2]
                                                                                         }
                                                                                         alt=""
-                                                                                        className="h-full w-full object-cover transition-transform delay-150 duration-700 group-hover:scale-110"
+                                                                                        className="h-full w-full object-cover transition-transform delay-150 duration-700 group-hover:scale-110 group-active:scale-110"
                                                                                         onError={(
                                                                                             e,
                                                                                         ) => {
@@ -482,7 +481,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                                         }
                                                                     </span>
                                                                     <h3
-                                                                        className="mb-3 line-clamp-2 cursor-pointer text-xl leading-snug font-bold text-foreground transition-colors group-hover:text-[#005B41] sm:text-2xl"
+                                                                        className="group-hover:text-[ mb-3 line-clamp-2 cursor-pointer text-xl leading-snug font-bold text-foreground transition-colors group-active:text-[#005B41] sm:text-2xl"
                                                                         onClick={() => {
                                                                             setSelectedAlbum(
                                                                                 album,
@@ -648,11 +647,12 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                     placeholder="Ketik judul video..."
                                                     className="h-14 w-full rounded-2xl border-input/60 bg-background pl-12 text-base focus-visible:ring-emerald-500"
                                                     value={videoSearch}
-                                                    onChange={(e) =>
+                                                    onChange={(e) => {
                                                         setVideoSearch(
                                                             e.target.value,
-                                                        )
-                                                    }
+                                                        );
+                                                        setVideoPage(1);
+                                                    }}
                                                 />
                                             </div>
                                         </div>
@@ -665,7 +665,10 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                             </Label>
                                             <Select
                                                 value={videoCategory}
-                                                onValueChange={setVideoCategory}
+                                                onValueChange={(val) => {
+                                                    setVideoCategory(val);
+                                                    setVideoPage(1);
+                                                }}
                                             >
                                                 <SelectTrigger
                                                     id="video-cat"
@@ -690,7 +693,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                         <div className="w-full md:w-auto">
                                             <Button
                                                 size="lg"
-                                                className="h-14 w-full rounded-2xl bg-[#005B41] px-10 font-extrabold tracking-wide text-white uppercase shadow-md transition-all hover:bg-[#004d36] hover:shadow-lg md:w-auto"
+                                                className="hover:bg-[ h-14 w-full rounded-2xl bg-[#005B41] px-10 font-extrabold tracking-wide text-white uppercase shadow-md transition-all hover:shadow-lg active:bg-[#004d36] active:shadow-lg md:w-auto"
                                             >
                                                 Cari Video
                                             </Button>
@@ -702,7 +705,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                         {pagedVideos.map((video) => (
                                             <button
                                                 key={video.id}
-                                                className="group relative block aspect-video w-full cursor-pointer overflow-hidden rounded-3xl border border-border bg-muted shadow-md transition-all hover:border-[#005B41]/50 hover:shadow-xl hover:shadow-emerald-900/10"
+                                                className="group hover:border-[ relative block aspect-video w-full cursor-pointer overflow-hidden rounded-3xl border border-border bg-muted shadow-md transition-all hover:shadow-xl hover:shadow-emerald-900/10 active:border-[#005B41]/50 active:shadow-xl active:shadow-emerald-900/10"
                                                 onClick={() =>
                                                     setActiveVideo(video)
                                                 }
@@ -711,7 +714,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                 <img
                                                     src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
                                                     alt={video.title}
-                                                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-active:scale-105"
                                                     onError={(e) => {
                                                         e.currentTarget.src =
                                                             'https://placehold.co/480x270/e2e8f0/64748b?text=Video';
@@ -723,7 +726,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
                                                 {/* Play Button */}
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#005B41]/90 shadow-xl backdrop-blur-sm transition-all group-hover:scale-110 group-hover:bg-[#009B65]">
+                                                    <div className="group-hover:bg-[ flex h-14 w-14 items-center justify-center rounded-full bg-[#005B41]/90 shadow-xl backdrop-blur-sm transition-all group-hover:scale-110 group-active:scale-110 group-active:bg-[#009B65]">
                                                         <PlayCircle className="h-8 w-8 text-white" />
                                                     </div>
                                                 </div>
@@ -738,7 +741,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                     <span className="mb-1 block text-xs font-bold tracking-wider text-emerald-400 uppercase">
                                                         {video.date}
                                                     </span>
-                                                    <p className="line-clamp-2 text-sm leading-snug font-semibold text-white transition-colors group-hover:text-emerald-300">
+                                                    <p className="line-clamp-2 text-sm leading-snug font-semibold text-white transition-colors group-hover:text-emerald-300 group-active:text-emerald-300">
                                                         {video.title}
                                                     </p>
                                                 </div>
@@ -787,25 +790,59 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                                 {Array.from(
                                                     { length: totalVideoPages },
                                                     (_, i) => i + 1,
-                                                ).map((page) => (
-                                                    <PaginationItem key={page}>
-                                                        <PaginationLink
-                                                            href="#"
-                                                            isActive={
-                                                                videoPage ===
-                                                                page
-                                                            }
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setVideoPage(
-                                                                    page,
-                                                                );
-                                                            }}
+                                                ).map((page) => {
+                                                    const isCurrent =
+                                                        page === videoPage;
+                                                    const shouldShow =
+                                                        page === 1 ||
+                                                        page ===
+                                                            totalVideoPages ||
+                                                        (page >=
+                                                            videoPage - 1 &&
+                                                            page <=
+                                                                videoPage + 1);
+
+                                                    if (!shouldShow) {
+                                                        if (
+                                                            page ===
+                                                                videoPage - 2 ||
+                                                            page ===
+                                                                videoPage + 2
+                                                        ) {
+                                                            return (
+                                                                <PaginationItem
+                                                                    key={`ellipsis-${page}`}
+                                                                >
+                                                                    <PaginationEllipsis />
+                                                                </PaginationItem>
+                                                            );
+                                                        }
+                                                        return null;
+                                                    }
+
+                                                    return (
+                                                        <PaginationItem
+                                                            key={page}
                                                         >
-                                                            {page}
-                                                        </PaginationLink>
-                                                    </PaginationItem>
-                                                ))}
+                                                            <PaginationLink
+                                                                href="#"
+                                                                isActive={
+                                                                    isCurrent
+                                                                }
+                                                                onClick={(
+                                                                    e,
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    setVideoPage(
+                                                                        page,
+                                                                    );
+                                                                }}
+                                                            >
+                                                                {page}
+                                                            </PaginationLink>
+                                                        </PaginationItem>
+                                                    );
+                                                })}
                                                 <PaginationItem>
                                                     <PaginationNext
                                                         href="#"
@@ -861,7 +898,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-10 w-10 shrink-0 rounded-full text-white/70 hover:bg-white/10 hover:text-white"
+                                className="h-10 w-10 shrink-0 rounded-full text-white/70 hover:bg-white/10 hover:text-white active:bg-white/10 active:text-white"
                             >
                                 <X className="h-6 w-6" />
                             </Button>
@@ -890,11 +927,11 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                         )}
 
                         {/* Navigation Arrows */}
-                        <div className="pointer-events-none absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between px-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:px-8">
+                        <div className="pointer-events-none absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between px-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 md:px-8">
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="pointer-events-auto h-12 w-12 rounded-full border border-white/10 bg-black/50 text-white backdrop-blur-sm hover:bg-black/70"
+                                className="pointer-events-auto h-12 w-12 rounded-full border border-white/10 bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 active:bg-black/70"
                                 onClick={handlePrev}
                             >
                                 <ChevronLeft className="h-8 w-8" />
@@ -902,7 +939,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="pointer-events-auto h-12 w-12 rounded-full border border-white/10 bg-black/50 text-white backdrop-blur-sm hover:bg-black/70"
+                                className="pointer-events-auto h-12 w-12 rounded-full border border-white/10 bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 active:bg-black/70"
                                 onClick={handleNext}
                             >
                                 <ChevronRight className="h-8 w-8" />
@@ -910,10 +947,10 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                         </div>
 
                         {/* Control Buttons (Auto play, Full Screen) */}
-                        <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100">
                             <Button
                                 variant="outline"
-                                className="rounded-full border-white/20 bg-black/60 px-6 text-white backdrop-blur-md hover:bg-black/80"
+                                className="rounded-full border-white/20 bg-black/60 px-6 text-white backdrop-blur-md hover:bg-black/80 active:bg-black/80"
                                 onClick={() => setIsPlaying(!isPlaying)}
                             >
                                 <Play
@@ -923,7 +960,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                             </Button>
                             <Button
                                 variant="outline"
-                                className="rounded-full border-white/20 bg-black/60 px-6 text-white backdrop-blur-md hover:bg-black/80"
+                                className="rounded-full border-white/20 bg-black/60 px-6 text-white backdrop-blur-md hover:bg-black/80 active:bg-black/80"
                                 onClick={() => {
                                     const imgEl =
                                         document.querySelector(
@@ -952,7 +989,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
                                 className={`relative aspect-4/3 h-full shrink-0 overflow-hidden rounded-md transition-all ${
                                     currentImageIndex === idx
                                         ? 'scale-105 opacity-100 ring-2 ring-[#eab308]'
-                                        : 'opacity-50 hover:opacity-80'
+                                        : 'opacity-50 hover:opacity-80 active:opacity-80'
                                 }`}
                             >
                                 <img

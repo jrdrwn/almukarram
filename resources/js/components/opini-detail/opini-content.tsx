@@ -23,9 +23,11 @@ export default function OpiniContent({
                     <img
                         src={opini.foto}
                         alt={opini.title}
-                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105 active:scale-105"
                         onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).parentElement!.style.display = 'none';
+                            (
+                                e.currentTarget as HTMLImageElement
+                            ).parentElement!.style.display = 'none';
                         }}
                     />
                 </div>
@@ -55,15 +57,7 @@ export default function OpiniContent({
 
                 {/* Full HTML content */}
                 <div
-                    className="prose prose-sm max-w-none text-justify leading-relaxed text-foreground
-                        prose-headings:font-bold prose-headings:text-foreground
-                        prose-a:text-violet-600 prose-a:underline hover:prose-a:text-violet-700
-                        prose-blockquote:border-l-violet-400 prose-blockquote:bg-violet-50/50 prose-blockquote:text-muted-foreground
-                        prose-img:rounded-3xl prose-img:shadow-md
-                        prose-strong:text-foreground
-                        prose-ul:list-disc prose-ol:list-decimal
-                        lg:prose-base
-                        dark:prose-invert dark:prose-blockquote:bg-violet-900/20"
+                    className="prose prose-sm prose-headings:font-bold prose-headings:text-foreground prose-a:text-violet-600 prose-a:underline hover:prose-a active:prose-a:text-violet-700 prose-blockquote:border-l-violet-400 prose-blockquote:bg-violet-50/50 prose-blockquote:text-muted-foreground prose-img:rounded-3xl prose-img:shadow-md prose-strong:text-foreground prose-ul:list-disc prose-ol:list-decimal lg:prose-base dark:prose-invert dark:prose-blockquote:bg-violet-900/20 max-w-none text-justify leading-relaxed text-foreground"
                     style={{ fontSize: `${fontSize}em` }}
                 >
                     {parse(opini.isi)}
@@ -76,7 +70,7 @@ export default function OpiniContent({
                             <User className="h-7 w-7 text-violet-500" />
                         </div>
                         <div>
-                            <div className="flex items-center gap-2 mb-1">
+                            <div className="mb-1 flex items-center gap-2">
                                 <h4 className="font-bold text-foreground">
                                     {opini.author}
                                 </h4>

@@ -60,7 +60,7 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
                         href="https://www.youtube.com/@almukarram"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-5 text-sm font-bold text-white shadow-lg shadow-emerald-900/30 transition-all hover:scale-[1.02] hover:bg-emerald-500 sm:h-14 sm:w-auto sm:px-6 sm:text-base"
+                        className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-5 text-sm font-bold text-white shadow-lg shadow-emerald-900/30 transition-all hover:scale-[1.02] hover:bg-emerald-500 active:scale-[1.02] active:bg-emerald-500 sm:h-14 sm:w-auto sm:px-6 sm:text-base"
                     >
                         <Youtube className="h-5 w-5 sm:h-6 sm:w-6" />
                         Lihat Channel YouTube
@@ -70,8 +70,8 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
                 {/* Carousel */}
                 <Carousel opts={{ loop: true, align: 'start' }}>
                     <div className="mb-6 flex flex-row items-center justify-end gap-3">
-                        <CarouselPrevious className="static top-auto translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600" />
-                        <CarouselNext className="static top-auto translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600" />
+                        <CarouselPrevious className="static top-auto translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600 active:bg-emerald-600" />
+                        <CarouselNext className="static top-auto translate-y-0 border-0 bg-emerald-700 text-white hover:bg-emerald-600 active:bg-emerald-600" />
                     </div>
                     <CarouselContent className="-ml-4">
                         {videos.map((video) => (
@@ -80,14 +80,14 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
                                 className="basis-full pl-4 sm:basis-1/2 lg:basis-1/3"
                             >
                                 <button
-                                    className="group relative block aspect-video w-full cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-zinc-800 shadow-md transition-all hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-900/40"
+                                    className="group relative block aspect-video w-full cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-zinc-800 shadow-md transition-all hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-900/40 active:border-emerald-500/50 active:shadow-xl active:shadow-emerald-900/40"
                                     onClick={() => setActiveVideo(video)}
                                 >
                                     {/* Thumbnail */}
                                     <img
                                         src={`https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg`}
                                         alt={video.judul}
-                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-active:scale-105"
                                         onError={(e) => {
                                             e.currentTarget.src =
                                                 'https://placehold.co/480x270/111827/4b5563?text=Video';
@@ -99,7 +99,7 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
 
                                     {/* Play Button */}
                                     <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600/90 shadow-xl backdrop-blur-sm transition-all group-hover:scale-110 group-hover:bg-emerald-500">
+                                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600/90 shadow-xl backdrop-blur-sm transition-all group-hover:scale-110 group-hover:bg-emerald-500 group-active:scale-110 group-active:bg-emerald-500">
                                             <PlayCircle className="h-8 w-8 text-white" />
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@ export default function VideoSection({ videos }: { videos: VideoItem[] }) {
 
                                     {/* Title */}
                                     <div className="absolute inset-x-0 bottom-0 p-4">
-                                        <p className="line-clamp-2 text-left text-sm leading-snug font-semibold text-white transition-colors group-hover:text-emerald-300">
+                                        <p className="line-clamp-2 text-left text-sm leading-snug font-semibold text-white transition-colors group-hover:text-emerald-300 group-active:text-emerald-300">
                                             {video.judul}
                                         </p>
                                     </div>

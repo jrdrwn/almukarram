@@ -109,9 +109,9 @@ export default function ProgramList() {
                     {programs.map((p, i) => (
                         <div
                             key={i}
-                            className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs transition-all hover:scale-[1.02] hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
+                            className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-xs transition-all hover:scale-[1.02] hover:shadow-md active:scale-[1.02] active:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
                         >
-                            <div className="absolute -top-6 -right-6 text-[100px] leading-none font-black text-primary opacity-5 transition-transform group-hover:scale-110">
+                            <div className="absolute -top-6 -right-6 text-[100px] leading-none font-black text-primary opacity-5 transition-transform group-hover:scale-110 group-active:scale-110">
                                 {p.no}
                             </div>
                             <h3 className="mb-3 text-xl font-bold text-foreground">

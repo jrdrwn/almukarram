@@ -1,5 +1,25 @@
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 import { useForm, usePage } from '@inertiajs/react';
-import { CheckCircle, Clock, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
+import {
+    AlertCircle,
+    CheckCircle2,
+    Clock,
+    Mail,
+    MapPin,
+    MessageCircle,
+    Phone,
+    Send,
+} from 'lucide-react';
 
 export default function KontakPengaduanSection() {
     const { flash } = usePage<{ flash: { success?: string } }>().props;
@@ -14,6 +34,7 @@ export default function KontakPengaduanSection() {
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         post('/kotak-masuk', {
+            preserveScroll: true,
             onSuccess: () => reset(),
         });
     }
@@ -45,8 +66,8 @@ export default function KontakPengaduanSection() {
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-8">
                     {/* Kiri: Informasi Kontak Card */}
                     <div className="flex flex-col gap-6">
-                        <div className="group flex items-start gap-5 rounded-3xl bg-card p-6 shadow-sm ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-md hover:ring-primary/50">
-                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                        <div className="group flex items-start gap-5 rounded-3xl bg-card p-6 shadow-sm ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-md hover:ring-primary/50 active:-translate-y-1 active:shadow-md active:ring-primary/50">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-active:bg-primary group-active:text-primary-foreground">
                                 <MapPin className="h-6 w-6" />
                             </div>
                             <div>
@@ -62,8 +83,8 @@ export default function KontakPengaduanSection() {
                         </div>
 
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                            <div className="group flex items-center gap-4 rounded-3xl bg-card p-6 shadow-sm ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-md hover:ring-amber-500/50">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white dark:text-amber-400">
+                            <div className="group flex items-center gap-4 rounded-3xl bg-card p-6 shadow-sm ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-md hover:ring-amber-500/50 active:-translate-y-1 active:shadow-md active:ring-amber-500/50">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white group-active:bg-amber-500 group-active:text-white dark:text-amber-400">
                                     <Phone className="h-5 w-5" />
                                 </div>
                                 <div>
@@ -75,8 +96,8 @@ export default function KontakPengaduanSection() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="group flex items-center gap-4 rounded-3xl bg-card p-6 shadow-sm ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-md hover:ring-emerald-500/50">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 transition-colors group-hover:bg-emerald-500 group-hover:text-white dark:text-emerald-400">
+                            <div className="group flex items-center gap-4 rounded-3xl bg-card p-6 shadow-sm ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-md hover:ring-emerald-500/50 active:-translate-y-1 active:shadow-md active:ring-emerald-500/50">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 transition-colors group-hover:bg-emerald-500 group-hover:text-white group-active:bg-emerald-500 group-active:text-white dark:text-emerald-400">
                                     <MessageCircle className="h-5 w-5" />
                                 </div>
                                 <div>
@@ -88,8 +109,8 @@ export default function KontakPengaduanSection() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="group flex items-center gap-4 rounded-3xl bg-card p-6 shadow-sm ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-md hover:ring-blue-500/50 sm:col-span-2">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 transition-colors group-hover:bg-blue-500 group-hover:text-white dark:text-blue-400">
+                            <div className="group flex items-center gap-4 rounded-3xl bg-card p-6 shadow-sm ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-md hover:ring-blue-500/50 active:-translate-y-1 active:shadow-md active:ring-blue-500/50 sm:col-span-2">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 transition-colors group-hover:bg-blue-500 group-hover:text-white group-active:bg-blue-500 group-active:text-white dark:text-blue-400">
                                     <Mail className="h-5 w-5" />
                                 </div>
                                 <div>
@@ -142,9 +163,22 @@ export default function KontakPengaduanSection() {
                             Kirim Pesan / Pengaduan
                         </h3>
                         {flash?.success && (
-                            <div className="mb-6 flex items-center gap-3 rounded-xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
-                                <CheckCircle className="h-5 w-5 shrink-0" />
-                                {flash.success}
+                            <div className="mb-6 flex items-start space-x-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                                <CheckCircle2 className="mt-0.5 h-5 w-5 text-emerald-600" />
+                                <p className="text-sm font-medium text-emerald-800 dark:text-emerald-400">
+                                    {flash.success}
+                                </p>
+                            </div>
+                        )}
+
+                        {Object.keys(errors).length > 0 && (
+                            <div className="mb-6 flex items-start space-x-3 rounded-xl border border-red-200 bg-red-50 p-4">
+                                <AlertCircle className="mt-0.5 h-5 w-5 text-red-600" />
+                                <div className="text-sm font-medium text-red-800 dark:text-red-400">
+                                    {Object.values(errors).map((error, i) => (
+                                        <p key={i}>{error}</p>
+                                    ))}
+                                </div>
                             </div>
                         )}
                         <form
@@ -154,104 +188,158 @@ export default function KontakPengaduanSection() {
                             <div className="space-y-5">
                                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-semibold text-foreground">
+                                        <Label className="text-sm font-bold text-foreground">
                                             Nama Lengkap
-                                        </label>
-                                        <input
+                                            <span className="text-red-500"> *</span>
+                                        </Label>
+                                        <Input
                                             type="text"
-                                            className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+                                            required
+                                            className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.nama ? 'border-red-500' : ''}`}
                                             placeholder="Masukkan nama"
                                             value={data.nama}
-                                            onChange={(e) => setData('nama', e.target.value)}
+                                            onChange={(e) =>
+                                                setData('nama', e.target.value)
+                                            }
                                         />
-                                        {errors.nama && <p className="text-xs text-red-500">{errors.nama}</p>}
+                                        {errors.nama && (
+                                            <p className="text-xs text-red-500">
+                                                {errors.nama}
+                                            </p>
+                                        )}
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-semibold text-foreground">
+                                        <Label className="text-sm font-bold text-foreground">
                                             No. WhatsApp
-                                        </label>
-                                        <input
+                                            <span className="text-red-500"> *</span>
+                                        </Label>
+                                        <Input
                                             type="tel"
-                                            className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+                                            required
+                                            className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.telepon ? 'border-red-500' : ''}`}
                                             placeholder="08xx-xxxx-xxxx"
                                             value={data.telepon}
-                                            onChange={(e) => setData('telepon', e.target.value)}
+                                            onChange={(e) =>
+                                                setData(
+                                                    'telepon',
+                                                    e.target.value,
+                                                )
+                                            }
                                         />
-                                        {errors.telepon && <p className="text-xs text-red-500">{errors.telepon}</p>}
+                                        {errors.telepon && (
+                                            <p className="text-xs text-red-500">
+                                                {errors.telepon}
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-semibold text-foreground">
+                                        <Label className="text-sm font-bold text-foreground">
                                             Alamat Email{' '}
                                             <span className="font-normal text-muted-foreground">
                                                 (Opsional)
                                             </span>
-                                        </label>
-                                        <input
+                                        </Label>
+                                        <Input
                                             type="email"
-                                            className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+                                            className={`h-12 rounded-xl border-input/60 px-4 focus-visible:ring-emerald-500 ${errors.email ? 'border-red-500' : ''}`}
                                             placeholder="email@contoh.com"
                                             value={data.email}
-                                            onChange={(e) => setData('email', e.target.value)}
+                                            onChange={(e) =>
+                                                setData('email', e.target.value)
+                                            }
                                         />
-                                        {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
+                                        {errors.email && (
+                                            <p className="text-xs text-red-500">
+                                                {errors.email}
+                                            </p>
+                                        )}
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-sm font-semibold text-foreground">
+                                        <Label className="text-sm font-bold text-foreground">
                                             Kategori Layanan
-                                        </label>
-                                        <select
-                                            className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+                                            <span className="text-red-500"> *</span>
+                                        </Label>
+                                        <Select
                                             value={data.subjek}
-                                            onChange={(e) => setData('subjek', e.target.value)}
+                                            onValueChange={(value) =>
+                                                setData('subjek', value)
+                                            }
                                         >
-                                            <option value="">
-                                                Pilih Kategori...
-                                            </option>
-                                            <option value="Pengaduan Fasilitas">
-                                                Pengaduan Fasilitas
-                                            </option>
-                                            <option value="Konsultasi Agama/Ibadah">
-                                                Konsultasi Agama/Ibadah
-                                            </option>
-                                            <option value="Informasi Program">
-                                                Informasi Program
-                                            </option>
-                                            <option value="Saran & Masukan Umum">
-                                                Saran & Masukan Umum
-                                            </option>
-                                        </select>
-                                        {errors.subjek && <p className="text-xs text-red-500">{errors.subjek}</p>}
+                                            <SelectTrigger
+                                                className={`h-12! w-full rounded-xl border-input/60 bg-background px-4 focus:ring-emerald-500 ${errors.subjek ? 'border-red-500' : ''}`}
+                                            >
+                                                <SelectValue placeholder="-- Pilih Subjek --" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="Informasi Umum">
+                                                    Informasi Umum
+                                                </SelectItem>
+                                                <SelectItem value="Kegiatan Masjid">
+                                                    Kegiatan Masjid
+                                                </SelectItem>
+                                                <SelectItem value="Donasi & Zakat">
+                                                    Donasi & Zakat
+                                                </SelectItem>
+                                                <SelectItem value="Pendidikan">
+                                                    Pendidikan / TPQ
+                                                </SelectItem>
+                                                <SelectItem value="Sewa Tempat">
+                                                    Sewa Fasilitas
+                                                </SelectItem>
+                                                <SelectItem value="Lainnya">
+                                                    Lainnya
+                                                </SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        {errors.subjek && (
+                                            <p className="text-xs text-red-500">
+                                                {errors.subjek}
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-foreground">
+                                    <Label className="text-sm font-bold text-foreground">
                                         Pesan / Detail Laporan
-                                    </label>
-                                    <textarea
+                                        <span className="text-red-500"> *</span>
+                                    </Label>
+                                    <Textarea
+                                        required
                                         rows={4}
-                                        className="w-full resize-none rounded-xl border border-input bg-background px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+                                        className={`min-h-35 resize-none rounded-xl border-input/60 p-4 focus-visible:ring-emerald-500 ${errors.pesan ? 'border-red-500' : ''}`}
                                         placeholder="Tuliskan detail pesan atau aduan Anda di sini..."
                                         value={data.pesan}
-                                        onChange={(e) => setData('pesan', e.target.value)}
-                                    ></textarea>
-                                    {errors.pesan && <p className="text-xs text-red-500">{errors.pesan}</p>}
+                                        onChange={(e) =>
+                                            setData('pesan', e.target.value)
+                                        }
+                                    />
+                                    {errors.pesan && (
+                                        <p className="text-xs text-red-500">
+                                            {errors.pesan}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
 
                             <div className="mt-auto pt-4 lg:pt-0">
-                                <button
+                                <Button
                                     type="submit"
+                                    size="lg"
                                     disabled={processing}
-                                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3.5 text-sm font-bold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg disabled:opacity-50"
+                                    className="group h-14 w-full rounded-xl bg-[#009B65] text-base font-bold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-[#008959] hover:shadow-lg active:-translate-y-0.5 active:bg-[#008959] active:shadow-lg disabled:opacity-50"
                                 >
-                                    <span>{processing ? 'Mengirim...' : 'Kirim Laporan'}</span>
-                                    <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                                </button>
+                                    <span>
+                                        {processing
+                                            ? 'Mengirim...'
+                                            : 'Kirim Laporan'}
+                                    </span>
+                                    <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-active:translate-x-1 group-active:-translate-y-1" />
+                                </Button>
 
                                 <p className="mt-4 text-center text-xs text-muted-foreground">
                                     Laporan terkirim akan langsung diteruskan ke

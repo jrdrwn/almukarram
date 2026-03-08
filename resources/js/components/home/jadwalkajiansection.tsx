@@ -2,18 +2,46 @@ import type { JadwalPengajianItem } from '@/types/home';
 import { BookOpen } from 'lucide-react';
 
 const dayColors: Record<string, { badge: string; glow: string }> = {
-    Senin: { badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300', glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10' },
-    Selasa: { badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300', glow: 'bg-blue-500/5 group-hover:bg-blue-500/10' },
-    Rabu: { badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300', glow: 'bg-blue-500/5 group-hover:bg-blue-500/10' },
-    Kamis: { badge: 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300', glow: 'bg-rose-500/5 group-hover:bg-rose-500/10' },
-    Jumat: { badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300', glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10' },
-    Sabtu: { badge: 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300', glow: 'bg-purple-500/5 group-hover:bg-purple-500/10' },
-    Ahad: { badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300', glow: 'bg-amber-500/5 group-hover:bg-amber-500/10' },
+    Senin: {
+        badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300',
+        glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10 group-active:bg-emerald-500/10',
+    },
+    Selasa: {
+        badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300',
+        glow: 'bg-blue-500/5 group-hover:bg-blue-500/10 group-active:bg-blue-500/10',
+    },
+    Rabu: {
+        badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300',
+        glow: 'bg-blue-500/5 group-hover:bg-blue-500/10 group-active:bg-blue-500/10',
+    },
+    Kamis: {
+        badge: 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300',
+        glow: 'bg-rose-500/5 group-hover:bg-rose-500/10 group-active:bg-rose-500/10',
+    },
+    Jumat: {
+        badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300',
+        glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10 group-active:bg-emerald-500/10',
+    },
+    Sabtu: {
+        badge: 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300',
+        glow: 'bg-purple-500/5 group-hover:bg-purple-500/10 group-active:bg-purple-500/10',
+    },
+    Ahad: {
+        badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300',
+        glow: 'bg-amber-500/5 group-hover:bg-amber-500/10 group-active:bg-amber-500/10',
+    },
 };
 
-const defaultColors = { badge: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-500/20 dark:text-zinc-300', glow: 'bg-zinc-500/5 group-hover:bg-zinc-500/10' };
+const defaultColors = {
+    badge: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-500/20 dark:text-zinc-300',
+    glow: 'bg-zinc-500/5 group-hover:bg-zinc-500/10 group-active:bg-zinc-500/10',
+};
 
-export default function JadwalKajianSection({ jadwalPengajian }: { jadwalPengajian: JadwalPengajianItem[] }) {
+export default function JadwalKajianSection({
+    jadwalPengajian,
+}: {
+    jadwalPengajian: JadwalPengajianItem[];
+}) {
     return (
         <section className="relative z-10 w-full bg-zinc-50 py-24 sm:py-32 dark:bg-zinc-900/20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -47,112 +75,124 @@ export default function JadwalKajianSection({ jadwalPengajian }: { jadwalPengaji
                     {jadwalPengajian.map((jadwal) => {
                         const colors = dayColors[jadwal.hari] ?? defaultColors;
                         return (
-                        <div
-                            key={jadwal.id}
-                            className="group relative flex h-full flex-col overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl sm:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
-                        >
-                            {/* Grid Texture Background */}
-                            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] mask-[radial-gradient(ellipse_80%_80%_at_50%_20%,#000_20%,transparent_100%)] bg-size-[24px_24px] opacity-60 transition-opacity duration-500 group-hover:opacity-100 dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
-
-                            {/* Decorative Abstract Shape in background */}
                             <div
-                                className={`absolute -top-16 -right-16 z-0 h-40 w-40 rounded-full transition-all duration-700 group-hover:scale-150 ${colors.glow}`}
-                            ></div>
+                                key={jadwal.id}
+                                className="group relative flex h-full flex-col overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl active:-translate-y-2 active:shadow-xl sm:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
+                            >
+                                {/* Grid Texture Background */}
+                                <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] mask-[radial-gradient(ellipse_80%_80%_at_50%_20%,#000_20%,transparent_100%)] bg-size-[24px_24px] opacity-60 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100 dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
 
-                            <div className="relative z-10 flex flex-1 flex-col">
-                                <div className="mb-6 flex min-h-12 flex-wrap items-start gap-2">
-                                    <div
-                                        className={`rounded-xl px-3 py-1 text-sm font-black tracking-widest shadow-sm ${colors.badge}`}
-                                    >
-                                        {jadwal.hari}
+                                {/* Decorative Abstract Shape in background */}
+                                <div
+                                    className={`absolute -top-16 -right-16 z-0 h-40 w-40 rounded-full transition-all duration-700 group-hover:scale-150 group-active:scale-150 ${colors.glow}`}
+                                ></div>
+
+                                <div className="relative z-10 flex flex-1 flex-col">
+                                    <div className="mb-6 flex min-h-12 flex-wrap items-start gap-2">
+                                        <div
+                                            className={`rounded-xl px-3 py-1 text-sm font-black tracking-widest shadow-sm ${colors.badge}`}
+                                        >
+                                            {jadwal.hari}
+                                        </div>
+                                        <span className="rounded-full border border-border bg-white/50 px-2.5 py-1.5 text-[10px] font-bold tracking-wider text-muted-foreground uppercase shadow-sm backdrop-blur-sm dark:bg-zinc-950/50">
+                                            {jadwal.tipe}
+                                        </span>
                                     </div>
-                                    <span className="rounded-full border border-border bg-white/50 px-2.5 py-1.5 text-[10px] font-bold tracking-wider text-muted-foreground uppercase shadow-sm backdrop-blur-sm dark:bg-zinc-950/50">
-                                        {jadwal.tipe}
-                                    </span>
+
+                                    <div className="flex flex-1 flex-col justify-start">
+                                        <h3 className="mb-4 text-xl leading-snug font-bold text-foreground transition-colors group-hover:text-primary group-active:text-primary">
+                                            {jadwal.judul}
+                                        </h3>
+                                        <div className="mt-auto mb-6 flex flex-col gap-2">
+                                            <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="opacity-50"
+                                                >
+                                                    <rect
+                                                        width="18"
+                                                        height="18"
+                                                        x="3"
+                                                        y="4"
+                                                        rx="2"
+                                                        ry="2"
+                                                    />
+                                                    <line
+                                                        x1="16"
+                                                        x2="16"
+                                                        y1="2"
+                                                        y2="6"
+                                                    />
+                                                    <line
+                                                        x1="8"
+                                                        x2="8"
+                                                        y1="2"
+                                                        y2="6"
+                                                    />
+                                                    <line
+                                                        x1="3"
+                                                        x2="21"
+                                                        y1="10"
+                                                        y2="10"
+                                                    />
+                                                </svg>
+                                                {jadwal.tanggal
+                                                    ? new Date(
+                                                          jadwal.tanggal,
+                                                      ).toLocaleDateString(
+                                                          'id-ID',
+                                                          {
+                                                              weekday: 'long',
+                                                              day: 'numeric',
+                                                              month: 'long',
+                                                              year: 'numeric',
+                                                          },
+                                                      )
+                                                    : jadwal.hari}
+                                            </div>
+                                            <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="opacity-50"
+                                                >
+                                                    <circle
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                    />
+                                                    <polyline points="12 6 12 12 16 14" />
+                                                </svg>
+                                                Pukul: {jadwal.waktu}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="flex flex-1 flex-col justify-start">
-                                    <h3 className="mb-4 text-xl leading-snug font-bold text-foreground transition-colors group-hover:text-primary">
-                                        {jadwal.judul}
-                                    </h3>
-                                    <div className="mt-auto mb-6 flex flex-col gap-2">
-                                        <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                className="opacity-50"
-                                            >
-                                                <rect
-                                                    width="18"
-                                                    height="18"
-                                                    x="3"
-                                                    y="4"
-                                                    rx="2"
-                                                    ry="2"
-                                                />
-                                                <line
-                                                    x1="16"
-                                                    x2="16"
-                                                    y1="2"
-                                                    y2="6"
-                                                />
-                                                <line
-                                                    x1="8"
-                                                    x2="8"
-                                                    y1="2"
-                                                    y2="6"
-                                                />
-                                                <line
-                                                    x1="3"
-                                                    x2="21"
-                                                    y1="10"
-                                                    y2="10"
-                                                />
-                                            </svg>
-                                            {jadwal.tanggal ? new Date(jadwal.tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : jadwal.hari}
-                                        </div>
-                                        <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                className="opacity-50"
-                                            >
-                                                <circle
-                                                    cx="12"
-                                                    cy="12"
-                                                    r="10"
-                                                />
-                                                <polyline points="12 6 12 12 16 14" />
-                                            </svg>
-                                            Pukul: {jadwal.waktu}
-                                        </div>
-                                    </div>
+                                <div className="relative z-10 mt-auto flex min-h-20 flex-col justify-end border-t border-border/60 pt-5">
+                                    <p className="mb-1.5 text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                                        Pemateri
+                                    </p>
+                                    <p className="text-base leading-tight font-bold text-foreground">
+                                        {jadwal.pemateri}
+                                    </p>
                                 </div>
                             </div>
-
-                            <div className="relative z-10 mt-auto flex min-h-20 flex-col justify-end border-t border-border/60 pt-5">
-                                <p className="mb-1.5 text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
-                                    Pemateri
-                                </p>
-                                <p className="text-base leading-tight font-bold text-foreground">
-                                    {jadwal.pemateri}
-                                </p>
-                            </div>
-                        </div>
                         );
                     })}
                 </div>

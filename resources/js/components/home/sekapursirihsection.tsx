@@ -4,10 +4,10 @@ export default function SekapurSirihSection() {
             {/* Outer Glow behind the card */}
             <div className="absolute top-1/2 left-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[120px]"></div>
 
-            <div className="group relative overflow-hidden rounded-[3rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-[1.5px] shadow-2xl shadow-primary/5 transition-transform duration-500 hover:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none">
+            <div className="group relative overflow-hidden rounded-[3rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-[1.5px] shadow-2xl shadow-primary/5 transition-transform duration-500 hover:shadow-primary/10 active:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none">
                 <div className="relative grid overflow-hidden rounded-[2.9rem] bg-card lg:grid-cols-12">
                     {/* Abstract Background pattern for text column */}
-                    <div className="pointer-events-none absolute right-0 bottom-0 z-0 h-200 w-200 translate-x-1/3 translate-y-1/3 rounded-full bg-linear-to-tr from-primary/10 to-primary/5 blur-[80px] transition-transform duration-700 group-hover:scale-110" />
+                    <div className="pointer-events-none absolute right-0 bottom-0 z-0 h-200 w-200 translate-x-1/3 translate-y-1/3 rounded-full bg-linear-to-tr from-primary/10 to-primary/5 blur-[80px] transition-transform duration-700 group-hover:scale-110 group-active:scale-110" />
 
                     {/* Image Column */}
                     <div className="relative col-span-1 flex items-end justify-center overflow-hidden bg-linear-to-t from-primary/10 via-primary/5 to-transparent pt-12 sm:px-8 lg:col-span-5 lg:pt-16">
@@ -16,14 +16,14 @@ export default function SekapurSirihSection() {
 
                         {/* Decorative Elements */}
                         <svg
-                            className="absolute top-20 -left-12 z-0 h-40 w-40 text-primary/10 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12"
+                            className="absolute top-20 -left-12 z-0 h-40 w-40 text-primary/10 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12 group-active:scale-110 group-active:-rotate-12"
                             viewBox="0 0 100 100"
                             fill="currentColor"
                         >
                             <circle cx="50" cy="50" r="50" />
                         </svg>
                         <svg
-                            className="absolute -right-8 bottom-32 z-0 h-24 w-24 text-primary/30 transition-transform duration-700 group-hover:rotate-45"
+                            className="absolute -right-8 bottom-32 z-0 h-24 w-24 text-primary/30 transition-transform duration-700 group-hover:rotate-45 group-active:rotate-45"
                             viewBox="0 0 100 100"
                             fill="none"
                             stroke="currentColor"
@@ -39,11 +39,11 @@ export default function SekapurSirihSection() {
                             onError={(e) => {
                                 e.currentTarget.src = '/images/logomasjid.png';
                             }}
-                            className="relative z-10 h-auto max-h-180 w-auto object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.15)] transition-transform duration-500 group-hover:scale-[1.02]"
+                            className="relative z-10 h-auto max-h-180 w-auto object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.15)] transition-transform duration-500 group-hover:scale-[1.02] group-active:scale-[1.02]"
                         />
 
                         {/* Floating Glassmorphism Badge */}
-                        <div className="absolute bottom-8 z-20 mx-auto w-max max-w-[90%] transform rounded-full border border-white/40 bg-white/70 px-8 py-4 text-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] ring-1 ring-white/50 backdrop-blur-xl transition-all duration-500 ring-inset hover:-translate-y-2 hover:shadow-[0_8px_40px_rgba(var(--color-primary),0.2)] dark:border-white/10 dark:bg-zinc-950/70 dark:ring-white/10">
+                        <div className="hover:shadow-[0 absolute bottom-8 z-20 mx-auto w-max max-w-[90%] transform rounded-full border border-white/40 bg-white/70 px-8 py-4 text-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] ring-1 ring-white/50 backdrop-blur-xl transition-all duration-500 ring-inset hover:-translate-y-2 active:-translate-y-2 active:shadow-[0_8px_40px_rgba_8px_40px_rgba(var(--color-primary),0.2)] dark:border-white/10 dark:bg-zinc-950/70 dark:ring-white/10">
                             <h3 className="text-xl font-bold tracking-wide text-foreground">
                                 H.M. Wiyatno, S.P.
                             </h3>
@@ -72,7 +72,7 @@ export default function SekapurSirihSection() {
 
                         <div className="relative">
                             {/* Decorative Big Quote */}
-                            <span className="absolute -top-20 -left-12 font-serif text-[12rem] leading-none text-primary/5 transition-transform duration-700 group-hover:-translate-y-2 group-hover:scale-105 dark:text-primary/10">
+                            <span className="absolute -top-20 -left-12 font-serif text-[12rem] leading-none text-primary/5 transition-transform duration-700 group-hover:-translate-y-2 group-hover:scale-105 group-active:-translate-y-2 group-active:scale-105 dark:text-primary/10">
                                 "
                             </span>
 
@@ -115,7 +115,7 @@ export default function SekapurSirihSection() {
                                 </p>
                             </div>
 
-                            <div className="relative z-10 mt-12 flex items-center gap-6 rounded-3xl bg-zinc-50/50 p-4 transition-colors hover:bg-zinc-100/50 sm:p-6 dark:bg-zinc-900/50 dark:hover:bg-zinc-900">
+                            <div className="relative z-10 mt-12 flex items-center gap-6 rounded-3xl bg-zinc-50/50 p-4 transition-colors hover:bg-zinc-100/50 active:bg-zinc-100/50 active:bg-zinc-900 sm:p-6 dark:bg-zinc-900/50 dark:hover:bg-zinc-900">
                                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/20">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

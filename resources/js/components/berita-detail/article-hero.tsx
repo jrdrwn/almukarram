@@ -1,12 +1,5 @@
 import { Link } from '@inertiajs/react';
-import {
-    Calendar,
-    Eye,
-    Home,
-    Newspaper,
-    Tag,
-    User,
-} from 'lucide-react';
+import { Calendar, Eye, Home, Newspaper, Tag, User } from 'lucide-react';
 
 export interface BeritaDetail {
     id: number;
@@ -45,11 +38,13 @@ export default function ArticleHero({ berita }: ArticleHeroProps) {
             {berita.gambar && (
                 <div className="absolute inset-0 -z-20">
                     <img
-                        src={`/uploads/${berita.gambar}`}
+                        src={`/storage/${berita.gambar}`}
                         alt={berita.judul}
-                        className="h-full w-full object-cover object-center blur-sm scale-105"
+                        className="h-full w-full scale-105 object-cover object-center blur-sm"
                         onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).style.display = 'none';
+                            (
+                                e.currentTarget as HTMLImageElement
+                            ).style.display = 'none';
                         }}
                     />
                 </div>
@@ -68,7 +63,7 @@ export default function ArticleHero({ berita }: ArticleHeroProps) {
                 )}
 
                 {/* Judul */}
-                <h1 className="mb-6 max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white drop-shadow-lg md:text-5xl">
+                <h1 className="mb-6 max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-white drop-shadow-lg md:text-5xl">
                     {berita.judul}
                 </h1>
 
@@ -89,7 +84,7 @@ export default function ArticleHero({ berita }: ArticleHeroProps) {
                     {berita.kategori && berita.kat_slug && (
                         <Link
                             href={`/berita?kategori=${berita.kat_slug}`}
-                            className="flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-0.5 text-emerald-200 transition-colors hover:bg-white/20"
+                            className="flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-0.5 text-emerald-200 transition-colors hover:bg-white/20 active:bg-white/20"
                         >
                             <Newspaper className="h-3.5 w-3.5" />
                             {berita.kategori}
@@ -98,12 +93,15 @@ export default function ArticleHero({ berita }: ArticleHeroProps) {
                 </div>
 
                 {/* Breadcrumb */}
-                <nav aria-label="breadcrumb" className="mx-auto flex justify-start">
-                    <ol className="inline-flex flex-wrap items-center gap-y-2 space-x-2 rounded-full border border-white/10 bg-black/20 px-5 py-2.5 text-sm text-white/80 shadow-lg backdrop-blur-md dark:bg-black/40">
+                <nav
+                    aria-label="breadcrumb"
+                    className="mx-auto flex justify-start"
+                >
+                    <ol className="inline-flex flex-wrap items-center space-x-2 gap-y-2 rounded-full border border-white/10 bg-black/20 px-5 py-2.5 text-sm text-white/80 shadow-lg backdrop-blur-md dark:bg-black/40">
                         <li className="flex items-center">
                             <Link
                                 href="/"
-                                className="flex items-center gap-1.5 transition-colors hover:text-white"
+                                className="flex items-center gap-1.5 transition-colors hover:text-white active:text-white"
                             >
                                 <Home className="h-3.5 w-3.5" />
                                 Beranda
@@ -113,7 +111,7 @@ export default function ArticleHero({ berita }: ArticleHeroProps) {
                             <span className="mx-1 opacity-50">/</span>
                             <Link
                                 href="/berita"
-                                className="flex items-center gap-1.5 transition-colors hover:text-white"
+                                className="flex items-center gap-1.5 transition-colors hover:text-white active:text-white"
                             >
                                 <Newspaper className="h-3.5 w-3.5" />
                                 Berita

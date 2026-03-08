@@ -11,6 +11,14 @@ import ArticleShare from '@/components/berita-detail/article-share';
 import ArticleSidebar from '@/components/berita-detail/article-sidebar';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
+import { Button } from '@/components/ui/button';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 
 interface BeritaDetailPageProps {
     berita: BeritaDetail;
@@ -86,31 +94,44 @@ export default function BeritaDetailPage({
             />
 
             {/* Font size accessibility button */}
-            <div className="fixed right-6 bottom-6 z-50">
-                <div className="flex flex-col gap-1.5 overflow-hidden rounded-2xl border border-border bg-white/80 p-2 shadow-lg backdrop-blur-xl dark:bg-zinc-900/80">
-                    <span className="flex items-center gap-1.5 px-2 py-1 text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
-                        <ALargeSmall className="h-3 w-3" />
-                        Font
-                    </span>
-                    <button
-                        onClick={() =>
-                            setFontSize((p) => Math.min(2, +(p + 0.1).toFixed(1)))
-                        }
-                        className="rounded-xl bg-emerald-50 px-3 py-1.5 text-sm font-extrabold text-emerald-700 transition hover:bg-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:hover:bg-emerald-900/40"
-                        aria-label="Perbesar font"
-                    >
-                        A+
-                    </button>
-                    <button
-                        onClick={() =>
-                            setFontSize((p) => Math.max(0.8, +(p - 0.1).toFixed(1)))
-                        }
-                        className="rounded-xl bg-zinc-100 px-3 py-1.5 text-sm font-bold text-zinc-600 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
-                        aria-label="Perkecil font"
-                    >
-                        A-
-                    </button>
-                </div>
+            <div className="fixed right-6 bottom-18 z-50">
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                            size="icon"
+                            className="h-10 w-10 rounded-full border border-border bg-white shadow-xl hover:bg-zinc-100 active:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:active:bg-zinc-800"
+                        >
+                            <ALargeSmall className="h-6 w-6 text-foreground" />
+                            <span className="sr-only">Pengaturan Font</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-40 rounded-xl p-2">
+                        <DropdownMenuLabel className="text-xs font-bold tracking-widest text-muted-foreground uppercase">
+                            Ukuran Font
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <div className="flex flex-col gap-1.5 p-1">
+                            <Button
+                                variant="outline"
+                                onClick={() =>
+                                    setFontSize((p) => Math.min(2, +(p + 0.1).toFixed(1)))
+                                }
+                                className="w-full justify-center rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 active:bg-emerald-100 border-0 dark:bg-emerald-900/20 dark:text-emerald-400 dark:hover:bg-emerald-900/40 dark:active:bg-emerald-900/40"
+                            >
+                                Perbesar (A+)
+                            </Button>
+                            <Button
+                                variant="outline"
+                                onClick={() =>
+                                    setFontSize((p) => Math.max(0.8, +(p - 0.1).toFixed(1)))
+                                }
+                                className="w-full justify-center rounded-lg bg-zinc-100 text-zinc-600 hover:bg-zinc-200 active:bg-zinc-200 border-0 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:active:bg-zinc-700"
+                            >
+                                Perkecil (A-)
+                            </Button>
+                        </div>
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </div>
 
             <Footer />

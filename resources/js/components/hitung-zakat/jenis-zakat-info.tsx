@@ -112,10 +112,10 @@ export default function JenisZakatInfo() {
                         return (
                             <div
                                 key={idx}
-                                className="group relative rounded-3xl border border-zinc-100 bg-zinc-50/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-100 hover:bg-white hover:shadow-xl hover:shadow-emerald-500/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-emerald-900/50 dark:hover:bg-zinc-900"
+                                className="group relative rounded-3xl border border-zinc-100 bg-zinc-50/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-100 hover:bg-white hover:shadow-xl hover:shadow-emerald-500/5 active:-translate-y-1 active:border-emerald-100 active:border-emerald-900/50 active:bg-white active:bg-zinc-900 active:shadow-xl active:shadow-emerald-500/5 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-emerald-900/50 dark:hover:bg-zinc-900"
                                 style={{ animationDelay: `${idx * 50}ms` }}
                             >
-                                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 dark:bg-emerald-500/20 dark:text-emerald-400">
+                                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 group-active:scale-110 group-active:rotate-3 dark:bg-emerald-500/20 dark:text-emerald-400">
                                     <Icon className="h-6 w-6" />
                                 </div>
                                 <h3 className="mb-2 text-lg font-bold text-zinc-900 dark:text-white">
@@ -148,9 +148,9 @@ export default function JenisZakatInfo() {
                         <div className="flex shrink-0 flex-wrap justify-center gap-4">
                             <Link
                                 href="/zis"
-                                className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-emerald-700 shadow-xl transition-all hover:scale-105 hover:bg-emerald-50"
+                                className="group inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-emerald-700 shadow-xl transition-all hover:scale-105 hover:bg-emerald-50 active:scale-105 active:bg-emerald-50"
                             >
-                                <HandHeart className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:-rotate-12" />
+                                <HandHeart className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:-rotate-12 group-active:scale-110 group-active:-rotate-12" />
                                 Waqaf, Infaq, Shadaqah
                             </Link>
                         </div>

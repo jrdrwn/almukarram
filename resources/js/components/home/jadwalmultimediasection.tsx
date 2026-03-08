@@ -15,7 +15,10 @@ export default function JadwalMultimediaSection({
     const [activeMediaTab, setActiveMediaTab] = useState<'video' | 'photo'>(
         'video',
     );
-    const [previewMedia, setPreviewMedia] = useState<{type: 'video' | 'photo', src: string} | null>(null);
+    const [previewMedia, setPreviewMedia] = useState<{
+        type: 'video' | 'photo';
+        src: string;
+    } | null>(null);
 
     const featuredVideo = videos[0] ?? null;
     const photoPreviews = [
@@ -112,14 +115,14 @@ export default function JadwalMultimediaSection({
                                 return (
                                     <div
                                         key={idx}
-                                        className={`group relative overflow-hidden rounded-4xl p-6 transition-all duration-300 hover:-translate-y-2 ${
+                                        className={`group relative overflow-hidden rounded-4xl p-6 transition-all duration-300 hover:-translate-y-2 active:-translate-y-2 ${
                                             isActive
                                                 ? 'bg-primary text-primary-foreground shadow-[0_0_40px_rgba(var(--color-primary),0.4)]'
-                                                : 'border border-white/10 bg-white/5 text-white backdrop-blur-md hover:border-white/20 hover:bg-white/10'
+                                                : 'border border-white/10 bg-white/5 text-white backdrop-blur-md hover:border-white/20 hover:bg-white/10 active:border-white/20 active:bg-white/10'
                                         } ${prayer.fade ? 'opacity-60' : ''}`}
                                     >
                                         <h4
-                                            className={`mb-2 text-sm font-bold tracking-widest uppercase ${isActive ? 'text-primary-foreground/80' : 'text-white/50 group-hover:text-white/80'}`}
+                                            className={`mb-2 text-sm font-bold tracking-widest uppercase ${isActive ? 'text-primary-foreground/80' : 'text-white/50 group-hover:text-white/80 group-active:text-white/80'}`}
                                         >
                                             {prayer.name}
                                         </h4>
@@ -147,8 +150,8 @@ export default function JadwalMultimediaSection({
                             <div className="group relative flex h-full min-h-120 flex-col justify-between overflow-hidden rounded-[2.85rem] bg-zinc-950 p-6 sm:min-h-125 sm:p-12">
                                 {/* Abstract background pattern for card */}
                                 <div className="absolute inset-0 z-0">
-                                    <div className="absolute top-[-10%] -right-[10%] h-75 w-75 rounded-full bg-primary/20 blur-[80px] transition-transform duration-1000 group-hover:scale-110"></div>
-                                    <div className="absolute bottom-[-10%] left-[-10%] h-50 w-50 rounded-full bg-blue-500/20 blur-[60px] transition-transform duration-1000 group-hover:scale-110"></div>
+                                    <div className="absolute top-[-10%] -right-[10%] h-75 w-75 rounded-full bg-primary/20 blur-[80px] transition-transform duration-1000 group-hover:scale-110 group-active:scale-110"></div>
+                                    <div className="absolute bottom-[-10%] left-[-10%] h-50 w-50 rounded-full bg-blue-500/20 blur-[60px] transition-transform duration-1000 group-hover:scale-110 group-active:scale-110"></div>
                                 </div>
 
                                 <div className="relative z-10">
@@ -158,7 +161,7 @@ export default function JadwalMultimediaSection({
                                             onClick={() =>
                                                 setActiveMediaTab('video')
                                             }
-                                            className={`flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${activeMediaTab === 'video' ? 'bg-primary text-white shadow-lg' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
+                                            className={`flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${activeMediaTab === 'video' ? 'bg-primary text-white shadow-lg' : 'text-white/50 hover:bg-white/5 hover:text-white active:bg-white/5 active:text-white'}`}
                                         >
                                             <Play className="h-4 w-4" />
                                             Video
@@ -167,7 +170,7 @@ export default function JadwalMultimediaSection({
                                             onClick={() =>
                                                 setActiveMediaTab('photo')
                                             }
-                                            className={`flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${activeMediaTab === 'photo' ? 'bg-blue-600 text-white shadow-lg' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
+                                            className={`flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${activeMediaTab === 'photo' ? 'bg-blue-600 text-white shadow-lg' : 'text-white/50 hover:bg-white/5 hover:text-white active:bg-white/5 active:text-white'}`}
                                         >
                                             <ImageIcon className="h-4 w-4" />
                                             Photo
@@ -195,14 +198,19 @@ export default function JadwalMultimediaSection({
                                 </div>
 
                                 {/* Fake Video Player / Photo Grid Box */}
-                                <div className="relative z-10 my-6 flex min-h-40 flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-white/5 py-2 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:shadow-2xl hover:shadow-primary/20">
+                                <div className="relative z-10 my-6 flex min-h-40 flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-white/5 py-2 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:shadow-2xl hover:shadow-primary/20 active:bg-white/10 active:shadow-2xl active:shadow-primary/20">
                                     {activeMediaTab === 'video' ? (
                                         featuredVideo ? (
                                             <div
-                                                className="relative w-full px-4 cursor-pointer group/vid"
-                                                onClick={() => setPreviewMedia({ type: 'video', src: `https://youtube.com/watch?v=${featuredVideo.youtube_id}` })}
+                                                className="group/vid relative w-full cursor-pointer px-4"
+                                                onClick={() =>
+                                                    setPreviewMedia({
+                                                        type: 'video',
+                                                        src: `https://youtube.com/watch?v=${featuredVideo.youtube_id}`,
+                                                    })
+                                                }
                                             >
-                                                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/60 transition-transform duration-300 group-hover/vid:scale-[1.02] group-hover/vid:ring-2 group-hover/vid:ring-primary/50">
+                                                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/60 transition-transform duration-300 group-hover/vid:scale-[1.02] group-hover/vid:ring-2 group-hover/vid:ring-primary/50 group-active/vid:scale-[1.02] group-active/vid:ring-2 group-active/vid:ring-primary/50">
                                                     <img
                                                         src={`https://img.youtube.com/vi/${featuredVideo.youtube_id}/hqdefault.jpg`}
                                                         alt={
@@ -239,10 +247,10 @@ export default function JadwalMultimediaSection({
                                             </div>
                                         ) : (
                                             <>
-                                                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white shadow-[0_0_30px_rgba(var(--color-primary),0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-primary">
+                                                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white shadow-[0_0_30px_rgba(var(--color-primary),0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-primary group-active:scale-110 group-active:bg-white group-active:text-primary">
                                                     <Play className="ml-0.5 h-7 w-7" />
                                                 </div>
-                                                <span className="mt-4 text-sm font-semibold tracking-wider text-white/70 transition-colors group-hover:text-white">
+                                                <span className="mt-4 text-sm font-semibold tracking-wider text-white/70 transition-colors group-hover:text-white group-active:text-white">
                                                     Belum ada video terbaru
                                                 </span>
                                             </>
@@ -251,8 +259,13 @@ export default function JadwalMultimediaSection({
                                         <>
                                             <div className="grid w-full grid-cols-2 gap-2 px-2">
                                                 <div
-                                                    className="col-span-2 aspect-video cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 p-2 transition-transform duration-300 hover:scale-[1.02] hover:ring-2 hover:ring-blue-500/50"
-                                                    onClick={() => setPreviewMedia({ type: 'photo', src: photoPreviews[0] })}
+                                                    className="col-span-2 aspect-video cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 p-2 transition-transform duration-300 hover:scale-[1.02] hover:ring-2 hover:ring-blue-500/50 active:scale-[1.02] active:ring-2 active:ring-blue-500/50"
+                                                    onClick={() =>
+                                                        setPreviewMedia({
+                                                            type: 'photo',
+                                                            src: photoPreviews[0],
+                                                        })
+                                                    }
                                                 >
                                                     <img
                                                         src={photoPreviews[0]}
@@ -280,7 +293,7 @@ export default function JadwalMultimediaSection({
                                                                     e.currentTarget.src =
                                                                         '/images/masjidnewww-scaled.png';
                                                                 }}
-                                                                className="h-full w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-105"
+                                                                className="h-full w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-105 group-active:scale-105"
                                                             />
                                                         </div>
                                                     ))}
@@ -296,13 +309,13 @@ export default function JadwalMultimediaSection({
                                                 ? '/galeri#video'
                                                 : '/galeri#foto'
                                         }
-                                        className="group/btn relative inline-flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-white/95 px-5 text-base font-bold text-zinc-950 shadow-lg transition-all hover:bg-white hover:shadow-xl sm:h-14 sm:rounded-full sm:px-8 sm:text-lg"
+                                        className="group/btn relative inline-flex h-13 w-full items-center justify-center gap-2 rounded-2xl bg-white/95 px-5 text-base font-bold text-zinc-950 shadow-lg transition-all hover:bg-white hover:shadow-xl active:bg-white active:shadow-xl sm:h-14 sm:rounded-full sm:px-8 sm:text-lg"
                                     >
                                         <span className="relative z-10 flex items-center gap-2">
                                             {activeMediaTab === 'video'
                                                 ? 'Kunjungi Galeri Video'
                                                 : 'Kunjungi Galeri Foto'}
-                                            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1 sm:h-5 sm:w-5" />
+                                            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1 group-active/btn:translate-x-1 sm:h-5 sm:w-5" />
                                         </span>
                                     </Link>
                                 </div>
@@ -324,7 +337,7 @@ export default function JadwalMultimediaSection({
                     >
                         <button
                             onClick={() => setPreviewMedia(null)}
-                            className="absolute -right-3 -top-3 z-10 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-zinc-800 text-white shadow-lg transition-colors hover:bg-zinc-700 sm:-right-5 sm:-top-5"
+                            className="absolute -top-3 -right-3 z-10 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-zinc-800 text-white shadow-lg transition-colors hover:bg-zinc-700 active:bg-zinc-700 sm:-top-5 sm:-right-5"
                         >
                             <X className="h-5 w-5" />
                         </button>
@@ -340,7 +353,11 @@ export default function JadwalMultimediaSection({
                             </div>
                         ) : (
                             <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-xl bg-black/50">
-                                <img src={previewMedia.src} alt="Preview Foto" className="max-h-full max-w-full rounded-lg object-contain" />
+                                <img
+                                    src={previewMedia.src}
+                                    alt="Preview Foto"
+                                    className="max-h-full max-w-full rounded-lg object-contain"
+                                />
                             </div>
                         )}
                     </div>

@@ -755,7 +755,7 @@ export default function KalkulatorUtama() {
                                                 'group flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left font-semibold transition-all duration-200',
                                                 isActive
                                                     ? 'bg-emerald-600 text-white shadow-md shadow-emerald-500/20'
-                                                    : 'bg-zinc-50 text-zinc-700 hover:bg-emerald-50 hover:text-emerald-700 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800',
+                                                    : 'bg-zinc-50 text-zinc-700 hover:bg-emerald-50 hover:text-emerald-700 active:bg-emerald-50 active:bg-zinc-800 active:text-emerald-700 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800',
                                             )}
                                         >
                                             <div
@@ -763,7 +763,7 @@ export default function KalkulatorUtama() {
                                                     'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors',
                                                     isActive
                                                         ? 'bg-white/20'
-                                                        : 'bg-white text-emerald-600 group-hover:bg-emerald-100 dark:bg-zinc-950 dark:text-emerald-500 dark:group-hover:bg-emerald-950/50',
+                                                        : 'bg-white text-emerald-600 group-hover:bg-emerald-100 group-active:bg-emerald-100 group-active:bg-emerald-950/50 dark:bg-zinc-950 dark:text-emerald-500 dark:group-hover:bg-emerald-950/50',
                                                 )}
                                             >
                                                 <Icon
@@ -1186,7 +1186,7 @@ export default function KalkulatorUtama() {
                             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                                 <button
                                     onClick={handleHitung}
-                                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 font-bold text-white shadow-lg shadow-emerald-600/20 transition-all hover:bg-emerald-700 active:scale-[0.98]"
+                                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 font-bold text-white shadow-lg shadow-emerald-600/20 transition-all hover:bg-emerald-700 active:bg-emerald-700"
                                 >
                                     <Calculator className="h-5 w-5" />
                                     Hitung Zakat
@@ -1196,7 +1196,7 @@ export default function KalkulatorUtama() {
                                         setHasil(null);
                                         setNisabHtml(null);
                                     }}
-                                    className="flex w-full items-center justify-center rounded-xl border border-zinc-200 bg-white px-6 py-3.5 font-bold text-zinc-700 transition-colors hover:bg-zinc-50 sm:w-auto dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700/80"
+                                    className="flex w-full items-center justify-center rounded-xl border border-zinc-200 bg-white px-6 py-3.5 font-bold text-zinc-700 transition-colors hover:bg-zinc-50 active:bg-zinc-50 active:bg-zinc-700/80 sm:w-auto dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700/80"
                                 >
                                     Reset
                                 </button>
@@ -1256,7 +1256,7 @@ export default function KalkulatorUtama() {
                                             </p>
                                             <Link
                                                 href="/zis"
-                                                className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-transform hover:-translate-y-0.5 hover:bg-emerald-700"
+                                                className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-transform hover:-translate-y-0.5 hover:bg-emerald-700 active:-translate-y-0.5 active:bg-emerald-700"
                                             >
                                                 <HandHeart className="h-4 w-4" />{' '}
                                                 Bayar Zakat di Masjid

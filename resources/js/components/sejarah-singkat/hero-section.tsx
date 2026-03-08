@@ -22,16 +22,16 @@ export default function HeroSection() {
                             <div className="absolute -top-4 -right-4 -z-10 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
                             <div className="absolute -bottom-4 -left-4 -z-10 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl" />
 
-                            <div className="group relative overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl shadow-primary/10 ring-1 ring-black/5 transition-transform duration-500 hover:-translate-y-2 dark:bg-zinc-900 dark:ring-white/10">
-                                <div className="relative flex aspect-4/5 items-center justify-center overflow-hidden rounded-[2rem] bg-zinc-100 dark:bg-zinc-800 md:aspect-auto md:h-115">
-                                    <div className="absolute inset-0 bg-linear-to-tr from-primary/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                            <div className="group relative overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 shadow-primary/10 ring-black/5 transition-transform duration-500 hover:-translate-y-2 active:-translate-y-2 dark:bg-zinc-900 dark:ring-white/10">
+                                <div className="relative flex aspect-4/5 items-center justify-center overflow-hidden rounded-[2rem] bg-zinc-100 md:aspect-auto md:h-115 dark:bg-zinc-800">
+                                    <div className="absolute inset-0 bg-linear-to-tr from-primary/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100" />
                                     <img
                                         src="/images/masjidnewww-scaled.png"
                                         alt="Masjid Agung Al-Mukarram Amanah"
-                                        className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                                        className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 group-active:scale-105"
                                     />
                                     {/* Overlay gradient for better depth */}
-                                    <div className="absolute inset-0 rounded-[2rem] bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                                    <div className="absolute inset-0 rounded-[2rem] bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100" />
                                 </div>
                             </div>
                         </div>

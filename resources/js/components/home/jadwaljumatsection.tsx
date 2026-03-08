@@ -1,7 +1,11 @@
 import type { JadwalJumatData } from '@/types/home';
 import { Calendar, CalendarDays } from 'lucide-react';
 
-export default function JadwalJumatSection({ jadwalJumat }: { jadwalJumat: JadwalJumatData | null }) {
+export default function JadwalJumatSection({
+    jadwalJumat,
+}: {
+    jadwalJumat: JadwalJumatData | null;
+}) {
     if (!jadwalJumat) return null;
 
     return (
@@ -42,7 +46,13 @@ export default function JadwalJumatSection({ jadwalJumat }: { jadwalJumat: Jadwa
                                             Tanggal
                                         </p>
                                         <p className="text-sm font-bold text-white">
-                                            {new Date(jadwalJumat.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                            {new Date(
+                                                jadwalJumat.tanggal,
+                                            ).toLocaleDateString('id-ID', {
+                                                day: 'numeric',
+                                                month: 'long',
+                                                year: 'numeric',
+                                            })}
                                         </p>
                                     </div>
                                 </div>
@@ -77,7 +87,7 @@ export default function JadwalJumatSection({ jadwalJumat }: { jadwalJumat: Jadwa
                         </div>
 
                         {/* Right Grid Petugas */}
-                        <div className="grid w-full max-w-lg grid-cols-1 gap-4 sm:grid-cols-2 lg:w-1/2 lg:max-w-none">
+                        <div className="grid w-full lg:max-w-lg grid-cols-1 gap-4 sm:grid-cols-2 xl:w-1/2 xl:max-w-none">
                             {[
                                 {
                                     role: 'Khatib',
@@ -98,12 +108,12 @@ export default function JadwalJumatSection({ jadwalJumat }: { jadwalJumat: Jadwa
                             ].map((petugas, idx) => (
                                 <div
                                     key={idx}
-                                    className="group flex flex-col justify-center rounded-3xl border border-emerald-800/50 bg-emerald-900/40 p-6 backdrop-blur-sm transition-colors hover:bg-emerald-800/60"
+                                    className="group w-full  flex flex-col justify-center rounded-3xl border border-emerald-800/50 bg-emerald-900/40 p-6 backdrop-blur-sm transition-colors hover:bg-emerald-800/60 active:bg-emerald-800/60"
                                 >
                                     <p className="mb-1 text-xs font-bold tracking-widest text-emerald-400 uppercase">
                                         {petugas.role}
                                     </p>
-                                    <h4 className="text-lg leading-tight font-bold text-white transition-colors group-hover:text-emerald-100">
+                                    <h4 className="text-lg leading-tight font-bold text-white transition-colors group-hover:text-emerald-100 group-active:text-emerald-100">
                                         {petugas.name}
                                     </h4>
                                 </div>

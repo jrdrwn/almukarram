@@ -62,7 +62,7 @@ export default function Footer() {
                                 <h2 className="text-base leading-tight font-bold text-foreground">
                                     Masjid Agung
                                 </h2>
-                                <h2 className="text-base leading-tight font-black tracking-tight text-emerald-600  dark:text-emerald-500">
+                                <h2 className="text-base leading-tight font-black tracking-tight text-emerald-600 dark:text-emerald-500">
                                     Al-Mukarram Amanah
                                 </h2>
                             </div>
@@ -77,19 +77,19 @@ export default function Footer() {
                         <div className="mt-2 flex gap-3">
                             <a
                                 href="#"
-                                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:border-emerald-900 dark:hover:bg-emerald-950/50"
+                                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-600 active:border-emerald-200 active:border-emerald-900 active:bg-emerald-50 active:bg-emerald-950/50 active:text-emerald-600 dark:hover:border-emerald-900 dark:hover:bg-emerald-950/50"
                             >
                                 <FaInstagram className="h-4 w-4" />
                             </a>
                             <a
                                 href="#"
-                                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-[#0866FF] dark:hover:border-blue-900 dark:hover:bg-blue-950/30"
+                                className="hover:text-[ flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-blue-200 hover:bg-blue-50 active:border-blue-200 active:border-blue-900 active:bg-blue-50 active:bg-blue-950/30 active:text-[#0866FF] dark:hover:border-blue-900 dark:hover:bg-blue-950/30"
                             >
                                 <FaFacebookF className="h-4 w-4" />
                             </a>
                             <a
                                 href="#"
-                                className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-red-200 hover:bg-red-50 hover:text-[#FF0000] dark:hover:border-red-900 dark:hover:bg-red-950/30"
+                                className="hover:text-[ flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-red-200 hover:bg-red-50 active:border-red-200 active:border-red-900 active:bg-red-50 active:bg-red-950/30 active:text-[#FF0000] dark:hover:border-red-900 dark:hover:bg-red-950/30"
                             >
                                 <FaYoutube className="h-4 w-4" />
                             </a>
@@ -118,10 +118,10 @@ export default function Footer() {
                                 <li key={idx}>
                                     <Link
                                         href={item.href}
-                                        className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                                        className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-emerald-600 active:text-emerald-400 active:text-emerald-600 dark:hover:text-emerald-400"
                                     >
-                                        <ChevronRight className="h-3 w-3 -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
-                                        <span className="-translate-x-3 transition-transform group-hover:translate-x-0">
+                                        <ChevronRight className="h-3 w-3 -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 group-active:translate-x-0 group-active:opacity-100" />
+                                        <span className="-translate-x-3 transition-transform group-hover:translate-x-0 group-active:translate-x-0">
                                             {item.name}
                                         </span>
                                     </Link>
@@ -137,8 +137,14 @@ export default function Footer() {
                         </h3>
                         <ul className="flex flex-col gap-3.5">
                             {[
-                                { name: 'Jadwal Sholat', href: '/jadwal-sholat' },
-                                { name: 'Kajian & Dakwah', href: '/jadwal-pengajian' },
+                                {
+                                    name: 'Jadwal Sholat',
+                                    href: '/jadwal-sholat',
+                                },
+                                {
+                                    name: 'Kajian & Dakwah',
+                                    href: '/jadwal-pengajian',
+                                },
                                 { name: 'Layanan ZISWAF', href: '/zis' },
                                 {
                                     name: 'Konsultasi Agama',
@@ -152,10 +158,10 @@ export default function Footer() {
                                 <li key={idx}>
                                     <Link
                                         href={item.href}
-                                        className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                                        className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-emerald-600 active:text-emerald-400 active:text-emerald-600 dark:hover:text-emerald-400"
                                     >
-                                        <ChevronRight className="h-3 w-3 -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
-                                        <span className="-translate-x-3 transition-transform group-hover:translate-x-0">
+                                        <ChevronRight className="h-3 w-3 -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 group-active:translate-x-0 group-active:opacity-100" />
+                                        <span className="-translate-x-3 transition-transform group-hover:translate-x-0 group-active:translate-x-0">
                                             {item.name}
                                         </span>
                                     </Link>
@@ -185,7 +191,7 @@ export default function Footer() {
                                 <FaWhatsapp className="h-4 w-4 shrink-0 text-[#25D366]" />
                                 <a
                                     href="https://wa.me/6281348521955"
-                                    className="transition-colors group-hover:text-foreground"
+                                    className="transition-colors group-hover:text-foreground group-active:text-foreground"
                                 >
                                     0813 4852 1955
                                 </a>
@@ -194,7 +200,7 @@ export default function Footer() {
                                 <Mail className="h-4 w-4 shrink-0 text-emerald-500" />
                                 <a
                                     href="mailto:masjid.almukarram132@gmail.com"
-                                    className="truncate transition-colors group-hover:text-foreground"
+                                    className="truncate transition-colors group-hover:text-foreground group-active:text-foreground"
                                 >
                                     masjid.almukarram132@gmail.com
                                 </a>
@@ -226,21 +232,21 @@ export default function Footer() {
                     <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
                         <Link
                             href="/privacy"
-                            className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+                            className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground active:text-foreground"
                         >
                             Kebijakan Privasi
                         </Link>
                         <span className="h-3 w-px bg-border"></span>
                         <Link
                             href="/terms"
-                            className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+                            className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground active:text-foreground"
                         >
                             Syarat Penggunaan
                         </Link>
                         <span className="h-3 w-px bg-border"></span>
                         <a
                             href="/admin"
-                            className="group flex items-center gap-1.5 text-xs font-bold text-muted-foreground transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                            className="group flex items-center gap-1.5 text-xs font-bold text-muted-foreground transition-colors hover:text-emerald-600 active:text-emerald-400 active:text-emerald-600 dark:hover:text-emerald-400"
                         >
                             <Lock className="h-3 w-3" />
                             Admin Panel

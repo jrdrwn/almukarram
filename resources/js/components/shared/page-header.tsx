@@ -82,7 +82,7 @@ export default function PageHeader({
                                     ) : item.href ? (
                                         <Link
                                             href={item.href}
-                                            className="flex items-center gap-1.5 font-medium transition-colors hover:text-white"
+                                            className="flex items-center gap-1.5 font-medium transition-colors hover:text-white active:text-white"
                                         >
                                             {item.icon}
                                             {item.label}

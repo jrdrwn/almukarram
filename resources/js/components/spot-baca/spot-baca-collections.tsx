@@ -16,7 +16,8 @@ export default function SpotBacaCollections() {
             desc: "Berbagai kitab tafsir al-Qur'an dari ulama klasik dan kontemporer.",
             color: 'text-amber-500',
             bgColor: 'bg-amber-100 dark:bg-amber-950/50',
-            borderColor: 'group-hover:border-amber-500/50',
+            borderColor:
+                'group-hover:border-amber-500/50 group-active:border-amber-500/50',
         },
         {
             ikon: BookText,
@@ -24,7 +25,8 @@ export default function SpotBacaCollections() {
             desc: 'Koleksi kitab Hadits Shahih Bukhari, Muslim, dan lainnya.',
             color: 'text-sky-500',
             bgColor: 'bg-sky-100 dark:bg-sky-950/50',
-            borderColor: 'group-hover:border-sky-500/50',
+            borderColor:
+                'group-hover:border-sky-500/50 group-active:border-sky-500/50',
         },
         {
             ikon: GraduationCap,
@@ -32,7 +34,8 @@ export default function SpotBacaCollections() {
             desc: 'Buku-buku fiqih dari berbagai mazhab dan panduan ibadah praktis.',
             color: 'text-violet-500',
             bgColor: 'bg-violet-100 dark:bg-violet-950/50',
-            borderColor: 'group-hover:border-violet-500/50',
+            borderColor:
+                'group-hover:border-violet-500/50 group-active:border-violet-500/50',
         },
         {
             ikon: History,
@@ -40,7 +43,8 @@ export default function SpotBacaCollections() {
             desc: 'Buku sejarah peradaban Islam, sirah nabawiyah, dan biografi ulama.',
             color: 'text-rose-500',
             bgColor: 'bg-rose-100 dark:bg-rose-950/50',
-            borderColor: 'group-hover:border-rose-500/50',
+            borderColor:
+                'group-hover:border-rose-500/50 group-active:border-rose-500/50',
         },
         {
             ikon: Users,
@@ -48,7 +52,8 @@ export default function SpotBacaCollections() {
             desc: 'Buku umum, pengembangan diri, dan ilmu pengetahuan populer.',
             color: 'text-indigo-500',
             bgColor: 'bg-indigo-100 dark:bg-indigo-950/50',
-            borderColor: 'group-hover:border-indigo-500/50',
+            borderColor:
+                'group-hover:border-indigo-500/50 group-active:border-indigo-500/50',
         },
         {
             ikon: Baby,
@@ -56,7 +61,8 @@ export default function SpotBacaCollections() {
             desc: 'Cerita islami dan buku edukasi untuk anak-anak usia dini.',
             color: 'text-teal-500',
             bgColor: 'bg-teal-100 dark:bg-teal-950/50',
-            borderColor: 'group-hover:border-teal-500/50',
+            borderColor:
+                'group-hover:border-teal-500/50 group-active:border-teal-500/50',
         },
     ];
 
@@ -91,28 +97,28 @@ export default function SpotBacaCollections() {
                         return (
                             <div
                                 key={index}
-                                className={`group relative overflow-hidden rounded-4xl border border-border bg-white p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10 dark:bg-zinc-900 ${item.borderColor}`}
+                                className={`group relative overflow-hidden rounded-4xl border border-border bg-white p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10 active:-translate-y-2 active:shadow-2xl active:shadow-emerald-500/10 dark:bg-zinc-900 ${item.borderColor}`}
                             >
                                 {/* Background glow effect on hover */}
                                 <div
-                                    className={`absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-10 ${item.bgColor} rounded-full blur-2xl`}
+                                    className={`absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-10 group-active:opacity-10 ${item.bgColor} rounded-full blur-2xl`}
                                 />
 
                                 {/* Large decorative icon */}
-                                <div className="pointer-events-none absolute top-0 right-0 translate-x-4 -translate-y-4 transform p-6 opacity-[0.03] transition-all duration-500 group-hover:-translate-y-2 group-hover:rotate-12 group-hover:opacity-[0.06]">
+                                <div className="pointer-events-none absolute top-0 right-0 translate-x-4 -translate-y-4 transform p-6 opacity-[0.03] transition-all duration-500 group-hover:-translate-y-2 group-hover:rotate-12 group-hover:opacity-[0.06] group-active:-translate-y-2 group-active:rotate-12 group-active:opacity-[0.06]">
                                     <Icon className="h-40 w-40" />
                                 </div>
 
                                 <div className="relative z-10 flex h-full flex-col gap-6">
                                     <div
-                                        className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 ${item.bgColor}`}
+                                        className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 group-active:scale-110 group-active:rotate-6 ${item.bgColor}`}
                                     >
                                         <Icon
                                             className={`h-8 w-8 ${item.color}`}
                                         />
                                     </div>
                                     <div className="flex flex-col gap-3">
-                                        <h4 className="text-xl font-bold text-foreground transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+                                        <h4 className="text-xl font-bold text-foreground transition-colors group-hover:text-emerald-600 group-active:text-emerald-400 group-active:text-emerald-600 dark:group-hover:text-emerald-400">
                                             {item.judul}
                                         </h4>
                                         <p className="leading-relaxed text-muted-foreground">

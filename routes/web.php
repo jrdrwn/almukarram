@@ -21,7 +21,9 @@ Route::get('/berita-detail/{slug}', [BeritaController::class, 'show'])->name('be
 Route::get('/opini', [OpiniController::class, 'index'])->name('opini');
 Route::get('/opini-detail/{slug}', [OpiniController::class, 'show'])->name('opini-detail');
 Route::get('/galeri', GaleriController::class)->name('galeri');
-Route::get('/buletin', BuletinController::class)->name('buletin');
+Route::get('/buletin', [BuletinController::class, 'index'])->name('buletin');
+Route::get('/buletin/{buletin:slug}/view', [BuletinController::class, 'viewPdf'])->name('buletin.viewPdf');
+Route::get('/buletin/{buletin:slug}/download', [BuletinController::class, 'downloadPdf'])->name('buletin.downloadPdf');
 Route::get('/dokumen', DokumenController::class)->name('dokumen');
 Route::get('/jadwal-jumat', JadwalJumatController::class)->name('jadwal-jumat');
 Route::get('/jadwal-pengajian', JadwalPengajianController::class)->name('jadwal-pengajian');

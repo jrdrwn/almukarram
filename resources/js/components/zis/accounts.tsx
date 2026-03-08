@@ -64,8 +64,8 @@ export function Accounts() {
                 <div className="reveal fade-up mt-20">
                     <div className="group relative overflow-hidden rounded-[2.5rem] bg-linear-to-br from-emerald-600 via-emerald-500 to-teal-600 p-10 text-center shadow-2xl shadow-emerald-900/20 md:p-16">
                         {/* Decorative Background Elements */}
-                        <div className="absolute top-0 right-0 -mt-16 -mr-16 h-96 w-96 rounded-full bg-white/10 blur-3xl transition-all duration-700 group-hover:bg-white/20"></div>
-                        <div className="absolute bottom-0 left-0 -mb-16 -ml-16 h-80 w-80 rounded-full bg-teal-900/20 blur-3xl transition-all duration-700 group-hover:bg-teal-900/30"></div>
+                        <div className="absolute top-0 right-0 -mt-16 -mr-16 h-96 w-96 rounded-full bg-white/10 blur-3xl transition-all duration-700 group-hover:bg-white/20 group-active:bg-white/20"></div>
+                        <div className="absolute bottom-0 left-0 -mb-16 -ml-16 h-80 w-80 rounded-full bg-teal-900/20 blur-3xl transition-all duration-700 group-hover:bg-teal-900/30 group-active:bg-teal-900/30"></div>
                         <div className="absolute inset-0 bg-[url('/images/pattern-islamic.png')] opacity-10 mix-blend-overlay"></div>
 
                         <div className="relative z-10">
@@ -82,7 +82,7 @@ export function Accounts() {
                             </p>
                             <a
                                 href="/kontak"
-                                className="inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-lg font-bold text-emerald-700 shadow-xl ring-4 shadow-black/10 ring-white/20 transition-all duration-300 hover:scale-105 hover:bg-slate-50 hover:ring-white/40"
+                                className="inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-lg font-bold text-emerald-700 shadow-xl ring-4 shadow-black/10 ring-white/20 transition-all duration-300 hover:scale-105 hover:bg-slate-50 hover:ring-white/40 active:scale-105 active:bg-slate-50 active:ring-white/40"
                             >
                                 Hubungi Kami Sekarang
                             </a>
@@ -105,11 +105,11 @@ function AccountCard({ account }: { account: any }) {
 
     return (
         <div
-            className="reveal fade-up group relative overflow-hidden rounded-4xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-500 hover:border-emerald-200 hover:shadow-xl"
+            className="reveal fade-up group relative overflow-hidden rounded-4xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-500 hover:border-emerald-200 hover:shadow-xl active:border-emerald-200 active:shadow-xl"
             style={{ transitionDelay: account.delay }}
         >
             {/* Background Decorations */}
-            <div className="pointer-events-none absolute top-0 right-0 p-6 opacity-[0.03] transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12">
+            <div className="pointer-events-none absolute top-0 right-0 p-6 opacity-[0.03] transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12 group-active:scale-110 group-active:-rotate-12">
                 <CreditCard className="h-40 w-40 text-slate-900" />
             </div>
 
@@ -127,12 +127,12 @@ function AccountCard({ account }: { account: any }) {
             </div>
 
             {/* Account Number Area */}
-            <div className="relative z-10 mb-8 rounded-2xl border border-slate-100/80 bg-slate-50 p-6 shadow-inner transition-all duration-500 group-hover:bg-white group-hover:shadow-emerald-500/5">
+            <div className="relative z-10 mb-8 rounded-2xl border border-slate-100/80 bg-slate-50 p-6 shadow-inner transition-all duration-500 group-hover:bg-white group-hover:shadow-emerald-500/5 group-active:bg-white group-active:shadow-emerald-500/5">
                 <div className="mb-3 flex items-center justify-between text-xs font-bold tracking-widest text-slate-400 uppercase">
                     Nomor Rekening
                     <ShieldCheck className="h-4 w-4 text-emerald-500" />
                 </div>
-                <div className="font-mono text-3xl font-black tracking-[0.2em] text-slate-700 transition-all duration-300 group-hover:bg-linear-to-r group-hover:from-emerald-600 group-hover:to-teal-600 group-hover:bg-clip-text group-hover:text-transparent">
+                <div className="font-mono text-3xl font-black tracking-[0.2em] text-slate-700 transition-all duration-300 group-hover:bg-linear-to-r group-hover:from-emerald-600 group-hover:to-teal-600 group-hover:bg-clip-text group-hover:text-transparent group-active:bg-linear-to-r group-active:from-emerald-600 group-active:to-teal-600 group-active:bg-clip-text group-active:text-transparent">
                     {account.norek}
                 </div>
             </div>
@@ -165,10 +165,10 @@ function AccountCard({ account }: { account: any }) {
             {/* Button */}
             <button
                 onClick={handleCopy}
-                className={`relative z-10 inline-flex w-full items-center justify-center overflow-hidden rounded-2xl px-6 py-4 text-sm font-bold transition-all duration-300 active:scale-95 ${
+                className={`relative z-10 inline-flex w-full items-center justify-center overflow-hidden rounded-2xl px-6 py-4 text-sm font-bold transition-all duration-300 ${
                     copied
                         ? 'bg-linear-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30'
-                        : 'bg-slate-50 text-slate-700 shadow-sm ring-1 ring-slate-200 ring-inset hover:bg-emerald-50 hover:text-emerald-700 hover:ring-emerald-200'
+                        : 'bg-slate-50 text-slate-700 shadow-sm ring-1 ring-slate-200 ring-inset hover:bg-emerald-50 hover:text-emerald-700 hover:ring-emerald-200 active:bg-emerald-50 active:text-emerald-700 active:ring-emerald-200'
                 }`}
             >
                 {copied ? (
@@ -177,7 +177,7 @@ function AccountCard({ account }: { account: any }) {
                     </span>
                 ) : (
                     <span className="flex items-center">
-                        <Copy className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />{' '}
+                        <Copy className="mr-2 h-5 w-5 transition-transform group-hover:scale-110 group-active:scale-110" />{' '}
                         SALIN NOMOR REKENING
                     </span>
                 )}

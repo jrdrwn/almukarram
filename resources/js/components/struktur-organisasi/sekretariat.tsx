@@ -44,7 +44,7 @@ export default function Sekretariat({
                     {/* Kepala Sekretariat */}
                     <div className="flex flex-col gap-5 md:flex-row">
                         <div className="w-full md:w-1/2 lg:w-1/3">
-                            <div className="flex h-full items-center gap-4 rounded-2xl border border-slate-300 bg-muted/30 p-4 transition-colors hover:border-slate-400 dark:border-slate-700/50 dark:bg-muted/10">
+                            <div className="flex h-full items-center gap-4 rounded-2xl border border-slate-300 bg-muted/30 p-4 transition-colors hover:border-slate-400 active:border-slate-400 dark:border-slate-700/50 dark:bg-muted/10">
                                 <div className="shrink-0 drop-shadow-sm">
                                     <Avatar
                                         nama={sekretariat.kepala}
@@ -87,9 +87,9 @@ export default function Sekretariat({
                             {sekretariat.anggota.map((ang, j) => (
                                 <div
                                     key={j}
-                                    className="group/member flex items-center gap-3 rounded-xl border bg-background p-2.5 transition-all hover:border-slate-300 hover:shadow-md dark:hover:border-slate-700"
+                                    className="group/member flex items-center gap-3 rounded-xl border bg-background p-2.5 transition-all hover:border-slate-300 hover:shadow-md active:border-slate-300 active:border-slate-700 active:shadow-md dark:hover:border-slate-700"
                                 >
-                                    <div className="shrink-0 transition-transform group-hover/member:scale-110">
+                                    <div className="shrink-0 transition-transform group-hover/member:scale-110 group-active/member:scale-110">
                                         <Avatar
                                             nama={ang}
                                             size={42}
@@ -102,7 +102,7 @@ export default function Sekretariat({
                                             }
                                         />
                                     </div>
-                                    <span className="text-sm leading-tight font-medium transition-colors group-hover/member:text-slate-700 dark:group-hover/member:text-slate-300">
+                                    <span className="text-sm leading-tight font-medium transition-colors group-hover/member:text-slate-700 group-active/member:text-slate-300 group-active/member:text-slate-700 dark:group-hover/member:text-slate-300">
                                         {ang}
                                     </span>
                                 </div>

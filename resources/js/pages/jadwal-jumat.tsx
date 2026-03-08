@@ -93,7 +93,7 @@ export default function JadwalJumat({
                             </p>
 
                             <div className="mt-8 flex flex-wrap gap-4">
-                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 shadow-inner backdrop-blur-md transition-transform hover:-translate-y-1 sm:px-6 sm:py-5">
+                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 shadow-inner backdrop-blur-md transition-transform hover:-translate-y-1 active:-translate-y-1 sm:px-6 sm:py-5">
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
                                         <Calendar className="h-6 w-6" />
                                     </div>
@@ -106,7 +106,7 @@ export default function JadwalJumat({
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 shadow-inner backdrop-blur-md transition-transform hover:-translate-y-1 sm:px-6 sm:py-5">
+                                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 shadow-inner backdrop-blur-md transition-transform hover:-translate-y-1 active:-translate-y-1 sm:px-6 sm:py-5">
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300">
                                         <Clock className="h-6 w-6" />
                                     </div>
@@ -156,17 +156,17 @@ export default function JadwalJumat({
                             ].map((petugas, idx) => (
                                 <div
                                     key={idx}
-                                    className="group relative flex flex-col justify-center rounded-3xl border border-emerald-800/50 bg-emerald-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-800/70 hover:shadow-lg hover:shadow-emerald-900/20"
+                                    className="group relative flex flex-col justify-center rounded-3xl border border-emerald-800/50 bg-emerald-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 active:-translate-y-1 hover:bg-emerald-800/70 active:bg-emerald-800/70 hover:shadow-lg active:shadow-lg hover:shadow-emerald-900/20 active:shadow-emerald-900/20"
                                 >
                                     <div className="mb-2 flex items-start justify-between">
                                         <p className="text-xs font-bold tracking-widest text-emerald-400 uppercase">
                                             {petugas.role}
                                         </p>
-                                        <div className="text-emerald-500 transition-colors group-hover:text-emerald-300">
+                                        <div className="text-emerald-500 transition-colors group-hover:text-emerald-300 group-active:text-emerald-300">
                                             {petugas.icon}
                                         </div>
                                     </div>
-                                    <h4 className="mt-1 text-lg leading-snug font-bold text-white transition-colors group-hover:text-emerald-50">
+                                    <h4 className="mt-1 text-lg leading-snug font-bold text-white transition-colors group-hover:text-emerald-50 group-active:text-emerald-50">
                                         {petugas.name}
                                     </h4>
                                 </div>
@@ -201,10 +201,10 @@ export default function JadwalJumat({
                         {jadwalSelanjutnya.map((schedule, i) => (
                             <div
                                 key={i}
-                                className="group relative overflow-hidden rounded-3xl border border-emerald-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-xl sm:p-8 dark:border-zinc-800 dark:bg-zinc-900"
+                                className="group relative overflow-hidden rounded-3xl border border-emerald-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-xl active:shadow-xl sm:p-8 dark:border-zinc-800 dark:bg-zinc-900"
                             >
                                 {/* Top Highlight Accent */}
-                                <div className="absolute top-0 left-0 h-1.5 w-full origin-left scale-x-0 transform bg-emerald-500 transition-transform duration-500 ease-out group-hover:scale-x-100"></div>
+                                <div className="absolute top-0 left-0 h-1.5 w-full origin-left scale-x-0 transform bg-emerald-500 transition-transform duration-500 ease-out group-hover:scale-x-100 group-active:scale-x-100"></div>
 
                                 <div className="mb-6 flex items-center gap-4 border-b border-zinc-100 pb-6 dark:border-zinc-800">
                                     <div className="rounded-2xl bg-emerald-50 p-4 text-emerald-600 shadow-inner dark:bg-emerald-900/30 dark:text-emerald-400">
@@ -222,7 +222,7 @@ export default function JadwalJumat({
                                 </div>
 
                                 <div className="relative z-10 space-y-5">
-                                    <div className="rounded-2xl border border-zinc-100 bg-zinc-50 p-4 transition-colors group-hover:border-emerald-100 dark:border-zinc-800 dark:bg-zinc-800/50 dark:group-hover:border-emerald-900/50">
+                                    <div className="rounded-2xl border border-zinc-100 bg-zinc-50 p-4 transition-colors group-hover:border-emerald-100 group-active:border-emerald-100 dark:border-zinc-800 dark:bg-zinc-800/50 dark:group-hover:border-emerald-900/50 group-active:border-emerald-900/50">
                                         <p className="mb-1.5 flex items-center gap-1.5 text-[11px] font-bold tracking-widest text-emerald-600 uppercase dark:text-emerald-400">
                                             <Mic className="h-3.5 w-3.5" />{' '}
                                             Khatib

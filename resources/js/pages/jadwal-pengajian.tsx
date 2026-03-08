@@ -54,41 +54,41 @@ export default function JadwalPengajian({
     const dayColors: Record<string, { badge: string; glow: string }> = {
         Senin: {
             badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300',
-            glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10',
+            glow: 'bg-emerald-500/5 group-hover:bg-emerald-500/10 group-active:bg-emerald-500/10',
         },
         Selasa: {
             badge: 'bg-sky-100 text-sky-700 dark:bg-sky-500/20 dark:text-sky-300',
-            glow: 'bg-sky-500/5 group-hover:bg-sky-500/10',
+            glow: 'bg-sky-500/5 group-hover:bg-sky-500/10 group-active:bg-sky-500/10',
         },
         Rabu: {
             badge: 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300',
-            glow: 'bg-blue-500/5 group-hover:bg-blue-500/10',
+            glow: 'bg-blue-500/5 group-hover:bg-blue-500/10 group-active:bg-blue-500/10',
         },
         Kamis: {
             badge: 'bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300',
-            glow: 'bg-rose-500/5 group-hover:bg-rose-500/10',
+            glow: 'bg-rose-500/5 group-hover:bg-rose-500/10 group-active:bg-rose-500/10',
         },
         Jumat: {
             badge: 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300',
-            glow: 'bg-purple-500/5 group-hover:bg-purple-500/10',
+            glow: 'bg-purple-500/5 group-hover:bg-purple-500/10 group-active:bg-purple-500/10',
         },
         Sabtu: {
             badge: 'bg-teal-100 text-teal-700 dark:bg-teal-500/20 dark:text-teal-300',
-            glow: 'bg-teal-500/5 group-hover:bg-teal-500/10',
+            glow: 'bg-teal-500/5 group-hover:bg-teal-500/10 group-active:bg-teal-500/10',
         },
         Ahad: {
             badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300',
-            glow: 'bg-amber-500/5 group-hover:bg-amber-500/10',
+            glow: 'bg-amber-500/5 group-hover:bg-amber-500/10 group-active:bg-amber-500/10',
         },
         Minggu: {
             badge: 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300',
-            glow: 'bg-amber-500/5 group-hover:bg-amber-500/10',
+            glow: 'bg-amber-500/5 group-hover:bg-amber-500/10 group-active:bg-amber-500/10',
         },
     };
 
     const defaultColors = {
         badge: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-500/20 dark:text-zinc-300',
-        glow: 'bg-zinc-500/5 group-hover:bg-zinc-500/10',
+        glow: 'bg-zinc-500/5 group-hover:bg-zinc-500/10 group-active:bg-zinc-500/10',
     };
 
     const jadwalKajian = jadwalPengajian.map((j) => ({
@@ -265,14 +265,14 @@ export default function JadwalPengajian({
                         {paginatedJadwal.map((jadwal, idx) => (
                             <div
                                 key={idx}
-                                className={`group relative flex h-full flex-col overflow-hidden rounded-[2.5rem] border ${jadwal.status === 'Selesai' ? 'border-zinc-200/50 opacity-80' : 'border-zinc-100'} bg-white p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:opacity-100 hover:shadow-2xl sm:p-8 dark:border-zinc-800 dark:bg-zinc-900`}
+                                className={`group relative flex h-full flex-col overflow-hidden rounded-[2.5rem] border ${jadwal.status === 'Selesai' ? 'border-zinc-200/50 opacity-80' : 'border-zinc-100'} bg-white p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 active:-translate-y-2 hover:opacity-100 active:opacity-100 hover:shadow-2xl active:shadow-2xl sm:p-8 dark:border-zinc-800 dark:bg-zinc-900`}
                             >
                                 {/* Grid Texture Background */}
-                                <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] mask-[radial-gradient(ellipse_80%_80%_at_50%_20%,#000_20%,transparent_100%)] bg-size-[24px_24px] opacity-60 transition-opacity duration-500 group-hover:opacity-100 dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
+                                <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] mask-[radial-gradient(ellipse_80%_80%_at_50%_20%,#000_20%,transparent_100%)] bg-size-[24px_24px] opacity-60 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100 dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
 
                                 {/* Decorative Abstract Shape in background */}
                                 <div
-                                    className={`absolute -top-16 -right-16 z-0 h-40 w-40 rounded-full transition-all duration-700 group-hover:scale-150 ${jadwal.colors.glow}`}
+                                    className={`absolute -top-16 -right-16 z-0 h-40 w-40 rounded-full transition-all duration-700 group-hover:scale-150 group-active:scale-150 ${jadwal.colors.glow}`}
                                 ></div>
 
                                 <div className="relative z-10 flex flex-1 flex-col">
@@ -304,7 +304,7 @@ export default function JadwalPengajian({
 
                                     <div className="flex flex-1 flex-col justify-start">
                                         <h3
-                                            className={`mb-4 text-2xl leading-snug font-bold ${jadwal.status === 'Selesai' ? 'text-zinc-700 dark:text-zinc-300' : 'text-zinc-900 dark:text-zinc-100'} transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400`}
+                                            className={`mb-4 text-2xl leading-snug font-bold ${jadwal.status === 'Selesai' ? 'text-zinc-700 dark:text-zinc-300' : 'text-zinc-900 dark:text-zinc-100'} transition-colors group-hover:text-emerald-600 group-active:text-emerald-600 dark:group-hover:text-emerald-400 group-active:text-emerald-400`}
                                         >
                                             {jadwal.title}
                                         </h3>

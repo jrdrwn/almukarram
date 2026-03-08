@@ -111,8 +111,8 @@ export default function Timeline() {
                                     {isKiri ? (
                                         <>
                                             <div className="w-full pb-6 md:w-5/12 md:pr-10 md:pb-0">
-                                                <div className="relative overflow-hidden rounded-[2.5rem] border border-border/50 bg-card p-8 shadow-xl shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10">
-                                                    <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-primary/5 blur-[20px] transition-transform duration-500 group-hover:scale-150"></div>
+                                                <div className="relative overflow-hidden rounded-[2.5rem] border border-border/50 bg-card p-8 shadow-xl shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 active:-translate-y-1 active:shadow-2xl active:shadow-primary/10">
+                                                    <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-primary/5 blur-[20px] transition-transform duration-500 group-hover:scale-150 group-active:scale-150"></div>
                                                     <div className="relative z-10">
                                                         <span className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold tracking-wider text-primary uppercase">
                                                             {t.tahun}
@@ -128,7 +128,7 @@ export default function Timeline() {
                                             </div>
                                             <div className="hidden w-2/12 justify-center md:flex">
                                                 <div className="z-10 flex h-14 w-14 items-center justify-center rounded-full bg-background p-1.5 shadow-lg shadow-primary/10">
-                                                    <div className="flex h-full w-full items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-inner transition-transform duration-500 group-hover:scale-110">
+                                                    <div className="flex h-full w-full items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-inner transition-transform duration-500 group-hover:scale-110 group-active:scale-110">
                                                         {t.icon}
                                                     </div>
                                                 </div>
@@ -140,14 +140,14 @@ export default function Timeline() {
                                             <div className="hidden w-5/12 md:block"></div>
                                             <div className="hidden w-2/12 justify-center md:flex">
                                                 <div className="z-10 flex h-14 w-14 items-center justify-center rounded-full bg-background p-1.5 shadow-lg shadow-primary/10">
-                                                    <div className="flex h-full w-full items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-inner transition-transform duration-500 group-hover:scale-110">
+                                                    <div className="flex h-full w-full items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-inner transition-transform duration-500 group-hover:scale-110 group-active:scale-110">
                                                         {t.icon}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="w-full md:w-5/12 md:pl-10">
-                                                <div className="relative overflow-hidden rounded-[2.5rem] border border-border/50 bg-card p-8 shadow-xl shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10">
-                                                    <div className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-primary/5 blur-[20px] transition-transform duration-500 group-hover:scale-150"></div>
+                                                <div className="relative overflow-hidden rounded-[2.5rem] border border-border/50 bg-card p-8 shadow-xl shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 active:-translate-y-1 active:shadow-2xl active:shadow-primary/10">
+                                                    <div className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-primary/5 blur-[20px] transition-transform duration-500 group-hover:scale-150 group-active:scale-150"></div>
                                                     <div className="relative z-10">
                                                         <span className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold tracking-wider text-primary uppercase">
                                                             {t.tahun}

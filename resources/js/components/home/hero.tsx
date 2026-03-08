@@ -2,7 +2,20 @@ import type { AgendaTerdekat } from '@/types/home';
 import { Link } from '@inertiajs/react';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdekat | null }) {
+export default function Hero({
+    agendaTerdekat,
+}: {
+    agendaTerdekat: AgendaTerdekat | null;
+}) {
+    const agendaDateText = agendaTerdekat?.tanggal_mulai
+        ? new Date(agendaTerdekat.tanggal_mulai).toLocaleDateString('id-ID', {
+              weekday: 'long',
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+          })
+        : '-';
+
     return (
         <div className="relative min-h-screen font-sans text-foreground">
             {/* Islamic Subtle Background Pattern */}
@@ -13,7 +26,7 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                 {/* Hero Section */}
                 <main className="mx-auto max-w-380 px-4 pb-4 md:px-4">
                     {/* SVG clip-path definition for rounded notch shape */}
-                    <svg width="100%" height="0">
+                    <svg width="100%" height="0" className="hidden md:block">
                         <defs>
                             <clipPath
                                 id="hero-clip"
@@ -59,6 +72,7 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                             </clipPath>
                         </defs>
                     </svg>
+
                     <div
                         className="relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden rounded-4xl bg-black p-8 text-center dark:bg-zinc-950"
                         style={{ clipPath: 'url(#hero-clip)' }}
@@ -74,7 +88,7 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                             >
                                 {/* Background video of a mosque */}
                                 <source
-                                    src="https://www.pexels.com/id-id/download/video/16891597/"
+                                    src="/vidio.mp4"
                                     type="video/mp4"
                                 />
                             </video>
@@ -115,10 +129,10 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                             <div className="mb-8 flex flex-wrap items-center justify-center gap-4 md:mb-16">
                                 <Link
                                     href="/program-masjid"
-                                    className="group flex items-center gap-3 rounded-full bg-primary px-8 py-4 font-medium text-primary-foreground shadow-[0_0_20px_var(--color-primary)] transition-all duration-300 hover:scale-105 hover:bg-primary/90 hover:opacity-90"
+                                    className="group flex items-center gap-3 rounded-full bg-primary px-8 py-4 font-medium text-primary-foreground shadow-[0_0_20px_var(--color-primary)] transition-all duration-300 hover:scale-105 hover:bg-primary/90 hover:opacity-90 active:scale-105 active:bg-primary/90 active:opacity-90"
                                 >
                                     Program & Layanan
-                                    <div className="rounded-full bg-background/20 p-1.5 text-primary-foreground transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
+                                    <div className="rounded-full bg-background/20 p-1.5 text-primary-foreground transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-active:translate-x-1 group-active:-translate-y-1">
                                         <ArrowUpRight className="h-4 w-4" />
                                     </div>
                                 </Link>
@@ -139,10 +153,27 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
                                         >
-                                            <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-                                            <line x1="16" x2="16" y1="2" y2="6" />
+                                            <rect
+                                                width="18"
+                                                height="18"
+                                                x="3"
+                                                y="4"
+                                                rx="2"
+                                                ry="2"
+                                            />
+                                            <line
+                                                x1="16"
+                                                x2="16"
+                                                y1="2"
+                                                y2="6"
+                                            />
                                             <line x1="8" x2="8" y1="2" y2="6" />
-                                            <line x1="3" x2="21" y1="10" y2="10" />
+                                            <line
+                                                x1="3"
+                                                x2="21"
+                                                y1="10"
+                                                y2="10"
+                                            />
                                         </svg>
                                     </div>
                                     <div className="min-w-0">
@@ -156,16 +187,7 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                         </div>
                                         <div className="line-clamp-1 text-[11px] text-white/70">
                                             {agendaTerdekat
-                                                ? new Date(
-                                                      agendaTerdekat.tanggal_mulai,
-                                                  ).toLocaleDateString(
-                                                      'id-ID',
-                                                      {
-                                                          weekday: 'long',
-                                                          day: 'numeric',
-                                                          month: 'long',
-                                                      },
-                                                  )
+                                                ? agendaDateText
                                                 : '-'}
                                         </div>
                                     </div>
@@ -174,12 +196,15 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                         </div>
 
                         {/* Featured Agents Floating Card (Simplified & Centered if needed, but standard is bottom right. I'm moving it to bottom right with more subtle style) */}
-                        <div className="absolute right-10 bottom-10 z-20 hidden items-center gap-4 rounded-full border border-white/10 bg-white/10 p-2 pr-6 shadow-2xl backdrop-blur-md md:flex lg:right-16 lg:bottom-14">
+                        <Link
+                            href="/struktur-organisasi"
+                            className="absolute right-10 bottom-18 z-20 hidden items-center gap-4 rounded-full border border-white/10 bg-white/10 p-2 pr-6 shadow-2xl backdrop-blur-md transition-transform hover:scale-105 active:scale-105 md:flex lg:right-16 lg:bottom-14"
+                        >
                             <div className="flex -space-x-3">
                                 <img
                                     className="h-10 w-10 rounded-full border-2 border-primary/40 object-cover opacity-90"
-                                    src="https://i.pravatar.cc/100?img=11"
-                                    alt="Ustadz 1"
+                                    src="/images/H. Ahmad Zayad, SKM.JPG"
+                                    alt="Pengurus"
                                     onError={(e) => {
                                         e.currentTarget.src =
                                             '/images/logomasjid.png';
@@ -187,8 +212,8 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                 />
                                 <img
                                     className="h-10 w-10 rounded-full border-2 border-primary/40 object-cover opacity-90"
-                                    src="https://i.pravatar.cc/100?img=12"
-                                    alt="Ustadz 2"
+                                    src="/images/Drs. H. Asyari, M.Pd.JPG"
+                                    alt="Pengurus"
                                     onError={(e) => {
                                         e.currentTarget.src =
                                             '/images/logomasjid.png';
@@ -196,64 +221,28 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                 />
                                 <img
                                     className="h-10 w-10 rounded-full border-2 border-primary/40 object-cover opacity-90"
-                                    src="https://i.pravatar.cc/100?img=32"
-                                    alt="Ustadz 3"
+                                    src="/images/suwarnoo.png"
+                                    alt="Ketua Umum"
                                     onError={(e) => {
                                         e.currentTarget.src =
                                             '/images/logomasjid.png';
                                     }}
                                 />
                             </div>
-                            <div>
+                            <div className="text-left">
                                 <div className="text-sm font-semibold tracking-wide text-white">
-                                    Asatidz Pembimbing
+                                    Susunan Pengurus
                                 </div>
                                 <div className="mt-0.5 flex items-center gap-1">
                                     <span className="text-xs font-medium text-primary/80">
-                                        Bersanad & Berkompeten
+                                        Badan Pengelola Masjid
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
 
-                        {/* Floating Info Left Top */}
-                        <div className="absolute top-10 left-10 z-20 hidden items-center gap-3 rounded-full border border-white/10 bg-white/10 px-4 py-2 opacity-80 backdrop-blur-sm transition-opacity hover:opacity-100 md:flex lg:top-14 lg:left-14">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
-                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                                </svg>
-                            </div>
-                            <div className="text-left">
-                                <div className="text-xs font-semibold text-white">
-                                    Lembaga Pendidikan
-                                </div>
-                                <div className="text-[10px] text-white/70">
-                                    TK, TPA, MDT, & MTs
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Floating Info Right Top */}
-                        <div className="absolute top-10 right-10 z-20 hidden items-center gap-3 rounded-full border border-white/10 bg-white/10 px-4 py-2 opacity-80 backdrop-blur-sm transition-opacity hover:opacity-100 md:flex lg:top-14 lg:right-14">
-                            <div className="text-right">
-                                <div className="text-xs font-semibold text-white">
-                                    Layanan Ziswaf
-                                </div>
-                                <div className="text-[10px] text-white/70">
-                                    Zakat, Infaq, Sedekah
-                                </div>
-                            </div>
+                        {/* Floating Info Left Top - Layanan ZISWAF */}
+                        <div className="absolute top-10 left-10 z-20 hidden items-center gap-3 rounded-full border border-white/10 bg-white/10 px-4 py-2 opacity-80 backdrop-blur-sm transition-opacity hover:opacity-100 active:opacity-100 md:flex lg:top-14 lg:left-14">
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -270,10 +259,45 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                     <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                                 </svg>
                             </div>
+                            <div className="text-left">
+                                <div className="text-xs font-semibold text-white">
+                                    Layanan ZISWAF
+                                </div>
+                                <div className="text-[10px] text-white/70">
+                                    Zakat, Infaq, & Sedekah
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Floating Info Right Top - Program Dakwah Terjadwal */}
+                        <div className="absolute top-10 right-10 z-20 hidden items-center gap-3 rounded-full border border-white/10 bg-white/10 px-4 py-2 opacity-80 backdrop-blur-sm transition-opacity hover:opacity-100 active:opacity-100 md:flex lg:top-14 lg:right-14">
+                            <div className="text-right">
+                                <div className="text-xs font-semibold text-white">
+                                    Kajian & Dakwah
+                                </div>
+                                <div className="text-[10px] text-white/70">
+                                    Mengkaji Ilmu Berdasarkan Sunnah
+                                </div>
+                            </div>
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
+                                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                                </svg>
+                            </div>
                         </div>
 
                         {/* Floating Info Left Bottom */}
-                        <div className="absolute bottom-10 left-10 z-20 hidden cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/10 px-5 py-3 shadow-2xl backdrop-blur-md transition-transform hover:scale-105 md:flex lg:bottom-14 lg:left-14">
+                        <div className="absolute bottom-18 left-10 z-20 hidden cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/10 px-5 py-3 shadow-2xl backdrop-blur-md transition-transform hover:scale-105 active:scale-105 md:flex lg:bottom-14 lg:left-14">
                             <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-primary/80 to-primary/20 shadow-inner">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -310,16 +334,25 @@ export default function Hero({ agendaTerdekat }: { agendaTerdekat: AgendaTerdeka
                                     Agenda Terdekat
                                 </div>
                                 <div className="text-sm font-semibold text-white">
-                                    {agendaTerdekat ? agendaTerdekat.judul : 'Belum ada agenda'}
+                                    {agendaTerdekat
+                                        ? agendaTerdekat.judul
+                                        : 'Belum ada agenda'}
                                 </div>
                                 <div className="text-xs text-white/70">
-                                    {agendaTerdekat ? new Date(agendaTerdekat.tanggal_mulai).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : '-'}
+                                    {agendaTerdekat ? agendaDateText : '-'}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
             </div>
+            <div
+                className="pointer-events-none absolute inset-0 -z-1 opacity-[0.4] dark:opacity-[0.02]"
+                style={{
+                    backgroundImage:
+                        "url('https://www.transparenttextures.com/patterns/arabesque.png')",
+                }}
+            ></div>
         </div>
     );
 }

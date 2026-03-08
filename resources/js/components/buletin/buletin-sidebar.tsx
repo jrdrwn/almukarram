@@ -36,10 +36,10 @@ export default function BuletinSidebar() {
                             <li key={idx}>
                                 <Link
                                     href={link.href}
-                                    className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800"
+                                    className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800"
                                 >
-                                    <link.icon className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600" />
-                                    <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
+                                    <link.icon className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600 group-active:scale-110 group-active:text-emerald-600" />
+                                    <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground group-active:text-foreground">
                                         {link.label}
                                     </span>
                                 </Link>
@@ -50,10 +50,10 @@ export default function BuletinSidebar() {
                                 href="https://quran.kemenag.go.id/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800"
+                                className="group flex items-center rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800"
                             >
-                                <BookOpen className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600" />
-                                <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
+                                <BookOpen className="mr-3 h-4 w-4 text-emerald-600/70 transition-all group-hover:scale-110 group-hover:text-emerald-600 group-active:scale-110 group-active:text-emerald-600" />
+                                <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground group-active:text-foreground">
                                     Al-Qur'an Kemenag
                                 </span>
                             </a>
@@ -83,9 +83,9 @@ export default function BuletinSidebar() {
 
                     <Link
                         href="/jadwal-sholat"
-                        className="group inline-flex w-full items-center justify-center rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg"
+                        className="group inline-flex w-full items-center justify-center rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg active:-translate-y-0.5 active:bg-emerald-700 active:shadow-lg"
                     >
-                        <Clock className="group-hover:animate-spin-slow mr-2 h-4 w-4" />
+                        <Clock className="group-hover:animate-spin-slow group-active:animate-spin-slow mr-2 h-4 w-4" />
                         Lihat Jadwal
                     </Link>
                 </div>

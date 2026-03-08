@@ -67,11 +67,12 @@ export default function BeritaSidebar({
                                 key={w.key}
                                 className="group flex items-center justify-between border-b border-white/5 py-2 last:border-0"
                             >
-                                <span className="font-medium text-emerald-100/80 transition-colors group-hover:text-emerald-300">
+                                <span className="font-medium text-emerald-100/80 transition-colors group-hover:text-emerald-300 group-active:text-emerald-300">
                                     {w.label}
                                 </span>
                                 <span className="font-bold tracking-wider text-white">
-                                    {jadwal?.[w.key as keyof typeof jadwal] || '--:--'}
+                                    {jadwal?.[w.key as keyof typeof jadwal] ||
+                                        '--:--'}
                                 </span>
                             </div>
                         ))}
@@ -96,13 +97,13 @@ export default function BeritaSidebar({
                             <Link
                                 key={k.id}
                                 href={`/berita?kategori=${k.slug}`}
-                                className="group flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800"
+                                className="group flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800"
                             >
-                                <span className="flex items-center text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
-                                    <ChevronRight className="mr-2.5 h-4 w-4 text-zinc-300 transition-colors group-hover:text-blue-500" />
+                                <span className="flex items-center text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground group-active:text-foreground">
+                                    <ChevronRight className="mr-2.5 h-4 w-4 text-zinc-300 transition-colors group-hover:text-blue-500 group-active:text-blue-500" />
                                     {k.nama}
                                 </span>
-                                <span className="flex items-center justify-center rounded-lg bg-zinc-100/80 px-2.5 py-1 text-xs font-bold text-zinc-500 transition-colors group-hover:bg-blue-50 group-hover:text-blue-600 dark:bg-zinc-800/80 dark:text-zinc-400 dark:group-hover:bg-blue-900/30 dark:group-hover:text-blue-400">
+                                <span className="flex items-center justify-center rounded-lg bg-zinc-100/80 px-2.5 py-1 text-xs font-bold text-zinc-500 transition-colors group-hover:bg-blue-50 group-hover:text-blue-600 group-active:bg-blue-50 group-active:bg-blue-900/30 group-active:text-blue-400 group-active:text-blue-600 dark:bg-zinc-800/80 dark:text-zinc-400 dark:group-hover:bg-blue-900/30 dark:group-hover:text-blue-400">
                                     {k.total}
                                 </span>
                             </Link>
@@ -128,19 +129,19 @@ export default function BeritaSidebar({
                             <Link
                                 key={p.id}
                                 href={`/berita-detail/${p.slug}`}
-                                className="group flex items-center gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800"
+                                className="group flex items-center gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800"
                             >
                                 {/* Thumb */}
                                 <div className="relative h-18 w-18 shrink-0 overflow-hidden rounded-xl bg-zinc-100 shadow-sm dark:bg-zinc-800/80">
                                     {p.gambar ? (
                                         <img
-                                            src={`/uploads/${p.gambar}`}
+                                            src={`/storage/${p.gambar}`}
                                             alt={p.judul}
                                             onError={(e) => {
                                                 e.currentTarget.src =
                                                     '/images/masjidnewww-scaled.png';
                                             }}
-                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 group-active:scale-110"
                                         />
                                     ) : (
                                         <div className="absolute inset-0 flex items-center justify-center opacity-30">
@@ -154,7 +155,7 @@ export default function BeritaSidebar({
                                 </div>
                                 {/* Info */}
                                 <div className="flex flex-1 flex-col gap-1.5 py-1">
-                                    <h4 className="line-clamp-2 text-[13px] leading-snug font-bold text-foreground transition-colors group-hover:text-emerald-600">
+                                    <h4 className="line-clamp-2 text-[13px] leading-snug font-bold text-foreground transition-colors group-hover:text-emerald-600 group-active:text-emerald-600">
                                         {p.judul}
                                     </h4>
                                     <div className="flex items-center gap-1.5 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">

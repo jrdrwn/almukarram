@@ -18,9 +18,9 @@ export default function WeeklySchedule({
     };
 
     return (
-        <div className="group relative overflow-hidden rounded-4xl border border-gray-100 bg-white px-6 py-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] sm:p-10">
+        <div className="group hover:shadow-[0 relative overflow-hidden rounded-4xl border border-gray-100 bg-white px-6 py-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all active:shadow-[0_8px_30px_rgb_8px_30px_rgb(0,0,0,0.08)] sm:p-10">
             {/* Ambient Background Blur */}
-            <div className="absolute -top-20 -right-20 z-0 h-75 w-75 rounded-full bg-emerald-50 blur-[80px] transition-transform duration-700 group-hover:scale-110"></div>
+            <div className="absolute -top-20 -right-20 z-0 h-75 w-75 rounded-full bg-emerald-50 blur-[80px] transition-transform duration-700 group-hover:scale-110 group-active:scale-110"></div>
 
             <div className="relative z-10 mb-8 flex flex-col items-start justify-between gap-4 border-b border-gray-100 pb-6 sm:flex-row sm:items-center sm:gap-6">
                 <div className="flex items-center gap-5">
@@ -74,14 +74,14 @@ export default function WeeklySchedule({
                                     className={`group/row grid grid-cols-6 items-center gap-2 rounded-[1.25rem] p-4 text-sm transition-all duration-300 ${
                                         isToday
                                             ? 'bg-emerald-500 text-white shadow-[0_10px_25px_-5px_rgba(16,185,129,0.4)]'
-                                            : 'border border-gray-100 bg-white hover:bg-gray-50'
+                                            : 'border border-gray-100 bg-white hover:bg-gray-50 active:bg-gray-50'
                                     }`}
                                 >
                                     <div className="col-span-1 flex items-center gap-4 pl-2">
                                         {isToday ? (
                                             <CheckCircle2 className="h-5 w-5 text-white/90 drop-shadow-sm" />
                                         ) : (
-                                            <div className="h-1.5 w-1.5 rounded-full bg-gray-300 transition-colors group-hover/row:bg-emerald-400"></div>
+                                            <div className="h-1.5 w-1.5 rounded-full bg-gray-300 transition-colors group-hover/row:bg-emerald-400 group-active/row:bg-emerald-400"></div>
                                         )}
                                         <div>
                                             <div

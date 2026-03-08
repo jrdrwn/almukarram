@@ -10,9 +10,9 @@ export function KontakHeader() {
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center text-center">
-                    <div className="group relative mb-6 inline-flex items-center justify-center rounded-2xl bg-background p-3.5 shadow-sm ring-1 ring-border transition-all duration-300 hover:-translate-y-1">
-                        <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-md transition-all duration-500 group-hover:bg-primary/40" />
-                        <Mail className="relative z-10 h-8 w-8 text-primary transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12" />
+                    <div className="group relative mb-6 inline-flex items-center justify-center rounded-2xl bg-background p-3.5 shadow-sm ring-1 ring-border transition-all duration-300 hover:-translate-y-1 active:-translate-y-1">
+                        <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-md transition-all duration-500 group-hover:bg-primary/40 group-active:bg-primary/40" />
+                        <Mail className="relative z-10 h-8 w-8 text-primary transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 group-active:scale-110 group-active:rotate-12" />
                     </div>
 
                     <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-foreground md:text-5xl">
@@ -24,7 +24,7 @@ export function KontakHeader() {
                             <li>
                                 <Link
                                     href="/"
-                                    className="transition-colors hover:text-primary"
+                                    className="transition-colors hover:text-primary active:text-primary"
                                 >
                                     Beranda
                                 </Link>

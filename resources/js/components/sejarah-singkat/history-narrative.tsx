@@ -7,11 +7,11 @@ export default function HistoryNarrative() {
             <div className="absolute top-1/2 left-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]"></div>
 
             <div className="mx-auto max-w-380 px-4 sm:px-6 lg:px-8">
-                <div className="group relative overflow-hidden rounded-[3rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-[1.5px] shadow-2xl shadow-primary/5 transition-transform duration-500 hover:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none">
+                <div className="group relative overflow-hidden rounded-[3rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-[1.5px] shadow-2xl shadow-primary/5 transition-transform duration-500 hover:shadow-primary/10 active:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none">
                     <div className="relative overflow-hidden rounded-[2.9rem] bg-card p-8 md:p-16">
                         {/* Abstract Background pattern for text column */}
-                        <div className="pointer-events-none absolute right-0 bottom-0 z-0 h-100 w-100 translate-x-1/3 translate-y-1/3 rounded-full bg-linear-to-tr from-primary/10 to-primary/5 blur-[80px] transition-transform duration-700 group-hover:scale-110" />
-                        <div className="pointer-events-none absolute top-0 left-0 z-0 h-100 w-100 -translate-x-1/3 -translate-y-1/3 rounded-full bg-linear-to-tr from-primary/10 to-primary/5 blur-[80px] transition-transform duration-700 group-hover:scale-110" />
+                        <div className="pointer-events-none absolute right-0 bottom-0 z-0 h-100 w-100 translate-x-1/3 translate-y-1/3 rounded-full bg-linear-to-tr from-primary/10 to-primary/5 blur-[80px] transition-transform duration-700 group-hover:scale-110 group-active:scale-110" />
+                        <div className="pointer-events-none absolute top-0 left-0 z-0 h-100 w-100 -translate-x-1/3 -translate-y-1/3 rounded-full bg-linear-to-tr from-primary/10 to-primary/5 blur-[80px] transition-transform duration-700 group-hover:scale-110 group-active:scale-110" />
 
                         <div className="relative z-10">
                             <h4 className="mb-8 flex items-center gap-4 text-3xl font-bold text-foreground">

@@ -1,11 +1,6 @@
 import { useJadwalSholat } from '@/hooks/use-jadwal-sholat';
 import { Link } from '@inertiajs/react';
-import {
-    Calendar,
-    Clock,
-    History,
-    Image as ImageIcon,
-} from 'lucide-react';
+import { Calendar, Clock, History, Image as ImageIcon } from 'lucide-react';
 
 interface LatestBerita {
     id: number;
@@ -69,11 +64,12 @@ export default function ArticleSidebar({
                                 key={w.key}
                                 className="group flex items-center justify-between border-b border-white/5 py-2 last:border-0"
                             >
-                                <span className="font-medium text-emerald-100/80 transition-colors group-hover:text-emerald-300">
+                                <span className="font-medium text-emerald-100/80 transition-colors group-hover:text-emerald-300 group-active:text-emerald-300">
                                     {w.label}
                                 </span>
                                 <span className="font-bold tracking-wider text-white">
-                                    {jadwal?.[w.key as keyof typeof jadwal] || '--:--'}
+                                    {jadwal?.[w.key as keyof typeof jadwal] ||
+                                        '--:--'}
                                 </span>
                             </div>
                         ))}
@@ -97,7 +93,7 @@ export default function ArticleSidebar({
                         <Link
                             key={item.id}
                             href={`/berita-detail/${item.slug}`}
-                            className={`group flex items-center gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border dark:hover:bg-zinc-800 ${
+                            className={`group flex items-center gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800 ${
                                 item.slug === currentSlug
                                     ? 'bg-emerald-50/80 ring-1 ring-emerald-200 dark:bg-emerald-900/20 dark:ring-emerald-500/20'
                                     : ''
@@ -107,11 +103,13 @@ export default function ArticleSidebar({
                             <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-zinc-100 shadow-sm dark:bg-zinc-800/80">
                                 {item.gambar ? (
                                     <img
-                                        src={`/uploads/${item.gambar}`}
+                                        src={`/storage/${item.gambar}`}
                                         alt={item.judul}
-                                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 group-active:scale-110"
                                         onError={(e) => {
-                                            (e.currentTarget as HTMLImageElement).style.display = 'none';
+                                            (
+                                                e.currentTarget as HTMLImageElement
+                                            ).style.display = 'none';
                                         }}
                                     />
                                 ) : (
@@ -123,7 +121,7 @@ export default function ArticleSidebar({
                             {/* Info */}
                             <div className="flex flex-1 flex-col gap-1 py-0.5">
                                 <h4
-                                    className={`line-clamp-2 text-[13px] leading-snug font-bold transition-colors group-hover:text-emerald-600 ${
+                                    className={`line-clamp-2 text-[13px] leading-snug font-bold transition-colors group-hover:text-emerald-600 group-active:text-emerald-600 ${
                                         item.slug === currentSlug
                                             ? 'text-emerald-700 dark:text-emerald-400'
                                             : 'text-foreground'
@@ -133,7 +131,9 @@ export default function ArticleSidebar({
                                 </h4>
                                 <div className="flex items-center gap-1.5 text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
                                     <Calendar className="h-3 w-3" />
-                                    <span>{formatTanggal(item.created_at)}</span>
+                                    <span>
+                                        {formatTanggal(item.created_at)}
+                                    </span>
                                 </div>
                             </div>
                         </Link>

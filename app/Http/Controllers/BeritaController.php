@@ -65,12 +65,13 @@ class BeritaController extends Controller
                 ->where('status', 'published')
                 ->orderByDesc('views')
                 ->take(5)
-                ->get(['id', 'slug', 'judul', 'published_at'])
+                ->get(['id', 'slug', 'judul', 'published_at', 'gambar'])
                 ->map(fn ($b) => [
                     'id' => $b->id,
                     'slug' => $b->slug,
                     'judul' => $b->judul,
                     'created_at' => $b->published_at?->format('Y-m-d'),
+                    'gambar' => $b->gambar,
                 ]),
         ]);
     }
@@ -104,12 +105,13 @@ class BeritaController extends Controller
                 ->where('kategori_id', $berita->kategori_id)
                 ->orderByDesc('published_at')
                 ->take(3)
-                ->get(['id', 'judul', 'slug', 'published_at'])
+                ->get(['id', 'judul', 'slug', 'published_at', 'gambar'])
                 ->map(fn ($b) => [
                     'id' => $b->id,
                     'judul' => $b->judul,
                     'slug' => $b->slug,
                     'created_at' => $b->published_at?->format('Y-m-d'),
+                    'gambar' => $b->gambar,
                 ]),
             'latest' => fn () => Berita::query()
                 ->where('status', 'published')

@@ -1,6 +1,7 @@
 export type AgendaTerdekat = {
     judul: string;
-    tanggal_mulai: string;
+    tanggal_mulai: string | null;
+    sumber?: 'pengumuman' | 'jumat' | 'sholat' | 'pengajian';
 };
 
 export type BeritaUtama = {

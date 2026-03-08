@@ -35,7 +35,7 @@ export default function OpiniGrid({
         return (
             <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-zinc-200 bg-zinc-50 px-4 py-20 text-center dark:border-zinc-800 dark:bg-zinc-900/40">
                 <div className="group relative mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-sm ring-8 ring-zinc-50 dark:bg-zinc-800 dark:ring-zinc-900/50">
-                    <PenTool className="h-10 w-10 text-zinc-300 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-12 dark:text-zinc-600" />
+                    <PenTool className="h-10 w-10 text-zinc-300 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-12 group-active:scale-110 group-active:-rotate-12 dark:text-zinc-600" />
                 </div>
                 <h5 className="mb-2 text-xl font-bold text-foreground">
                     Belum Ada Artikel Opini
@@ -54,20 +54,22 @@ export default function OpiniGrid({
                 {data.map((article, idx) => (
                     <Link
                         key={idx}
-                        href={article.slug ? `/opini-detail/${article.slug}` : '#'}
-                        className="group relative flex min-h-75 flex-col justify-between overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl lg:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
+                        href={
+                            article.slug ? `/opini-detail/${article.slug}` : '#'
+                        }
+                        className="group relative flex min-h-75 flex-col justify-between overflow-hidden rounded-[2.5rem] border border-zinc-100 bg-zinc-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl active:-translate-y-2 active:shadow-xl lg:p-8 dark:border-zinc-800/50 dark:bg-zinc-900"
                     >
                         {/* Grid Texture Background */}
-                        <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] mask-[radial-gradient(ellipse_80%_80%_at_50%_20%,#000_20%,transparent_100%)] bg-size-[24px_24px] opacity-60 transition-opacity duration-500 group-hover:opacity-100 dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
+                        <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] mask-[radial-gradient(ellipse_80%_80%_at_50%_20%,#000_20%,transparent_100%)] bg-size-[24px_24px] opacity-60 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100 dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
 
                         <div className="relative z-10">
                             <span className="mb-5 inline-block rounded-full border border-emerald-100/50 bg-emerald-50 px-3 py-1 text-xs font-bold tracking-widest text-emerald-600 uppercase shadow-sm dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
                                 {article.category}
                             </span>
-                            <h3 className="mb-4 line-clamp-3 text-xl leading-tight font-bold text-foreground transition-colors group-hover:text-emerald-600">
+                            <h3 className="mb-4 line-clamp-3 text-xl leading-tight font-bold text-foreground transition-colors group-hover:text-emerald-600 group-active:text-emerald-600">
                                 {article.title}
                             </h3>
-                            <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-muted-foreground/80">
+                            <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-muted-foreground/80 group-active:text-muted-foreground/80">
                                 {article.excerpt}
                             </p>
                         </div>
@@ -78,7 +80,7 @@ export default function OpiniGrid({
                                     <User className="h-5 w-5" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-bold text-foreground transition-colors group-hover:text-emerald-600">
+                                    <p className="text-sm font-bold text-foreground transition-colors group-hover:text-emerald-600 group-active:text-emerald-600">
                                         {article.author}
                                     </p>
                                     <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
@@ -103,7 +105,7 @@ export default function OpiniGrid({
                         <PaginationItem>
                             <PaginationPrevious
                                 href="#"
-                                className="rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
+                                className="rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
                                 aria-disabled={currentPage === 1}
                             />
                         </PaginationItem>
@@ -125,8 +127,8 @@ export default function OpiniGrid({
                                             isActive={isCurrent}
                                             className={
                                                 isCurrent
-                                                    ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white'
-                                                    : 'rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
+                                                    ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white active:bg-emerald-700 active:text-white'
+                                                    : 'rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
                                             }
                                         >
                                             {page}
@@ -152,7 +154,7 @@ export default function OpiniGrid({
                         <PaginationItem>
                             <PaginationNext
                                 href="#"
-                                className="rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
+                                className="rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
                                 aria-disabled={currentPage === totalPages}
                             />
                         </PaginationItem>

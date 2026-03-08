@@ -26,7 +26,7 @@ export function Hero() {
                             <img
                                 src="/images/masjidnewww-scaled.png"
                                 alt="Kegiatan ZIS"
-                                className="h-112.5 w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                                className="h-112.5 w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 group-active:scale-105"
                                 onError={(e) => {
                                     // Fallback jika gambar tidak ditemukan
                                     e.currentTarget.src =
@@ -36,7 +36,7 @@ export function Hero() {
                             {/* Efek Vignette Bawah */}
                             <div className="absolute inset-0 bg-linear-to-t from-emerald-950/90 via-emerald-900/40 to-transparent"></div>
 
-                            <div className="absolute bottom-0 left-0 z-20 w-full p-8 transition-transform duration-500 group-hover:-translate-y-2 md:p-10">
+                            <div className="absolute bottom-0 left-0 z-20 w-full p-8 transition-transform duration-500 group-hover:-translate-y-2 group-active:-translate-y-2 md:p-10">
                                 <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-500/80 px-4 py-2 text-white shadow-lg backdrop-blur-md">
                                     <HandHeart className="h-5 w-5" />
                                     <span className="text-sm font-bold tracking-wide">
@@ -70,7 +70,7 @@ export function Hero() {
                         </div>
 
                         {/* Motif Floating Kiri Bawah */}
-                        <div className="pointer-events-none absolute bottom-4 -left-4 z-10 flex h-24 w-24 transform items-center justify-center rounded-full bg-linear-to-br from-teal-500 to-emerald-600 shadow-2xl shadow-teal-600/40 transition-transform duration-300 hover:scale-110 md:h-28 md:w-28">
+                        <div className="pointer-events-none absolute bottom-4 -left-4 z-10 flex h-24 w-24 transform items-center justify-center rounded-full bg-linear-to-br from-teal-500 to-emerald-600 shadow-2xl shadow-teal-600/40 transition-transform duration-300 hover:scale-110 active:scale-110 md:h-28 md:w-28">
                             <FaMoneyBill className="h-10 w-10 text-white drop-shadow-md md:h-12 md:w-12" />
                             <div
                                 className="absolute inset-0 animate-ping rounded-full border-4 border-white/20"
@@ -126,9 +126,9 @@ export function Hero() {
                             dan disalurkan untuk kepentingan jamaah dan umat.
                         </p>
 
-                        <blockquote className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-sm transition-shadow duration-300 hover:shadow-md">
+                        <blockquote className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-sm transition-shadow duration-300 hover:shadow-md active:shadow-md">
                             <div className="absolute top-0 left-0 h-full w-2 bg-linear-to-b from-emerald-500 to-teal-400"></div>
-                            <Quote className="absolute top-6 right-6 h-16 w-16 -rotate-12 transform text-slate-50 opacity-50 transition-all duration-500 group-hover:scale-110 group-hover:text-emerald-50" />
+                            <Quote className="absolute top-6 right-6 h-16 w-16 -rotate-12 transform text-slate-50 opacity-50 transition-all duration-500 group-hover:scale-110 group-hover:text-emerald-50 group-active:scale-110 group-active:text-emerald-50" />
 
                             <p className="relative z-10 mb-4 text-base leading-relaxed font-medium text-slate-700 italic md:text-lg">
                                 "Perumpamaan orang-orang yang menginfaqkan

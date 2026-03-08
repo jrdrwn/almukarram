@@ -11,8 +11,8 @@ export default function SpotBacaHero() {
                 <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
                     {/* Left: Image with Floating Effect */}
                     <div className="group relative mx-auto w-full max-w-full lg:col-span-5">
-                        <div className="absolute -inset-4 rounded-[3rem] bg-linear-to-r from-emerald-500/20 to-teal-500/20 opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-70" />
-                        <div className="relative rounded-[2.5rem] bg-white/50 p-3 shadow-xl ring-1 ring-emerald-500/10 backdrop-blur-sm transition-transform duration-500 hover:scale-[1.02] dark:bg-zinc-900/50">
+                        <div className="absolute -inset-4 rounded-[3rem] bg-linear-to-r from-emerald-500/20 to-teal-500/20 opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-70 group-active:opacity-70" />
+                        <div className="relative rounded-[2.5rem] bg-white/50 p-3 shadow-xl ring-1 ring-emerald-500/10 backdrop-blur-sm transition-transform duration-500 hover:scale-[1.02] active:scale-[1.02] dark:bg-zinc-900/50">
                             <img
                                 src="/images/Scan-QR-Code.png"
                                 alt="Scan QR Akses Spot Baca"
@@ -84,7 +84,7 @@ export default function SpotBacaHero() {
                             <Button
                                 asChild
                                 size="lg"
-                                className="h-12 w-full rounded-full bg-emerald-600 px-8 font-medium text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-emerald-700 sm:w-auto"
+                                className="h-12 w-full rounded-full bg-emerald-600 px-8 font-medium text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-emerald-700 active:scale-[1.02] active:bg-emerald-700 sm:w-auto"
                             >
                                 <a
                                     href="https://spot-api.moco.co.id/agent/corner/s/KjM8d"

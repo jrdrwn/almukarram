@@ -10,7 +10,7 @@ use Inertia\Response;
 
 class BuletinController extends Controller
 {
-    public function __invoke(Request $request): Response
+    public function index(Request $request): Response
     {
         $search = $request->query('q', '');
         $kategoriSlug = $request->query('kategori', '');
@@ -70,5 +70,32 @@ class BuletinController extends Controller
             'searchQuery' => $search,
             'kategoriSlug' => $kategoriSlug,
         ]);
+    }
+
+    public function viewPdf(Buletin $buletin)
+    {
+        // Increment the viewed counter if the status is published
+        if ($buletin->status === 'published') {
+            $buletin->increment('views');
+        }
+
+        return redirect($buletin->file_pdf ? "/storage/{$buletin->file_pdf}" : back()->getTargetUrl());
+    }
+
+    public function downloadPdf(Buletin $buletin)
+    {
+        // Increment the download counter if the status is published
+        if ($buletin->status === 'published') {
+            $buletin->increment('downloads');
+        }
+
+        if ($buletin->file_pdf) {
+            $filePath = storage_path("app/public/{$buletin->file_pdf}");
+            if (file_exists($filePath)) {
+                return response()->download($filePath);
+            }
+        }
+
+        return back();
     }
 }

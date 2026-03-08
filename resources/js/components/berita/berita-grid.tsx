@@ -65,33 +65,33 @@ export default function BeritaGrid({
                 {data.map((b) => (
                     <article
                         key={b.id}
-                        className="group flex flex-col overflow-hidden rounded-4xl border border-border bg-white transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/10 dark:bg-zinc-900"
+                        className="group flex flex-col overflow-hidden rounded-4xl border border-border bg-white transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/10 active:-translate-y-1 active:shadow-2xl active:shadow-emerald-500/10 dark:bg-zinc-900"
                     >
                         {/* Image Wrap */}
                         <div className="relative aspect-4/3 overflow-hidden bg-zinc-100 dark:bg-zinc-800">
                             {b.gambar ? (
                                 <img
-                                    src={`/uploads/${b.gambar}`}
+                                    src={`/storage/${b.gambar}`}
                                     alt={b.judul}
                                     onError={(e) => {
                                         e.currentTarget.src =
                                             '/images/masjidnewww-scaled.png';
                                     }}
-                                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-active:scale-105"
                                 />
                             ) : (
                                 <div className="absolute inset-0 flex items-center justify-center opacity-20">
                                     <ImageIcon className="h-16 w-16" />
                                 </div>
                             )}
-                            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80" />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80 group-active:opacity-80" />
 
                             {/* Category Badge overlay on image */}
                             {b.kategori && (
                                 <div className="absolute top-4 left-4 z-10">
                                     <Link
                                         href={`/berita?kategori=${b.kategori.toLowerCase()}`}
-                                        className="inline-flex items-center rounded-full bg-white/90 px-3 py-1.5 text-xs font-bold text-emerald-800 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-500 hover:text-white"
+                                        className="inline-flex items-center rounded-full bg-white/90 px-3 py-1.5 text-xs font-bold text-emerald-800 shadow-sm backdrop-blur-md transition-colors hover:bg-emerald-500 hover:text-white active:bg-emerald-500 active:text-white"
                                     >
                                         {b.kategori}
                                     </Link>
@@ -112,7 +112,7 @@ export default function BeritaGrid({
                                 </div>
                             </div>
 
-                            <h3 className="mb-3 line-clamp-2 text-xl leading-tight font-bold text-foreground transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+                            <h3 className="mb-3 line-clamp-2 text-xl leading-tight font-bold text-foreground transition-colors group-hover:text-emerald-600 group-active:text-emerald-400 group-active:text-emerald-600 dark:group-hover:text-emerald-400">
                                 <Link href={`/berita-detail/${b.slug}`}>
                                     {b.judul}
                                 </Link>
@@ -124,10 +124,10 @@ export default function BeritaGrid({
 
                             <Link
                                 href={`/berita-detail/${b.slug}`}
-                                className="group/link mt-auto inline-flex items-center text-sm font-semibold text-emerald-600 transition-colors hover:text-emerald-700 dark:text-emerald-400"
+                                className="group/link mt-auto inline-flex items-center text-sm font-semibold text-emerald-600 transition-colors hover:text-emerald-700 active:text-emerald-700 dark:text-emerald-400"
                             >
                                 Baca Selengkapnya
-                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1 group-active/link:translate-x-1" />
                             </Link>
                         </div>
                     </article>
@@ -159,7 +159,7 @@ export default function BeritaGrid({
                                         );
                                     }
                                 }}
-                                className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${currentPage <= 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
+                                className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${currentPage <= 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
                             />
                         </PaginationItem>
 
@@ -191,8 +191,8 @@ export default function BeritaGrid({
                                             }}
                                             className={
                                                 isCurrent
-                                                    ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white'
-                                                    : 'cursor-pointer rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
+                                                    ? 'rounded-xl border-transparent bg-emerald-600 text-white hover:bg-emerald-700 hover:text-white active:bg-emerald-700 active:text-white'
+                                                    : 'cursor-pointer rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400'
                                             }
                                         >
                                             {page}
@@ -237,7 +237,7 @@ export default function BeritaGrid({
                                         );
                                     }
                                 }}
-                                className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${currentPage >= totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
+                                className={`rounded-xl border-zinc-200 hover:bg-emerald-50 hover:text-emerald-600 active:bg-emerald-50 active:bg-emerald-500/10 active:text-emerald-400 active:text-emerald-600 dark:border-zinc-800 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400 ${currentPage >= totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
                             />
                         </PaginationItem>
                     </PaginationContent>

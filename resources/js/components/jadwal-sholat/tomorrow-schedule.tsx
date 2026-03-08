@@ -16,9 +16,9 @@ export default function TomorrowSchedule({
     ];
 
     return (
-        <div className="group relative overflow-hidden rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] sm:p-10">
+        <div className="group hover:shadow-[0 relative overflow-hidden rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all active:shadow-[0_8px_30px_rgb_8px_30px_rgb(0,0,0,0.08)] sm:p-10">
             {/* Light ambient blur */}
-            <div className="absolute top-0 right-0 z-0 h-64 w-64 rounded-full bg-blue-50/60 blur-[80px] transition-transform duration-1000 group-hover:scale-150"></div>
+            <div className="absolute top-0 right-0 z-0 h-64 w-64 rounded-full bg-blue-50/60 blur-[80px] transition-transform duration-1000 group-hover:scale-150 group-active:scale-150"></div>
 
             <div className="relative z-10 mb-8 flex flex-col items-start gap-4 border-b border-gray-100 pb-6">
                 <div className="flex w-full items-center justify-between">
@@ -45,17 +45,17 @@ export default function TomorrowSchedule({
                     return (
                         <div
                             key={i}
-                            className="group/card flex items-center justify-between rounded-[1.25rem] border border-transparent bg-gray-50/60 p-4 transition-all duration-300 hover:border-blue-100 hover:bg-blue-50"
+                            className="group/card flex items-center justify-between rounded-[1.25rem] border border-transparent bg-gray-50/60 p-4 transition-all duration-300 hover:border-blue-100 hover:bg-blue-50 active:border-blue-100 active:bg-blue-50"
                         >
                             <div className="flex items-center gap-4">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-blue-500 shadow-sm transition-transform duration-300 group-hover/card:scale-110">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-blue-500 shadow-sm transition-transform duration-300 group-hover/card:scale-110 group-active/card:scale-110">
                                     <Icon className="h-6 w-6" strokeWidth={2} />
                                 </div>
-                                <div className="text-sm font-bold tracking-widest text-gray-600 uppercase group-hover/card:text-blue-700">
+                                <div className="text-sm font-bold tracking-widest text-gray-600 uppercase group-hover/card:text-blue-700 group-active/card:text-blue-700">
                                     {card.name}
                                 </div>
                             </div>
-                            <div className="text-xl font-black tracking-tight text-gray-900 group-hover/card:text-blue-700">
+                            <div className="text-xl font-black tracking-tight text-gray-900 group-hover/card:text-blue-700 group-active/card:text-blue-700">
                                 {card.time || '—'}
                             </div>
                         </div>

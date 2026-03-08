@@ -59,7 +59,7 @@ export function KontakInfo() {
                             </p>
                             <a
                                 href="tel:051324246"
-                                className="block font-bold text-foreground transition-colors hover:text-emerald-600"
+                                className="block font-bold text-foreground transition-colors hover:text-emerald-600 active:text-emerald-600"
                             >
                                 (0513) 24246
                             </a>
@@ -79,7 +79,7 @@ export function KontakInfo() {
                                 href="https://wa.me/+6281348521955"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block font-bold text-foreground transition-colors hover:text-emerald-600"
+                                className="block font-bold text-foreground transition-colors hover:text-emerald-600 active:text-emerald-600"
                             >
                                 081348521955
                             </a>
@@ -98,7 +98,7 @@ export function KontakInfo() {
                         </p>
                         <a
                             href="mailto:masjid.almukarram132@gmail.com"
-                            className="block font-bold text-foreground transition-colors hover:text-emerald-600"
+                            className="block font-bold text-foreground transition-colors hover:text-emerald-600 active:text-emerald-600"
                         >
                             masjid.almukarram132@gmail.com
                         </a>
@@ -146,9 +146,9 @@ export function KontakInfo() {
                         href="https://www.instagram.com/masjidagung.almukarram_amanah/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-pink-500 hover:shadow-md"
+                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-pink-500 hover:shadow-md active:border-pink-500 active:shadow-md"
                     >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-pink-50 text-pink-600 transition-all group-hover:bg-pink-500 group-hover:text-white dark:bg-pink-950/50 dark:text-pink-400 dark:group-hover:text-white">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-pink-50 text-pink-600 transition-all group-hover:bg-pink-500 group-hover:text-white group-active:bg-pink-500 group-active:text-white dark:bg-pink-950/50 dark:text-pink-400 dark:group-hover:text-white">
                             <Instagram className="h-6 w-6" />
                         </div>
                         <div className="min-w-0 flex-1">
@@ -165,9 +165,9 @@ export function KontakInfo() {
                         href="https://www.facebook.com/profile.php?id=61576298510239"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-blue-600 hover:shadow-md"
+                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-blue-600 hover:shadow-md active:border-blue-600 active:shadow-md"
                     >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-950/50 dark:text-blue-400 dark:group-hover:text-white">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white group-active:bg-blue-600 group-active:text-white dark:bg-blue-950/50 dark:text-blue-400 dark:group-hover:text-white">
                             <Facebook className="h-6 w-6" />
                         </div>
                         <div className="min-w-0 flex-1">
@@ -184,9 +184,9 @@ export function KontakInfo() {
                         href="https://www.youtube.com/@MasjidAgung-AlMukarramAmanah"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-red-600 hover:shadow-md"
+                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-red-600 hover:shadow-md active:border-red-600 active:shadow-md"
                     >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600 transition-all group-hover:bg-red-600 group-hover:text-white dark:bg-red-950/50 dark:text-red-400 dark:group-hover:text-white">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600 transition-all group-hover:bg-red-600 group-hover:text-white group-active:bg-red-600 group-active:text-white dark:bg-red-950/50 dark:text-red-400 dark:group-hover:text-white">
                             <Youtube className="h-6 w-6" />
                         </div>
                         <div className="min-w-0 flex-1">

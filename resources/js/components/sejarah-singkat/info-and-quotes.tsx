@@ -77,11 +77,11 @@ export default function InfoAndQuotes() {
                     {infoList.map((inf, i) => (
                         <div
                             key={i}
-                            className="group relative h-full overflow-hidden rounded-[2.5rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-1 shadow-lg shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none"
+                            className="group relative h-full overflow-hidden rounded-[2.5rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-1 shadow-lg shadow-primary/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 active:-translate-y-1 active:shadow-xl active:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none"
                         >
                             <div className="relative flex h-full flex-col items-start gap-4 rounded-[2.3rem] bg-card p-8">
                                 {/* Card inner glow on hover */}
-                                <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/10 blur-[30px] transition-transform duration-500 group-hover:scale-150"></div>
+                                <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-primary/10 blur-[30px] transition-transform duration-500 group-hover:scale-150 group-active:scale-150"></div>
                                 <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 dark:bg-primary/20">
                                     {inf.ikon}
                                 </div>

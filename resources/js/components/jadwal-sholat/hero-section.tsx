@@ -76,9 +76,9 @@ export default function HeroSection({
                         <div
                             key={key}
                             data-prayer={key}
-                            className={`waktu-box group relative flex w-25 shrink-0 snap-center flex-col items-center justify-center rounded-[1.25rem] border border-white/10 bg-white/5 p-4 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/15 hover:shadow-xl sm:w-auto lg:w-full`}
+                            className={`waktu-box group relative flex w-25 shrink-0 snap-center flex-col items-center justify-center rounded-[1.25rem] border border-white/10 bg-white/5 p-4 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/15 hover:shadow-xl active:-translate-y-2 active:bg-white/15 active:shadow-xl sm:w-auto lg:w-full`}
                         >
-                            <span className="mb-3 block text-[2rem] drop-shadow-md transition-transform duration-300 group-hover:scale-110 sm:text-[2.25rem]">
+                            <span className="mb-3 block text-[2rem] drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-active:scale-110 sm:text-[2.25rem]">
                                 {icon}
                             </span>
                             <div className="mb-1.5 text-[0.65rem] font-bold tracking-widest text-emerald-100/70 uppercase sm:tracking-[0.2em]">
