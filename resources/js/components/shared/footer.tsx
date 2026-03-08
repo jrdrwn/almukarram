@@ -59,11 +59,11 @@ export default function Footer() {
                                 />
                             </div>
                             <div>
-                                <h2 className="text-lg leading-tight font-bold text-foreground">
+                                <h2 className="text-base leading-tight font-bold text-foreground">
                                     Masjid Agung
                                 </h2>
-                                <h2 className="text-xl leading-tight font-black tracking-tight text-emerald-600 uppercase dark:text-emerald-500">
-                                    Al-Mukarram
+                                <h2 className="text-base leading-tight font-black tracking-tight text-emerald-600  dark:text-emerald-500">
+                                    Al-Mukarram Amanah
                                 </h2>
                             </div>
                         </div>

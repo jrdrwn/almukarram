@@ -11,6 +11,7 @@ import VideoSection from '@/components/home/videosection';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import type { HomePageProps } from '@/types/home';
+import { Head } from '@inertiajs/react';
 
 export default function Page({
     agendaTerdekat,
@@ -23,12 +24,16 @@ export default function Page({
 }: HomePageProps) {
     return (
         <>
+            <Head title="Beranda | Masjid Agung Al-Mukarram Amanah" />
             <Header />
             <Hero agendaTerdekat={agendaTerdekat} />
             <FeaturesSection />
             <SekapurSirihSection />
             <VideoSection videos={videos} />
-            <BeritaSection beritaUtama={beritaUtama} beritaTerbaru={beritaTerbaru} />
+            <BeritaSection
+                beritaUtama={beritaUtama}
+                beritaTerbaru={beritaTerbaru}
+            />
             <JadwalMultimediaSection videos={videos} />
             <ArtikelSection opiniTerbaru={opiniTerbaru} />
             <JadwalJumatSection jadwalJumat={jadwalJumat} />

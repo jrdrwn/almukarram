@@ -218,7 +218,7 @@ export default function Header() {
 
     return (
         <header
-            className={`z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'sticky top-0 w-full pt-4 pb-2' : 'relative px-4 pt-0 pb-2'}`}
+            className={`z-50 transition-all duration-500 ease-in-out ${isScrolled ? 'sticky top-0 w-full pt-2 pb-2' : 'relative px-4 pt-0 pb-2'}`}
         >
             <div
                 className={`mx-auto transition-all duration-500 ease-in-out ${isScrolled ? 'max-w-7xl px-4' : 'max-w-380'}`}
@@ -273,7 +273,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div
-                    className={`z-10 flex flex-row items-center justify-between gap-8 rounded-full border px-2 py-2 transition-all duration-500 ease-in-out ${isScrolled ? 'border-emerald-500/20 bg-white/80 shadow-lg shadow-emerald-900/5 backdrop-blur-lg dark:bg-zinc-950/80' : 'bg-background'}`}
+                    className={`z-10 flex flex-row items-center justify-between gap-8 rounded-full border px-2 py-2 transition-all duration-500 ease-in-out ${isScrolled ? 'border-primary bg-background shadow  backdrop-blur-lg dark:bg-zinc-950/80' : 'bg-background'}`}
                 >
                     <Link href="/">
                         <img

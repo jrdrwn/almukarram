@@ -1,15 +1,22 @@
 import { useJadwalSholat } from '@/hooks/use-jadwal-sholat';
 import type { VideoItem } from '@/types/home';
 import { Link } from '@inertiajs/react';
-import { ArrowRight, ImageIcon, Play } from 'lucide-react';
+import { ArrowRight, ImageIcon, Play, X } from 'lucide-react';
 
 import { useState } from 'react';
+import ReactPlayer from 'react-player';
 
-export default function JadwalMultimediaSection({ videos = [] }: { videos?: VideoItem[] }) {
+export default function JadwalMultimediaSection({
+    videos = [],
+}: {
+    videos?: VideoItem[];
+}) {
     const { jadwal: jadwalSholat } = useJadwalSholat();
     const [activeMediaTab, setActiveMediaTab] = useState<'video' | 'photo'>(
         'video',
     );
+    const [previewMedia, setPreviewMedia] = useState<{type: 'video' | 'photo', src: string} | null>(null);
+
     const featuredVideo = videos[0] ?? null;
     const photoPreviews = [
         '/images/masjidnewww-scaled.png',
@@ -46,7 +53,14 @@ export default function JadwalMultimediaSection({ videos = [] }: { videos?: Vide
 
     let activeName = '';
     if (jadwalSholat) {
-        const ordered = ['Isya', 'Maghrib', 'Ashar', 'Dzuhur', 'Terbit', 'Subuh'] as const;
+        const ordered = [
+            'Isya',
+            'Maghrib',
+            'Ashar',
+            'Dzuhur',
+            'Terbit',
+            'Subuh',
+        ] as const;
         const timeMap: Record<string, string> = {
             Subuh: jadwalSholat.subuh,
             Terbit: jadwalSholat.terbit,
@@ -96,29 +110,29 @@ export default function JadwalMultimediaSection({ videos = [] }: { videos?: Vide
                             {prayerTimes.map((prayer, idx) => {
                                 const isActive = prayer.name === activeName;
                                 return (
-                                <div
-                                    key={idx}
-                                    className={`group relative overflow-hidden rounded-4xl p-6 transition-all duration-300 hover:-translate-y-2 ${
-                                        isActive
-                                            ? 'bg-primary text-primary-foreground shadow-[0_0_40px_rgba(var(--color-primary),0.4)]'
-                                            : 'border border-white/10 bg-white/5 text-white backdrop-blur-md hover:border-white/20 hover:bg-white/10'
-                                    } ${prayer.fade ? 'opacity-60' : ''}`}
-                                >
-                                    <h4
-                                        className={`mb-2 text-sm font-bold tracking-widest uppercase ${isActive ? 'text-primary-foreground/80' : 'text-white/50 group-hover:text-white/80'}`}
+                                    <div
+                                        key={idx}
+                                        className={`group relative overflow-hidden rounded-4xl p-6 transition-all duration-300 hover:-translate-y-2 ${
+                                            isActive
+                                                ? 'bg-primary text-primary-foreground shadow-[0_0_40px_rgba(var(--color-primary),0.4)]'
+                                                : 'border border-white/10 bg-white/5 text-white backdrop-blur-md hover:border-white/20 hover:bg-white/10'
+                                        } ${prayer.fade ? 'opacity-60' : ''}`}
                                     >
-                                        {prayer.name}
-                                    </h4>
-                                    <span className="text-3xl font-black tracking-tighter tabular-nums sm:text-4xl">
-                                        {prayer.time}
-                                    </span>
-                                    {isActive && (
-                                        <div className="absolute top-4 -right-2 flex h-3 w-3 animate-ping rounded-full bg-white/50"></div>
-                                    )}
-                                    {isActive && (
-                                        <div className="absolute top-4 -right-2 flex h-3 w-3 rounded-full bg-white"></div>
-                                    )}
-                                </div>
+                                        <h4
+                                            className={`mb-2 text-sm font-bold tracking-widest uppercase ${isActive ? 'text-primary-foreground/80' : 'text-white/50 group-hover:text-white/80'}`}
+                                        >
+                                            {prayer.name}
+                                        </h4>
+                                        <span className="text-3xl font-black tracking-tighter tabular-nums sm:text-4xl">
+                                            {prayer.time}
+                                        </span>
+                                        {isActive && (
+                                            <div className="absolute top-4 -right-2 flex h-3 w-3 animate-ping rounded-full bg-white/50"></div>
+                                        )}
+                                        {isActive && (
+                                            <div className="absolute top-4 -right-2 flex h-3 w-3 rounded-full bg-white"></div>
+                                        )}
+                                    </div>
                                 );
                             })}
                         </div>
@@ -181,14 +195,19 @@ export default function JadwalMultimediaSection({ videos = [] }: { videos?: Vide
                                 </div>
 
                                 {/* Fake Video Player / Photo Grid Box */}
-                                <div className="relative z-10 my-6 flex min-h-40 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-4xl border border-white/5 bg-white/5 py-8 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:shadow-2xl hover:shadow-primary/20">
+                                <div className="relative z-10 my-6 flex min-h-40 flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-white/5 py-2 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:shadow-2xl hover:shadow-primary/20">
                                     {activeMediaTab === 'video' ? (
                                         featuredVideo ? (
-                                            <div className="relative w-full px-4">
-                                                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/60">
+                                            <div
+                                                className="relative w-full px-4 cursor-pointer group/vid"
+                                                onClick={() => setPreviewMedia({ type: 'video', src: `https://youtube.com/watch?v=${featuredVideo.youtube_id}` })}
+                                            >
+                                                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/60 transition-transform duration-300 group-hover/vid:scale-[1.02] group-hover/vid:ring-2 group-hover/vid:ring-primary/50">
                                                     <img
                                                         src={`https://img.youtube.com/vi/${featuredVideo.youtube_id}/hqdefault.jpg`}
-                                                        alt={featuredVideo.judul}
+                                                        alt={
+                                                            featuredVideo.judul
+                                                        }
                                                         onError={(e) => {
                                                             e.currentTarget.src =
                                                                 '/images/masjidnewww-scaled.png';
@@ -205,10 +224,14 @@ export default function JadwalMultimediaSection({ videos = [] }: { videos?: Vide
 
                                                     <div className="absolute right-3 bottom-3 left-3 text-left">
                                                         <p className="line-clamp-1 text-sm font-bold text-white">
-                                                            {featuredVideo.judul}
+                                                            {
+                                                                featuredVideo.judul
+                                                            }
                                                         </p>
                                                         <p className="text-xs text-white/70">
-                                                            {featuredVideo.kategori?.nama ??
+                                                            {featuredVideo
+                                                                .kategori
+                                                                ?.nama ??
                                                                 'Video Kajian'}
                                                         </p>
                                                     </div>
@@ -226,8 +249,11 @@ export default function JadwalMultimediaSection({ videos = [] }: { videos?: Vide
                                         )
                                     ) : (
                                         <>
-                                            <div className="grid w-full max-w-90 grid-cols-2 gap-2 px-4">
-                                                <div className="col-span-2 aspect-video overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 p-2">
+                                            <div className="grid w-full grid-cols-2 gap-2 px-2">
+                                                <div
+                                                    className="col-span-2 aspect-video cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 p-2 transition-transform duration-300 hover:scale-[1.02] hover:ring-2 hover:ring-blue-500/50"
+                                                    onClick={() => setPreviewMedia({ type: 'photo', src: photoPreviews[0] })}
+                                                >
                                                     <img
                                                         src={photoPreviews[0]}
                                                         alt="Preview foto utama"
@@ -238,26 +264,27 @@ export default function JadwalMultimediaSection({ videos = [] }: { videos?: Vide
                                                         className="h-full w-full rounded-lg object-contain"
                                                     />
                                                 </div>
-                                                {photoPreviews.slice(1, 3).map((src, idx) => (
-                                                    <div
-                                                        key={idx}
-                                                        className="aspect-video overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 p-2"
-                                                    >
-                                                        <img
-                                                            src={src}
-                                                            alt={`Preview foto ${idx + 1}`}
-                                                            onError={(e) => {
-                                                                e.currentTarget.src =
-                                                                    '/images/masjidnewww-scaled.png';
-                                                            }}
-                                                            className="h-full w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-105"
-                                                        />
-                                                    </div>
-                                                ))}
+                                                {photoPreviews
+                                                    .slice(1, 3)
+                                                    .map((src, idx) => (
+                                                        <div
+                                                            key={idx}
+                                                            className="aspect-video overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 p-2"
+                                                        >
+                                                            <img
+                                                                src={src}
+                                                                alt={`Preview foto ${idx + 1}`}
+                                                                onError={(
+                                                                    e,
+                                                                ) => {
+                                                                    e.currentTarget.src =
+                                                                        '/images/masjidnewww-scaled.png';
+                                                                }}
+                                                                className="h-full w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-105"
+                                                            />
+                                                        </div>
+                                                    ))}
                                             </div>
-                                            <span className="mt-4 text-sm font-semibold tracking-wider text-white/70 transition-colors group-hover:text-white">
-                                                Lihat Semua Foto
-                                            </span>
                                         </>
                                     )}
                                 </div>
@@ -284,6 +311,41 @@ export default function JadwalMultimediaSection({ videos = [] }: { videos?: Vide
                     </div>
                 </div>
             </div>
+
+            {/* Modal Preview */}
+            {previewMedia && (
+                <div
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 py-8 backdrop-blur-sm sm:px-6"
+                    onClick={() => setPreviewMedia(null)}
+                >
+                    <div
+                        className="relative flex w-full max-w-5xl items-center justify-center rounded-2xl bg-zinc-950 p-2 shadow-2xl"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={() => setPreviewMedia(null)}
+                            className="absolute -right-3 -top-3 z-10 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-zinc-800 text-white shadow-lg transition-colors hover:bg-zinc-700 sm:-right-5 sm:-top-5"
+                        >
+                            <X className="h-5 w-5" />
+                        </button>
+                        {previewMedia.type === 'video' ? (
+                            <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+                                <ReactPlayer
+                                    src={previewMedia.src}
+                                    width="100%"
+                                    height="100%"
+                                    playing={true}
+                                    controls={true}
+                                />
+                            </div>
+                        ) : (
+                            <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-xl bg-black/50">
+                                <img src={previewMedia.src} alt="Preview Foto" className="max-h-full max-w-full rounded-lg object-contain" />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

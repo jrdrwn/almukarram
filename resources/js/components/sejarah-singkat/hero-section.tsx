@@ -17,11 +17,22 @@ export default function HeroSection() {
             <div className="mx-auto max-w-380 px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-8">
                     <div className="w-full lg:w-5/12">
-                        <div className="group relative overflow-hidden rounded-[3rem] bg-linear-to-br from-zinc-50 to-zinc-100/50 p-1 shadow-2xl shadow-primary/5 transition-transform duration-500 hover:shadow-primary/10 dark:from-zinc-900 dark:to-zinc-950/50 dark:shadow-none">
-                            <div className="relative flex h-90 items-center justify-center overflow-hidden rounded-[2.8rem] bg-card md:h-115">
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--color-primary),0.05),transparent_70%)]"></div>
-                                <div className="pointer-events-none absolute right-0 bottom-0 z-0 h-full w-full bg-linear-to-br from-primary/10 to-primary/5 blur-2xl transition-transform duration-700 group-hover:scale-110" />
-                                <i className="fas fa-mosque relative z-10 transform text-8xl text-primary/40 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-3 md:text-[10rem]"></i>
+                        <div className="relative mx-auto max-w-md lg:max-w-none">
+                            {/* Decorative blobs */}
+                            <div className="absolute -top-4 -right-4 -z-10 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
+                            <div className="absolute -bottom-4 -left-4 -z-10 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl" />
+
+                            <div className="group relative overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl shadow-primary/10 ring-1 ring-black/5 transition-transform duration-500 hover:-translate-y-2 dark:bg-zinc-900 dark:ring-white/10">
+                                <div className="relative flex aspect-4/5 items-center justify-center overflow-hidden rounded-[2rem] bg-zinc-100 dark:bg-zinc-800 md:aspect-auto md:h-115">
+                                    <div className="absolute inset-0 bg-linear-to-tr from-primary/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                                    <img
+                                        src="/images/masjidnewww-scaled.png"
+                                        alt="Masjid Agung Al-Mukarram Amanah"
+                                        className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    {/* Overlay gradient for better depth */}
+                                    <div className="absolute inset-0 rounded-[2rem] bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                                </div>
                             </div>
                         </div>
                     </div>

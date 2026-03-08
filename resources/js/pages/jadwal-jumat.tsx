@@ -42,7 +42,7 @@ export default function JadwalJumat({
     return (
         <>
             <Header />
-            <Head title="Jadwal & Petugas Jumat | Masjid Agung Al-Mukarram" />
+            <Head title="Jadwal & Petugas Jumat | Masjid Agung Al-Mukarram Amanah" />
 
             <PageHeader
                 title="Petugas Salat Jumat"
