@@ -15,7 +15,6 @@ class Vidio extends Model
         'kategori_id',
         'youtube_id',
         'user_id',
-        'views',
         'status',
         'published_at',
     ];
@@ -24,7 +23,6 @@ class Vidio extends Model
     {
         return [
             'published_at' => 'date',
-            'views' => 'integer',
         ];
     }
 

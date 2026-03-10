@@ -37,10 +37,6 @@ class VidiosTable
                 TextColumn::make('user.name')
                     ->label('Pemilik')
                     ->sortable(),
-                TextColumn::make('views')
-                    ->label('Tayang')
-                    ->numeric()
-                    ->sortable(),
                 TextColumn::make('published_at')
                     ->label('Dipublikasikan')
                     ->date('d M Y')

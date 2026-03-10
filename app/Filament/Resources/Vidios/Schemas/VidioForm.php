@@ -8,6 +8,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Auth;
@@ -33,15 +34,58 @@ class VidioForm
                         TextInput::make('youtube_id')
                             ->label('ID YouTube')
                             ->required()
-                            ->maxLength(20)
-                            ->placeholder('contoh: dQw4w9WgXcQ')
-                            ->helperText('ID video YouTube — bagian setelah ?v= atau youtu.be/')
+                            ->placeholder('contoh: dQw4w9WgXcQ atau URL lengkap')
+                            ->helperText('ID video YouTube — bagian setelah ?v= atau youtu.be/. URL apa pun akan otomatis di‑parse.')
                             ->prefix('https://youtu.be/')
+                            ->reactive()
+                            ->afterStateUpdated(function (?string $state, callable $set) {
+                                if (! $state) {
+                                    return;
+                                }
+                                // coerce to string and trim
+                                $input = trim($state);
+                                // if it already looks like a raw id, do nothing
+                                if (preg_match('/^[A-Za-z0-9_-]{11}$/', $input)) {
+                                    return;
+                                }
+
+                                // try to parse a YouTube URL and extract the video id
+                                $id = null;
+                                $url = $input;
+
+                                if (! str_starts_with($url, 'http')) {
+                                    $url = 'https://' . $url;
+                                }
+
+                                $parts = parse_url($url);
+                                if ($parts !== false) {
+                                    if (isset($parts['host']) && str_contains($parts['host'], 'youtu.be')) {
+                                        $id = ltrim($parts['path'] ?? '', '/');
+                                    } elseif (isset($parts['path']) && str_contains($parts['path'], '/live/')) {
+                                        // live links look like /live/VIDEOID or /live/VIDEOID?si=...
+                                        $segments = explode('/', trim($parts['path'], '/'));
+                                        $pos = array_search('live', $segments, true);
+                                        if ($pos !== false && isset($segments[$pos + 1])) {
+                                            $id = $segments[$pos + 1];
+                                        }
+                                    } elseif (isset($parts['query'])) {
+                                        parse_str($parts['query'], $query);
+                                        $id = $query['v'] ?? null;
+                                    } elseif (isset($parts['path']) && str_contains($parts['path'], '/embed/')) {
+                                        $segments = explode('/', $parts['path']);
+                                        $id = end($segments);
+                                    }
+                                }
+
+                                if ($id && preg_match('/^[A-Za-z0-9_-]{11}$/', $id)) {
+                                    $set('youtube_id', $id);
+                                }
+                            })
                             ->live(onBlur: true)
                             ->columnSpanFull(),
-                        Placeholder::make('youtube_preview')
+                        TextEntry::make('youtube_preview')
                             ->label('Pratinjau')
-                            ->content(function ($get): HtmlString {
+                            ->state(function ($get): HtmlString {
                                 $id = trim($get('youtube_id') ?? '');
                                 if (! $id) {
                                     return new HtmlString('<p class="text-sm text-gray-400 italic">Masukkan ID YouTube untuk melihat pratinjau.</p>');
