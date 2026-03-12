@@ -26,8 +26,12 @@ export default function HeroSection() {
                                 <div className="relative flex aspect-4/5 items-center justify-center overflow-hidden rounded-[2rem] bg-zinc-100 md:aspect-auto md:h-115 dark:bg-zinc-800">
                                     <div className="absolute inset-0 bg-linear-to-tr from-primary/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100" />
                                     <img
-                                        src="/images/masjidnewww-scaled.png"
+                                        src="/images/profil-masjid.png"
                                         alt="Masjid Agung Al-Mukarram Amanah"
+                                    onError={(e) => {
+                                        e.currentTarget.src =
+                                            '/images/masjidnewww-scaled.png';
+                                    }}
                                         className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 group-active:scale-105"
                                     />
                                     {/* Overlay gradient for better depth */}

@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
             JadwalPengajianSeeder::class,
             KotakMasukSeeder::class,
             KontakSitusSeeder::class,
+            HeroSettingSeeder::class,
             PengurusSeeder::class,
+            BannerSeeder::class,
         ]);
     }
 }

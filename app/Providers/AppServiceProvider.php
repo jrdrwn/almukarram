@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureDefaults();
         // bind KontakSitus so it can be injected into controller methods
         $this->app->bind(\App\Models\KontakSitus::class, function () {
-            return \App\Models\KontakSitus::first();
+            return \App\Models\KontakSitus::first() ?? new \App\Models\KontakSitus();
         });
 
         KotakMasuk::observe(KotakMasukObserver::class);

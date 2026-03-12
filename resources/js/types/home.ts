@@ -1,7 +1,20 @@
+import type { HeroSetting } from '@/types/hero-setting';
+import type { FeaturedPengurus } from '@/types/pengurus';
+import type { SiteContact } from '@/types/site-contact';
+
 export type AgendaTerdekat = {
     judul: string;
     tanggal_mulai: string | null;
     sumber?: 'pengumuman' | 'jumat' | 'sholat' | 'pengajian';
+};
+
+export type BannerItem = {
+    id: number;
+    judul: string;
+    subjudul: string | null;
+    gambar: string;
+    tautan: string | null;
+    buka_tab_baru: boolean;
 };
 
 export type BeritaUtama = {
@@ -73,17 +86,12 @@ export type JadwalSholatData = {
 };
 
 export type HomePageProps = {
-    siteContact?: {
-        address?: string;
-        phone?: string;
-        whatsapp?: string;
-        email?: string;
-        instagram?: string;
-        facebook?: string;
-        youtube?: string;
-        location?: string;
-    };
+    heroSetting?: HeroSetting;
+    siteContact?: SiteContact;
     agendaTerdekat: AgendaTerdekat | null;
+    ketuaUmum?: FeaturedPengurus | null;
+    featuredPengurus?: FeaturedPengurus[];
+    banners: BannerItem[];
     beritaUtama: BeritaUtama | null;
     beritaTerbaru: BeritaItem[];
     videos: VideoItem[];

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengurus;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -19,7 +18,7 @@ class StrukturOrganisasiController extends Controller
             'nama'    => $p->nama,
             'jabatan' => $p->jabatan,
             'fotoUrl' => $p->foto
-                ? Storage::disk('public')->url($p->foto)
+                ? '/storage/' . $p->foto
                 : null,
         ];
 

@@ -9,6 +9,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import type { OperationalHour, SiteContact } from '@/types/site-contact';
 import { useForm, usePage } from '@inertiajs/react';
 import {
     AlertCircle,
@@ -22,13 +23,10 @@ import {
 } from 'lucide-react';
 
 export default function KontakPengaduanSection() {
-    const { flash, siteContact } = usePage<{ flash: { success?: string }; siteContact?: {
-        address?: string;
-        phone?: string;
-        whatsapp?: string;
-        email?: string;
-        operational_hours?: Array<{ key: string; value: string }>;
-    }; }>().props;
+    const { flash, siteContact } = usePage<{
+        flash: { success?: string };
+        siteContact?: SiteContact;
+    }>().props;
     const { data, setData, post, processing, errors, reset } = useForm({
         nama: '',
         telepon: '',
@@ -42,7 +40,7 @@ export default function KontakPengaduanSection() {
         phone = '(0513) 24246',
         whatsapp = '+62 812-3456-7890',
         email = 'info@almukarram.id',
-        operational_hours = [] as Array<{ key: string; value: string }>,
+        operational_hours = [] as OperationalHour[],
     } = siteContact || {};
 
     function handleSubmit(e: React.FormEvent) {

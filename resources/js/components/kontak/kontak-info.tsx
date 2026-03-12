@@ -1,3 +1,4 @@
+import type { SiteContact } from '@/types/site-contact';
 import {
     Clock,
     Facebook,
@@ -8,20 +9,8 @@ import {
     Phone,
     Youtube,
 } from 'lucide-react';
-
-
 interface KontakInfoProps {
-    siteContact?: {
-        address?: string;
-        phone?: string;
-        whatsapp?: string;
-        email?: string;
-        operational_hours?: Array<{ key: string; value: string }>;
-        instagram?: string;
-        facebook?: string;
-        youtube?: string;
-        location?: string;
-    };
+    siteContact?: SiteContact;
 }
 
 export function KontakInfo({ siteContact }: KontakInfoProps) {
@@ -34,7 +23,7 @@ export function KontakInfo({ siteContact }: KontakInfoProps) {
         instagram,
         facebook,
         youtube,
-    } = siteContact || {} as any; // cast to any so ts understands union below
+    } = siteContact || {};
 
     return (
         <div className="animate-in space-y-10 duration-700 fade-in slide-in-from-bottom-8">
@@ -158,7 +147,7 @@ export function KontakInfo({ siteContact }: KontakInfoProps) {
                                 Jam Operasional Sekretariat
                             </h3>
                             <ul className="space-y-1 text-sm text-muted-foreground">
-                                {operational_hours.map((item: { key: string; value: string }, idx: number) => (
+                                {operational_hours.map((item, idx) => (
                                     <li key={idx} className="flex justify-between">
                                         <span className="font-medium">
                                             {item.key}:

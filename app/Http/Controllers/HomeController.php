@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Berita;
+use App\Models\HeroSetting;
 use App\Models\JadwalJumat;
 use App\Models\JadwalPengajian;
 use App\Models\JadwalSholat;
 use App\Models\Opini;
 use App\Models\Pengumuman;
+use App\Models\Pengurus;
 use App\Models\Vidio;
 use Illuminate\Support\Carbon;
 use Inertia\Inertia;
@@ -21,7 +24,57 @@ class HomeController extends Controller
 
         return Inertia::render('home', [
             'siteContact' => $siteContact,
+            'heroSetting' => fn () => HeroSetting::query()->first([
+                'hero_media_type',
+                'hero_image',
+                'hero_video',
+                'quick_access_items',
+            ]),
             'agendaTerdekat' => fn () => $this->resolveRandomAgenda($today),
+            'ketuaUmum' => function () {
+                $ketua = Pengurus::query()
+                    ->where('is_active', true)
+                    ->where('kelompok', 'pimpinan_inti')
+                    ->where(function ($q) {
+                        $q->where('jabatan', 'like', '%Ketua Umum%')
+                          ->orWhere('peran', 'ketua_umum');
+                    })
+                    ->first(['nama', 'jabatan', 'foto']);
+
+                if (!$ketua) {
+                    return null;
+                }
+
+                return [
+                    'nama' => $ketua->nama,
+                    'jabatan' => $ketua->jabatan,
+                    'fotoUrl' => $ketua->foto ? '/storage/' . $ketua->foto : null,
+                ];
+            },
+            'featuredPengurus' => fn () => Pengurus::query()
+                ->where('is_active', true)
+                ->where('kelompok', 'pimpinan_inti')
+                ->orderBy('urutan')
+                ->take(3)
+                ->get(['nama', 'jabatan', 'foto'])
+                ->map(fn ($p) => [
+                    'nama' => $p->nama,
+                    'jabatan' => $p->jabatan,
+                    'fotoUrl' => $p->foto ? '/storage/' . $p->foto : null,
+                ]),
+
+            'banners' => fn () => Banner::query()
+                ->published($today)
+                ->orderBy('urutan')
+                ->orderByDesc('created_at')
+                ->get([
+                    'id',
+                    'judul',
+                    'subjudul',
+                    'gambar',
+                    'tautan',
+                    'buka_tab_baru',
+                ]),
 
             'beritaUtama' => fn () => Berita::query()
                 ->where('status', 'published')
@@ -58,7 +111,18 @@ class HomeController extends Controller
 
             'jadwalPengajian' => fn () => JadwalPengajian::query()
                 ->whereIn('status', ['Akan Datang', 'Berlangsung'])
-                ->orderByRaw("FIELD(hari, 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Ahad')")
+                ->orderByRaw(
+                    "CASE hari
+                        WHEN 'Senin' THEN 1
+                        WHEN 'Selasa' THEN 2
+                        WHEN 'Rabu' THEN 3
+                        WHEN 'Kamis' THEN 4
+                        WHEN 'Jumat' THEN 5
+                        WHEN 'Sabtu' THEN 6
+                        WHEN 'Ahad' THEN 7
+                        ELSE 8
+                    END"
+                )
                 ->take(4)
                 ->get(['id', 'hari', 'tanggal', 'waktu', 'judul', 'pemateri', 'tipe']),
         ]);

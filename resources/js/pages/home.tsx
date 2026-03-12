@@ -1,4 +1,5 @@
 import ArtikelSection from '@/components/home/artikelsection';
+import BannerSection from '@/components/home/bannersection';
 import BeritaSection from '@/components/home/beritasection';
 import FeaturesSection from '@/components/home/featuressection';
 import Hero from '@/components/home/hero';
@@ -15,6 +16,11 @@ import { Head } from '@inertiajs/react';
 
 export default function Page({
     agendaTerdekat,
+    banners,
+    heroSetting,
+    siteContact,
+    ketuaUmum,
+    featuredPengurus,
     beritaUtama,
     beritaTerbaru,
     videos,
@@ -26,9 +32,15 @@ export default function Page({
         <>
             <Head title="Beranda | Masjid Agung Al-Mukarram Amanah" />
             <Header />
-            <Hero agendaTerdekat={agendaTerdekat} />
+            <Hero
+                agendaTerdekat={agendaTerdekat}
+                siteContact={siteContact}
+                heroSetting={heroSetting}
+                featuredPengurus={featuredPengurus}
+            />
+            <BannerSection banners={banners} />
             <FeaturesSection />
-            <SekapurSirihSection />
+            <SekapurSirihSection ketuaUmum={ketuaUmum} />
             <VideoSection videos={videos} />
             <BeritaSection
                 beritaUtama={beritaUtama}

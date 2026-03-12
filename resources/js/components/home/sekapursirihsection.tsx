@@ -1,4 +1,11 @@
-export default function SekapurSirihSection() {
+import type { FeaturedPengurus } from '@/types/pengurus';
+
+export default function SekapurSirihSection({ ketuaUmum }: { ketuaUmum?: FeaturedPengurus | null }) {
+    // Default data jika tidak ada ketua umum
+    const nama = ketuaUmum?.nama || 'H.M. Wiyatno, S.P.';
+    const jabatan = ketuaUmum?.jabatan || 'Ketua Umum BPMA Al-Mukarram Amanah';
+    const fotoUrl = ketuaUmum?.fotoUrl || '/images/pose_change_4.png';
+
     return (
         <section className="relative z-10 mx-auto max-w-380 px-4 py-24">
             {/* Outer Glow behind the card */}
@@ -34,8 +41,8 @@ export default function SekapurSirihSection() {
                         </svg>
 
                         <img
-                            src="/images/pose_change_4.png"
-                            alt="H.M. Wiyatno, S.P."
+                            src={fotoUrl}
+                            alt={nama}
                             onError={(e) => {
                                 e.currentTarget.src = '/images/logomasjid.png';
                             }}
@@ -45,12 +52,12 @@ export default function SekapurSirihSection() {
                         {/* Floating Glassmorphism Badge */}
                         <div className="hover:shadow-[0 absolute bottom-8 z-20 mx-auto w-max max-w-[90%] transform rounded-full border border-white/40 bg-white/70 px-8 py-4 text-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] ring-1 ring-white/50 backdrop-blur-xl transition-all duration-500 ring-inset hover:-translate-y-2 active:-translate-y-2 active:shadow-[0_8px_40px_rgba_8px_40px_rgba(var(--color-primary),0.2)] dark:border-white/10 dark:bg-zinc-950/70 dark:ring-white/10">
                             <h3 className="text-xl font-bold tracking-wide text-foreground">
-                                H.M. Wiyatno, S.P.
+                                {nama}
                             </h3>
                             <div className="mt-1.5 flex items-center justify-center gap-2">
                                 <span className="h-1 w-8 rounded-full bg-primary/40"></span>
                                 <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
-                                    Ketua Umum BPMA Al-Mukarram Amanah
+                                    {jabatan}
                                 </p>
                                 <span className="h-1 w-8 rounded-full bg-primary/40"></span>
                             </div>
@@ -115,7 +122,7 @@ export default function SekapurSirihSection() {
                                 </p>
                             </div>
 
-                            <div className="relative z-10 mt-12 flex items-center gap-6 rounded-3xl bg-zinc-50/50 p-4 transition-colors hover:bg-zinc-100/50 active:bg-zinc-100/50 active:bg-zinc-900 sm:p-6 dark:bg-zinc-900/50 dark:hover:bg-zinc-900">
+                            <div className="relative z-10 mt-12 flex items-center gap-6 rounded-3xl bg-zinc-50/50 p-4 transition-colors hover:bg-zinc-100/50 active:bg-zinc-100/50 sm:p-6 dark:bg-zinc-900/50 dark:hover:bg-zinc-900 dark:active:bg-zinc-900">
                                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/20">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
