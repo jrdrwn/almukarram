@@ -64,6 +64,8 @@ class HandleInertiaRequests extends Middleware
                 ->take(5)
                 ->get(['id', 'judul'])
                 ->map(fn ($p) => $p->judul),
+            // keep siteContact shared for static inertia pages that don't have a controller
+            'siteContact' => fn () => \App\Models\KontakSitus::first(),
         ];
     }
 }

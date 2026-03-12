@@ -22,7 +22,13 @@ import {
 } from 'lucide-react';
 
 export default function KontakPengaduanSection() {
-    const { flash } = usePage<{ flash: { success?: string } }>().props;
+    const { flash, siteContact } = usePage<{ flash: { success?: string }; siteContact?: {
+        address?: string;
+        phone?: string;
+        whatsapp?: string;
+        email?: string;
+        operational_hours?: Array<{ key: string; value: string }>;
+    }; }>().props;
     const { data, setData, post, processing, errors, reset } = useForm({
         nama: '',
         telepon: '',
@@ -30,6 +36,14 @@ export default function KontakPengaduanSection() {
         subjek: '',
         pesan: '',
     });
+
+    const {
+        address = 'Jl. Tambun Bungai No. 1, Selat Tengah, Kec. Selat, Kabupaten Kapuas, Kalimantan Tengah 73511',
+        phone = '(0513) 24246',
+        whatsapp = '+62 812-3456-7890',
+        email = 'info@almukarram.id',
+        operational_hours = [] as Array<{ key: string; value: string }>,
+    } = siteContact || {};
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -75,9 +89,7 @@ export default function KontakPengaduanSection() {
                                     Sekretariat Masjid
                                 </h3>
                                 <p className="text-muted-foreground">
-                                    Jl. Tambun Bungai No. 1, Selat Tengah, Kec.
-                                    Selat, Kabupaten Kapuas, Kalimantan Tengah
-                                    73511
+                                    {address}
                                 </p>
                             </div>
                         </div>
@@ -92,7 +104,7 @@ export default function KontakPengaduanSection() {
                                         Telepon
                                     </p>
                                     <p className="mt-1 font-bold text-foreground">
-                                        (0513) 24246
+                                        {phone}
                                     </p>
                                 </div>
                             </div>
@@ -105,7 +117,7 @@ export default function KontakPengaduanSection() {
                                         WA Center
                                     </p>
                                     <p className="mt-1 font-bold text-foreground">
-                                        +62 812-3456-7890
+                                        {whatsapp}
                                     </p>
                                 </div>
                             </div>
@@ -118,40 +130,32 @@ export default function KontakPengaduanSection() {
                                         Email Resmi
                                     </p>
                                     <p className="mt-1 font-bold text-foreground">
-                                        info@almukarram.id
+                                        {email}
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="group flex flex-1 items-start gap-4 rounded-3xl bg-primary/5 p-6 shadow-sm ring-1 ring-primary/20">
+                        <div className="group flex  items-start gap-4 rounded-3xl bg-primary/5 p-6 shadow-sm ring-1 ring-primary/20">
                             <Clock className="mt-1 h-6 w-6 shrink-0 text-primary" />
                             <div className="w-full">
                                 <h3 className="mb-2 font-bold text-primary">
                                     Jam Operasional Sekretariat
                                 </h3>
                                 <ul className="w-full space-y-2 text-sm text-muted-foreground">
-                                    <li className="flex justify-between border-b border-primary/10 pb-1">
-                                        <span>Senin - Kamis:</span>{' '}
-                                        <span className="font-semibold text-foreground">
-                                            08:00 - 15:30 WIB
-                                        </span>
-                                    </li>
-                                    <li className="flex justify-between border-b border-primary/10 pb-1">
-                                        <span>Jumat:</span>{' '}
-                                        <span className="font-semibold text-foreground">
-                                            08:00 - 11:30 WIB
-                                        </span>
-                                    </li>
-                                    <li className="flex justify-between pt-1">
-                                        <span>Sabtu - Ahad:</span>{' '}
-                                        <span className="font-semibold text-foreground">
-                                            Libur{' '}
-                                            <span className="text-xs font-normal">
-                                                (Kecuali ada event)
-                                            </span>
-                                        </span>
-                                    </li>
+                                    {
+                                        operational_hours.map((item, idx) => (
+                                            <li
+                                                key={idx}
+                                                className="flex justify-between border-b border-primary/10 pb-1"
+                                            >
+                                                <span>{item.key}:</span>{' '}
+                                                <span className="font-semibold text-foreground">
+                                                    {item.value}
+                                                </span>
+                                            </li>
+                                        ))
+                                    }
                                 </ul>
                             </div>
                         </div>

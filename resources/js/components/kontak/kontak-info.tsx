@@ -9,7 +9,33 @@ import {
     Youtube,
 } from 'lucide-react';
 
-export function KontakInfo() {
+
+interface KontakInfoProps {
+    siteContact?: {
+        address?: string;
+        phone?: string;
+        whatsapp?: string;
+        email?: string;
+        operational_hours?: Array<{ key: string; value: string }>;
+        instagram?: string;
+        facebook?: string;
+        youtube?: string;
+        location?: string;
+    };
+}
+
+export function KontakInfo({ siteContact }: KontakInfoProps) {
+    const {
+        address,
+        phone,
+        whatsapp,
+        email,
+        operational_hours,
+        instagram,
+        facebook,
+        youtube,
+    } = siteContact || {} as any; // cast to any so ts understands union below
+
     return (
         <div className="animate-in space-y-10 duration-700 fade-in slide-in-from-bottom-8">
             <div>
@@ -40,10 +66,20 @@ export function KontakInfo() {
                             Alamat
                         </h3>
                         <p className="text-sm leading-relaxed text-muted-foreground">
-                            Jl. Tambun Bungai, Komplek Islamic Center
-                            <br />
-                            Kabupaten Kapuas, Kalimantan Tengah
+                            {address ?? '—'}
                         </p>
+                        {siteContact?.location && (
+                            <p className="mt-1 text-sm">
+                                <a
+                                    href={siteContact.location}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-emerald-600 hover:underline"
+                                >
+                                    Lihat di peta
+                                </a>
+                            </p>
+                        )}
                     </div>
                 </div>
 
@@ -58,10 +94,10 @@ export function KontakInfo() {
                                 TELEPON
                             </p>
                             <a
-                                href="tel:051324246"
+                                href={phone ? `tel:${phone.replace(/[^0-9+]/g, '')}` : '#'}
                                 className="block font-bold text-foreground transition-colors hover:text-emerald-600 active:text-emerald-600"
                             >
-                                (0513) 24246
+                                {phone ?? '—'}
                             </a>
                         </div>
                     </div>
@@ -76,12 +112,16 @@ export function KontakInfo() {
                                 WHATSAPP
                             </p>
                             <a
-                                href="https://wa.me/+6281348521955"
+                                href={
+                                    whatsapp
+                                        ? `https://wa.me/${whatsapp.replace(/[^0-9+]/g, '')}`
+                                        : '#'
+                                }
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block font-bold text-foreground transition-colors hover:text-emerald-600 active:text-emerald-600"
                             >
-                                081348521955
+                                {whatsapp ?? '—'}
                             </a>
                         </div>
                     </div>
@@ -97,43 +137,39 @@ export function KontakInfo() {
                             EMAIL
                         </p>
                         <a
-                            href="mailto:masjid.almukarram132@gmail.com"
+                            href={
+                                email ? `mailto:${email}` : '#'
+                            }
                             className="block font-bold text-foreground transition-colors hover:text-emerald-600 active:text-emerald-600"
                         >
-                            masjid.almukarram132@gmail.com
+                            {email ?? '—'}
                         </a>
                     </div>
                 </div>
 
                 {/* Jam Operasional */}
-                <div className="mt-2 flex items-start gap-4 rounded-3xl border border-emerald-100 bg-emerald-50/50 p-6 dark:border-emerald-900/50 dark:bg-emerald-950/20">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center text-emerald-600 dark:text-emerald-400">
-                        <Clock className="h-6 w-6" />
+                {operational_hours && operational_hours.length > 0 && (
+                    <div className="mt-2 flex items-start gap-4 rounded-3xl border border-emerald-100 bg-emerald-50/50 p-6 dark:border-emerald-900/50 dark:bg-emerald-950/20">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center text-emerald-600 dark:text-emerald-400">
+                            <Clock className="h-6 w-6" />
+                        </div>
+                        <div className="w-full pt-1">
+                            <h3 className="mb-4 font-bold text-emerald-600 dark:text-emerald-400">
+                                Jam Operasional Sekretariat
+                            </h3>
+                            <ul className="space-y-1 text-sm text-muted-foreground">
+                                {operational_hours.map((item: { key: string; value: string }, idx: number) => (
+                                    <li key={idx} className="flex justify-between">
+                                        <span className="font-medium">
+                                            {item.key}:
+                                        </span>
+                                        <span>{item.value}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
-                    <div className="w-full pt-1">
-                        <h3 className="mb-4 font-bold text-emerald-600 dark:text-emerald-400">
-                            Jam Operasional Sekretariat
-                        </h3>
-                        <ul className="w-full space-y-3 text-sm">
-                            <li className="flex items-center justify-between border-b border-emerald-100/50 pb-3 dark:border-emerald-900/30">
-                                <span className="text-muted-foreground">
-                                    Senin – Jumat:
-                                </span>{' '}
-                                <span className="font-bold text-foreground">
-                                    08.00 – 16.00 WIB
-                                </span>
-                            </li>
-                            <li className="flex items-center justify-between pt-1">
-                                <span className="text-muted-foreground">
-                                    Sabtu:
-                                </span>{' '}
-                                <span className="font-bold text-foreground">
-                                    08.00 – 12.00 WIB
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                )}
             </div>
 
             {/* Social Media Links */}
@@ -142,62 +178,68 @@ export function KontakInfo() {
                     Media Sosial Kami
                 </h3>
                 <div className="flex flex-col gap-3">
-                    <a
-                        href="https://www.instagram.com/masjidagung.almukarram_amanah/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-pink-500 hover:shadow-md active:border-pink-500 active:shadow-md"
-                    >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-pink-50 text-pink-600 transition-all group-hover:bg-pink-500 group-hover:text-white group-active:bg-pink-500 group-active:text-white dark:bg-pink-950/50 dark:text-pink-400 dark:group-hover:text-white">
-                            <Instagram className="h-6 w-6" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                            <p className="text-sm font-bold text-foreground">
-                                Instagram
-                            </p>
-                            <p className="truncate text-sm text-muted-foreground">
-                                @masjidagung.almukarram_amanah
-                            </p>
-                        </div>
-                    </a>
+                    {instagram && (
+                        <a
+                            href={instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-pink-500 hover:shadow-md active:border-pink-500 active:shadow-md"
+                        >
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-pink-50 text-pink-600 transition-all group-hover:bg-pink-500 group-hover:text-white group-active:bg-pink-500 group-active:text-white dark:bg-pink-950/50 dark:text-pink-400 dark:group-hover:text-white">
+                                <Instagram className="h-6 w-6" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <p className="text-sm font-bold text-foreground">
+                                    Instagram
+                                </p>
+                                <p className="truncate text-sm text-muted-foreground">
+                                    {instagram.replace(/https?:\/\//, '')}
+                                </p>
+                            </div>
+                        </a>
+                    )}
 
-                    <a
-                        href="https://www.facebook.com/profile.php?id=61576298510239"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-blue-600 hover:shadow-md active:border-blue-600 active:shadow-md"
-                    >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white group-active:bg-blue-600 group-active:text-white dark:bg-blue-950/50 dark:text-blue-400 dark:group-hover:text-white">
-                            <Facebook className="h-6 w-6" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                            <p className="text-sm font-bold text-foreground">
-                                Facebook
-                            </p>
-                            <p className="truncate text-sm text-muted-foreground">
-                                Masjid Agung Al Mukarram Amanah
-                            </p>
-                        </div>
-                    </a>
+                    {facebook && (
+                        <a
+                            href={facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-blue-600 hover:shadow-md active:border-blue-600 active:shadow-md"
+                        >
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white group-active:bg-blue-600 group-active:text-white dark:bg-blue-950/50 dark:text-blue-400 dark:group-hover:text-white">
+                                <Facebook className="h-6 w-6" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <p className="text-sm font-bold text-foreground">
+                                    Facebook
+                                </p>
+                                <p className="truncate text-sm text-muted-foreground">
+                                    {facebook.replace(/https?:\/\//, '')}
+                                </p>
+                            </div>
+                        </a>
+                    )}
 
-                    <a
-                        href="https://www.youtube.com/@MasjidAgung-AlMukarramAmanah"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-red-600 hover:shadow-md active:border-red-600 active:shadow-md"
-                    >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600 transition-all group-hover:bg-red-600 group-hover:text-white group-active:bg-red-600 group-active:text-white dark:bg-red-950/50 dark:text-red-400 dark:group-hover:text-white">
-                            <Youtube className="h-6 w-6" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                            <p className="text-sm font-bold text-foreground">
-                                YouTube
-                            </p>
-                            <p className="truncate text-sm text-muted-foreground">
-                                @MasjidAgung-AlMukarramAmanah
-                            </p>
-                        </div>
-                    </a>
+                    {youtube && (
+                        <a
+                            href={youtube}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-3 transition-all hover:border-red-600 hover:shadow-md active:border-red-600 active:shadow-md"
+                        >
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600 transition-all group-hover:bg-red-600 group-hover:text-white group-active:bg-red-600 group-active:text-white dark:bg-red-950/50 dark:text-red-400 dark:group-hover:text-white">
+                                <Youtube className="h-6 w-6" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <p className="text-sm font-bold text-foreground">
+                                    YouTube
+                                </p>
+                                <p className="truncate text-sm text-muted-foreground">
+                                    {youtube.replace(/https?:\/\//, '')}
+                                </p>
+                            </div>
+                        </a>
+                    )}
                 </div>
             </div>
         </div>

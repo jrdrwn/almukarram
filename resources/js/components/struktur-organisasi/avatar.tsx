@@ -1,8 +1,8 @@
 import { User } from 'lucide-react';
-import { fotoMap } from './struktur-organisasi-data';
 
 interface AvatarProps {
     nama: string;
+    fotoUrl?: string | null;
     size?: number;
     fallbackIcon?: React.ReactNode;
     bgColor?: string;
@@ -11,46 +11,67 @@ interface AvatarProps {
 
 export default function Avatar({
     nama,
+    fotoUrl = null,
     size = 80,
-    fallbackIcon = <User className="text-white" size={size * 0.4} />,
+    fallbackIcon,
     bgColor = 'bg-primary',
     onClick,
 }: AvatarProps) {
-    const foto = fotoMap[nama];
-    const src = foto ? `/images/${encodeURIComponent(foto)}` : null;
+    const resolvedFallback = fallbackIcon ?? (
+        <User
+            className="text-white"
+            style={{ width: size * 0.4, height: size * 0.4 }}
+        />
+    );
 
     const handleClick = () => {
-        if (onClick && src) {
+        if (onClick && fotoUrl) {
             onClick();
         }
     };
 
     return (
         <div
-            className={`flex items-center justify-center overflow-hidden rounded-full ${!src ? bgColor : ''} ${onClick && src ? 'cursor-pointer transition-transform hover:scale-105 active:scale-105' : ''}`}
+            className={[
+                'flex items-center justify-center overflow-hidden rounded-full',
+                !fotoUrl ? bgColor : '',
+                onClick && fotoUrl
+                    ? 'cursor-pointer transition-transform hover:scale-105 active:scale-105'
+                    : '',
+            ]
+                .filter(Boolean)
+                .join(' ')}
             style={{ width: size, height: size }}
             onClick={handleClick}
         >
-            {src ? (
+            {fotoUrl ? (
                 <img
-                    src={src}
+                    src={fotoUrl}
                     alt={nama}
                     className="h-full w-full object-cover object-top"
                     onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                        if ((e.target as HTMLImageElement).nextElementSibling) {
-                            (
-                                (e.target as HTMLImageElement)
-                                    .nextElementSibling as HTMLElement
-                            ).style.display = 'flex';
+                        const img = e.target as HTMLImageElement;
+                        img.style.display = 'none';
+                        const fallback =
+                            img.nextElementSibling as HTMLElement | null;
+                        if (fallback) {
+                            fallback.style.display = 'flex';
                         }
                     }}
                 />
             ) : null}
+
+            {/* Fallback — visible when no fotoUrl, or when img fails to load */}
             <div
-                className={`flex h-full w-full items-center justify-center ${bgColor} ${src ? 'hidden' : ''}`}
+                className={[
+                    'flex h-full w-full items-center justify-center',
+                    bgColor,
+                    fotoUrl ? 'hidden' : '',
+                ]
+                    .filter(Boolean)
+                    .join(' ')}
             >
-                {fallbackIcon}
+                {resolvedFallback}
             </div>
         </div>
     );

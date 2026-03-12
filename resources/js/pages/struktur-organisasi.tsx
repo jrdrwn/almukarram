@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/react';
 import { Home, Info, Network } from 'lucide-react';
 import { useState } from 'react';
 
@@ -8,8 +9,12 @@ import BidangBidang from '@/components/struktur-organisasi/bidang';
 import LightboxModal from '@/components/struktur-organisasi/lightbox-modal';
 import PimpinanInti from '@/components/struktur-organisasi/pimpinan-inti';
 import Sekretariat from '@/components/struktur-organisasi/sekretariat';
+import type { StrukturOrganisasiProps } from '@/types/struktur-organisasi';
 
 export default function StrukturOrganisasi() {
+    const { pimpinanInti, bidang, sekretariat } =
+        usePage<StrukturOrganisasiProps>().props;
+
     const [lightbox, setLightbox] = useState<{
         isOpen: boolean;
         src: string;
@@ -51,19 +56,25 @@ export default function StrukturOrganisasi() {
             {/* Main Content Area */}
             <main className="relative py-12 md:py-20">
                 <div className="container mx-auto max-w-380 px-4 sm:px-6 lg:px-8">
-                    <PimpinanInti onAvatarClick={openLightbox} />
+                    <PimpinanInti
+                        data={pimpinanInti}
+                        onAvatarClick={openLightbox}
+                    />
 
                     <div className="py-8">
                         <div className="h-px w-full bg-linear-to-r from-transparent via-emerald-200 to-transparent dark:via-emerald-800"></div>
                     </div>
 
-                    <BidangBidang onAvatarClick={openLightbox} />
+                    <BidangBidang data={bidang} onAvatarClick={openLightbox} />
 
                     <div className="py-8">
                         <div className="h-px w-full bg-linear-to-r from-transparent via-emerald-200 to-transparent dark:via-emerald-800"></div>
                     </div>
 
-                    <Sekretariat onAvatarClick={openLightbox} />
+                    <Sekretariat
+                        data={sekretariat}
+                        onAvatarClick={openLightbox}
+                    />
                 </div>
             </main>
 

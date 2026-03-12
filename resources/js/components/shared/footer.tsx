@@ -1,4 +1,4 @@
-﻿import { Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { ChevronRight, Lock, Mail, MapPin, Phone } from 'lucide-react';
 import {
     FaFacebookF,
@@ -7,7 +7,22 @@ import {
     FaYoutube,
 } from 'react-icons/fa';
 
+import { usePage } from '@inertiajs/react';
+
 export default function Footer() {
+    const { siteContact } = usePage().props as {
+        siteContact: {
+            address?: string;
+            phone?: string;
+            whatsapp?: string;
+            email?: string;
+            instagram?: string;
+            facebook?: string;
+            youtube?: string;
+        };
+    };
+    const { address, phone, whatsapp, email, instagram, facebook, youtube } = siteContact || {};
+
     return (
         <footer className="relative w-full overflow-hidden border-t border-border bg-white dark:bg-zinc-950">
             {/* Background Texture & Ambient Gradient */}
@@ -81,18 +96,22 @@ export default function Footer() {
                             >
                                 <FaInstagram className="h-4 w-4" />
                             </a>
-                            <a
-                                href="#"
-                                className="hover:text-[ flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-blue-200 hover:bg-blue-50 active:border-blue-200 active:border-blue-900 active:bg-blue-50 active:bg-blue-950/30 active:text-[#0866FF] dark:hover:border-blue-900 dark:hover:bg-blue-950/30"
-                            >
-                                <FaFacebookF className="h-4 w-4" />
-                            </a>
-                            <a
-                                href="#"
-                                className="hover:text-[ flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-red-200 hover:bg-red-50 active:border-red-200 active:border-red-900 active:bg-red-50 active:bg-red-950/30 active:text-[#FF0000] dark:hover:border-red-900 dark:hover:bg-red-950/30"
-                            >
-                                <FaYoutube className="h-4 w-4" />
-                            </a>
+                            {facebook && (
+                                <a
+                                    href={facebook}
+                                    className="hover:text-[ flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-blue-200 hover:bg-blue-50 active:border-blue-200 active:border-blue-900 active:bg-blue-50 active:bg-blue-950/30 active:text-[#0866FF] dark:hover:border-blue-900 dark:hover:bg-blue-950/30"
+                                >
+                                    <FaFacebookF className="h-4 w-4" />
+                                </a>
+                            )}
+                            {youtube && (
+                                <a
+                                    href={youtube}
+                                    className="hover:text-[ flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-red-200 hover:bg-red-50 active:border-red-200 active:border-red-900 active:bg-red-50 active:bg-red-950/30 active:text-[#FF0000] dark:hover:border-red-900 dark:hover:bg-red-950/30"
+                                >
+                                    <FaYoutube className="h-4 w-4" />
+                                </a>
+                            )}
                         </div>
                     </div>
 
@@ -179,30 +198,31 @@ export default function Footer() {
                             <li className="flex items-start gap-4">
                                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
                                 <span className="leading-relaxed">
-                                    Jl. Tambun Bungai, Komplek Islamic Center,
-                                    Selat, Kab. Kapuas, Kalteng
+                                    {address ?? '—'}
                                 </span>
                             </li>
                             <li className="flex items-center gap-4">
                                 <Phone className="h-4 w-4 shrink-0 text-emerald-500" />
-                                <span>(0513) 24246</span>
+                                <span>{phone ?? '—'}</span>
                             </li>
-                            <li className="group flex items-center gap-4">
-                                <FaWhatsapp className="h-4 w-4 shrink-0 text-[#25D366]" />
-                                <a
-                                    href="https://wa.me/6281348521955"
-                                    className="transition-colors group-hover:text-foreground group-active:text-foreground"
-                                >
-                                    0813 4852 1955
-                                </a>
-                            </li>
+                            {whatsapp && (
+                                <li className="group flex items-center gap-4">
+                                    <FaWhatsapp className="h-4 w-4 shrink-0 text-[#25D366]" />
+                                    <a
+                                        href={`https://wa.me/${whatsapp.replace(/[^0-9+]/g, '')}`}
+                                        className="transition-colors group-hover:text-foreground group-active:text-foreground"
+                                    >
+                                        {whatsapp}
+                                    </a>
+                                </li>
+                            )}
                             <li className="group flex items-center gap-4">
                                 <Mail className="h-4 w-4 shrink-0 text-emerald-500" />
                                 <a
-                                    href="mailto:masjid.almukarram132@gmail.com"
+                                    href={email ? `mailto:${email}` : '#'}
                                     className="truncate transition-colors group-hover:text-foreground group-active:text-foreground"
                                 >
-                                    masjid.almukarram132@gmail.com
+                                    {email ?? '—'}
                                 </a>
                             </li>
                         </ul>

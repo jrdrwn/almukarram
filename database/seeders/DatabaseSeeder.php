@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             JadwalJumatSeeder::class,
             JadwalPengajianSeeder::class,
             KotakMasukSeeder::class,
+            KontakSitusSeeder::class,
+            PengurusSeeder::class,
         ]);
     }
 }

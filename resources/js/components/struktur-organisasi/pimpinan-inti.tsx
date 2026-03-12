@@ -1,21 +1,22 @@
 import { DollarSign, Pen, Star, Target } from 'lucide-react';
+
+import type {
+    AnggotaType,
+    PimpinanIntiType,
+} from '@/types/struktur-organisasi';
+
 import Avatar from './avatar';
-import {
-    fotoMap,
-    ketua,
-    pimpinanTop,
-    sekbend,
-} from './struktur-organisasi-data';
 
 export default function PimpinanInti({
+    data,
     onAvatarClick,
 }: {
+    data: PimpinanIntiType;
     onAvatarClick: (nama: string, src: string) => void;
 }) {
-    const handleAvatarClick = (nama: string) => {
-        const foto = fotoMap[nama];
-        if (foto) {
-            onAvatarClick(nama, `/images/${encodeURIComponent(foto)}`);
+    const handleAvatarClick = (p: AnggotaType) => {
+        if (p.fotoUrl) {
+            onAvatarClick(p.nama, p.fotoUrl);
         }
     };
 
@@ -35,7 +36,7 @@ export default function PimpinanInti({
 
             {/* Ketua Umum */}
             <div className="mb-8 flex justify-center">
-                {pimpinanTop.map((p, i) => (
+                {data.pimpinanTop.map((p, i) => (
                     <div
                         key={i}
                         className="w-full max-w-sm transform rounded-2xl border-2 border-emerald-100 bg-white p-6 text-center shadow-lg transition duration-300 hover:-translate-y-1 active:-translate-y-1 dark:border-emerald-900/50 dark:bg-card"
@@ -43,11 +44,12 @@ export default function PimpinanInti({
                         <div className="mx-auto mb-4 flex items-center justify-center">
                             <Avatar
                                 nama={p.nama}
+                                fotoUrl={p.fotoUrl}
                                 size={140}
                                 fallbackIcon={
                                     <Star className="h-14 w-14 text-white" />
                                 }
-                                onClick={() => handleAvatarClick(p.nama)}
+                                onClick={() => handleAvatarClick(p)}
                             />
                         </div>
                         <div className="text-xl font-bold">{p.nama}</div>
@@ -60,7 +62,7 @@ export default function PimpinanInti({
 
             {/* Ketua Harian + Ketua I, II, III */}
             <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {ketua.map((p, i) => (
+                {data.ketua.map((p, i) => (
                     <div
                         key={i}
                         className="transform rounded-2xl border border-border/50 bg-white p-5 text-center shadow transition duration-300 hover:-translate-y-1 hover:shadow-md active:-translate-y-1 active:shadow-md dark:bg-card"
@@ -68,8 +70,9 @@ export default function PimpinanInti({
                         <div className="mx-auto mb-4 flex items-center justify-center">
                             <Avatar
                                 nama={p.nama}
+                                fotoUrl={p.fotoUrl}
                                 size={110}
-                                onClick={() => handleAvatarClick(p.nama)}
+                                onClick={() => handleAvatarClick(p)}
                             />
                         </div>
                         <div className="text-sm leading-tight font-bold">
@@ -84,8 +87,8 @@ export default function PimpinanInti({
 
             {/* Sekretaris & Bendahara */}
             <div className="flex flex-wrap justify-center gap-6">
-                {sekbend.map((p, i) => {
-                    const isBendahara = p.jabatan.includes('Bendahara');
+                {data.sekbend.map((p, i) => {
+                    const isBendahara = p.jabatan?.includes('Bendahara');
                     return (
                         <div
                             key={i}
@@ -94,6 +97,7 @@ export default function PimpinanInti({
                             <div className="mx-auto mb-4 flex items-center justify-center">
                                 <Avatar
                                     nama={p.nama}
+                                    fotoUrl={p.fotoUrl}
                                     size={90}
                                     fallbackIcon={
                                         isBendahara ? (
@@ -103,7 +107,7 @@ export default function PimpinanInti({
                                         )
                                     }
                                     bgColor="bg-emerald-50 dark:bg-emerald-900/20"
-                                    onClick={() => handleAvatarClick(p.nama)}
+                                    onClick={() => handleAvatarClick(p)}
                                 />
                             </div>
                             <div className="text-sm leading-tight font-bold">

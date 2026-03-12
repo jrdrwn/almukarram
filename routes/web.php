@@ -9,6 +9,7 @@ use App\Http\Controllers\JadwalJumatController;
 use App\Http\Controllers\JadwalPengajianController;
 use App\Http\Controllers\JadwalSholatController;
 use App\Http\Controllers\KotakMasukController;
+use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\OpiniController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,12 +29,12 @@ Route::get('/dokumen', DokumenController::class)->name('dokumen');
 Route::get('/jadwal-jumat', JadwalJumatController::class)->name('jadwal-jumat');
 Route::get('/jadwal-pengajian', JadwalPengajianController::class)->name('jadwal-pengajian');
 Route::get('/jadwal-sholat', JadwalSholatController::class)->name('jadwal-sholat');
-Route::inertia('/kontak', 'kontak')->name('kontak');
+Route::get('/kontak', [\App\Http\Controllers\KontakController::class, '__invoke'])->name('kontak');
 
 // Static pages
 Route::inertia('/zis', 'zis')->name('zis');
 Route::inertia('/sejarah-singkat', 'sejarah-singkat')->name('sejarah-singkat');
-Route::inertia('/struktur-organisasi', 'struktur-organisasi')->name('struktur-organisasi');
+Route::get('/struktur-organisasi', StrukturOrganisasiController::class)->name('struktur-organisasi');
 Route::inertia('/program-masjid', 'program-masjid')->name('program-masjid');
 Route::inertia('/program-idarah', 'program-idarah')->name('program-idarah');
 Route::inertia('/program-imarah', 'program-imarah')->name('program-imarah');

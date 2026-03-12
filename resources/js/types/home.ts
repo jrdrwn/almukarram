@@ -73,6 +73,16 @@ export type JadwalSholatData = {
 };
 
 export type HomePageProps = {
+    siteContact?: {
+        address?: string;
+        phone?: string;
+        whatsapp?: string;
+        email?: string;
+        instagram?: string;
+        facebook?: string;
+        youtube?: string;
+        location?: string;
+    };
     agendaTerdekat: AgendaTerdekat | null;
     beritaUtama: BeritaUtama | null;
     beritaTerbaru: BeritaItem[];

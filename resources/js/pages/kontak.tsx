@@ -6,7 +6,20 @@ import PageHeader from '@/components/shared/page-header';
 import { Head } from '@inertiajs/react';
 import { Home, Phone } from 'lucide-react';
 
-export default function Kontak() {
+interface KontakProps {
+    siteContact?: {
+        address?: string;
+        phone?: string;
+        whatsapp?: string;
+        email?: string;
+        operational_hours?: string;
+        instagram?: string;
+        facebook?: string;
+        youtube?: string;
+    };
+}
+
+export default function Kontak({ siteContact }: KontakProps) {
     return (
         <>
             <Header />
@@ -33,7 +46,7 @@ export default function Kontak() {
                     <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
                         {/* Info Kontak */}
                         <div className="relative lg:col-span-5">
-                            <KontakInfo />
+                            <KontakInfo {...(siteContact ? { siteContact } : {})} />
                         </div>
 
                         {/* Form Kontak & Peta */}
@@ -52,7 +65,11 @@ export default function Kontak() {
                                     <div className="relative isolate h-full w-full overflow-hidden rounded-4xl">
                                         <div className="pointer-events-none absolute inset-0 z-10 bg-primary/20 opacity-0 transition-opacity duration-500 group-hover:opacity-10 group-active:opacity-10" />
                                         <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3978.9!2d114.3866271!3d-3.0059342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de46f027f225e35:0x3634ee7d00a14f59!2sMasjid+Agung+Al+Mukarram+Amanah!5e0!3m2!1sid!2sid!4v1740000000000!5m2!1sid!2sid"
+                                            src={
+                                                siteContact?.location
+                                                    ? siteContact.location
+                                                    : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3978.9!2d114.3866271!3d-3.0059342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de46f027f225e35:0x3634ee7d00a14f59!2sMasjid+Agung+Al+Mukarram+Amanah!5e0!3m2!1sid!2sid!4v1740000000000!5m2!1sid!2sid"
+                                            }
                                             className="relative z-0 h-full w-full border-0 grayscale-20 transition-all duration-500 group-hover:grayscale-0 group-active:grayscale-0"
                                             allowFullScreen={false}
                                             loading="lazy"

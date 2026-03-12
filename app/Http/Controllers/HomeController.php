@@ -15,11 +15,12 @@ use Inertia\Response;
 
 class HomeController extends Controller
 {
-    public function __invoke(): Response
+    public function __invoke(\App\Models\KontakSitus $siteContact): Response
     {
         $today = Carbon::today();
 
         return Inertia::render('home', [
+            'siteContact' => $siteContact,
             'agendaTerdekat' => fn () => $this->resolveRandomAgenda($today),
 
             'beritaUtama' => fn () => Berita::query()
