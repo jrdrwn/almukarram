@@ -38,6 +38,11 @@ class BannersTable
                     ->sortable()
                     ->alignCenter(),
 
+                TextColumn::make('ratio')
+                    ->label('Rasio')
+                    ->sortable()
+                    ->alignCenter(),
+
                 TextColumn::make('mulai_tayang')
                     ->label('Mulai')
                     ->date('d M Y')

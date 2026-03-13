@@ -9,6 +9,10 @@ class BannerSeeder extends Seeder
 {
     public function run(): void
     {
+        // Normalize legacy ratio values
+        Banner::where('ratio', '9:16')->update(['ratio' => '16:9']);
+        Banner::where('ratio', '3:5')->update(['ratio' => '5:3']);
+
         $items = [
             [
                 'judul' => 'Syiar Ramadhan di Jantung Kota Kapuas',
@@ -20,6 +24,7 @@ class BannerSeeder extends Seeder
                 'buka_tab_baru' => false,
                 'mulai_tayang' => '2026-03-01',
                 'selesai_tayang' => '2026-04-15',
+                'ratio' => '4:1',
             ],
             [
                 'judul' => 'Majelis Ilmu Sepanjang Pekan',
@@ -31,6 +36,7 @@ class BannerSeeder extends Seeder
                 'buka_tab_baru' => false,
                 'mulai_tayang' => '2026-03-01',
                 'selesai_tayang' => null,
+                'ratio' => '4:5',
             ],
             [
                 'judul' => 'ZISWAF yang Tertib dan Transparan',
@@ -42,6 +48,7 @@ class BannerSeeder extends Seeder
                 'buka_tab_baru' => false,
                 'mulai_tayang' => '2026-03-01',
                 'selesai_tayang' => null,
+                'ratio' => '16:9',
             ],
             [
                 'judul' => 'Pengurus yang Mudah Dikenali',
@@ -53,6 +60,7 @@ class BannerSeeder extends Seeder
                 'buka_tab_baru' => false,
                 'mulai_tayang' => '2026-03-01',
                 'selesai_tayang' => null,
+                'ratio' => '5:3',
             ],
             [
                 'judul' => 'Aspirasi Jamaah Selalu Terbuka',
@@ -64,6 +72,43 @@ class BannerSeeder extends Seeder
                 'buka_tab_baru' => false,
                 'mulai_tayang' => '2026-03-01',
                 'selesai_tayang' => null,
+                'ratio' => '4:1',
+            ],
+            [
+                'judul' => 'Kajian Dhuha & Tahajud',
+                'subjudul' => 'Ikuti kajian pagi dan malam yang dibawakan oleh penceramah tamu dan ustadz setempat.',
+                'gambar' => 'banner/banner-kajian-dhuha.png',
+                'tautan' => '/kajian',
+                'urutan' => 6,
+                'is_active' => true,
+                'buka_tab_baru' => false,
+                'mulai_tayang' => '2026-03-05',
+                'selesai_tayang' => null,
+                'ratio' => '4:5',
+            ],
+            [
+                'judul' => 'Video Dokumentasi Kegiatan',
+                'subjudul' => 'Tonton rekaman kegiatan masjid dan acara dakwah terbaru di kanal resmi kami.',
+                'gambar' => 'banner/banner-video.png',
+                'tautan' => '/video',
+                'urutan' => 7,
+                'is_active' => true,
+                'buka_tab_baru' => false,
+                'mulai_tayang' => '2026-03-10',
+                'selesai_tayang' => null,
+                'ratio' => '16:9',
+            ],
+            [
+                'judul' => 'Infografis Program Bulanan',
+                'subjudul' => 'Cek agenda dan program masjid bulan ini dalam format infografis yang mudah dibaca.',
+                'gambar' => 'banner/banner-infografis.png',
+                'tautan' => '/program-bulanan',
+                'urutan' => 8,
+                'is_active' => true,
+                'buka_tab_baru' => false,
+                'mulai_tayang' => '2026-03-10',
+                'selesai_tayang' => null,
+                'ratio' => '5:3',
             ],
         ];
 

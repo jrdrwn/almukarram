@@ -15,6 +15,7 @@ export type BannerItem = {
     gambar: string;
     tautan: string | null;
     buka_tab_baru: boolean;
+    ratio: '4:1' | '4:5' | '16:9' | '5:3';
 };
 
 export type BeritaUtama = {

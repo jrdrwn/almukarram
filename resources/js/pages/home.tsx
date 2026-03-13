@@ -38,9 +38,20 @@ export default function Page({
                 heroSetting={heroSetting}
                 featuredPengurus={featuredPengurus}
             />
-            <BannerSection banners={banners} />
+            {/* Banner 4:1 setelah Hero */}
+            <div className="my-8">
+                <BannerSection banners={banners.filter(b => b.ratio === '4:1')} />
+            </div>
             <FeaturesSection />
+            {/* Banner 4:5 setelah Features */}
+            <div className="my-8">
+                <BannerSection banners={banners.filter(b => b.ratio === '4:5')} />
+            </div>
             <SekapurSirihSection ketuaUmum={ketuaUmum} />
+            {/* Banner 16:9 setelah SekapurSirih */}
+            <div className="my-8">
+                <BannerSection banners={banners.filter(b => b.ratio === '16:9')} />
+            </div>
             <VideoSection videos={videos} />
             <BeritaSection
                 beritaUtama={beritaUtama}
@@ -50,6 +61,10 @@ export default function Page({
             <ArtikelSection opiniTerbaru={opiniTerbaru} />
             <JadwalJumatSection jadwalJumat={jadwalJumat} />
             <JadwalKajianSection jadwalPengajian={jadwalPengajian} />
+            {/* Banner 5:3 setelah JadwalKajianSection */}
+            <div className="my-8">
+                <BannerSection banners={banners.filter(b => b.ratio === '5:3')} />
+            </div>
             <KontakPengaduanSection />
 
             <Footer />

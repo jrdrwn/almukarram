@@ -11,6 +11,7 @@ use App\Models\Banner;
 use App\Traits\HasAdminResourceAccess;
 use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -50,6 +51,26 @@ class BannerResource extends Resource
     public static function getRelations(): array
     {
         return [];
+    }
+
+    public function getTabs(): array
+    {
+        return [
+            Tab::make('Semua')
+                ->query(fn ($query) => $query),
+
+            Tab::make('4:1')
+                ->query(fn ($query) => $query->where('ratio', '4:1')),
+
+            Tab::make('4:5')
+                ->query(fn ($query) => $query->where('ratio', '4:5')),
+
+            Tab::make('16:9')
+                ->query(fn ($query) => $query->where('ratio', '16:9')),
+
+            Tab::make('5:3')
+                ->query(fn ($query) => $query->where('ratio', '5:3')),
+        ];
     }
 
     public static function getPages(): array

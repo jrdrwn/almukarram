@@ -43,9 +43,23 @@ class BannerForm
                             ->disk('public')
                             ->directory('banner')
                             ->imageEditor()
-                            ->imageEditorAspectRatios(['4:1'])
+                            ->imageEditorAspectRatios(['4:1', '4:5', '16:9', '5:3'])
                             ->maxSize(3072)
-                            ->helperText('Gunakan crop rasio 4:1 untuk seluruh banner homepage.')
+                            ->helperText('Gunakan crop rasio sesuai kebutuhan homepage.')
+                            ->columnSpanFull(),
+
+                        // Pilihan rasio banner
+                        \Filament\Forms\Components\Select::make('ratio')
+                            ->label('Rasio Banner')
+                            ->options([
+                                '4:1' => '4:1 (Wide)',
+                                '4:5' => '4:5 (Portrait)',
+                                '16:9' => '16:9 (Wide)',
+                                '5:3' => '5:3 (Portrait)',
+                            ])
+                            ->default('4:1')
+                            ->required()
+                            ->helperText('Pilih rasio sesuai kebutuhan tampilan.')
                             ->columnSpanFull(),
 
                         TextInput::make('tautan')

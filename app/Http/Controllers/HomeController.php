@@ -74,6 +74,7 @@ class HomeController extends Controller
                     'gambar',
                     'tautan',
                     'buka_tab_baru',
+                    'ratio'
                 ]),
 
             'beritaUtama' => fn () => Berita::query()

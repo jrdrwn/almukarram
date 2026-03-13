@@ -13,6 +13,7 @@ class Banner extends Model
         'subjudul',
         'gambar',
         'tautan',
+        'ratio', // Rasio banner (4:1, 4:5, 16:9, 5:3)
         'urutan',
         'is_active',
         'buka_tab_baru',
