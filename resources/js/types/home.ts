@@ -1,3 +1,4 @@
+import type { FeatureItem } from '@/types/feature';
 import type { HeroSetting } from '@/types/hero-setting';
 import type { FeaturedPengurus } from '@/types/pengurus';
 import type { SiteContact } from '@/types/site-contact';
@@ -92,6 +93,7 @@ export type HomePageProps = {
     agendaTerdekat: AgendaTerdekat | null;
     ketuaUmum?: FeaturedPengurus | null;
     featuredPengurus?: FeaturedPengurus[];
+    features: FeatureItem[];
     banners: BannerItem[];
     beritaUtama: BeritaUtama | null;
     beritaTerbaru: BeritaItem[];

@@ -1,0 +1,6 @@
+export type FeatureItem = {
+    title: string;
+    description: string;
+    icon: string;
+    href?: string | null;
+};

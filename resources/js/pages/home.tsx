@@ -17,6 +17,7 @@ import { Head } from '@inertiajs/react';
 export default function Page({
     agendaTerdekat,
     banners,
+    features,
     heroSetting,
     siteContact,
     ketuaUmum,
@@ -42,7 +43,7 @@ export default function Page({
             <div className="my-8">
                 <BannerSection banners={banners.filter(b => b.ratio === '4:1')} />
             </div>
-            <FeaturesSection />
+            <FeaturesSection features={features} />
             {/* Banner 4:5 setelah Features */}
             <div className="my-8">
                 <BannerSection banners={banners.filter(b => b.ratio === '4:5')} />

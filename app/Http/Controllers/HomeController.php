@@ -7,6 +7,7 @@ use App\Models\Berita;
 use App\Models\HeroSetting;
 use App\Models\JadwalJumat;
 use App\Models\JadwalPengajian;
+use App\Models\Feature;
 use App\Models\JadwalSholat;
 use App\Models\Opini;
 use App\Models\Pengumuman;
@@ -104,6 +105,12 @@ class HomeController extends Controller
                 ->orderByDesc('published_at')
                 ->take(3)
                 ->get(['id', 'slug', 'judul', 'ringkasan', 'waktu_baca', 'published_at', 'user_id', 'kategori_id']),
+
+            'features' => fn () => Feature::query()
+                ->where('is_active', true)
+                ->orderBy('urutan')
+                ->take(6)
+                ->get(['title', 'description', 'icon', 'href']),
 
             'jadwalJumat' => fn () => JadwalJumat::query()
                 ->where('tanggal', '>=', $today)

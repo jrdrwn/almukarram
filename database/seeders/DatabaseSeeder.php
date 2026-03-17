@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             KotakMasukSeeder::class,
             KontakSitusSeeder::class,
             HeroSettingSeeder::class,
+            FeatureSeeder::class,
             PengurusSeeder::class,
             BannerSeeder::class,
         ]);
