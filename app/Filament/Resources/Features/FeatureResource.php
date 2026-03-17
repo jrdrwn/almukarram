@@ -42,8 +42,6 @@ class FeatureResource extends Resource
             ->columns([
                 TextColumn::make('title')->label('Judul')->sortable()->searchable(),
                 TextColumn::make('icon')->label('Icon')->sortable(),
-                TextColumn::make('color')->label('Warna'),
-                TextColumn::make('bg')->label('Background'),
                 TextColumn::make('urutan')->label('Urutan')->sortable(),
                 BooleanColumn::make('is_active')->label('Aktif')->sortable(),
             ])
