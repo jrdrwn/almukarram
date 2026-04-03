@@ -29,6 +29,7 @@ interface SeoSharedSettings {
 
 interface SharedPageProps {
     [key: string]: unknown;
+    appUrl?: string | null;
     seoSettings?: SeoSharedSettings | null;
 }
 
@@ -194,7 +195,7 @@ export default function Seo({
     breadcrumbs,
 }: SeoProps) {
     const page = usePage<SharedPageProps>();
-    const appUrl = (import.meta.env.VITE_APP_URL || '').replace(/\/+$/, '');
+    const appUrl = (page.props.appUrl || '').replace(/\/+$/, '');
     const seoSettings = page.props.seoSettings ?? null;
     const siteName = seoSettings?.site_name || SITE_NAME;
     const titleSuffix = seoSettings?.title_suffix || `| ${siteName}`;
