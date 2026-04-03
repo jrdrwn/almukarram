@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Network, Home, Info } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
@@ -9,7 +9,7 @@ export default function OrganisasiMasjid() {
     return (
         <>
             <Header />
-            <Head title="Organisasi Masjid | Masjid Agung Al-Mukarram" />
+            <Seo title="Organisasi Masjid | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Organisasi Masjid"
@@ -47,3 +47,4 @@ export default function OrganisasiMasjid() {
         </>
     );
 }
+

@@ -93,7 +93,7 @@ export default function ArticleSidebar({
                         <Link
                             key={item.id}
                             href={`/berita-detail/${item.slug}`}
-                            className={`group flex items-center gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-white active:bg-zinc-800 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800 ${
+                            className={`group flex items-center gap-4 rounded-2xl p-3 transition-all duration-300 hover:bg-white hover:shadow-sm hover:ring-1 hover:ring-border active:bg-zinc-100 active:shadow-sm active:ring-1 active:ring-border dark:hover:bg-zinc-800 dark:active:bg-zinc-800 ${
                                 item.slug === currentSlug
                                     ? 'bg-emerald-50/80 ring-1 ring-emerald-200 dark:bg-emerald-900/20 dark:ring-emerald-500/20'
                                     : ''

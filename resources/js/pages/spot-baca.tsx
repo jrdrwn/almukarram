@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Home, MapPin } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
@@ -13,7 +13,7 @@ export default function SpotBaca() {
     return (
         <>
             <Header />
-            <Head title="Spot Baca | Masjid Agung Al-Mukarram" />
+            <Seo title="Spot Baca | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Spot Baca"
@@ -51,3 +51,4 @@ export default function SpotBaca() {
         </>
     );
 }
+

@@ -7,7 +7,7 @@ import WeeklySchedule from '@/components/jadwal-sholat/weekly-schedule';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Clock, Home } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -300,7 +300,7 @@ export default function JadwalSholat({
 
     return (
         <>
-            <Head title="Jadwal Sholat" />
+            <Seo title="Jadwal Sholat" />
             <Header />
             <PageHeader
                 title="Waktu Sholat"
@@ -376,3 +376,4 @@ export default function JadwalSholat({
         </>
     );
 }
+

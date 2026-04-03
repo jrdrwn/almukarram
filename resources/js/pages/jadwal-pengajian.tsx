@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import {
     BookOpen,
     Calendar,
@@ -125,7 +125,7 @@ export default function JadwalPengajian({
     return (
         <>
             <Header />
-            <Head title="Jadwal & Petugas Pengajian | Masjid Agung Al-Mukarram" />
+            <Seo title="Jadwal & Petugas Pengajian | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Jadwal & Petugas Pengajian"
@@ -464,3 +464,4 @@ export default function JadwalPengajian({
         </>
     );
 }
+

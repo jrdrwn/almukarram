@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { BookOpen, Home, PenTool } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
@@ -31,7 +31,7 @@ export default function Page({
     return (
         <>
             <Header />
-            <Head title="Opini | Masjid Agung Al-Mukarram" />
+            <Seo title="Opini | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title={searchQuery ? `Cari: ${searchQuery}` : 'Opini'}
@@ -94,3 +94,4 @@ export default function Page({
         </>
     );
 }
+

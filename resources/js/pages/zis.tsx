@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { FaMoneyBill } from 'react-icons/fa';
 import Footer from '../components/shared/footer';
 import Header from '../components/shared/header';
@@ -10,7 +10,7 @@ import { Types } from '../components/zis/types';
 export default function Zis() {
     return (
         <>
-            <Head title="Waqaf, Infaq & Shadaqah" />
+            <Seo title="Waqaf, Infaq & Shadaqah" />
             <Header />
             <main className="flex-1">
                 <PageHeader
@@ -42,3 +42,4 @@ export default function Zis() {
         </>
     );
 }
+

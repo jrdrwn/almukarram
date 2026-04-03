@@ -28,7 +28,7 @@ function BannerCard({ banner }: { banner: BannerItem }) {
     }[banner.ratio] ?? 'aspect-[4/1]';
 
     const content = (
-        <div className={`group ${aspectClass} mx-auto overflow-hidden rounded-4xl`}>
+        <div className={`group ${aspectClass} mx-auto overflow-hidden rounded-xl`}>
             <img
                 src={resolveImageUrl(banner.gambar)}
                 alt={banner.judul}
@@ -66,7 +66,6 @@ export default function BannerSection({ banners }: { banners: BannerItem[] }) {
 
     const slides = buildSlides(banners);
 
-    const ratio = banners[0]?.ratio;
 
     const getSlideBasisClass = (ratio: string | undefined) => {
         switch (ratio) {

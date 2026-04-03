@@ -12,7 +12,7 @@ import VideoSection from '@/components/home/videosection';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import type { HomePageProps } from '@/types/home';
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 
 export default function Page({
     agendaTerdekat,
@@ -31,7 +31,7 @@ export default function Page({
 }: HomePageProps) {
     return (
         <>
-            <Head title="Beranda | Masjid Agung Al-Mukarram Amanah" />
+            <Seo title="Beranda | Masjid Agung Al-Mukarram Amanah" />
             <Header />
             <Hero
                 agendaTerdekat={agendaTerdekat}
@@ -72,3 +72,4 @@ export default function Page({
         </>
     );
 }
+

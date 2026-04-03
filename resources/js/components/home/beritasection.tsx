@@ -105,7 +105,7 @@ export default function BeritaSection({
 
                         {/* Bottom Content Area */}
                         <div className="absolute bottom-0 left-0 w-full max-w-4xl p-8 pb-32 sm:p-12 sm:pb-40 lg:p-16 lg:pb-48">
-                            <h3 className="group-hover:text-primary-200 group-active:text-primary-200 mb-4 text-3xl leading-[1.15] font-bold tracking-tight text-white transition-colors duration-300 sm:mb-6 sm:text-5xl lg:text-5xl">
+                            <h3 className="group-hover:text-primary-200 group-active:text-primary-200 mb-4 text-3xl line-clamp-3 leading-[1.15] font-bold tracking-tight text-white transition-colors duration-300 sm:mb-6 sm:text-5xl lg:text-5xl">
                                 {beritaUtama.judul}
                             </h3>
                             <p className="mb-6 line-clamp-2 max-w-2xl text-base text-white/70 sm:text-lg lg:mb-8">

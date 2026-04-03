@@ -3,11 +3,16 @@ import KalkulatorUtama from '@/components/hitung-zakat/kalkulator-utama';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
+import Seo from '@/components/shared/seo';
 import { Calculator, Home } from 'lucide-react';
 
 export default function HitungZakatPage() {
     return (
         <>
+            <Seo
+                title="Hitung Zakat | Masjid Agung Al-Mukarram"
+                description="Kalkulator zakat untuk membantu menghitung zakat maal dan kewajiban zakat lainnya secara praktis."
+            />
             <Header />
             <main className="flex-1">
                 <PageHeader

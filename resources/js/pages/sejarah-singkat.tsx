@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { History, Home, Info } from 'lucide-react';
 
 import HeroSection from '@/components/sejarah-singkat/hero-section';
@@ -14,7 +14,7 @@ export default function SejarahSingkat() {
     return (
         <>
             <Header />
-            <Head title="Sejarah Singkat | Masjid Agung Al-Mukarram" />
+            <Seo title="Sejarah Singkat | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Sejarah Singkat"
@@ -49,3 +49,4 @@ export default function SejarahSingkat() {
         </>
     );
 }
+

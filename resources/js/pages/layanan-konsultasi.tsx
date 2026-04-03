@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { BookOpen, Home, MessageCircleHeart } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
@@ -9,7 +9,7 @@ export default function LayananKonsultasi() {
     return (
         <>
             <Header />
-            <Head title="Konsultasi Ibadah & Hukum Islam | Masjid Agung Al-Mukarram" />
+            <Seo title="Konsultasi Ibadah & Hukum Islam | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Layanan Konsultasi"
@@ -51,3 +51,4 @@ export default function LayananKonsultasi() {
         </>
     );
 }
+

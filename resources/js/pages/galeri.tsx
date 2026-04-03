@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import {
     ChevronLeft,
     ChevronRight,
@@ -205,7 +205,7 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
     return (
         <>
             <Header />
-            <Head title="Galeri Media | Masjid Agung Al-Mukarram" />
+            <Seo title="Galeri Media | Masjid Agung Al-Mukarram" />
             <PageHeader
                 title="Galeri Dokumentasi"
                 subtitle="Kumpulan album foto dari berbagai kegiatan dan momen berharga yang diselenggarakan di Masjid Agung Al-Mukarram Amanah."
@@ -1042,3 +1042,4 @@ export default function Galeri({ albums = [], videos = [] }: GaleriProps) {
         </>
     );
 }
+

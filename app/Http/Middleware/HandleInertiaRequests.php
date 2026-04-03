@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Schema;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -66,6 +67,9 @@ class HandleInertiaRequests extends Middleware
                 ->map(fn ($p) => $p->judul),
             // keep siteContact shared for static inertia pages that don't have a controller
             'siteContact' => fn () => \App\Models\KontakSitus::first(),
+            'seoSettings' => fn () => Schema::hasTable('seo_settings')
+                ? \App\Models\SeoSetting::first()
+                : null,
         ];
     }
 }

@@ -1,4 +1,3 @@
-import { Head } from '@inertiajs/react';
 import { ALargeSmall } from 'lucide-react';
 import { useState } from 'react';
 
@@ -11,6 +10,7 @@ import ArticleShare from '@/components/berita-detail/article-share';
 import ArticleSidebar from '@/components/berita-detail/article-sidebar';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
+import Seo from '@/components/shared/seo';
 import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
@@ -38,10 +38,25 @@ export default function BeritaDetailPage({
     latest,
 }: BeritaDetailPageProps) {
     const [fontSize, setFontSize] = useState(1);
+    const appUrl = (import.meta.env.VITE_APP_URL || '').replace(/\/+$/, '');
+    const imagePath = berita.gambar ? `/storage/${berita.gambar}` : undefined;
+    const articlePath = `/berita-detail/${berita.slug}`;
+    const articleUrl = appUrl ? `${appUrl}${articlePath}` : articlePath;
+    const seoDescription =
+        berita.ringkasan?.trim() ||
+        berita.isi.replace(/<[^>]+>/g, '').slice(0, 160);
 
     return (
         <>
-            <Head title={`${berita.judul} | Masjid Agung Al-Mukarram`} />
+            <Seo
+                title={`${berita.judul} | Masjid Agung Al-Mukarram`}
+                description={seoDescription}
+                image={imagePath}
+                url={articlePath}
+                type="article"
+                author={berita.penulis}
+                publishedTime={berita.created_at}
+            />
             <Header />
 
             {/* Page Hero with background-image, overlay, breadcrumb, meta */}
@@ -66,7 +81,7 @@ export default function BeritaDetailPage({
                             {/* Share */}
                             <ArticleShare
                                 judul={berita.judul}
-                                slug={berita.slug}
+                                articleUrl={articleUrl}
                             />
 
                             {/* Related News */}

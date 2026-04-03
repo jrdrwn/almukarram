@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
+import Seo from '@/components/shared/seo';
 import BidangBidang from '@/components/struktur-organisasi/bidang';
 import LightboxModal from '@/components/struktur-organisasi/lightbox-modal';
 import PimpinanInti from '@/components/struktur-organisasi/pimpinan-inti';
@@ -35,6 +36,10 @@ export default function StrukturOrganisasi() {
 
     return (
         <>
+            <Seo
+                title="Struktur Organisasi | Masjid Agung Al-Mukarram"
+                description="Susunan kepengurusan Badan Pengelola Masjid Agung Al-Mukarram Amanah Kuala Kapuas."
+            />
             <Header />
 
             <PageHeader

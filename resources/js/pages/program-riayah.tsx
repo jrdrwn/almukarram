@@ -3,14 +3,14 @@ import ProgramList from '@/components/program-riayah/program-list';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Hammer, Home } from 'lucide-react';
 
 export default function ProgramRiayah() {
     return (
         <>
             <Header />
-            <Head title="Program Riayah | Masjid Agung Al-Mukarram" />
+            <Seo title="Program Riayah | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Bidang Riayah"
@@ -44,3 +44,4 @@ export default function ProgramRiayah() {
         </>
     );
 }
+

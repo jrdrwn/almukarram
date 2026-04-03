@@ -3,14 +3,14 @@ import ProgramList from '@/components/program-imarah/program-list';
 import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Home, MoonStar } from 'lucide-react';
 
 export default function ProgramImarah() {
     return (
         <>
             <Header />
-            <Head title="Program Imarah | Masjid Agung Al-Mukarram" />
+            <Seo title="Program Imarah | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Bidang Imarah"
@@ -44,3 +44,4 @@ export default function ProgramImarah() {
         </>
     );
 }
+

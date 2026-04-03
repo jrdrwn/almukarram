@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Home, Settings } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
@@ -12,7 +12,7 @@ export default function ProgramIdarah() {
     return (
         <>
             <Header />
-            <Head title="Program Idarah | Masjid Agung Al-Mukarram" />
+            <Seo title="Program Idarah | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Bidang Idarah"
@@ -46,3 +46,4 @@ export default function ProgramIdarah() {
         </>
     );
 }
+

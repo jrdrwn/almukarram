@@ -4,7 +4,7 @@ import Footer from '@/components/shared/footer';
 import Header from '@/components/shared/header';
 import PageHeader from '@/components/shared/page-header';
 import type { SiteContact } from '@/types/site-contact';
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Home, Phone } from 'lucide-react';
 
 interface KontakProps {
@@ -15,7 +15,7 @@ export default function Kontak({ siteContact }: KontakProps) {
     return (
         <>
             <Header />
-            <Head title="Kontak Kami | Masjid Agung Al-Mukarram" />
+            <Seo title="Kontak Kami | Masjid Agung Al-Mukarram" />
             <PageHeader
                 title="Kontak Kami"
                 subtitle="Hubungi kami untuk pertanyaan, saran, atau informasi lebih lanjut tentang Masjid Agung Al-Mukarram Amanah."
@@ -87,3 +87,4 @@ export default function Kontak({ siteContact }: KontakProps) {
         </>
     );
 }
+

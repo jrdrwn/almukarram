@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { BookOpen, Home, Scale } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
@@ -9,7 +9,7 @@ export default function LayananWaris() {
     return (
         <>
             <Header />
-            <Head title="Layanan Waris | Masjid Agung Al-Mukarram" />
+            <Seo title="Layanan Waris | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Layanan Waris"
@@ -53,3 +53,4 @@ export default function LayananWaris() {
         </>
     );
 }
+

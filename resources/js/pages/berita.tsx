@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Home, Newspaper } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
@@ -34,7 +34,7 @@ export default function BeritaPage({
     return (
         <>
             <Header />
-            <Head title="Berita & Kegiatan | Masjid Agung Al-Mukarram" />
+            <Seo title="Berita & Kegiatan | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title={
@@ -101,3 +101,4 @@ export default function BeritaPage({
         </>
     );
 }
+

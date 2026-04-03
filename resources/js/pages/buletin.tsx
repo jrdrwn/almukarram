@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { BookOpen, FileText, Home } from 'lucide-react';
 
 import Footer from '@/components/shared/footer';
@@ -25,7 +25,7 @@ export default function BuletinPage({
     return (
         <>
             <Header />
-            <Head title="Buletin | Masjid Agung Al-Mukarram" />
+            <Seo title="Buletin | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Buletin"
@@ -86,3 +86,4 @@ export default function BuletinPage({
         </>
     );
 }
+

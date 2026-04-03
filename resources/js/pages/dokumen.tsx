@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 
 import DokumenGrid from '@/components/dokumen/dokumen-grid';
 import DokumenSearch from '@/components/dokumen/dokumen-search';
@@ -29,7 +29,7 @@ export default function Dokumen({
     return (
         <>
             <Header />
-            <Head title="Dokumen | Masjid Agung Al-Mukarram" />
+            <Seo title="Dokumen | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title={searchQuery ? `Cari: ${searchQuery}` : 'Dokumen'}
@@ -82,3 +82,4 @@ export default function Dokumen({
         </>
     );
 }
+

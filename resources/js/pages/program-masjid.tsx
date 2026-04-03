@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import { Activity, Building2, Home } from 'lucide-react';
 
 import ProgramGrid from '@/components/program-masjid/program-grid';
@@ -10,7 +10,7 @@ export default function ProgramMasjid() {
     return (
         <>
             <Header />
-            <Head title="Program Masjid | Masjid Agung Al-Mukarram" />
+            <Seo title="Program Masjid | Masjid Agung Al-Mukarram" />
 
             <PageHeader
                 title="Program Masjid"
@@ -49,3 +49,4 @@ export default function ProgramMasjid() {
         </>
     );
 }
+

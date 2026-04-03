@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import Seo from '@/components/shared/seo';
 import {
     Calendar,
     CalendarDays,
@@ -42,7 +42,7 @@ export default function JadwalJumat({
     return (
         <>
             <Header />
-            <Head title="Jadwal & Petugas Jumat | Masjid Agung Al-Mukarram Amanah" />
+            <Seo title="Jadwal & Petugas Jumat | Masjid Agung Al-Mukarram Amanah" />
 
             <PageHeader
                 title="Petugas Salat Jumat"
@@ -265,3 +265,4 @@ export default function JadwalJumat({
         </>
     );
 }
+
